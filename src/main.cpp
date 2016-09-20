@@ -16,12 +16,7 @@ using namespace std;
 int main(int argc,char* argv[]) 
 {
 
-<<<<<<< HEAD
-    cout << "It works !" << endl;
-
-=======
     cout << "It really works !" << endl;
 // Bonjour
->>>>>>> d1dedb5ecf3a9780644941257ac6a12c93ddb207
     return 0;
 }
