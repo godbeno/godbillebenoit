@@ -17,6 +17,6 @@ int main(int argc,char* argv[])
 {
 
     cout << "It really works !" << endl;
-// Bonjour
+// Bonjour, test 15h45
     return 0;
 }
