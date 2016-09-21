@@ -15,8 +15,7 @@ using namespace std;
 
 int main(int argc,char* argv[]) 
 {
+cout << "ce matin, j'essaye VI" << endl;
 
-    cout << "Ce matin, ça marche toujours" << endl;
-
-    return 0;
+return 0;
 }
