@@ -17,5 +17,7 @@ int main(int argc,char* argv[])
 {
 cout << "ce matin, j'essaye VI" << endl;
 
+cout << "je n'arrive pas à écrire efficacement en VI" << endl; 
+
 return 0;
 }
