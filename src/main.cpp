@@ -13,5 +13,7 @@ int main(int argc,char* argv[])
     
     cout << "Nicolas sait se servir de GitHub" << endl;
 
+    cout << "Et de vi" << endl; 
+
     return 0;
 }
