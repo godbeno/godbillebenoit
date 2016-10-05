@@ -4,6 +4,7 @@
 
 /// class Personnage - 
 class Personnage : public Element {
+  // Associations
   // Attributes
 protected:
   int pv;
@@ -18,7 +19,7 @@ protected:
   int attaque;
   // Operations
 public:
-  Personnage (bool equipe);
+  Personnage (bool equipe, TypePersonnage type);
   virtual ~Personnage ();
   bool const estPersonnage ();
   int const getPV ();
@@ -35,6 +36,7 @@ public:
   int const getPorteeMax ();
   int const getPorteeMin ();
   int const getAttaque ();
+  TypePersonnage getType ();
 };
 
 #endif

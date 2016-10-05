@@ -14,6 +14,7 @@ private:
 public:
   CaseTerrain (int id = 0);
   bool const estPersonnage ();
+  int getType ();
 };
 
 #endif

@@ -20,10 +20,10 @@ public:
   GrilleElement getGrille ();
   const ListeElement& const getListe ();
   ListeElement& getListe ();
-  const ElementMobile* const getElement (int idx);
-  ElementMobile* getElement (int idx);
+  const Element* const getElement (int idx);
+  Element* getElement (int idx);
   void setGrille (const GrilleElement& grille);
-  void setListeElement (const ListeElement& list);
+  void setListe (const ListeElement& list);
 };
 
 #endif
