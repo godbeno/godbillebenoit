@@ -2,6 +2,9 @@
 #ifndef CASETERRAIN__H
 #define CASETERRAIN__H
 
+#include <vector>
+#include "Acces.h"
+
 /// class CaseTerrain - 
 class CaseTerrain : public Element {
   // Associations
