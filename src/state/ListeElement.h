@@ -8,7 +8,6 @@ class ListeElement {
   // Attributes
 protected:
   Etat& e;
-  ElementFactory* factory;
   std::vector<Element*> elements;
   // Operations
 public:
@@ -20,7 +19,6 @@ public:
   int const size ();
   Element* const get (int i);
   void clear ();
-  void setElementFactory* (ElementFactory* f);
   void set (int i, Element* e);
 };
 

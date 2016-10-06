@@ -13,8 +13,8 @@ public:
   GrilleElement (Etat& e);
   int const getHauteur ();
   int const getLargeur ();
-  Element* const getCellulePersonnage (int i, int j);
-  Element* const getCelluleDécor (int i, int j);
+  Element const getCellulePersonnage (int i, int j);
+  Element const getCelluleDecor (int i, int j);
 };
 
 #endif

@@ -3,10 +3,11 @@
 #define CASETERRAIN__H
 
 #include <vector>
+#include "Element.h"
 #include "Acces.h"
 
 /// class CaseTerrain - 
-class CaseTerrain : public Element {
+class CaseTerrain : public Element{
   // Associations
   // Attributes
 private:
@@ -15,7 +16,7 @@ private:
   int hauteur;
   // Operations
 public:
-  CaseTerrain (int id = 0);
+  CaseTerrain (int id);
   bool const estPersonnage ();
   int getType ();
 };

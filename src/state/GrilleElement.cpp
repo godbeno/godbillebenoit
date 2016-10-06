@@ -21,7 +21,7 @@ int const GrilleElement::getLargeur ()
     return largeur;
 }
 
-Element* const GrilleElement::getCellulePersonnage (int i, int j)
+Element const GrilleElement::getCellulePersonnage (int i, int j)
 {
     for(k=0;k<this.size();k++){
         if(this.elements[k].x == i && this.elements[k].y == j && this.elements[k].estPersonnage)
@@ -29,7 +29,7 @@ Element* const GrilleElement::getCellulePersonnage (int i, int j)
     }
 }
 
-Element* const GrilleElement::getCelluleDécor (int i, int j)
+Element const GrilleElement::getCelluleDecor (int i, int j)
 {
     for(k=0;k<this.size();k++){
         if(this.elements[k].x == i && this.elements[k].y == j && not(this.elements[k].estPersonnage))

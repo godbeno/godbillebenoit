@@ -1,6 +1,6 @@
 #include "CaseTerrain.h"
   
-CaseTerrain::CaseTerrain (int id = 0)
+CaseTerrain::CaseTerrain (int id)
 {
     /*
      * 0 : herbe

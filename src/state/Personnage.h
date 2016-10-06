@@ -2,6 +2,7 @@
 #ifndef PERSONNAGE__H
 #define PERSONNAGE__H
 #include "TypePersonnage.h"
+#include "Element.h"
 
 /// class Personnage - 
 class Personnage : public Element {
@@ -31,8 +32,8 @@ public:
   int const getPVMax ();
   int const getPAMax ();
   void setPVrestant (int pv);
-  void setPArestant (void int);
-  bool const equals ( const &Personnage);
+  void setPArestant (int pa);
+  bool const equals ( const Personnage);
   void clone ( Element* const);
   int const getPorteeMax ();
   int const getPorteeMin ();
