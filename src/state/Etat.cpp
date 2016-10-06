@@ -1,12 +1,12 @@
 #include "Etat.h"
 
-void Etat::Etat ()
+Etat::Etat ()
 {
     ListeElement = ListeElement::ListeElement();
     GrilleElement = GrilleElement::GrilleElement();
 }
 
-void Etat::~Etat ()
+Etat::~Etat ()
 {
     delete[] this;
 }

@@ -2,17 +2,17 @@
 #ifndef LISTEELEMENT__H
 #define LISTEELEMENT__H
 
-#include "Etat.h"
 #include "Element.h"
 #include <vector>
 
 class Etat;
+
 /// class ListeElement - 
 class ListeElement {
   // Associations
   // Attributes
 protected:
-  Etat e;
+  Etat *e;
   std::vector<Element*> elements;
   // Operations
 public:

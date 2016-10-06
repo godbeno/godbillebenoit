@@ -98,11 +98,11 @@ void Personnage::setPArestant (int pa)
 {
     this->pa = pa;
 }
-bool const Personnage::equals(const Personnage &p)
+bool const Personnage::equal(const Personnage &p)
 {
-    return (p.getID() == id && p.getPV() == pv && p.getX() == getX() && p.getY() == getY() && p.getEquipe() == equipe);
+    return (p.id == id && p.pv == pv && p.x == getX() && p.y == getY() && p.equipe == equipe);
 }
-void Personnage::clone (const Personnage* p)
+void Personnage::clone (Personnage* p)
 {
     orientation = p->getOrientation();
     pv = p->getPV();
@@ -110,7 +110,7 @@ void Personnage::clone (const Personnage* p)
     id = p->getID();
     equipe = p->getEquipe();
     pvMax = p->getPVMax();
-    paMax = p->getPAMax()
+    paMax = p->getPAMax();
     porteeMax = p->getPorteeMax();
     porteeMin = p->getPorteeMin();
     attaque = p->getAttaque();

@@ -1,6 +1,5 @@
 #include <iostream>
-#include "state"
-
+#include "state/Etat.h"
 using namespace std;
 
 int main(int argc,char* argv[]) 
