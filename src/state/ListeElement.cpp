@@ -1,14 +1,17 @@
 #include "ListeElement.h"
 
 
-void ListeElement::ListeElement()
+ListeElement::ListeElement()
 {
-    elements = std::vector<Element*>;
+    elements.clear();
 }
 
-void ListeElement::~ListeElement ()
+ListeElement::~ListeElement()
 {
-    delete[] elements;
+    for (unsigned int i = 0; i < elements.size(); i++)
+    {
+        delete elements[i];
+    }
 }
 
 ListeElement* const ListeElement::clone (const ListeElement* l)
@@ -20,13 +23,13 @@ ListeElement* const ListeElement::clone (const ListeElement* l)
 
 void ListeElement::copy (const ListeElement& liste)
 {
-    this->e = liste->e;
-    this->elements = liste->elements;
+    this->e = liste.e;
+    this->elements = liste.elements;
 }
 
 bool const ListeElement::equals (const ListeElement& other)
 {
-    return (this->e == other->e && this->elements == other->elements);
+    return (this->elements == other.elements);
 }
 
 int const ListeElement::size ()
@@ -36,7 +39,10 @@ int const ListeElement::size ()
 
 Element* const ListeElement::get (int i)
 {
-    if (i<elements.size()) return elements[i];
+    if (static_cast<unsigned int>(i) <elements.size()) 
+        return elements[i];
+    else
+        return nullptr;
 }
 
 void ListeElement::clear ()
@@ -47,10 +53,10 @@ void ListeElement::clear ()
 
 void ListeElement::set (int i, Element* e)
 {
-    if(this->elements.size() >i){
-        elements[i]=e;}{
-        elements.resize(int i); elements[i]=e;
-    }
+    if(elements.size() > static_cast<unsigned int>(i))
+        elements[i]=e;
+    else
+        elements.push_back(e);
 }
 
 

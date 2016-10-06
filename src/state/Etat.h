@@ -2,9 +2,7 @@
 #ifndef ETAT__H
 #define ETAT__H
 
-#include "ListeElement.h"
 #include "GrilleElement.h"
-
 /// class Etat - 
 class Etat {
   // Associations
