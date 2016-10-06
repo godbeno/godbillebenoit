@@ -11,9 +11,6 @@ protected:
   // Operations
 public:
   GrilleElement (Etat& e);
-  GrilleElement* const clone ();
-  void copy (const GrilleElement& other);
-  bool const equals (GrilleElement& other);
   int const getHauteur ();
   int const getLargeur ();
   Element* const getCellulePersonnage (int i, int j);

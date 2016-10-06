@@ -1,14 +1,13 @@
 #include "ListeElement.h"
 
 
-void ListeElement::ListeElement(Etat& e)
+void ListeElement::ListeElement()
 {
-    this->e = e;
     factory = ElementFactory;
     elements = std::vector<Element*>;
 }
 
-void ~ListeElement ()
+void ListeElement::~ListeElement ()
 {
     delete[] elements;
 }
@@ -21,32 +20,49 @@ ListeElement* const ListeElement::clone (const ListeElement* l)
     return this;
 }
 
-void copy (const ListeElement& liste)
+void ListeElement::copy (const ListeElement& liste)
 {
     this->e = liste->e;
     this->factory = liste->factory;
     this->elements = liste->elements;
 }
 
-bool const equals (const ListeElement& other)
+bool const ListeElement::equals (const ListeElement& other)
 {
     return (this->e == other->e && this->factory == other->factory && this->elements == other->elements);
 }
 
-int const size ()
+int const ListeElement::size ()
 {
     return elements.size();
 }
 
-Element* const get (int i)
+Element* const ListeElement::get (int i)
 {
     if (i<elements.size()) return elements[i];
 }
 
-void clear ()
+void ListeElement::clear ()
 {
     elements.clear();
 }
+
+void ListeElement::setElementFactory* (ElementFactory* f){
+{
+    this->factory=f;
+}
+
+void ListeElement::set (int i, Element* e)
+{
+    if(this->elements.size() >i){
+        elements[i]=e;}{
+        elements.resize(int i); elements[i]=e;
+    }
+}
+
+
+
+        
 
 
     

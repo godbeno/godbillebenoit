@@ -12,7 +12,7 @@ protected:
   std::vector<Element*> elements;
   // Operations
 public:
-  ListeElement (Etat& e);
+  ListeElement ();
   ~ListeElement ();
   ListeElement* const clone ();
   void copy (const ListeElement& liste);
@@ -22,7 +22,6 @@ public:
   void clear ();
   void setElementFactory* (ElementFactory* f);
   void set (int i, Element* e);
-  void const notifyObservers (int i = -1);
 };
 
 #endif

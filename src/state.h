@@ -3,4 +3,14 @@
 #define __STATE__H
 
 #include "state/Exemple.h"
+#include "state/Personnage.h"
+#include "state/Acces.h"
+#include "state/CaseTerrain.h"
+#include "state/Element.h"
+#include "state/Etat.h"
+#include "state/GrilleElement.h"
+#include "state/ListeElement.h"
+#include "state/TypePersonnage.h"
+#include "state/Exemple.h"
+
 #endif
