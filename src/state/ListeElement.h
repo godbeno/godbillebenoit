@@ -15,7 +15,7 @@ public:
   ListeElement (Etat& e);
   ~ListeElement ();
   ListeElement* const clone ();
-  void copy (const ListeElement& list);
+  void copy (const ListeElement& liste);
   bool const equals (const ListeElement& other);
   int const size ();
   Element* const get (int i);
