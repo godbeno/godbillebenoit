@@ -2,49 +2,51 @@
 
 Etat::Etat ()
 {
-    ListeElement = ListeElement::ListeElement();
-    GrilleElement = GrilleElement::GrilleElement();
+    liste = new ListeElement;
+    grille = new GrilleElement(*this);
 }
 
 Etat::~Etat ()
 {
-    delete[] this;
+    delete liste;
+    delete grille;
 }
 
-Etat* const Etat::clone (const Etat* e)
+Etat* const Etat::clone (const Etat& e)
 {
-    this->ListeElement = e->ListeElement;
-    this->GrilleElement = e->GrilleElement;
+    this->liste = e.liste;
+    this->grille = e.grille;
     return this;
 }
 
-void Etat::copy (const Etat* e)
+void Etat::copy (const Etat& e)
 {
-    this->ListeElement = e->ListeElement;
-    this->GrilleElement = e->GrilleElement;
+    this->liste = e.liste;
+    this->grille = e.grille;
 }
 
-bool const Etat::equals (const Etat* e)
+bool const Etat::equals (const Etat& e)
 {
-    return (this->ListeElement == e->ListeElement && this->GrilleElement = e->GrilleElement);
+    return (this->liste == e.liste && this->grille == e.grille);
 }
 
-GrilleElement getGrille ()
+GrilleElement Etat::getGrille ()
 {
-    return GrilleElement;
+    return *grille;
 }
 
-ListeElement getListe()
+ListeElement Etat::getListe()
 {
-    return ListeElement;
+    return *liste;
 }
 
-void setGrille (const GrilleElement grille)
+void Etat::setGrille (const GrilleElement& grille)
 {
-    this->GrilleElement = grille;
+    *(this->grille) = grille;
 }
 
-void setListe (const ListeElement liste)
+void Etat::setListe (const ListeElement& liste)
 {
-    this->ListeElement = liste
+    *(this->liste) = liste;
+}
 

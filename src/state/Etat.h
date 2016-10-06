@@ -8,19 +8,19 @@ class Etat {
   // Associations
   // Attributes
 protected:
-  ListeElement liste;
-  GrilleElement grille;
+  ListeElement *liste;
+  GrilleElement *grille;
   // Operations
 public:
   Etat ();
   ~Etat ();
-  Etat* const clone ();
-  void copy (const Etat& other);
+  Etat* const clone (const Etat&);
+  void copy (const Etat& e);
   bool const equals (const Etat& other);
   GrilleElement getGrille ();
   ListeElement getListe ();
-  void setGrille (const GrilleElement grille);
-  void setListe (const ListeElement list);
+  void setGrille (const GrilleElement& grille);
+  void setListe (const ListeElement& list);
 };
 
 #endif
