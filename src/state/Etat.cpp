@@ -12,11 +12,12 @@ Etat::~Etat ()
     delete grille;
 }
 
-Etat* const Etat::clone (const Etat& e)
+Etat* const Etat::clone ()
 {
-    this->liste = e.liste;
-    this->grille = e.grille;
-    return this;
+    Etat* e = new Etat;
+    e->liste = this->liste;
+    e->grille = this->grille;
+    return e;
 }
 
 void Etat::copy (const Etat& e)
@@ -50,3 +51,13 @@ void Etat::setListe (const ListeElement& liste)
     *(this->liste) = liste;
 }
 
+void Etat::initialiserTerrain()
+{
+    grille->genererTerrainAleatoire();
+}
+
+void Etat::ajouterPersonnage(bool equipe, int id)
+{
+    Personnage* p = new Personnage(equipe, TypePersonnage(id));
+    liste->add(p);
+}

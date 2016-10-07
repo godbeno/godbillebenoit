@@ -5,6 +5,7 @@
 #include "ListeElement.h"
 #include "Personnage.h"
 #include "CaseTerrain.h"
+#include <iostream>
 /// class GrilleElement - 
 class GrilleElement : public ListeElement
 {
@@ -19,6 +20,7 @@ public:
   int const getLargeur ();
   Personnage* const getCellulePersonnage (int i, int j);
   CaseTerrain* const getCelluleDecor (int i, int j);
+  void genererTerrainAleatoire();
 };
 
 #endif

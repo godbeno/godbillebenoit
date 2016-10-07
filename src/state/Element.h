@@ -13,6 +13,7 @@ public:
   Element ();
   virtual ~Element ();
   virtual bool const estPersonnage () = 0;
+  virtual int const getID() = 0;
   int const getX ();
   int const getY ();
   void setX (int x);

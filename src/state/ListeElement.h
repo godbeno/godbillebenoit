@@ -18,13 +18,14 @@ protected:
 public:
   ListeElement ();
   ~ListeElement ();
-  ListeElement* const clone (const ListeElement*);
+  ListeElement* const clone ();
   void copy (const ListeElement& liste);
   bool const equals (const ListeElement& other);
   int const size ();
   Element* const get (int i);
   void clear ();
   void set (int i, Element* e);
+  void add(Element*);
 };
 
 #endif

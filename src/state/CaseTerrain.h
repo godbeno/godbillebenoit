@@ -18,7 +18,8 @@ private:
 public:
   CaseTerrain (int id);
   bool const estPersonnage ();
-  int getType ();
+  int const getID ();
+  CaseTerrain* clone();
 };
 
 #endif

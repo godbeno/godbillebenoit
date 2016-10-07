@@ -33,7 +33,7 @@ public:
   void setPVrestant (int pv);
   void setPArestant (int pa);
   bool const equal(const Personnage &p);
-  void clone (Personnage*);
+  Personnage* clone ();
   int const getPorteeMax ();
   int const getPorteeMin ();
   int const getAttaque ();

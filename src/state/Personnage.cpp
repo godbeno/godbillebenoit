@@ -102,18 +102,18 @@ bool const Personnage::equal(const Personnage &p)
 {
     return (p.id == id && p.pv == pv && p.x == getX() && p.y == getY() && p.equipe == equipe);
 }
-void Personnage::clone (Personnage* p)
+Personnage* Personnage::clone ()
 {
-    orientation = p->getOrientation();
-    pv = p->getPV();
-    pa = p->getPA();
-    id = p->getID();
-    equipe = p->getEquipe();
-    pvMax = p->getPVMax();
-    paMax = p->getPAMax();
-    porteeMax = p->getPorteeMax();
-    porteeMin = p->getPorteeMin();
-    attaque = p->getAttaque();
+    Personnage* p = new Personnage(equipe, TypePersonnage(id));
+    p->orientation = orientation;
+    p->pv = pv;
+    p->pa = pa;
+    p->pvMax = pvMax;
+    p->paMax = paMax;
+    p->porteeMax = porteeMax;
+    p->porteeMin = porteeMin;
+    p->attaque = attaque;
+    return p;
 }
 int const Personnage::getPorteeMax ()
 {

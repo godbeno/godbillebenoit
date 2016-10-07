@@ -230,7 +230,14 @@ bool const CaseTerrain::estPersonnage ()
 {
     return false;
 }
-int CaseTerrain::getType ()
+int const CaseTerrain::getID()
 {
     return id;
+}
+CaseTerrain* CaseTerrain::clone()
+{
+    CaseTerrain *c = new CaseTerrain(id);
+    c->setX(x);
+    c->setY(y);
+    return c;
 }

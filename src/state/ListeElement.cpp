@@ -14,11 +14,12 @@ ListeElement::~ListeElement()
     }
 }
 
-ListeElement* const ListeElement::clone (const ListeElement* l)
+ListeElement* const ListeElement::clone()
 {
-    this->e = l->e;
-    this->elements = l->elements;
-    return this;
+    ListeElement* l = new ListeElement();
+    l->e = this->e;
+    l->elements = this->elements;
+    return l;
 }
 
 void ListeElement::copy (const ListeElement& liste)
@@ -59,7 +60,10 @@ void ListeElement::set (int i, Element* e)
         elements.push_back(e);
 }
 
-
+void ListeElement::add(Element* n)
+{
+    elements.push_back(n);
+}
 
         
 
