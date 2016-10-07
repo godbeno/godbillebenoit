@@ -22,7 +22,6 @@ protected:
   // Operations
 public:
   Personnage (bool equipe, TypePersonnage type);
-  virtual ~Personnage ();
   bool const estPersonnage ();
   int const getPV ();
   int getPA ();

@@ -6,6 +6,10 @@ Element::Element()
     x = -1;
     y = -1;
 }
+Element::~Element()
+{
+    
+}
 int const Element::getX()
 {
     return x;
