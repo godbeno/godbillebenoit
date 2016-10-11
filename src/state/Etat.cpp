@@ -31,12 +31,12 @@ bool const Etat::equals (const Etat& e)
     return (this->liste == e.liste && this->grille == e.grille);
 }
 
-GrilleElement Etat::getGrille ()
+const GrilleElement& Etat::getGrille ()
 {
     return *grille;
 }
 
-ListeElement Etat::getListe()
+const ListeElement& Etat::getListe()
 {
     return *liste;
 }

@@ -18,8 +18,8 @@ public:
   Etat* const clone ();
   void copy (const Etat& e);
   bool const equals (const Etat& other);
-  GrilleElement getGrille ();
-  ListeElement getListe ();
+  const GrilleElement& getGrille () const;
+  const ListeElement& getListe () const;
   void setGrille (const GrilleElement& grille);
   void setListe (const ListeElement& list);
   void initialiserTerrain();
