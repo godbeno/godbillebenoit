@@ -2,11 +2,11 @@
 #ifndef __STATE__H
 #define __STATE__H
 
-#include "state/Element.h"
 #include "state/ListeElement.h"
 #include "state/GrilleElement.h"
 #include "state/Etat.h"
 #include "state/Acces.h"
+#include "state/Element.h"
 #include "state/CaseTerrain.h"
 #include "state/TypePersonnage.h"
 #include "state/Personnage.h"

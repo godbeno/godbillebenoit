@@ -1,5 +1,6 @@
 #include "Personnage.h"
 #include "Element.h"
+using namespace state;
 
 Personnage::Personnage(bool equipe, TypePersonnage type)
 {

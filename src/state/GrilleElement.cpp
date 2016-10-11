@@ -1,4 +1,5 @@
 #include "GrilleElement.h"
+using namespace state;
 
 GrilleElement::GrilleElement(Etat& e)
 {
