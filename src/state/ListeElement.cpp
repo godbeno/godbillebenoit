@@ -1,8 +1,10 @@
 #include "ListeElement.h"
+#include "Etat.h"
+#include <iostream>
 
 using namespace state;
 
-ListeElement::ListeElement(Etat& e)
+ListeElement::ListeElement(Etat* e)
 {
     elements.clear();
     this->e = e;
@@ -18,15 +20,14 @@ ListeElement::~ListeElement()
 
 ListeElement* const ListeElement::clone()
 {
-    ListeElement* l = new ListeElement();
-    l->e = this->e;
+    ListeElement* l = new ListeElement(this->e->clone());
     l->elements = this->elements;
     return l;
 }
 
 void ListeElement::copy (const ListeElement& liste)
 {
-    this->e = liste.e;
+    this->e = liste.e->clone();
     this->elements = liste.elements;
 }
 

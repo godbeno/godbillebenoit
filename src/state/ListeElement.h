@@ -8,10 +8,7 @@ namespace state {
   class Etat;
   class Element;
   class ListeElement;
-  class Personnage;
 }
-
-#include "Etat.h"
 
 namespace state {
 
@@ -19,11 +16,11 @@ namespace state {
   class ListeElement {
     // Attributes
   protected:
-    Etat e;
+    Etat* e;
     std::vector<Element*> elements;
     // Operations
   public:
-    ListeElement (Etat& e);
+    ListeElement (Etat* e);
     ~ListeElement ();
     ListeElement* const clone ();
     void copy (const ListeElement& list);
@@ -32,7 +29,7 @@ namespace state {
     Element* const get (int i);
     void clear ();
     void set (int i, Element* e);
-    void add (Personnage* p);
+    void add (Element* p);
   };
 
 };

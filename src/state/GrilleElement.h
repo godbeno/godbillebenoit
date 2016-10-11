@@ -6,25 +6,30 @@
 namespace state {
   class Etat;
   class ListeElement;
+  class Personnage;
+  class CaseTerrain;
 }
 
 #include "ListeElement.h"
+#include "Personnage.h"
+#include "CaseTerrain.h"
 
 namespace state {
 
   /// class GrilleElement - 
   class GrilleElement : public state::ListeElement {
+    // Associations
     // Attributes
   protected:
     int hauteur;
     int largeur;
     // Operations
   public:
-    GrilleElement (Etat& e);
+    GrilleElement (Etat* e);
     int const getHauteur ();
     int const getLargeur ();
-    Element* const getCellulePersonnage (int i, int j);
-    Element* const getCelluleDecor (int i, int j);
+    Personnage* const getCellulePersonnage (int i, int j);
+    CaseTerrain* const getCelluleDecor (int i, int j);
     void genererTerrainAleatoire ();
   };
 

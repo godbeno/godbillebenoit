@@ -1,7 +1,8 @@
 #include "GrilleElement.h"
+#include <iostream>
 using namespace state;
 
-GrilleElement::GrilleElement(Etat& e)
+GrilleElement::GrilleElement(Etat* e) : ListeElement(e)
 {
     hauteur = 0;
     largeur = 0;

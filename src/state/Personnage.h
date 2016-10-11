@@ -4,6 +4,7 @@
 
 
 namespace state {
+  class Personnage;
   class Element;
 }
 
@@ -40,9 +41,9 @@ namespace state {
     int const getPVMax ();
     int const getPAMax ();
     void setPVrestant (int pv);
-    void setPArestant (void int);
-    bool const equals ( const &Personnage);
-    void clone ( Element* const);
+    void setPArestant (int pa);
+    bool const equals (const Personnage& p);
+    Personnage* clone ();
     int const getPorteeMax ();
     int const getPorteeMin ();
     int const getAttaque ();

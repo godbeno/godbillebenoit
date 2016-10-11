@@ -7,9 +7,10 @@ namespace state {
   class ListeElement;
   class GrilleElement;
   class Etat;
+  class Personnage;
 }
 
-#include "ListeElement.h"
+#include "Personnage.h"
 #include "GrilleElement.h"
 
 namespace state {
@@ -19,8 +20,8 @@ namespace state {
     // Associations
     // Attributes
   protected:
-    ListeElement liste;
-    GrilleElement grille;
+    ListeElement* liste;
+    GrilleElement* grille;
     // Operations
   public:
     Etat ();
@@ -28,8 +29,8 @@ namespace state {
     Etat* const clone ();
     void copy (const Etat& other);
     bool const equals (const Etat& other);
-    const GrilleElement& const getGrille ();
-    const ListeElement& const getListe ();
+    const GrilleElement&  getGrille ();
+    const ListeElement&  getListe ();
     void setGrille (const GrilleElement& grille);
     void setListe (const ListeElement& list);
     void initialiserTerrain ();

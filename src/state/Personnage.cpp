@@ -58,6 +58,10 @@ Personnage::Personnage(bool equipe, TypePersonnage type)
     
     
 }
+Personnage::~Personnage()
+{
+    
+}
 bool const Personnage::estPersonnage()
 {
     return true;
@@ -99,7 +103,7 @@ void Personnage::setPArestant (int pa)
 {
     this->pa = pa;
 }
-bool const Personnage::equal(const Personnage &p)
+bool const Personnage::equals(const Personnage& p)
 {
     return (p.id == id && p.pv == pv && p.x == getX() && p.y == getY() && p.equipe == equipe);
 }

@@ -3,8 +3,8 @@ using namespace state;
 
 Etat::Etat ()
 {
-    liste = new ListeElement;
-    grille = new GrilleElement(*this);
+    liste = new ListeElement(this);
+    grille = new GrilleElement(this);
 }
 
 Etat::~Etat ()
@@ -32,12 +32,12 @@ bool const Etat::equals (const Etat& e)
     return (this->liste == e.liste && this->grille == e.grille);
 }
 
-const GrilleElement& Etat::getGrille () const
+const GrilleElement& Etat::getGrille ()
 {
     return *grille;
 }
 
-const ListeElement& Etat::getListe() const
+const ListeElement& Etat::getListe()
 {
     return *liste;
 }
