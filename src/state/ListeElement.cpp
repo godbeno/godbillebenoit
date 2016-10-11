@@ -1,9 +1,11 @@
 #include "ListeElement.h"
+
 using namespace state;
 
-ListeElement::ListeElement()
+ListeElement::ListeElement(Etat& e)
 {
     elements.clear();
+    this->e = e;
 }
 
 ListeElement::~ListeElement()

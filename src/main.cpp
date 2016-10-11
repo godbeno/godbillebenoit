@@ -1,5 +1,5 @@
 #include <iostream>
-#include "state/Etat.h"
+#include "state/GrilleElement.h"
 using namespace std;
 
 int main(int argc,char* argv[]) 

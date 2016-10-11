@@ -11,13 +11,15 @@ namespace state {
   class Personnage;
 }
 
+#include "Etat.h"
+
 namespace state {
 
   /// class ListeElement - 
   class ListeElement {
     // Attributes
   protected:
-    Etat& e;
+    Etat e;
     std::vector<Element*> elements;
     // Operations
   public:
