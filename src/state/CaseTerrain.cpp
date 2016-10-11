@@ -1,5 +1,7 @@
 #include "CaseTerrain.h"
-  
+
+using namespace state;
+
 CaseTerrain::CaseTerrain (int id)
 {
     /*
