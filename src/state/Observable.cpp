@@ -1,11 +1,13 @@
-#include "state.h"
+
 #include "Observable.h"
+
+using namespace state;
 
 void Observable::enregistrerObservateur (IObservateurEtat* observateur){
 	observateurs.push_back(observateur);
 }
 
-void Observable::avertirObservateur(){
+void Observable::avertirObservateurs(){
 	for(auto observateur : observateurs){
 		observateur->Evenement();
 	}
