@@ -3,13 +3,13 @@
 
 using namespace state;
 
-void Observable::enregistrerObservateur (IObservateurEtat* observateur){
+void Observable::enregistrerObservateur (Observateur* observateur){
 	observateurs.push_back(observateur);
 }
 
-void Observable::avertirObservateurs(){
+void Observable::avertirObservateurs(const EvenementEtat &e){
 	for(auto observateur : observateurs){
-		observateur->Evenement();
+		observateur->changementEtat(e);
 	}
 }
 

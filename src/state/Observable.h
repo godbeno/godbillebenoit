@@ -5,10 +5,11 @@
 #include <list>
 
 namespace state {
-  class IObservateurEtat;
+  class Observateur;
+  class EvenementEtat;
 }
 
-#include "IObservateurEtat.h"
+#include "Observateur.h"
 
 namespace state {
 
@@ -17,11 +18,11 @@ namespace state {
     // Associations
     // Attributes
   private:
-    std::list<IObservateurEtat*> observateurs;
+    std::list<Observateur*> observateurs;
     // Operations
   public:
-    void enregistrerObservateur (IObservateurEtat* );
-    void avertirObservateurs ();
+    void enregistrerObservateur (Observateur* );
+    void avertirObservateurs (const EvenementEtat& e);
   };
 
 };

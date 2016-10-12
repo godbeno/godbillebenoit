@@ -1,8 +1,9 @@
 [x] Bien faire initialisation animée
+[x] Bien faire initialisation statique
 [x] Gérer le temps pour les animés
-[0k] Finir de faire l'implémentation des classes
 [x] Completer la classe Scene
-[x] Regarder les observables
+[x] Implémenter les observables
+[x] Faire hériter Couche et Scene de l'observateur 
 [x] Faire des tests unitaires
 [x] Faire génération carte aléatoire
 
