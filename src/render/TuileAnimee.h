@@ -17,19 +17,19 @@ namespace render {
   class TuileAnimee : public render::Tuile {
     // Attributes
   private:
-    std::vector<const Tuile*> tuiles;
+    std::vector<Tuile*> tuiles;
     float pourcentage;
     float vitesse;
     int64_t debut;
     // Operations
   public:
-    TuileAnimee (int id, float rate);
+    TuileAnimee (int x, int y, int id, float rate, float vitesse);
     ~TuileAnimee ();
     bool estAnime ();
     const float getPourcentage ();
     void setPourcentage (float rate);
     Tuile* getTuile (int i);
-    void setVItesse (float speed);
+    void setVitesse (float speed);
     const float getVitesse ();
     void ajouterTuile (Tuile* tuile);
     void setTuile (int i, Tuile* tuile);
