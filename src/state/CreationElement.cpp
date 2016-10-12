@@ -1,7 +1,8 @@
 #include "state.h"
+#include <iostream>
 
 void Evenement (){
-	cout << "TEEEEST !!! C'EST LE TEEEEEESSSTT !!!" << endl;
+	std::cout << "TEEEEST !!! C'EST LE TEEEEEESSSTT !!!" << std::endl;
 }
 
 
