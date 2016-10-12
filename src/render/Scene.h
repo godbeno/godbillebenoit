@@ -16,12 +16,11 @@ namespace render {
     // Associations
     // Attributes
   public:
-    couchePersonnage Couche*;
-    coucheTerrain Couche*;
-    etat Etat*;
+    Couche* couchePersonnage;
+    Couche* coucheTerrain;
     // Operations
   public:
-    Scene (Etat* etat);
+    Scene ();
   };
 
 };

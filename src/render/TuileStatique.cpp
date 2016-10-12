@@ -26,7 +26,7 @@ TuileStatique::TuileStatique(int id)
     switch(id)
     {
         case 0: //Herbe
-            texture.load("res/herbe.png");
+            texture.loadFromFile("res/herbe.png");
             break;
     }
 }

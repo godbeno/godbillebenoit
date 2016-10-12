@@ -19,7 +19,7 @@ namespace render {
   public:
     int64_t debut;
   private:
-    std::vector<const Tiles*> tuiles;
+    std::vector<const Tuile*> tuiles;
     float pourcentage;
     float vitesse;
     // Operations
@@ -28,14 +28,14 @@ namespace render {
     ~TuileAnimee ();
     bool estAnime ();
     const float getPourcentage ();
-    void setPourcentage (rate float);
-    Tile* getTuile (int i);
+    void setPourcentage (float rate);
+    Tuile* getTuile (int i);
     void setVItesse (float speed);
     const float getVitesse ();
-    void ajouterTuile (Tile* tile);
-    void setTuile (int i, Tile* tile);
+    void ajouterTuile (Tuile* tuile);
+    void setTuile (int i, Tuile* tuile);
     void update (int64_t time);
-    sync (temps int64_t);
+    void sync (int64_t temps);
   };
 
 };
