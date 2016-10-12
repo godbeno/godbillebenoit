@@ -7,16 +7,18 @@ namespace state {
   class ListeElement;
   class GrilleElement;
   class Etat;
+  class Observable;
   class Personnage;
 }
 
+#include "Observable.h"
 #include "Personnage.h"
 #include "GrilleElement.h"
 
 namespace state {
 
   /// class Etat - 
-  class Etat {
+  class Etat : public state::Observable {
     // Associations
     // Attributes
   protected:

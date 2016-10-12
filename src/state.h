@@ -2,6 +2,8 @@
 #ifndef __STATE__H
 #define __STATE__H
 
+#include "state/IObservateurEtat.h"
+#include "state/Observable.h"
 #include "state/TypePersonnage.h"
 #include "state/Element.h"
 #include "state/Personnage.h"
@@ -10,4 +12,5 @@
 #include "state/CaseTerrain.h"
 #include "state/GrilleElement.h"
 #include "state/Etat.h"
+#include "state/CreationElement.h"
 #endif

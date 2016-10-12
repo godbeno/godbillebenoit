@@ -8,12 +8,17 @@ namespace state {
   class Etat;
   class Element;
   class ListeElement;
+  class Observable;
 }
+
+#include "Observable.h"
+#include "Element.h"
 
 namespace state {
 
   /// class ListeElement - 
-  class ListeElement {
+  class ListeElement : public state::Observable {
+    // Associations
     // Attributes
   protected:
     Etat* e;
