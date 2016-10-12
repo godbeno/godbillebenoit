@@ -649,6 +649,7 @@ struct stdlib_includes {
    int array;   
    int thread;
    int mutex;
+   int sf;
 };
 
 void print_include_stdlib(struct stdlib_includes* si,char* name) {
@@ -726,6 +727,12 @@ void print_include_stdlib(struct stdlib_includes* si,char* name) {
            print ("#include <memory>\n");
            si->memory = 1;
        }
+       if (!si->sf && strstr(name, "sf::Texture") 
+	|| !si->sf && strstr(name, "sf::Sprite"))
+	{
+		print("#include <SFML/Graphics.hpp>");
+		si->sf = 1;
+	}
     }
 }
 

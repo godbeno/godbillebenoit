@@ -2,7 +2,7 @@
 #ifndef RENDER__TUILESTATIQUE__H
 #define RENDER__TUILESTATIQUE__H
 
-
+#include <SFML/Graphics.hpp>
 namespace render {
   class Tuile;
 }
