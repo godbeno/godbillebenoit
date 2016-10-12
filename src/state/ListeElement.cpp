@@ -66,6 +66,8 @@ void ListeElement::set (int i, Element* e)
 void ListeElement::add(Element* n)
 {
     elements.push_back(n);
+
+    avertirObservateurs();
 }
 
         
