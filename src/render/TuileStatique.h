@@ -2,7 +2,7 @@
 #ifndef RENDER__TUILESTATIQUE__H
 #define RENDER__TUILESTATIQUE__H
 
-
+#include <SFML/Graphics.hpp>
 namespace render {
   class Tuile;
 }
@@ -21,7 +21,7 @@ namespace render {
     sf::Sprite sprite;
     // Operations
   public:
-    TuileStatique (int id);
+    TuileStatique (int x, int y, int id);
     ~TuileStatique ();
     int const getHauteur ();
     int const getLargeur ();

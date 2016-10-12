@@ -15,7 +15,7 @@ namespace render {
   class Scene {
     // Associations
     // Attributes
-  public:
+  private:
     Couche* couchePersonnage;
     Couche* coucheTerrain;
     // Operations

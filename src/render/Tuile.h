@@ -14,6 +14,7 @@ namespace render {
     int id;
     // Operations
   public:
+    Tuile (int x, int y, int id);
     virtual ~Tuile ();
     virtual bool estAnime () = 0;
     int const getID ();

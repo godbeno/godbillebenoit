@@ -2,8 +2,8 @@
 #ifndef RENDER__TUILEANIMEE__H
 #define RENDER__TUILEANIMEE__H
 
-#include <stdint.h>
 #include <vector>
+#include <stdint.h>
 
 namespace render {
   class Tuile;
@@ -16,12 +16,11 @@ namespace render {
   /// class TuileAnimee - 
   class TuileAnimee : public render::Tuile {
     // Attributes
-  public:
-    int64_t debut;
   private:
     std::vector<const Tuile*> tuiles;
     float pourcentage;
     float vitesse;
+    int64_t debut;
     // Operations
   public:
     TuileAnimee (int id, float rate);

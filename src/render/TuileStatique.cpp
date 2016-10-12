@@ -1,25 +1,12 @@
+#include <SFML/Graphics/Sprite.hpp>
+
 #include "TuileStatique.h"
 
 using namespace render;
 using namespace sf;
 
-/*
-private:
-    int hauteur;
-    int largeur;
-    sf::Texture texture;
-    sf::Sprite sprite;
-    // Operations
-  public:
-    TuileStatique (int id);
-    ~TuileStatique ();
-    int const getHauteur ();
-    int const getLargeur ();
-    void setHauteur (int hauteur);
-    void setLargeur (int largeur);
-    const sf::Sprite& getSprite ();
-    bool estAnime ();*/
-TuileStatique::TuileStatique(int id)
+
+TuileStatique::TuileStatique(int x, int y, int id) : Tuile(x,y,id)
 {
     hauteur = 100;
     largeur = 100;
@@ -29,4 +16,33 @@ TuileStatique::TuileStatique(int id)
             texture.loadFromFile("res/herbe.png");
             break;
     }
+    sprite.setTexture(texture);
+}
+TuileStatique::~TuileStatique()
+{
+    
+}
+int const TuileStatique::getHauteur()
+{
+    return hauteur;
+}
+int const TuileStatique::getLargeur()
+{
+    return largeur;
+}
+void TuileStatique::setHauteur(int hauteur)
+{
+    this->hauteur = hauteur;
+}
+void TuileStatique::setLargeur(int largeur)
+{
+    this->largeur = largeur;
+}
+const sf::Sprite& TuileStatique::getSprite ()
+{
+    return sprite;
+}
+bool TuileStatique::estAnime ()
+{
+    return false;
 }
