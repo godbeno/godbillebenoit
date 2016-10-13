@@ -5,14 +5,18 @@
 
 namespace render {
   class Couche;
+};
+namespace state {
+  class Observateur;
 }
 
+#include "state/Observateur.h"
 #include "Couche.h"
 
 namespace render {
 
   /// class Scene - 
-  class Scene {
+  class Scene : public state::Observateur {
     // Associations
     // Attributes
   private:
@@ -21,6 +25,7 @@ namespace render {
     // Operations
   public:
     Scene ();
+    void changementEtat (const EvenementEtat& e);
   };
 
 };

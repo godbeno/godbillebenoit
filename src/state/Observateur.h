@@ -4,12 +4,6 @@
 
 
 namespace state {
-  class EvenementEtat;
-}
-
-#include "EvenementEtat.h"
-
-namespace state {
 
   /// class Observateur - 
   class Observateur {

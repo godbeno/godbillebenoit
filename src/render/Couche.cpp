@@ -18,4 +18,10 @@ void Couche::setTuile (int i, int j, Tuile* tuile)
         if (tuiles[k]->getX() == i && tuiles[k]->getY() == j)
             tuiles[k] = tuile;
 }
-
+void Couche::changementEtat(const EvenementEtat& e)
+{
+    if (e.getTypeEvenement() == NouveauPersonnage)
+    {
+        std::cout << "Couche: Nouveau personnage" << std::endl;
+    }
+}

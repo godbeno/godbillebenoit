@@ -67,7 +67,7 @@ void ListeElement::add(Element* n)
 {
     elements.push_back(n);
 
-    avertirObservateurs();
+    avertirObservateurs(EvenementEtat(TypeEvenementEtat(3), e));
 }
 
         

@@ -6,23 +6,28 @@
 
 namespace render {
   class Tuile;
+};
+namespace state {
+  class Observateur;
 }
 
+#include "state/Observateur.h"
 #include "Tuile.h"
 
 namespace render {
 
   /// class Couche - 
-  class Couche {
+  class Couche : public state::Observateur {
     // Associations
     // Attributes
-  public:
+  private:
     std::vector<Tuile*> tuiles;
     // Operations
   public:
     Couche ();
     Tuile* getTuile (int i, int j);
     void setTuile (int i, int j, Tuile* tuile);
+    void changementEtat (const EvenementEtat& e);
   };
 
 };
