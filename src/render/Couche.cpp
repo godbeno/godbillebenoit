@@ -1,4 +1,5 @@
 #include "Couche.h"
+#include <iostream>
 
 using namespace render;
 
@@ -11,6 +12,7 @@ Tuile* Couche::getTuile (int i, int j)
     for (unsigned int k = 0; k < tuiles.size(); k++)
         if (tuiles[k]->getX() == i && tuiles[k]->getY() == j)
             return tuiles[k];
+    return nullptr;
 }
 void Couche::setTuile (int i, int j, Tuile* tuile)
 {
@@ -18,9 +20,9 @@ void Couche::setTuile (int i, int j, Tuile* tuile)
         if (tuiles[k]->getX() == i && tuiles[k]->getY() == j)
             tuiles[k] = tuile;
 }
-void Couche::changementEtat(const EvenementEtat& e)
+void Couche::changementEtat(state::EvenementEtat& e)
 {
-    if (e.getTypeEvenement() == NouveauPersonnage)
+    if (e.getTypeEvenement() == state::NouveauPersonnage)
     {
         std::cout << "Couche: Nouveau personnage" << std::endl;
     }

@@ -61,5 +61,5 @@ void Etat::ajouterPersonnage(bool equipe, int id)
 {
     Personnage* p = new Personnage(equipe, TypePersonnage(id));
     liste->add(p);
-    avertirObservateurs(EvenementEtat(TypeEvenementEtat(3), this));
+    avertirObservateurs(new EvenementEtat(TypeEvenementEtat(3), this));
 }

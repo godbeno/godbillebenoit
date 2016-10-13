@@ -30,7 +30,7 @@ void TuileAnimee::setPourcentage (float rate)
 }
 Tuile* TuileAnimee::getTuile (int i)
 {
-    if (i < tuiles.size())
+    if (static_cast<unsigned int>(i) < tuiles.size())
         return tuiles[i];
     else 
         return nullptr;

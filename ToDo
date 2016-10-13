@@ -2,7 +2,6 @@
 [x] Bien faire initialisation statique
 [x] Gérer le temps pour les animés
 [x] Completer la classe Scene
-[x] Faire hériter Couche et Scene de l'observateur 
 [x] Faire des tests unitaires
 [x] Faire génération carte aléatoire
 

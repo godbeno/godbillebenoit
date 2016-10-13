@@ -27,7 +27,7 @@ namespace render {
     Couche ();
     Tuile* getTuile (int i, int j);
     void setTuile (int i, int j, Tuile* tuile);
-    void changementEtat (const EvenementEtat& e);
+    void changementEtat (state::EvenementEtat& e);
   };
 
 };

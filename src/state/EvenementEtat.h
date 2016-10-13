@@ -21,7 +21,7 @@ namespace state {
     // Operations
   public:
     EvenementEtat (TypeEvenementEtat id, Etat* etat);
-    const TypeEvenementEtat getTypeEvenement ();
+    TypeEvenementEtat getTypeEvenement ();
   };
 
 };

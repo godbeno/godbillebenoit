@@ -4,12 +4,18 @@
 
 
 namespace state {
+  class EvenementEtat;
+}
+
+#include "EvenementEtat.h"
+
+namespace state {
 
   /// class Observateur - 
   class Observateur {
     // Operations
   public:
-    virtual void changementEtat (const EvenementEtat& e) = 0;
+    virtual void changementEtat (EvenementEtat& e) = 0;
   };
 
 };

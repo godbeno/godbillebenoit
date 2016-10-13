@@ -22,7 +22,7 @@ namespace state {
     // Operations
   public:
     void enregistrerObservateur (Observateur* );
-    void avertirObservateurs (const EvenementEtat& e);
+    void avertirObservateurs (EvenementEtat* e);
   };
 
 };

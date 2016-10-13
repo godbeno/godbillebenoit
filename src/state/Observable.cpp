@@ -7,9 +7,9 @@ void Observable::enregistrerObservateur (Observateur* observateur){
 	observateurs.push_back(observateur);
 }
 
-void Observable::avertirObservateurs(const EvenementEtat &e){
+void Observable::avertirObservateurs(EvenementEtat* e){
 	for(auto observateur : observateurs){
-		observateur->changementEtat(e);
+		observateur->changementEtat(*e);
 	}
 }
 
