@@ -1,11 +1,13 @@
 #include "Couche.h"
+#include "TuileStatique.h"
 #include <iostream>
 
 using namespace render;
 
-Couche::Couche()
+Couche::Couche(sf::RenderWindow* window)
 {
     tuiles.clear();
+    this->window = window;
 }
 Tuile* Couche::getTuile (int i, int j)
 {
@@ -25,5 +27,17 @@ void Couche::changementEtat(state::EvenementEtat& e)
     if (e.getTypeEvenement() == state::NouveauPersonnage)
     {
         std::cout << "Couche: Nouveau personnage" << std::endl;
+    }
+}
+void Couche::afficher()
+{
+    //std::cout << "TUILES SIZE : " << tuiles.size() << std::endl;
+    //TuileStatique tuile(50,50,0);
+    for (unsigned int i = 0; i < tuiles.size(); i++)
+    {
+        if (!tuiles[i]->estAnime())
+        {
+            window->draw(static_cast<TuileStatique*>(tuiles[i])->getSprite());
+        }
     }
 }

@@ -2,6 +2,7 @@
 #ifndef RENDER__COUCHE__H
 #define RENDER__COUCHE__H
 
+#include <SFML/Graphics.hpp>
 #include <vector>
 
 namespace render {
@@ -20,14 +21,17 @@ namespace render {
   class Couche : public state::Observateur {
     // Associations
     // Attributes
+  public:
+    sf::RenderWindow* window;
   private:
     std::vector<Tuile*> tuiles;
     // Operations
   public:
-    Couche ();
+    Couche (sf::RenderWindow* window);
     Tuile* getTuile (int i, int j);
     void setTuile (int i, int j, Tuile* tuile);
     void changementEtat (state::EvenementEtat& e);
+    void afficher ();
   };
 
 };

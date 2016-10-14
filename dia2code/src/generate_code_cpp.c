@@ -728,9 +728,10 @@ void print_include_stdlib(struct stdlib_includes* si,char* name) {
            si->memory = 1;
        }
        if (!si->sf && strstr(name, "sf::Texture") 
-	|| !si->sf && strstr(name, "sf::Sprite"))
+	|| !si->sf && strstr(name, "sf::Sprite")
+	|| !si->sf && strstr(name, "sf::RenderWindow"))
 	{
-		print("#include <SFML/Graphics.hpp>");
+		print("#include <SFML/Graphics.hpp>\n");
 		si->sf = 1;
 	}
     }

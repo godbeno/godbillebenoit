@@ -13,10 +13,11 @@ TuileStatique::TuileStatique(int x, int y, int id) : Tuile(x,y,id)
     switch(id)
     {
         case 0: //Herbe
-            texture.loadFromFile("res/herbe.png");
+            texture.loadFromFile("../res/Textures/herbe.png");
             break;
     }
     sprite.setTexture(texture);
+    sprite.setPosition(x,y);
 }
 TuileStatique::~TuileStatique()
 {
