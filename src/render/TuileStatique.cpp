@@ -9,16 +9,22 @@ using namespace sf;
 
 TuileStatique::TuileStatique(int x, int y, int id) : Tuile(x,y,id)
 {
-    hauteur = 100;
-    largeur = 100;
+    hauteur = 50;
+    largeur = 50;
     switch(id)
     {
         case 0: //Herbe
             texture.loadFromFile("../res/Textures/herbe.png");
             break;
+        case 52:
+            texture.loadFromFile("../res/Textures/Lancier-repos.png");
     }
     sprite.setTexture(texture);
     sprite.setPosition(x,y);
+    if (id > 50)
+        sprite.setScale(1./6, 1./6);
+    else
+        sprite.setScale(0.5,0.5);
     //std::cout << "Sprite position : (" << sprite.getPosition().x << ", " << sprite.getPosition().y << ") " << std::endl;
 }
 TuileStatique::~TuileStatique()

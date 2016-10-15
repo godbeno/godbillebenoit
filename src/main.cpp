@@ -16,7 +16,7 @@ int main(int argc,char* argv[])
     Etat *etat = new Etat;
 
     etat->initialiserTerrain();
-    etat->ajouterPersonnage(true, 2);
+    etat->ajouterPersonnage(true, 2, 3,3);
     
     Scene* scene = new Scene(etat, window);
     TuileStatique tuile(50,50,0);

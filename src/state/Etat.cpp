@@ -58,9 +58,9 @@ void Etat::initialiserTerrain()
     liste->copy(*grille);
 }
 
-void Etat::ajouterPersonnage(bool equipe, int id)
+void Etat::ajouterPersonnage(bool equipe, int id, int x, int y)
 {
-    Personnage* p = new Personnage(equipe, TypePersonnage(id));
+    Personnage* p = new Personnage(equipe, TypePersonnage(id), x, y);
     liste->add(p);
     avertirObservateurs(new EvenementEtat(TypeEvenementEtat(3), this));
 }

@@ -2,7 +2,7 @@
 #include "Element.h"
 using namespace state;
 
-Personnage::Personnage(bool equipe, TypePersonnage type)
+Personnage::Personnage(bool equipe, TypePersonnage type, int x, int y)
 {
     orientation = true;
     id = type;
@@ -55,6 +55,8 @@ Personnage::Personnage(bool equipe, TypePersonnage type)
     }
     pv = pvMax;
     pa = paMax;
+    this->x = x;
+    this->y = y;
     
     
 }
@@ -109,7 +111,7 @@ bool const Personnage::equals(const Personnage& p)
 }
 Personnage* Personnage::clone ()
 {
-    Personnage* p = new Personnage(equipe, TypePersonnage(id));
+    Personnage* p = new Personnage(equipe, TypePersonnage(id), x, y);
     p->orientation = orientation;
     p->pv = pv;
     p->pa = pa;

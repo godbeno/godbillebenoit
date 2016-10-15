@@ -30,7 +30,7 @@ namespace state {
     int attaque;
     // Operations
   public:
-    Personnage (bool equipe, TypePersonnage type);
+    Personnage (bool equipe, TypePersonnage type, int x, int y);
     virtual ~Personnage ();
     bool const estPersonnage ();
     int const getPV ();

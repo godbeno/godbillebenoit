@@ -36,7 +36,7 @@ namespace state {
     void setGrille (const GrilleElement& grille);
     void setListe (const ListeElement& list);
     void initialiserTerrain ();
-    void ajouterPersonnage (bool equipe, int id);
+    void ajouterPersonnage (bool equipe, int id, int x, int y);
   };
 
 };
