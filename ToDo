@@ -1,7 +1,8 @@
 [x] Bien faire initialisation animée
 [x] Bien faire initialisation statique
 [x] Gérer le temps pour les animés
-[x] Completer la classe Scene
-[x] Faire des tests unitaires
 [x] Faire génération carte aléatoire
+
+[x] Adapter la taille des éléments pour une taille d'écran donnée
+[x] Tester avec les personnages
 

@@ -32,6 +32,7 @@ namespace render {
     void setTuile (int i, int j, Tuile* tuile);
     void changementEtat (state::EvenementEtat& e);
     void afficher ();
+    void addTuile (Tuile* tuile);
   };
 
 };

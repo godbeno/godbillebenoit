@@ -13,17 +13,11 @@ Scene::Scene(state::Etat* etat, sf::RenderWindow* window)
     this->etat = etat;
     this->window = window;
     state::ListeElement l = etat->getListe();
-    std::cout << "l size : " << l.size();
     for (int i = 0; i < l.size(); i++)
     {
         if (!l.get(i)->estPersonnage())
         {
-            std::cout << "+1 couche terrain" << std::endl;
-            coucheTerrain->setTuile(l.get(i)->getX(), l.get(i)->getY(), new TuileStatique(l.get(i)->getX()*100, l.get(i)->getY()*100, l.get(i)->getID())); 
-        }
-        else
-        {
-            std::cout << "C'est un personnage" << std::endl;
+            coucheTerrain->addTuile(new TuileStatique(l.get(i)->getX()*100, l.get(i)->getY()*100, l.get(i)->getID())); 
         }
     }
 }

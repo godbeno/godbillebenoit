@@ -12,7 +12,7 @@ using namespace sf;
 int main(int argc,char* argv[]) 
 {   
     // Test Unitaire - Etat du jeu 
-    RenderWindow *window = new RenderWindow(VideoMode(800, 600), "Test Affichage");
+    RenderWindow *window = new RenderWindow(VideoMode(1600,900,16), "Test Affichage", Style::Fullscreen);
     Etat *etat = new Etat;
 
     etat->initialiserTerrain();

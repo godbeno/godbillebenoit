@@ -21,6 +21,11 @@ void Couche::setTuile (int i, int j, Tuile* tuile)
     for (unsigned int k = 0; k < tuiles.size(); k++)
         if (tuiles[k]->getX() == i && tuiles[k]->getY() == j)
             tuiles[k] = tuile;
+    
+}
+void Couche::addTuile(Tuile* tuile)
+{
+    tuiles.push_back(tuile);
 }
 void Couche::changementEtat(state::EvenementEtat& e)
 {
@@ -38,6 +43,7 @@ void Couche::afficher()
         if (!tuiles[i]->estAnime())
         {
             window->draw(static_cast<TuileStatique*>(tuiles[i])->getSprite());
+            //window->draw(tuile.getSprite());
         }
     }
 }

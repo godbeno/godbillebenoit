@@ -55,6 +55,7 @@ void Etat::setListe (const ListeElement& liste)
 void Etat::initialiserTerrain()
 {
     grille->genererTerrainAleatoire();
+    liste->copy(*grille);
 }
 
 void Etat::ajouterPersonnage(bool equipe, int id)

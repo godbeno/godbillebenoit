@@ -1,4 +1,5 @@
 #include <SFML/Graphics/Sprite.hpp>
+#include <iostream>
 
 #include "TuileStatique.h"
 
@@ -18,6 +19,7 @@ TuileStatique::TuileStatique(int x, int y, int id) : Tuile(x,y,id)
     }
     sprite.setTexture(texture);
     sprite.setPosition(x,y);
+    //std::cout << "Sprite position : (" << sprite.getPosition().x << ", " << sprite.getPosition().y << ") " << std::endl;
 }
 TuileStatique::~TuileStatique()
 {
