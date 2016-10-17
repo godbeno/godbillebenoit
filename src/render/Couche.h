@@ -2,6 +2,7 @@
 #ifndef RENDER__COUCHE__H
 #define RENDER__COUCHE__H
 
+#include <SFML/Graphics.hpp>
 #include <vector>
 
 namespace render {
