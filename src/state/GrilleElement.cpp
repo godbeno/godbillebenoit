@@ -41,8 +41,8 @@ void GrilleElement::genererTerrainAleatoire()
         for (int j = 0; j < 20; j++)
         {
             elements.push_back(new CaseTerrain(0));
-            elements[i*20+j]->setX(i);
-            elements[i*20+j]->setY(j);
+            elements[i*24+j]->setX(i);
+            elements[i*24+j]->setY(j);
         }
     for (int i = 0; i < 20; i++)
     {
