@@ -2,6 +2,7 @@
 #ifndef RENDER__SCENE__H
 #define RENDER__SCENE__H
 
+#include <SFML/Graphics.hpp>
 
 namespace render {
   class Couche;

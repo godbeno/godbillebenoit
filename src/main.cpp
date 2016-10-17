@@ -19,7 +19,6 @@ int main(int argc,char* argv[])
     etat->ajouterPersonnage(true, 2, 3,3);
     
     Scene* scene = new Scene(etat, window);
-    TuileStatique tuile(50,50,0);
     
     while (window->isOpen())
     {
@@ -30,10 +29,6 @@ int main(int argc,char* argv[])
             if (event.type == Event::Closed)
                 window->close();
         }
-        //sf::CircleShape shape(50);
-        //window->clear();
-        //window->draw(tuile.getSprite());
-        //window->display();
         scene->afficher();
     }
     delete scene;
