@@ -52,9 +52,9 @@ void Etat::setListe (const ListeElement& liste)
     *(this->liste) = liste;
 }
 
-void Etat::initialiserTerrain()
+void Etat::initialiserTerrain(bool estChateau)
 {
-    grille->genererTerrainAleatoire();
+    grille->genererTerrainAleatoire(estChateau);
     liste->copy(*grille);
 }
 

@@ -30,7 +30,7 @@ namespace state {
     int const getLargeur ();
     Personnage* const getCellulePersonnage (int i, int j);
     CaseTerrain* const getCelluleDecor (int i, int j);
-    void genererTerrainAleatoire ();
+    void genererTerrainAleatoire (bool estChateau);
   };
 
 };
