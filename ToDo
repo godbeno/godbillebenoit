@@ -1,6 +1,7 @@
-[x] Bien faire initialisation animée
-[x] Gérer le temps pour les animés
 [x] Gérer les événements
-
 [x] Gérer le zoom de l'écran/déplacement
+[x] Gérer le son
+[x] Faire initialisation Tuile animée 
+[x] Normaliser les images
+[x] Vérifier destructeurs
 
