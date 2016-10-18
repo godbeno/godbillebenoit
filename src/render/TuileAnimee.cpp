@@ -67,96 +67,115 @@ TuileAnimee::TuileAnimee(int x, int y, int id, float vitesse) : Tuile(x,y,id)
             tuiles.push_back(new TuileStatique(x, y, 55, tx));
             break;
         case 6: 
-            tuiles.push_back(new TuileStatique(x, y, 60, tx));
-            tuiles.push_back(new TuileStatique(x, y, 45, tx));
-            tuiles.push_back(new TuileStatique(x, y, 60, tx));
-            tuiles.push_back(new TuileStatique(x, y, 45, tx));
+            tuiles.push_back(new TuileStatique(x, y, 59, tx));
+            tuiles.push_back(new TuileStatique(x, y, 44, tx));
+            tuiles.push_back(new TuileStatique(x, y, 59, tx));
+            tuiles.push_back(new TuileStatique(x, y, 44, tx));
             break;
         case 7: 
+            tuiles.push_back(new TuileStatique(x, y, 62, tx));
             tuiles.push_back(new TuileStatique(x, y, 63, tx));
-            tuiles.push_back(new TuileStatique(x, y, 64, tx));
+            tuiles.push_back(new TuileStatique(x, y, 62, tx));
             tuiles.push_back(new TuileStatique(x, y, 63, tx));
-            tuiles.push_back(new TuileStatique(x, y, 64, tx));
-            tuiles.push_back(new TuileStatique(x, y, 47, tx));
+            tuiles.push_back(new TuileStatique(x, y, 46, tx));
             break;
         case 8:
-            tuiles.push_back(new TuileStatique(x, y, 66, tx));
-            tuiles.push_back(new TuileStatique(x, y, 49, tx));
-            tuiles.push_back(new TuileStatique(x, y, 66, tx));
-            tuiles.push_back(new TuileStatique(x, y, 49, tx));
+            tuiles.push_back(new TuileStatique(x, y, 65, tx));
+            tuiles.push_back(new TuileStatique(x, y, 48, tx));
+            tuiles.push_back(new TuileStatique(x, y, 65, tx));
+            tuiles.push_back(new TuileStatique(x, y, 48, tx));
             break;
         case 9:
-            tuiles.push_back(new TuileStatique(x, y, 68, tx));
-            tuiles.push_back(new TuileStatique(x, y, 51, tx));
-            tuiles.push_back(new TuileStatique(x, y, 68, tx));
-            tuiles.push_back(new TuileStatique(x, y, 51, tx));
+            tuiles.push_back(new TuileStatique(x, y, 67, tx));
+            tuiles.push_back(new TuileStatique(x, y, 50, tx));
+            tuiles.push_back(new TuileStatique(x, y, 67, tx));
+            tuiles.push_back(new TuileStatique(x, y, 50, tx));
             break;
         case 10:
-            tuiles.push_back(new TuileStatique(x, y, 70, tx));
-            tuiles.push_back(new TuileStatique(x, y, 53, tx));
-            tuiles.push_back(new TuileStatique(x, y, 70, tx));
-            tuiles.push_back(new TuileStatique(x, y, 53, tx));
+            tuiles.push_back(new TuileStatique(x, y, 69, tx));
+            tuiles.push_back(new TuileStatique(x, y, 52, tx));
+            tuiles.push_back(new TuileStatique(x, y, 69, tx));
+            tuiles.push_back(new TuileStatique(x, y, 52, tx));
             break;
         case 11:
-            tuiles.push_back(new TuileStatique(x, y, 72, tx));
-            tuiles.push_back(new TuileStatique(x, y, 55, tx));
-            tuiles.push_back(new TuileStatique(x, y, 72, tx));
-            tuiles.push_back(new TuileStatique(x, y, 55, tx));
-            break;
-        case 6:
-            break;
-        case 7:
-            break;
-        case 8:
-            break; 
-        case 9:
-            break;
-        case 10:
-            break;
-        case 11:
+            tuiles.push_back(new TuileStatique(x, y, 71, tx));
+            tuiles.push_back(new TuileStatique(x, y, 54, tx));
+            tuiles.push_back(new TuileStatique(x, y, 71, tx));
+            tuiles.push_back(new TuileStatique(x, y, 54, tx));
             break;
         case 12:
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 45, tx));
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 45, tx));
             break;
         case 13:
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 47, tx));
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 47, tx));
             break;
         case 14:
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 49, tx));
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 49, tx));
             break;
         case 15: 
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 51, tx));
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 51, tx));
             break;
         case 16:
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 53, tx));
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 53, tx));
             break;
         case 17:
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 55, tx));
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 55, tx));
             break;
         case 18:
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 44, tx));
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 44, tx));
             break;
         case 19:
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 46, tx));
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 46, tx));
             break;
         case 20:
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 48, tx));
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 48, tx));
             break;
         case 21:
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 50, tx));
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 50, tx));
             break;
         case 22:
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 52, tx));
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 52, tx));
             break;
         case 23:
-            break;
-        case 24:
-            break;
-        case 25: 
-            break;
-        case 26:
-            break;
-        case 27:
-            break;
-        case 28:
-            break;
-        case 29:
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 54, tx));
+            tuiles.push_back(new TuileStatique(x, y, -1, tx));
+            tuiles.push_back(new TuileStatique(x, y, 54, tx));
             break;
     }
-    /*
-     * Tests avec l'Id pour choisir l'animation à afficher [initialisation tuiles]
-     * Initialisation start avec horloge (à suivre)
-     *  
-     */
 }
 TuileAnimee::~TuileAnimee()
 {
