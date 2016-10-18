@@ -7,10 +7,10 @@ using namespace render;
 using namespace sf;
 
 
-TuileStatique::TuileStatique(int x, int y, int id) : Tuile(x,y,id)
+TuileStatique::TuileStatique(int x, int y, int id, float w) : Tuile(x,y,id)
 {
-    hauteur = 100;
-    largeur = 100;
+    hauteur = x;
+    largeur = y;
     switch(id)
     {
         case 0: //Herbe
@@ -196,9 +196,9 @@ TuileStatique::TuileStatique(int x, int y, int id) : Tuile(x,y,id)
     sprite.setTexture(texture);
     sprite.setPosition(x,y);
     if (id > 43)
-        sprite.setScale(1./3, 1./3);
+        sprite.setScale(w/300, w/300);
     else
-        sprite.setScale(1,1);
+        sprite.setScale(w/100,w/100);
     //std::cout << "Sprite position : (" << sprite.getPosition().x << ", " << sprite.getPosition().y << ") " << std::endl;
 }
 TuileStatique::~TuileStatique()

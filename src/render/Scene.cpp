@@ -13,15 +13,16 @@ Scene::Scene(state::Etat* etat, sf::RenderWindow* window)
     this->etat = etat;
     this->window = window;
     state::ListeElement l = etat->getListe();
+    float tx = sf::VideoMode::getDesktopMode().height/24.;
     for (int i = 0; i < l.size(); i++)
     {
         if (!l.get(i)->estPersonnage())
         {
-            coucheTerrain->addTuile(new TuileStatique(l.get(i)->getX()*100, l.get(i)->getY()*100, l.get(i)->getID())); 
+            coucheTerrain->addTuile(new TuileStatique(l.get(i)->getX()*tx, l.get(i)->getY()*tx, l.get(i)->getID(), tx)); 
         }
         if (l.get(i)->estPersonnage())
         {
-            couchePersonnage->addTuile(new TuileStatique(l.get(i)->getX()*100, l.get(i)->getY()*100, l.get(i)->getID()+50+10*!(static_cast<state::Personnage*>(l.get(i))->getEquipe())));
+            couchePersonnage->addTuile(new TuileStatique(l.get(i)->getX()*tx, l.get(i)->getY()*tx, l.get(i)->getID()+50+10*!(static_cast<state::Personnage*>(l.get(i))->getEquipe()), tx));
         }
     }
 }

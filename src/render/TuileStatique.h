@@ -22,7 +22,7 @@ namespace render {
     sf::Sprite sprite;
     // Operations
   public:
-    TuileStatique (int x, int y, int id);
+    TuileStatique (int x, int y, int id, float w);
     ~TuileStatique ();
     int const getHauteur ();
     int const getLargeur ();
