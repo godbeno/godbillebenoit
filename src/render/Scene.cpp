@@ -47,6 +47,8 @@ void Scene::afficher()
 void Scene::jouerMusique()
 {
     sf::Music music;
-    if (!music.openFromFile("../res/Sons/Musiques/greensleeves.wav"))
-    music.play();
+    if (music.openFromFile("../res/Sons/Musiques/greensleeves.wav"))
+        music.play();
+    else
+        std::cout << "caca" << std::endl;
 }

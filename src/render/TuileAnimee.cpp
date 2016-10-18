@@ -220,7 +220,6 @@ void TuileAnimee::setTuile (int i, Tuile* tuile)
 }
 void TuileAnimee::update (clock_t time)
 {
-    std::cout << double(time-debut)/ CLOCKS_PER_SEC << std::endl;
     if (double(time-debut)/ CLOCKS_PER_SEC > 0.2)
     {
         nbr++;
