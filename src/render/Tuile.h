@@ -2,6 +2,7 @@
 #ifndef RENDER__TUILE__H
 #define RENDER__TUILE__H
 
+#include <SFML/Graphics.hpp>
 
 namespace render {
 
@@ -23,6 +24,7 @@ namespace render {
     void setX (int x);
     void setY (int y);
     void setID (int id);
+    virtual const sf::Sprite& getSprite () = 0;
   };
 
 };

@@ -1,12 +1,16 @@
 #include "TuileAnimee.h"
 #include "TuileStatique.h"
+#include <iostream>
+#include <ctime>
 
 using namespace render;
 
-TuileAnimee::TuileAnimee(int x, int y, int id, float rate, float vitesse) : Tuile(x,y,id)
+TuileAnimee::TuileAnimee(int x, int y, int id, float vitesse) : Tuile(x,y,id)
 {
-    this->pourcentage = rate;
+    nbr = 0;
     this->vitesse = vitesse;
+    float tx = sf::VideoMode::getDesktopMode().height/24.;
+    debut = clock();
     switch(id)
     {
         /* Ordre:
@@ -25,7 +29,6 @@ TuileAnimee::TuileAnimee(int x, int y, int id, float rate, float vitesse) : Tuil
          * 27-29 : personnage bleu mort
          *
          */
-        float tx = sf::VideoMode::getDesktopMode().height/24.;
         case 0: 
             tuiles.push_back(new TuileStatique(x, y, 60, tx));
             tuiles.push_back(new TuileStatique(x, y, 45, tx));
@@ -33,7 +36,13 @@ TuileAnimee::TuileAnimee(int x, int y, int id, float rate, float vitesse) : Tuil
             tuiles.push_back(new TuileStatique(x, y, 45, tx));
             break;
         case 1: 
+            tuiles.push_back(new TuileStatique(x, y, 63, tx));
+            tuiles.push_back(new TuileStatique(x, y, 64, tx));
+            tuiles.push_back(new TuileStatique(x, y, 63, tx));
+            tuiles.push_back(new TuileStatique(x, y, 64, tx));
+            tuiles.push_back(new TuileStatique(x, y, 47, tx));
             break;
+            /*
         case 2:
             break;
         case 3:
@@ -89,7 +98,7 @@ TuileAnimee::TuileAnimee(int x, int y, int id, float rate, float vitesse) : Tuil
         case 28:
             break;
         case 29:
-            break;
+            break;*/
     }
     /*
      * Tests avec l'Id pour choisir l'animation à afficher [initialisation tuiles]
@@ -107,11 +116,11 @@ bool TuileAnimee::estAnime()
 }
 const float TuileAnimee::getPourcentage ()
 {
-    return pourcentage;
+    return nbr;
 }
 void TuileAnimee::setPourcentage (float rate)
 {
-    pourcentage = rate;
+    nbr = rate;
 }
 Tuile* TuileAnimee::getTuile (int i)
 {
@@ -138,12 +147,18 @@ void TuileAnimee::setTuile (int i, Tuile* tuile)
         tuiles[i] = tuile;
     
 }
-void TuileAnimee::update (int64_t time)
+void TuileAnimee::update (clock_t time)
 {
-    
+    std::cout << double(time-debut)/ CLOCKS_PER_SEC << std::endl;
+    if (double(time-debut)/ CLOCKS_PER_SEC > 0.2)
+    {
+        nbr++;
+        debut = clock();
+    }
+    if (nbr > tuiles.size()-1)
+        nbr = 0;
 }
-void TuileAnimee::sync (int64_t temps)
+const sf::Sprite& TuileAnimee::getSprite()
 {
-    
+    return tuiles[nbr]->getSprite();
 }
-

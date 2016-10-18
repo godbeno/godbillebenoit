@@ -1,5 +1,6 @@
 #include "Couche.h"
 #include "TuileStatique.h"
+#include "TuileAnimee.h"
 #include <iostream>
 
 using namespace render;
@@ -38,12 +39,14 @@ void Couche::afficher()
 {
     //std::cout << "TUILES SIZE : " << tuiles.size() << std::endl;
     //TuileStatique tuile(50,50,0);
+    clock_t t;
     for (unsigned int i = 0; i < tuiles.size(); i++)
     {
-        if (!tuiles[i]->estAnime())
+        if (tuiles[i]->estAnime())
         {
-            window->draw(static_cast<TuileStatique*>(tuiles[i])->getSprite());
-            //window->draw(tuile.getSprite());
+            t = clock();
+            static_cast<TuileAnimee*>(tuiles[i])->update(t);
         }
+        window->draw(tuiles[i]->getSprite());
     }
 }

@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "state/Etat.h"
 #include "TuileStatique.h"
+#include "TuileAnimee.h"
 #include <iostream>
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -10,10 +11,11 @@ Scene::Scene(state::Etat* etat, sf::RenderWindow* window)
 {
     coucheTerrain = new Couche(window);
     couchePersonnage = new Couche(window);
+    float tx = sf::VideoMode::getDesktopMode().height/24.;
+    couchePersonnage->addTuile(new TuileAnimee(tx*15, tx*15, 0, 36));
     this->etat = etat;
     this->window = window;
     state::ListeElement l = etat->getListe();
-    float tx = sf::VideoMode::getDesktopMode().height/24.;
     for (int i = 0; i < l.size(); i++)
     {
         if (!l.get(i)->estPersonnage())

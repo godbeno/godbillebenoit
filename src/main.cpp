@@ -18,6 +18,7 @@ int main(int argc,char* argv[])
     etat->initialiserTerrain(true);
     etat->ajouterPersonnage(true, 2, 3,3);
     
+    
     Scene* scene = new Scene(etat, window);
     
     while (window->isOpen())
