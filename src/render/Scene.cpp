@@ -48,6 +48,5 @@ void Scene::jouerMusique()
 {
     sf::Music music;
     if (!music.openFromFile("../res/Sons/Musiques/greensleeves.wav"))
-    return -1; // erreur
     music.play();
 }
