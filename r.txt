@@ -1,0 +1,4 @@
+/home/godbille/Documents/RealProject/src/main.cpp: In function ‘int main(int, char**)’:
+/home/godbille/Documents/RealProject/src/main.cpp:46:12: warning: deleting object of polymorphic class type ‘render::Scene’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+     delete scene;
+            ^

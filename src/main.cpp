@@ -3,6 +3,7 @@
 #include "render/Scene.h"
 #include "render/TuileStatique.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 using namespace std;
 using namespace state;
@@ -20,7 +21,14 @@ int main(int argc,char* argv[])
     
     
     Scene* scene = new Scene(etat, window);
-    scene->jouerMusique();
+
+        sf::Music music;
+    if (!music.openFromFile("../res/Sons/Musiques/greensleeves.wav")){
+        std::cout << "La musique n'est pas chargée" << std::endl;}
+        music.play();
+    
+    
+    
     
     while (window->isOpen())
     {
@@ -33,6 +41,8 @@ int main(int argc,char* argv[])
         }
         scene->afficher();
     }
+    
+    
     delete scene;
     delete window;
     
