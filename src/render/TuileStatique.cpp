@@ -192,6 +192,51 @@ TuileStatique::TuileStatique(int x, int y, int id, float w) : Tuile(x,y,id)
             break;             
         case 58: // Cadavre canon
             texture.loadFromFile("../res/Textures/Cadavre-canon.png");
+            break;
+        case 59: //Lancier bleu attaque
+            texture.loadFromFile("../res/Textures/Lancier-attaque-bleu.png");
+            break;
+        case 60: //Lancier rouge attaque
+            texture.loadFromFile("../res/Textures/Lancier-attaque.png");
+            break;
+        case 61: //Archer attaque bleu 1
+            texture.loadFromFile("../res/Textures/Archer-attaque-bleu.png");
+            break;
+        case 62: //Archer attaque bleu 2
+            texture.loadFromFile("../res/Textures/Archer-post-attaque-bleu.png");
+            break;
+        case 63: //Archer attaque rouge 1
+            texture.loadFromFile("../res/Textures/Archer-attaque.png");
+            break;
+        case 64: //Archer attaque rouge 2
+            texture.loadFromFile("../res/Textures/Archer-post-attaque.png");
+            break;
+        case 65: //Attaque spadassin bleu
+            texture.loadFromFile("../res/Textures/Capitaine-attaque-bleu.png");
+            break;
+        case 66: //Attaque spadassin rouge
+            texture.loadFromFile("../res/Textures/Capitaine-attaque.png");
+            break;
+        case 67: // Attaque Chevalier bleu
+            texture.loadFromFile("../res/Textures/chevalier-attaque2-bleu.png");
+            break;
+        case 68: // Attaque Chevalier rouge
+            texture.loadFromFile("../res/Textures/chevalier-attaque2.png");
+            break;
+        case 69: // Attaque roi bleu
+            texture.loadFromFile("../res/Textures/Roi-attaque-bleu.png");
+            break;
+        case 70: // Attaque roi rouge
+            texture.loadFromFile("../res/Textures/Roi-attaque.png");
+            break;
+        case 71: // Attaque Canon bleu
+            texture.loadFromFile("../res/Textures/canon-tir-bleu.png");
+            break;
+        case 72: // Attaque Canon rouge
+            texture.loadFromFile("../res/Textures/canon-tir.png");
+            break;
+            
+            
     }
     sprite.setTexture(texture);
     sprite.setPosition(x,y);

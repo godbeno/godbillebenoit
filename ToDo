@@ -1,7 +1,6 @@
 [x] Bien faire initialisation animée
 [x] Gérer le temps pour les animés
-[x] Faire génération carte aléatoire
+[x] Gérer les événements
 
-[x] Adapter la taille des éléments pour une taille d'écran donnée
-[x] Tester avec les personnages
+[x] Gérer le zoom de l'écran/déplacement
 
