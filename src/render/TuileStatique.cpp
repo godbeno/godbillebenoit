@@ -9,8 +9,8 @@ using namespace sf;
 
 TuileStatique::TuileStatique(int x, int y, int id) : Tuile(x,y,id)
 {
-    hauteur = 50;
-    largeur = 50;
+    hauteur = 100;
+    largeur = 100;
     switch(id)
     {
         case 0: //Herbe
@@ -196,9 +196,9 @@ TuileStatique::TuileStatique(int x, int y, int id) : Tuile(x,y,id)
     sprite.setTexture(texture);
     sprite.setPosition(x,y);
     if (id > 43)
-        sprite.setScale(1./6, 1./6);
+        sprite.setScale(1./3, 1./3);
     else
-        sprite.setScale(0.5,0.5);
+        sprite.setScale(1,1);
     //std::cout << "Sprite position : (" << sprite.getPosition().x << ", " << sprite.getPosition().y << ") " << std::endl;
 }
 TuileStatique::~TuileStatique()

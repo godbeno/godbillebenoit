@@ -17,11 +17,11 @@ Scene::Scene(state::Etat* etat, sf::RenderWindow* window)
     {
         if (!l.get(i)->estPersonnage())
         {
-            coucheTerrain->addTuile(new TuileStatique(l.get(i)->getX()*50, l.get(i)->getY()*50, l.get(i)->getID())); 
+            coucheTerrain->addTuile(new TuileStatique(l.get(i)->getX()*100, l.get(i)->getY()*100, l.get(i)->getID())); 
         }
         if (l.get(i)->estPersonnage())
         {
-            couchePersonnage->addTuile(new TuileStatique(l.get(i)->getX()*50, l.get(i)->getY()*50, l.get(i)->getID()+50+10*!(static_cast<state::Personnage*>(l.get(i))->getEquipe())));
+            couchePersonnage->addTuile(new TuileStatique(l.get(i)->getX()*100, l.get(i)->getY()*100, l.get(i)->getID()+50+10*!(static_cast<state::Personnage*>(l.get(i))->getEquipe())));
         }
     }
 }
