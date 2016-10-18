@@ -9,7 +9,14 @@ TuileAnimee::TuileAnimee(int x, int y, int id, float rate, float vitesse) : Tuil
     this->vitesse = vitesse;
     switch(id)
     {
-        /*
+        /* Ordre:
+         *  - Lancier
+         *  - Archer
+         *  - Spadassin
+         *  - Cavalier
+         *  - Roi
+         *  - Canon
+         *
          * 0-5 : Attaque Personnage rouge
          * 6-11 : Attaque personnage bleu
          * 12-17 : Personnage rouge touché
@@ -19,11 +26,11 @@ TuileAnimee::TuileAnimee(int x, int y, int id, float rate, float vitesse) : Tuil
          *
          */
         float tx = sf::VideoMode::getDesktopMode().height/24.;
-        case 0:
-            tuiles.push_back(new TuileStatique(x, y, id1, tx));
-            tuiles.push_back();
-            tuiles.push_back();
-            tuiles.push_back();
+        case 0: 
+            tuiles.push_back(new TuileStatique(x, y, 60, tx));
+            tuiles.push_back(new TuileStatique(x, y, 45, tx));
+            tuiles.push_back(new TuileStatique(x, y, 60, tx));
+            tuiles.push_back(new TuileStatique(x, y, 45, tx));
             break;
         case 1: 
             break;
