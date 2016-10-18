@@ -2,8 +2,8 @@
 #ifndef RENDER__COUCHE__H
 #define RENDER__COUCHE__H
 
-#include <SFML/Graphics.hpp>
 #include <vector>
+#include <SFML/Graphics.hpp>
 
 namespace render {
   class Tuile;
@@ -21,10 +21,9 @@ namespace render {
   class Couche : public state::Observateur {
     // Associations
     // Attributes
-  public:
-    sf::RenderWindow* window;
   private:
     std::vector<Tuile*> tuiles;
+    sf::RenderWindow* window;
     // Operations
   public:
     Couche (sf::RenderWindow* window);

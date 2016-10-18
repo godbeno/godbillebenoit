@@ -6,22 +6,25 @@
 
 namespace render {
   class Couche;
+};
+namespace state {
+  class Observateur;
 }
 
+#include "state/Observateur.h"
 #include "Couche.h"
 
 namespace render {
 
   /// class Scene - 
-  class Scene {
+  class Scene : public state::Observateur {
     // Associations
     // Attributes
-  public:
-    sf::RenderWindow* window;
   private:
     Couche* couchePersonnage;
     Couche* coucheTerrain;
     state::Etat* etat;
+    sf::RenderWindow* window;
     // Operations
   public:
     Scene (state::Etat* etat, sf::RenderWindow* window);
