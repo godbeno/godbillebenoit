@@ -30,6 +30,7 @@ namespace render {
     Scene (state::Etat* etat, sf::RenderWindow* window);
     void changementEtat (state::EvenementEtat& e);
     void afficher ();
+    void jouerMusique ();
   };
 
 };

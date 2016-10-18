@@ -3,7 +3,7 @@
 #define RENDER__TUILEANIMEE__H
 
 #include <vector>
-#include <SFML/Graphics.hpp>
+#include <stdint.h>
 
 namespace render {
   class Tuile;
@@ -18,12 +18,12 @@ namespace render {
     // Attributes
   private:
     std::vector<Tuile*> tuiles;
-    int nbr;
+    float pourcentage;
     float vitesse;
-    clock_t debut;
+    int64_t debut;
     // Operations
   public:
-    TuileAnimee (int x, int y, int id, float vitesse);
+    TuileAnimee (int x, int y, int id, float rate, float vitesse);
     ~TuileAnimee ();
     bool estAnime ();
     const float getPourcentage ();
@@ -33,8 +33,8 @@ namespace render {
     const float getVitesse ();
     void ajouterTuile (Tuile* tuile);
     void setTuile (int i, Tuile* tuile);
-    void update (clock_t time);
-    const sf::Sprite& getSprite ();
+    void update (int64_t time);
+    void sync (int64_t temps);
   };
 
 };

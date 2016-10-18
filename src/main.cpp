@@ -20,6 +20,7 @@ int main(int argc,char* argv[])
     
     
     Scene* scene = new Scene(etat, window);
+    scene->jouerMusique();
     
     while (window->isOpen())
     {

@@ -649,7 +649,8 @@ struct stdlib_includes {
    int array;   
    int thread;
    int mutex;
-   int sf;
+   int sfG;
+   int sfA;
 };
 
 void print_include_stdlib(struct stdlib_includes* si,char* name) {
@@ -727,12 +728,19 @@ void print_include_stdlib(struct stdlib_includes* si,char* name) {
            print ("#include <memory>\n");
            si->memory = 1;
        }
-       if (!si->sf && strstr(name, "sf::Texture") 
-	|| !si->sf && strstr(name, "sf::Sprite")
-	|| !si->sf && strstr(name, "sf::RenderWindow"))
+       if (!si->sfG && strstr(name, "sf::Texture") 
+	|| !si->sfG && strstr(name, "sf::Sprite")
+	|| !si->sfG && strstr(name, "sf::RenderWindow"))
 	{
 		print("#include <SFML/Graphics.hpp>\n");
-		si->sf = 1;
+		si->sfG = 1;
+	}
+       if (!si->sfA && strstr(name, "sf::Sound") 
+	|| !si->sfA && strstr(name, "sf::Music")
+	|| !si->sfA && strstr(name, "sf::SoundBuffer"))
+	{
+		print("#include <SFML/Audio.hpp>\n");
+		si->sfA = 1;
 	}
     }
 }

@@ -4,6 +4,7 @@
 #include "TuileAnimee.h"
 #include <iostream>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Audio.hpp>
 
 using namespace render;
 
@@ -41,4 +42,12 @@ void Scene::afficher()
     coucheTerrain->afficher();
     couchePersonnage->afficher();
     window->display();
+}
+
+void Scene::jouerMusique()
+{
+    sf::Music music;
+    if (!music.openFromFile("../res/Sons/Musiques/greensleeves.wav"))
+    return -1; // erreur
+    music.play();
 }
