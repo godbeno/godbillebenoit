@@ -28,7 +28,7 @@ namespace render {
     // Operations
   public:
     Scene (state::Etat* etat, sf::RenderWindow* window);
-    ~Scene ();
+    virtual ~Scene ();
     void changementEtat (state::EvenementEtat& e);
     void afficher ();
     void jouerMusique ();

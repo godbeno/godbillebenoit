@@ -275,7 +275,8 @@ TuileAnimee::TuileAnimee(int x, int y, int id, float vitesse) : Tuile(x,y,id)
 }
 TuileAnimee::~TuileAnimee()
 {
-    
+    for (unsigned int i = 0; i < tuiles.size(); i++)
+        delete tuiles[i];
 }
 bool TuileAnimee::estAnime()
 {

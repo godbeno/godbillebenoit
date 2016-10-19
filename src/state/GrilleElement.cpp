@@ -94,6 +94,7 @@ int tab[24*24]={0,0,0,0,0,18,14,14,14,19,0,0,0,0,0,0,0,0,0,7,7,7,7,7,
 
 
     for (int i = 0; i < 24; i++)
+    {
         for (int j = 0; j < 24; j++)
         {   if(estChateau){
             elements.push_back(new CaseTerrain(tabchateau[j*24+i]));}
@@ -101,12 +102,5 @@ int tab[24*24]={0,0,0,0,0,18,14,14,14,19,0,0,0,0,0,0,0,0,0,7,7,7,7,7,
             elements[i*24+j]->setX(i);
             elements[i*24+j]->setY(j);
         }
-    for (int i = 0; i < 24; i++)
-    {
-        for (int j = 0; j < 24; j++)
-        {
-            std::cout << elements[i*24+j]->getID();
-        }
-        std::cout << std::endl;
     }
 }

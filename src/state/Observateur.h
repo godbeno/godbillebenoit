@@ -16,6 +16,7 @@ namespace state {
     // Operations
   public:
     virtual void changementEtat (EvenementEtat& e) = 0;
+    virtual ~Observateur ();
   };
 
 };
