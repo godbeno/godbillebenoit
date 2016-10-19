@@ -12,6 +12,7 @@ using namespace sf;
 
 int main(int argc,char* argv[]) 
 {   
+    
     // Test Unitaire - Etat du jeu 
     RenderWindow *window = new RenderWindow(VideoMode(1600,900,16), "Test Affichage", Style::Fullscreen);
     Etat *etat = new Etat;
@@ -22,8 +23,9 @@ int main(int argc,char* argv[])
     
     Scene* scene = new Scene(etat, window);
     
+
     while (window->isOpen())
-    {
+    { 
         Event event;
         while (window->pollEvent(event))
         {
@@ -32,7 +34,7 @@ int main(int argc,char* argv[])
                 window->close();
         }
         scene->afficher();
-        scene->jouerMusique();    
+        
     }
     
 
