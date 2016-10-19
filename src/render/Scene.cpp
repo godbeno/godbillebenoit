@@ -12,7 +12,7 @@ Scene::Scene(state::Etat* etat, sf::RenderWindow* window)
 {
     coucheTerrain = new Couche(window);
     couchePersonnage = new Couche(window);
-    float tx = sf::VideoMode::getDesktopMode().height/24.;
+    tx = sf::VideoMode::getDesktopMode().height/24.;
     couchePersonnage->addTuile(new TuileAnimee(tx*15, tx*15, 0, 36, couchePersonnage));
     this->etat = etat;
     this->window = window;
@@ -38,11 +38,20 @@ void Scene::changementEtat(state::EvenementEtat& e)
 {
     if (e.getTypeEvenement() == state::NouveauPersonnage)
     {
-        std::cout << "Un nouveau personnage a été créé" << std::endl;
+        std::cout << "Un nouveau personnage a été créé (" << e.getPid() << ")" << std::endl;
+        couchePersonnage->addTuile(new TuileStatique(e.getX()*tx, e.getY()*tx,e.getPid(), tx));
     }
     else if (e.getTypeEvenement() == state::PersonnageDeplace)
     {
         std::cout << "Un personnage a été déplacé" << std::endl;
+        //On récupère l'ID de ce personnage
+        if (couchePersonnage->getTuile(e.getX()*tx, e.getY()*tx) != nullptr)
+        {
+            couchePersonnage->setTuile(e.getX()*tx, e.getY()*tx, new TuileStatique(e.getNewx()*tx, e.getNewy()*tx, e.getPid(), tx));
+            std::cout << "FIN" << std::endl;
+        }
+        else
+            std::cout << "Null ptr" << std::endl;
     }
 }
 void Scene::afficher()
@@ -51,13 +60,4 @@ void Scene::afficher()
     coucheTerrain->afficher();
     couchePersonnage->afficher();
     window->display();
-}
-
-void Scene::jouerMusique()
-{
-    sf::Music music;
-    if (!music.openFromFile("../res/Sons/Musiques/greensleeves.wav")){
-        std::cout << "La musique n'est pas chargée" << std::endl;}
-    
-    music.play();
 }

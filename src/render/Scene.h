@@ -25,13 +25,13 @@ namespace render {
     Couche* coucheTerrain;
     state::Etat* etat;
     sf::RenderWindow* window;
+    float tx;
     // Operations
   public:
     Scene (state::Etat* etat, sf::RenderWindow* window);
     virtual ~Scene ();
     void changementEtat (state::EvenementEtat& e);
     void afficher ();
-    void jouerMusique ();
   };
 
 };

@@ -20,7 +20,7 @@ int const GrilleElement::getLargeur ()
 Personnage* const GrilleElement::getCellulePersonnage (int i, int j)
 {
     for(unsigned int k=0;k<elements.size();k++){
-        if(this->elements[k]->getX() == i && this->elements[k]->getY() == j && this->elements[k]->estPersonnage())
+        if(elements[k]->getX() == i && elements[k]->getY() == j && elements[k]->estPersonnage())
             return static_cast<Personnage*>(this->elements[k]);
     }
     return nullptr;
@@ -108,7 +108,7 @@ void GrilleElement::deplacerElement(Personnage* p, int i, int j)
 {
     for (unsigned int k = 0; k < elements.size(); k++)
     {
-        if (dynamic_cast<Personnage*>(elements[k]))
+        if ((elements[k])->estPersonnage())
         {
             if (static_cast<Personnage*>(elements[k])->equals(*p))
             {

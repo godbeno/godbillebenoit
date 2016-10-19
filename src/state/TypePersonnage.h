@@ -6,12 +6,12 @@
 namespace state {
 
   enum TypePersonnage {
-    Spadassin     = 1,
-    Lancier     = 2,
-    Archer     = 3,
-    Canon     = 4,
-    Cavalier     = 5,
-    Roi     = 6
+    Lancier     = 1,
+    Archer     = 2,
+    Spadassin     = 3,
+    Cavalier     = 4,
+    Roi     = 5,
+    Canon     = 6
   };
 
 };

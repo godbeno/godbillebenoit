@@ -20,8 +20,8 @@ int main(int argc,char* argv[])
     etat->initialiserTerrain(false);
     Scene* scene = new Scene(etat, window);
     etat->enregistrerObservateur(scene);
-    etat->ajouterPersonnage(true, 2, 3,3);
-    etat->deplacerElement(2,3,2,4);
+    etat->ajouterPersonnage(true, 2, 3, 3);
+    etat->deplacerElement(3,3,20,20);
     
     
     

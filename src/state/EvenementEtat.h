@@ -18,10 +18,20 @@ namespace state {
   private:
     TypeEvenementEtat id;
     Etat* etat;
+    int x;
+    int y;
+    int pid;
+    int newX;
+    int newY;
     // Operations
   public:
-    EvenementEtat (TypeEvenementEtat id, Etat* etat);
+    EvenementEtat (TypeEvenementEtat id, Etat* etat, int x, int y, int pid, bool equipe, int newX = -1, int newY = -1);
     TypeEvenementEtat getTypeEvenement ();
+    int getX ();
+    int getY ();
+    int getPid ();
+    int getNewx ();
+    int getNewy ();
   };
 
 };

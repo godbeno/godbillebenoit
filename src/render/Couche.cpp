@@ -26,7 +26,11 @@ void Couche::setTuile (int i, int j, Tuile* tuile)
 {
     for (unsigned int k = 0; k < tuiles.size(); k++)
         if (tuiles[k]->getX() == i && tuiles[k]->getY() == j)
-            tuiles[k] = tuile;
+        {
+            delete tuiles[k];
+            tuiles.erase(tuiles.begin()+k);
+        }
+    tuiles.push_back(tuile);
     
 }
 void Couche::addTuile(Tuile* tuile)

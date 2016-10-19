@@ -326,7 +326,6 @@ void TuileAnimee::update (clock_t time)
     if (nbr > tuiles.size()-1)
     {
         parent->setTuile(x,y,static_cast<TuileStatique*>(tuiles[nbr-1])->copy());
-        delete this;
     }
 }
 const sf::Sprite& TuileAnimee::getSprite()
