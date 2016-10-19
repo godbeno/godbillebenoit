@@ -10,6 +10,11 @@ Couche::Couche(sf::RenderWindow* window)
     tuiles.clear();
     this->window = window;
 }
+Couche::~Couche()
+{
+    for (unsigned int i = 0; i < tuiles.size(); i++)
+        delete tuiles[i];
+}
 Tuile* Couche::getTuile (int i, int j)
 {
     for (unsigned int k = 0; k < tuiles.size(); k++)

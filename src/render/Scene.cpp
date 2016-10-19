@@ -29,6 +29,11 @@ Scene::Scene(state::Etat* etat, sf::RenderWindow* window)
         }
     }
 }
+Scene::~Scene()
+{
+    delete couchePersonnage;
+    delete coucheTerrain;
+}
 void Scene::changementEtat(state::EvenementEtat& e)
 {
     if (e.getTypeEvenement() == state::NouveauPersonnage)

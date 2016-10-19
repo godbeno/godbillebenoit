@@ -27,6 +27,7 @@ namespace render {
     // Operations
   public:
     Couche (sf::RenderWindow* window);
+    ~Couche ();
     Tuile* getTuile (int i, int j);
     void setTuile (int i, int j, Tuile* tuile);
     void changementEtat (state::EvenementEtat& e);
