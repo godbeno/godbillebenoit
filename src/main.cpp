@@ -17,7 +17,7 @@ int main(int argc,char* argv[])
     RenderWindow *window = new RenderWindow(VideoMode(1600,900,16), "Test Affichage", Style::Fullscreen);
     Etat *etat = new Etat;
 
-    etat->initialiserTerrain(true);
+    etat->initialiserTerrain(false);
     etat->ajouterPersonnage(true, 2, 3,3);
     
     

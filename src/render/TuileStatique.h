@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 namespace render {
+  class TuileStatique;
   class Tuile;
 }
 
@@ -20,6 +21,8 @@ namespace render {
     int largeur;
     sf::Texture texture;
     sf::Sprite sprite;
+    int id;
+    int w;
     // Operations
   public:
     TuileStatique (int x, int y, int id, float w);
@@ -30,6 +33,7 @@ namespace render {
     void setLargeur (int largeur);
     const sf::Sprite& getSprite ();
     bool estAnime ();
+    TuileStatique* copy ();
   };
 
 };

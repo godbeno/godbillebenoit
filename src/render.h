@@ -4,7 +4,7 @@
 
 #include "render/Tuile.h"
 #include "render/TuileStatique.h"
-#include "render/TuileAnimee.h"
 #include "render/Couche.h"
+#include "render/TuileAnimee.h"
 #include "render/Scene.h"
 #endif

@@ -5,12 +5,13 @@
 
 using namespace render;
 
-TuileAnimee::TuileAnimee(int x, int y, int id, float vitesse) : Tuile(x,y,id)
+TuileAnimee::TuileAnimee(int x, int y, int id, float vitesse, Couche* couche) : Tuile(x,y,id)
 {
     nbr = 0;
     this->vitesse = vitesse;
     float tx = sf::VideoMode::getDesktopMode().height/24.;
     debut = clock();
+    parent = couche;
     switch(id)
     {
         /* Ordre:
@@ -323,7 +324,10 @@ void TuileAnimee::update (clock_t time)
         debut = clock();
     }
     if (nbr > tuiles.size()-1)
-        nbr = 0;
+    {
+        parent->setTuile(x,y,static_cast<TuileStatique*>(tuiles[nbr-1])->copy());
+        delete this;
+    }
 }
 const sf::Sprite& TuileAnimee::getSprite()
 {

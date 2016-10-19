@@ -11,6 +11,8 @@ TuileStatique::TuileStatique(int x, int y, int id, float w) : Tuile(x,y,id)
 {
     hauteur = x;
     largeur = y;
+    this->id = id;
+    this->w = w;
     switch(id)
     {
         case 0: //Herbe
@@ -273,4 +275,12 @@ const sf::Sprite& TuileStatique::getSprite ()
 bool TuileStatique::estAnime ()
 {
     return false;
+}
+TuileStatique* TuileStatique::copy()
+{
+    TuileStatique* t = new TuileStatique(x, y, id, w);
+    t->hauteur = hauteur;
+    t->largeur = largeur;
+    return t;
+    
 }

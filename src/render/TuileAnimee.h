@@ -7,9 +7,11 @@
 
 namespace render {
   class Tuile;
+  class Couche;
 }
 
 #include "Tuile.h"
+#include "Couche.h"
 
 namespace render {
 
@@ -21,9 +23,10 @@ namespace render {
     float nbr;
     float vitesse;
     clock_t debut;
+    Couche* parent;
     // Operations
   public:
-    TuileAnimee (int x, int y, int id, float vitesse);
+    TuileAnimee (int x, int y, int id, float vitesse, Couche* couche);
     ~TuileAnimee ();
     bool estAnime ();
     const float getPourcentage ();
