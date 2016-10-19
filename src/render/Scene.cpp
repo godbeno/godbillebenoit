@@ -40,6 +40,10 @@ void Scene::changementEtat(state::EvenementEtat& e)
     {
         std::cout << "Un nouveau personnage a été créé" << std::endl;
     }
+    else if (e.getTypeEvenement() == state::PersonnageDeplace)
+    {
+        std::cout << "Un personnage a été déplacé" << std::endl;
+    }
 }
 void Scene::afficher()
 {

@@ -5,8 +5,8 @@
 
 namespace state {
   class Etat;
-  class ListeElement;
   class Personnage;
+  class ListeElement;
   class CaseTerrain;
 }
 
@@ -31,6 +31,7 @@ namespace state {
     Personnage* const getCellulePersonnage (int i, int j);
     CaseTerrain* const getCelluleDecor (int i, int j);
     void genererTerrainAleatoire (bool estChateau);
+    void deplacerElement (Personnage* p, int i, int j);
   };
 
 };

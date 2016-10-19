@@ -14,14 +14,16 @@ int main(int argc,char* argv[])
 {   
     
     // Test Unitaire - Etat du jeu 
-    RenderWindow *window = new RenderWindow(VideoMode(1600,900,16), "Test Affichage", Style::Fullscreen);
+    RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Test Affichage", Style::Fullscreen);
     Etat *etat = new Etat;
 
     etat->initialiserTerrain(false);
-    etat->ajouterPersonnage(true, 2, 3,3);
-    
-    
     Scene* scene = new Scene(etat, window);
+    etat->enregistrerObservateur(scene);
+    etat->ajouterPersonnage(true, 2, 3,3);
+    etat->deplacerElement(2,3,2,4);
+    
+    
     
 
     while (window->isOpen())

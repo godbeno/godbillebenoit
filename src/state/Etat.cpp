@@ -1,4 +1,5 @@
 #include "Etat.h"
+#include <iostream>
 using namespace state;
 
 Etat::Etat ()
@@ -63,4 +64,15 @@ void Etat::ajouterPersonnage(bool equipe, int id, int x, int y)
     Personnage* p = new Personnage(equipe, TypePersonnage(id), x, y);
     liste->add(p);
     avertirObservateurs(new EvenementEtat(TypeEvenementEtat(3), this));
+}
+
+void Etat::deplacerElement(int i1, int j1, int i2, int j2)
+{
+    std::cout << "On entre dans Etat::DeplacerElement";
+    Personnage* p = grille->getCellulePersonnage(i1,j1);
+    std::cout << "On a obtenu le personnage à la bonne position";
+    grille->deplacerElement(p, i2, j2);
+    std::cout << "On a déplacé le personnage";
+    liste->copy(*grille);
+    avertirObservateurs(new EvenementEtat(TypeEvenementEtat(1), this));
 }

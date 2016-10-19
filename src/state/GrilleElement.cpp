@@ -104,3 +104,17 @@ int tab[24*24]={0,0,0,0,0,18,14,14,14,19,0,0,0,0,0,0,0,0,0,7,7,7,7,7,
         }
     }
 }
+void GrilleElement::deplacerElement(Personnage* p, int i, int j)
+{
+    for (unsigned int k = 0; k < elements.size(); k++)
+    {
+        if (dynamic_cast<Personnage*>(elements[k]))
+        {
+            if (static_cast<Personnage*>(elements[k])->equals(*p))
+            {
+                elements[k]->setX(i);
+                elements[k]->setY(j);
+            }
+        }
+    }
+}

@@ -37,6 +37,7 @@ namespace state {
     void setListe (const ListeElement& list);
     void initialiserTerrain (bool estChateau);
     void ajouterPersonnage (bool equipe, int id, int x, int y);
+    void deplacerElement (int i1, int j1, int i2, int j2);
   };
 
 };
