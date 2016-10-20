@@ -17,13 +17,12 @@ int main(int argc,char* argv[])
     RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Test Affichage", Style::Fullscreen);
     Etat *etat = new Etat;
 
-    etat->initialiserTerrain(false);
+    etat->initialiserTerrain(true);
     Scene* scene = new Scene(etat, window);
     etat->enregistrerObservateur(scene);
-    etat->ajouterPersonnage(true, 1, 3, 3);
-    etat->ajouterPersonnage(true, 2, 4, 4);
-    etat->ajouterPersonnage(true, 3, 5, 5);
-    etat->ajouterPersonnage(true, 4, 6, 6);
+    etat->ajouterPersonnage(true, 5, 10, 10);
+    etat->ajouterPersonnage(true, 3, 12, 10);
+    etat->ajouterPersonnage(true, 4, 10, 8);
 
     
     
