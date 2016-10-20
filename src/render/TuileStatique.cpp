@@ -243,7 +243,7 @@ TuileStatique::TuileStatique(int x, int y, int id, float w) : Tuile(x,y,id)
     sprite.setTexture(texture);
     sprite.setPosition(x,y);
     if (id > 43)
-        sprite.setScale(w/300, w/300);
+        sprite.setScale(w/100, w/100);
     else
         sprite.setScale(w/100,w/100);
     //std::cout << "Sprite position : (" << sprite.getPosition().x << ", " << sprite.getPosition().y << ") " << std::endl;
