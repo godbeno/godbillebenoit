@@ -13,7 +13,7 @@ Scene::Scene(state::Etat* etat, sf::RenderWindow* window)
     coucheTerrain = new Couche(window);
     couchePersonnage = new Couche(window);
     tx = sf::VideoMode::getDesktopMode().height/24.;
-    couchePersonnage->addTuile(new TuileAnimee(tx*15, tx*15, 0, 36, couchePersonnage));
+    //couchePersonnage->addTuile(new TuileAnimee(tx*15, tx*15, 0, 36, couchePersonnage));
     this->etat = etat;
     this->window = window;
     state::ListeElement l = etat->getListe();
