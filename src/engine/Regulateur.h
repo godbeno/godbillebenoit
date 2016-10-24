@@ -3,6 +3,9 @@
 #define ENGINE__REGULATEUR__H
 
 
+namespace state {
+  class Etat;
+};
 namespace engine {
   class ListeCommande;
   class ListeActions;
