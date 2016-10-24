@@ -22,7 +22,7 @@ namespace engine {
   public:
     CommandeFleche (Direction direction);
     CategorieCommande getCategorie ();
-    direction getDirection ();
+    Direction getDirection ();
   };
 
 };

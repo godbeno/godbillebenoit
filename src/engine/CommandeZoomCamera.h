@@ -22,7 +22,7 @@ namespace engine {
     int y;
     // Operations
   public:
-    CommandeZoomCamera (bool haut);
+    CommandeZoomCamera (bool haut, int i, int j);
     CategorieCommande getCategorie ();
     bool getDirection ();
     int getX ();
