@@ -14,14 +14,14 @@ namespace engine {
   /// class Deplacement - 
   class Deplacement : public engine::Action {
     // Attributes
-  public:
+  protected:
     int Originex;
     int Originey;
     int Ciblex;
     int Cibley;
     // Operations
   public:
-    void Deplacement (int Originex, int Originey, int Ciblex, int Cibley);
+    Deplacement (int Originex, int Originey, int Ciblex, int Cibley);
   };
 
 };

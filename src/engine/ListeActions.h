@@ -21,7 +21,7 @@ namespace engine {
     std::vector<Action*> actions;
     // Operations
   public:
-    void ListeActions (state::Etat& s);
+    ListeActions (state::Etat& s);
     ~ListeActions ();
     int taille ();
     Action* const get (int i);

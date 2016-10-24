@@ -13,9 +13,13 @@ namespace engine {
 
   /// class Selection - 
   class Selection : public engine::Action {
+    // Attributes
+  protected:
+    int Selectionx;
+    int Selectiony;
     // Operations
   public:
-    void Selection (int Selectionx, int Selectiony);
+    Selection (int Selectionx, int Selectiony);
   };
 
 };

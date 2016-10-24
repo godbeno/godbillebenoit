@@ -21,7 +21,7 @@ namespace engine {
     int Cibley;
     // Operations
   public:
-    void Attaquer (int Attaquantx, int Attaquanty, int Ciblex, int Cibley);
+    Attaquer (int Attaquantx, int Attaquanty, int Ciblex, int Cibley);
   };
 
 };

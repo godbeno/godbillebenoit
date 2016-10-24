@@ -13,9 +13,12 @@ namespace engine {
 
   /// class ChangerMode - 
   class ChangerMode : public engine::Action {
+    // Attributes
+  protected:
+    int IdMode;
     // Operations
   public:
-    void ChangerMode (int IdMode);
+    ChangerMode (int IdMode);
   };
 
 };
