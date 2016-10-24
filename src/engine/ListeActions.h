@@ -4,6 +4,9 @@
 
 #include <vector>
 
+namespace state {
+  class Etat;
+};
 namespace engine {
   class Action;
 }

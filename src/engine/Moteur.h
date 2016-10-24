@@ -3,6 +3,9 @@
 #define ENGINE__MOTEUR__H
 
 
+namespace state {
+  class Etat;
+};
 namespace engine {
   class ListeCommande;
   class Commande;
@@ -11,6 +14,7 @@ namespace engine {
 
 #include "ListeCommande.h"
 #include "Mode.h"
+#include "state/Etat.h"
 #include "Regulateur.h"
 
 namespace engine {
@@ -20,19 +24,19 @@ namespace engine {
     // Associations
     // Attributes
   private:
-    Etat* etat;
+    state::Etat* etat;
     ListeCommande listeCommande;
     clock_t derniereMaj;
     Mode mode;
     // Operations
   public:
-    Moteur ();
+    Moteur (state::Etat* etat);
     ~Moteur ();
-    Etat* getEtat ();
+    state::Etat* getEtat ();
     void ajouterCommande (Commande* cmd);
     Mode getMode ();
-    update (clock_t t);
-    setMode (Mode mode);
+    void update (clock_t t);
+    void setMode (Mode mode);
   };
 
 };
