@@ -4,9 +4,9 @@
 
 #include "engine/Action.h"
 #include "engine/Attaquer.h"
-#include "engine/Déplacement.h"
+#include "engine/Deplacement.h"
 #include "engine/Zoom.h"
-#include "engine/DéplacementCaméra.h"
+#include "engine/DeplacementCamera.h"
 #include "engine/Selection.h"
 #include "engine/ChangerMode.h"
 #include "engine/ListeActions.h"
