@@ -33,6 +33,11 @@ void ListeActions::ajouter (Action* action)
 {
    actions.push_back(action);
 }
+void ListeActions::appliquer()
+{
+    for(unsigned int i = 0; i < actions.size(); i++)
+        actions[i]->appliquer(s);
+}
 int ListeActions::taille()
 {
     return actions.size();

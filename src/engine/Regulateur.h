@@ -28,6 +28,7 @@ namespace engine {
   public:
     Regulateur (ListeActions& lsAction, state::Etat* etat, ListeCommande& lsCmd);
     ~Regulateur ();
+    void appliquer ();
   };
 
 };

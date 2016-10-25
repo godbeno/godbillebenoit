@@ -28,6 +28,12 @@ Mode Moteur::getMode()
 }
 void Moteur::update(clock_t t)
 {
+    if ((t-derniereMaj) > 0.2)
+    {
+        convertirCommande();
+        derniereMaj = t;
+        
+    }
     
 }
 void Moteur::setMode(Mode mode)
@@ -46,5 +52,5 @@ void Moteur::convertirCommande()
         }
     }
     Regulateur r(aVerifier, etat, listeCommande);
-    
+    r.appliquer();
 }

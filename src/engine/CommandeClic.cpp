@@ -1,4 +1,5 @@
 #include "CommandeClic.h"
+#include <iostream>
 
 using namespace engine;
 
@@ -7,6 +8,7 @@ CommandeClic::CommandeClic (int i, int j)
 {
     x = i;
     y = j;
+    std::cout << "Création d'un événement clic !" << std::endl;
 }
 CategorieCommande CommandeClic::getCategorie ()
 {
