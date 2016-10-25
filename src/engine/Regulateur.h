@@ -20,12 +20,12 @@ namespace engine {
     // Associations
     // Attributes
   protected:
-    const state::Etat& EtatCourant;
-    const ListeCommande& commandes;
-    ListeActions& actions;
+    state::Etat* etatCourant;
+    ListeCommande* commandes;
+    ListeActions* actions;
     // Operations
   public:
-    Regulateur (ListeAction& , state::Etat& , const ListeCommande& );
+    Regulateur (ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd);
     ~Regulateur ();
   };
 

@@ -3,6 +3,9 @@
 #define ENGINE__CHANGERMODE__H
 
 
+namespace state {
+  class Etat;
+};
 namespace engine {
   class Action;
 }
@@ -19,6 +22,7 @@ namespace engine {
     // Operations
   public:
     ChangerMode (int IdMode);
+    void appliquer (state::Etat* etat);
   };
 
 };

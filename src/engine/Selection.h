@@ -3,6 +3,9 @@
 #define ENGINE__SELECTION__H
 
 
+namespace state {
+  class Etat;
+};
 namespace engine {
   class Action;
 }
@@ -20,6 +23,7 @@ namespace engine {
     // Operations
   public:
     Selection (int Selectionx, int Selectiony);
+    void appliquer (state::Etat* etat);
   };
 
 };

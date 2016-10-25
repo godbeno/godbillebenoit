@@ -20,6 +20,7 @@ Commande* ListeCommande::get(int categorie)
     {
         return commandes[categorie];
     }
+    return nullptr;
 }
 void ListeCommande::set (Commande* cmd)
 {

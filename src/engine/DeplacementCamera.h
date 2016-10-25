@@ -3,6 +3,9 @@
 #define ENGINE__DEPLACEMENTCAMERA__H
 
 
+namespace state {
+  class Etat;
+};
 namespace engine {
   class Action;
 }
@@ -13,6 +16,9 @@ namespace engine {
 
   /// class DeplacementCamera - 
   class DeplacementCamera : public engine::Action {
+    // Operations
+  public:
+    void appliquer (state::Etat* etat);
   };
 
 };

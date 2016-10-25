@@ -20,14 +20,15 @@ namespace engine {
     // Associations
     // Attributes
   protected:
-    state::Etat& s;
+    state::Etat* s;
     std::vector<Action*> actions;
     // Operations
   public:
-    ListeActions (state::Etat& s);
+    ListeActions (state::Etat* s);
     ~ListeActions ();
     Action* const get (int i);
     void ajouter (Action* action);
+    void appliquer ();
   };
 
 };

@@ -3,6 +3,10 @@
 #define ENGINE__ACTION__H
 
 
+namespace state {
+  class Etat;
+}
+
 namespace engine {
 
   /// class Action - 
@@ -10,6 +14,7 @@ namespace engine {
     // Operations
   public:
     virtual ~Action ();
+    virtual void appliquer (state::Etat* etat) = 0;
   };
 
 };

@@ -11,6 +11,7 @@ namespace engine {
   class Commande {
     // Operations
   public:
+    virtual ~Commande ();
     virtual CategorieCommande getCategorie () = 0;
   };
 

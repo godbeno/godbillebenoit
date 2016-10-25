@@ -3,6 +3,9 @@
 #define ENGINE__ATTAQUER__H
 
 
+namespace state {
+  class Etat;
+};
 namespace engine {
   class Action;
 }
@@ -22,6 +25,7 @@ namespace engine {
     // Operations
   public:
     Attaquer (int Attaquantx, int Attaquanty, int Ciblex, int Cibley);
+    void appliquer (state::Etat* etat);
   };
 
 };

@@ -3,6 +3,9 @@
 #define ENGINE__ZOOM__H
 
 
+namespace state {
+  class Etat;
+};
 namespace engine {
   class Action;
 }
@@ -13,6 +16,9 @@ namespace engine {
 
   /// class Zoom - 
   class Zoom : public engine::Action {
+    // Operations
+  public:
+    void appliquer (state::Etat* etat);
   };
 
 };

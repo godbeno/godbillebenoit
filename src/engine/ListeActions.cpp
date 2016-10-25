@@ -2,7 +2,7 @@
 
 using namespace engine;
 
-ListeActions::ListeActions(state::Etat& s)
+ListeActions::ListeActions(state::Etat* s)
 {
    actions.clear();
    this->s = s;
@@ -12,12 +12,12 @@ ListeActions::~ListeActions()
 {
     for (unsigned int i = 0; i < actions.size(); i++)
     {
-        delete elements[i];
+        delete actions[i];
     }
 }
 
 
-Action* const get (int i)
+Action* const ListeActions::get (int i)
 {
     if (static_cast<unsigned int>(i) <actions.size()) 
         return actions[i];
@@ -25,7 +25,7 @@ Action* const get (int i)
         return nullptr;
 }
 
-void ajouter (Action* action)
+void ListeActions::ajouter (Action* action)
 {
    actions.push_back(action);
 }
