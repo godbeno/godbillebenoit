@@ -10,16 +10,12 @@ ListeActions::ListeActions(state::Etat& s)
 
 ListeActions::~ListeActions()
 {
-    for (unsigned int i = 0; i < actions.taille(); i++)
+    for (unsigned int i = 0; i < actions.size(); i++)
     {
         delete elements[i];
     }
 }
 
-int ListeActions::taille()
-{
-   return actions.size();
-}
 
 Action* const get (int i)
 {

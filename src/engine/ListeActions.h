@@ -26,7 +26,6 @@ namespace engine {
   public:
     ListeActions (state::Etat& s);
     ~ListeActions ();
-    int taille ();
     Action* const get (int i);
     void ajouter (Action* action);
   };

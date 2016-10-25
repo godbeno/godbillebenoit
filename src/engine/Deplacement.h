@@ -21,7 +21,7 @@ namespace engine {
     int Cibley;
     // Operations
   public:
-    void Deplacement (int Originex, int Originey, int Ciblex, int Cibley);
+    Deplacement (int Originex, int Originey, int Ciblex, int Cibley);
   };
 
 };
