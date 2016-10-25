@@ -81,3 +81,21 @@ void Etat::deplacerElement(int i1, int j1, int i2, int j2)
         std::cout << "pointeur null " << std::endl;
     }
 }
+
+Personnage* Etat::getSelectionne()
+{
+    return selectionne;
+}
+void Etat::setSelectionne(int i, int j)
+{
+    selectionne = grille->getCellulePersonnage(i, j);
+}
+void Etat::attaquer(int i1, int j1, int i2, int j2)
+{
+    Personnage* p1 = grille->getCellulePersonnage(i1,j1);
+    Personnage* p2 = grille->getCellulePersonnage(i2,j2);
+    if (p1 != nullptr && p2 != nullptr)
+    {
+        //Compléter
+    }
+}

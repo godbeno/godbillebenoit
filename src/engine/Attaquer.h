@@ -18,10 +18,10 @@ namespace engine {
   class Attaquer : public engine::Action {
     // Attributes
   protected:
-    int Attaquantx;
-    int Attaquanty;
-    int Ciblex;
-    int Cibley;
+    int attaquantX;
+    int attaquantY;
+    int cibleX;
+    int cibleY;
     // Operations
   public:
     Attaquer (int Attaquantx, int Attaquanty, int Ciblex, int Cibley);

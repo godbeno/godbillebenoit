@@ -6,9 +6,9 @@
 namespace state {
   class ListeElement;
   class GrilleElement;
+  class Personnage;
   class Etat;
   class Observable;
-  class Personnage;
 }
 
 #include "Observable.h"
@@ -24,6 +24,7 @@ namespace state {
   protected:
     ListeElement* liste;
     GrilleElement* grille;
+    Personnage* selectionne;
     // Operations
   public:
     Etat ();
@@ -38,6 +39,9 @@ namespace state {
     void initialiserTerrain (bool estChateau);
     void ajouterPersonnage (bool equipe, int id, int x, int y);
     void deplacerElement (int i1, int j1, int i2, int j2);
+    Personnage* getSelectionne ();
+    void setSelectionne (int i, int j);
+    void attaquer (int i1, int j1, int i2, int j2);
   };
 
 };

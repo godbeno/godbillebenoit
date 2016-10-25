@@ -18,8 +18,8 @@ namespace engine {
   class Selection : public engine::Action {
     // Attributes
   protected:
-    int Selectionx;
-    int Selectiony;
+    int selectionX;
+    int selectionY;
     // Operations
   public:
     Selection (int Selectionx, int Selectiony);

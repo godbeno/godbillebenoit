@@ -3,6 +3,11 @@ using namespace engine;
 
 Selection::Selection(int Selectionx, int Selectiony)
 {
-   this->Selectionx = Selectionx;
-   this->Selectiony = Selectiony;
+   this->selectionX = Selectionx;
+   this->selectionY = Selectiony;
+}
+
+void Selection::appliquer(state::Etat* etat)
+{
+    etat->setSelectionne(selectionX, selectionY);
 }

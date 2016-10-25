@@ -4,5 +4,9 @@ using namespace engine;
 
 ChangerMode::ChangerMode(int IdMode)
 {
-   this->IdMode = IdMode;
+   this->idMode = IdMode;
+}
+void ChangerMode::appliquer(state::Etat* etat)
+{
+    
 }

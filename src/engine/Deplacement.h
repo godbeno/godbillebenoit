@@ -18,10 +18,10 @@ namespace engine {
   class Deplacement : public engine::Action {
     // Attributes
   public:
-    int Originex;
-    int Originey;
-    int Ciblex;
-    int Cibley;
+    int origineX;
+    int origineY;
+    int cibleX;
+    int cibleY;
     // Operations
   public:
     Deplacement (int Originex, int Originey, int Ciblex, int Cibley);
