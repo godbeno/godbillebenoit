@@ -37,6 +37,7 @@ namespace engine {
     Mode getMode ();
     void update (clock_t t);
     void setMode (Mode mode);
+    void convertirCommande ();
   };
 
 };
