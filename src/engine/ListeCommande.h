@@ -25,6 +25,7 @@ namespace engine {
     Commande* get (int categorie);
     void set (Commande* cmd);
     int taille ();
+    void vider ();
   };
 
 };

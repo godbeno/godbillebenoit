@@ -1,4 +1,5 @@
 #include "Regulateur.h"
+#include <iostream>
 
 using namespace engine;
 
@@ -17,5 +18,6 @@ Regulateur::~Regulateur()
 
 void Regulateur::appliquer()
 {
+    std::cout << "Application des actions ! " << std::endl;
     actions.appliquer(); 
 }

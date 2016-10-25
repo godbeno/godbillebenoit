@@ -1,6 +1,7 @@
 #include "Moteur.h"
 #include "CommandeClic.h"
 #include "Deplacement.h"
+#include <iostream>
 
 using namespace engine;
 
@@ -21,6 +22,7 @@ state::Etat* Moteur::getEtat()
 void Moteur::ajouterCommande (Commande* cmd)
 {
     listeCommande.set(cmd);
+    std::cout << " Commande ajoutée " << std::endl;
 }
 Mode Moteur::getMode()
 {
@@ -47,10 +49,14 @@ void Moteur::convertirCommande()
     {
         if (mode == Mode::deplacement) // Si on est en mode déplacement
         {
+            std::cout << "Traitement de la commande ! " << std::endl;
             CommandeClic* cc = static_cast<CommandeClic*>(listeCommande.get(3));
+            std::cout << "Cast de la commande ! " << std::endl;
             aVerifier.ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
+            std::cout << "Conversion de la commande ! " << std::endl;
         }
     }
     Regulateur r(aVerifier, etat, listeCommande);
     r.appliquer();
+    listeCommande.vider();
 }

@@ -37,3 +37,9 @@ int ListeCommande::taille ()
             c++;
     return c;
 }
+void ListeCommande::vider()
+{
+    for (int i = 1; i < 5; i++)
+        if (commandes[i])
+            delete commandes[i];
+}
