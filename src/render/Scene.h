@@ -27,6 +27,8 @@ namespace render {
     sf::RenderWindow* window;
     float tx;
     int zoom;
+    int camerax;
+    int cameray;
     // Operations
   public:
     Scene (state::Etat* etat, sf::RenderWindow* window);
@@ -35,6 +37,7 @@ namespace render {
     void afficher ();
     int getZoom ();
     void setZoom (int z);
+    void setCamera (int x, int y);
   };
 
 };

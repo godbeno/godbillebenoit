@@ -72,3 +72,9 @@ void Scene::setZoom(int z)
 {
     this->zoom = z;
 }
+
+void Scene::setCamera(int x, int y)
+{
+    this->camerax = x;
+    this->cameray = y;
+}
