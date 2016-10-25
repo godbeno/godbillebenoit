@@ -24,11 +24,13 @@ namespace engine {
     std::vector<Action*> actions;
     // Operations
   public:
+    ListeActions ();
     ListeActions (state::Etat* s);
     ~ListeActions ();
     Action* const get (int i);
     void ajouter (Action* action);
     void appliquer ();
+    int taille ();
   };
 
 };

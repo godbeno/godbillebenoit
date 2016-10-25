@@ -2,6 +2,10 @@
 
 using namespace engine;
 
+ListeActions::ListeActions()
+{
+    
+}
 ListeActions::ListeActions(state::Etat* s)
 {
    actions.clear();
@@ -28,6 +32,10 @@ Action* const ListeActions::get (int i)
 void ListeActions::ajouter (Action* action)
 {
    actions.push_back(action);
+}
+int ListeActions::taille()
+{
+    return actions.size();
 }
 
 

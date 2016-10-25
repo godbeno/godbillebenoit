@@ -2,7 +2,7 @@
 
 using namespace engine;
 
-Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd)
+Regulateur::Regulateur(ListeActions& lsAction, state::Etat* etat, ListeCommande& lsCmd)
 {
     actions = lsAction;
     etatCourant = etat;
@@ -10,5 +10,4 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
 }
 Regulateur::~Regulateur()
 {
-    delete actions;
 }
