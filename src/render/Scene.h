@@ -26,12 +26,15 @@ namespace render {
     state::Etat* etat;
     sf::RenderWindow* window;
     float tx;
+    int zoom;
     // Operations
   public:
     Scene (state::Etat* etat, sf::RenderWindow* window);
     virtual ~Scene ();
     void changementEtat (state::EvenementEtat& e);
     void afficher ();
+    int getZoom ();
+    void setZoom (int z);
   };
 
 };

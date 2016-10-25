@@ -284,3 +284,11 @@ TuileStatique* TuileStatique::copy()
     return t;
     
 }
+void TuileStatique::setEstAffiche(bool b)
+{
+    this->estAffiche = b;
+}
+bool TuileStatique::getEstAffiche()
+{
+    return this->estAffiche;
+}

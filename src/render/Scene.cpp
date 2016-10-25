@@ -16,10 +16,11 @@ Scene::Scene(state::Etat* etat, sf::RenderWindow* window)
     //couchePersonnage->addTuile(new TuileAnimee(tx*15, tx*15, 0, 36, couchePersonnage));
     this->etat = etat;
     this->window = window;
+    this->zoom = 1;
     state::ListeElement l = etat->getListe();
     for (int i = 0; i < l.size(); i++)
     {
-        if (!l.get(i)->estPersonnage())
+        if (!l.get(i)->estPersonnage() )
         {
             coucheTerrain->addTuile(new TuileStatique(l.get(i)->getX()*tx, l.get(i)->getY()*tx, l.get(i)->getID(), tx)); 
         }
@@ -60,4 +61,14 @@ void Scene::afficher()
     coucheTerrain->afficher();
     couchePersonnage->afficher();
     window->display();
+}
+
+int Scene::getZoom()
+{
+   return this->zoom; 
+}
+
+void Scene::setZoom(int z)
+{
+    this->zoom = z;
 }

@@ -23,6 +23,7 @@ namespace render {
     sf::Sprite sprite;
     int id;
     int w;
+    bool estAffiche;
     // Operations
   public:
     TuileStatique (int x, int y, int id, float w);
@@ -34,6 +35,8 @@ namespace render {
     const sf::Sprite& getSprite ();
     bool estAnime ();
     TuileStatique* copy ();
+    bool getEstAffiche ();
+    void setEstAffiche (bool b);
   };
 
 };
