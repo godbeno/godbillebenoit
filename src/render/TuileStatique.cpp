@@ -186,15 +186,15 @@ TuileStatique::TuileStatique(int x, int y, int id, float w) : Tuile(x,y,id)
         case 55: //Canon rouge
             texture.loadFromFile("res/Textures/canon-repos.png");
             break;             
-        case 56: //Cadavre fantassin
-            texture.loadFromFile("res/Textures/Cadavre-infanterie.png");
-            break;             
-        case 57: //Cadavre cavalier
-            texture.loadFromFile("res/Textures/Cadavre-cavalier.png");
-            break;             
-        case 58: // Cadavre canon
-            texture.loadFromFile("res/Textures/Cadavre-canon.png");
-            break;
+        //case 56: //Cadavre fantassin
+           // texture.loadFromFile("res/Textures/Cadavre-infanterie.png");
+          //  break;             
+        //case 57: //Cadavre cavalier
+          //  texture.loadFromFile("res/Textures/Cadavre-cavalier.png");
+          //  break;             
+        //case 58: // Cadavre canon
+         //   texture.loadFromFile("res/Textures/Cadavre-canon.png");
+         //   break;
         case 59: //Lancier bleu attaque
             texture.loadFromFile("res/Textures/Lancier-attaque-bleu.png");
             break;
