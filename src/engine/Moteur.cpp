@@ -72,17 +72,40 @@ void Moteur::convertirCommande()
 
     }    
     
-    
-    
-    
-    
-    
-    
-    
-    
+   
     Regulateur r(&aVerifier, etat, &listeCommande);
     r.appliquer();
     std::cout << "Fin de l'application" << std::endl;
     listeCommande.vider();
     std::cout << "Liste vidée ! " << std::endl;
+}
+
+void Moteur::setZoom(float z)
+{
+    this->zoom = z ;
+}
+
+float Moteur::getZoom()
+{
+    return zoom;
+}
+
+void Moteur::setCamerax(int cx)
+{
+    this->camerax = cx;
+}
+
+int Moteur::getCamerax()
+{
+    return camerax;
+}
+
+void Moteur::setCameray(int cy)
+{ 
+    this->cameray = cy;
+}
+
+int Moteur::getCameray()
+{
+    return cameray;
 }
