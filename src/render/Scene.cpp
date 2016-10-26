@@ -17,8 +17,8 @@ Scene::Scene(state::Etat* etat, sf::RenderWindow* window)
     //couchePersonnage->addTuile(new TuileAnimee(tx*15, tx*15, 0, 36, couchePersonnage));
     this->etat = etat;
     this->window = window;
-    this->camerax = 0;
-    this->cameray = 0;
+    this->camerax = 5;
+    this->cameray = 5;
     state::ListeElement l = etat->getListe();
     for (int i = 0; i < l.size(); i++)
     {

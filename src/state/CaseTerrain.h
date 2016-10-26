@@ -29,7 +29,6 @@ namespace state {
     int const getID ();
     CaseTerrain* clone ();
     bool estAccessible (Acces acces);
-    void setBrillante (bool b);
   };
 
 };

@@ -55,7 +55,6 @@ namespace state {
     int getCameray ();
     void setZoom (float z);
     float getZoom ();
-    void setBrillant (bool b, CaseTerrain* ct);
   };
 
 };
