@@ -209,7 +209,7 @@ void Etat::setCamerax(int cx)
 {
     this->camerax = cx;
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(5), this, 0,0, 0,0, cx, 0));
-        std::cout << "SETCAMERA X DANS ETAT " << std::endl;  
+        std::cout << "SETCAMERA X DANS ETAT DE VALEUR " << cx << std::endl;  
 }
 
 int Etat::getCamerax()
@@ -221,7 +221,7 @@ void Etat::setCameray(int cy)
 { 
     this->cameray = cy;
     avertirObservateurs(new EvenementEtat(TypeEvenementEtat(5), this, 0,0, 0,0, 0, cy));
-    std::cout << "SETCAMERA Y DANS ETAT " << std::endl;  
+    std::cout << "SETCAMERA Y DANS ETAT DE VALEUR " << cy << std::endl;  
 
 }
 
