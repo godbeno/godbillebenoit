@@ -16,8 +16,15 @@ namespace engine {
 
   /// class DeplacementCamera - 
   class DeplacementCamera : public engine::Action {
+    // Attributes
+  protected:
+    int originex;
+    int originey;
+    int ciblex;
+    int cibley;
     // Operations
   public:
+    DeplacementCamera (int originex, int originey, int ciblex, int cibley);
     void appliquer (state::Etat* etat);
   };
 

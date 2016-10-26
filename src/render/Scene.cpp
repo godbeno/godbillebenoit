@@ -56,6 +56,12 @@ void Scene::changementEtat(state::EvenementEtat& e)
         else
             std::cout << "Null ptr" << std::endl;
     }
+    else if (e.getTypeEvenement() == state::DeplacementCamera)
+    {
+        Scene->setCamerax(e.getCamerax()); Scene->setCameray(e.getCameray());
+    }
+    
+    
 }
  
 void Scene::afficher()

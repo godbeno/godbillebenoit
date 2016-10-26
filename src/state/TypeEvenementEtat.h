@@ -10,7 +10,8 @@ namespace state {
     PersonnageMort     = 2,
     NouveauPersonnage     = 3,
     NouveauDecor     = 4,
-    DeplacementCamera     = 5
+    DeplacementCamera     = 5,
+    ZoomCamera     = 6
   };
 
 };
