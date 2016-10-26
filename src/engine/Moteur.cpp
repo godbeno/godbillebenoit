@@ -58,6 +58,27 @@ void Moteur::convertirCommande()
             std::cout << "Conversion de la commande ! " << std::endl;
         }
     }
+    
+    if (listeCommande.get(1) != nullptr) // Gestion des touches caméra
+    {
+
+        
+       std::cout << "Traitement de la commande ! " << std::endl;
+       CommandeCamera* cc = static_cast<CommandeCamera*>(listeCommande.get(1));
+       std::cout << "Cast de la commande ! " << std::endl;
+       aVerifier.ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
+       std::cout << "Conversion de la commande ! " << std::endl;
+
+    }    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     Regulateur r(&aVerifier, etat, &listeCommande);
     r.appliquer();
     std::cout << "Fin de l'application" << std::endl;

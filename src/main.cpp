@@ -51,17 +51,17 @@ int main(int argc,char* argv[])
             {
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
             {
-                              m->ajouterCommande(new CommandeFleche(4);
+                 m->ajouterCommande(new CommandeFleche(4);
             }
             else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             {
-                              m->ajouterCommande(new CommandeFleche(3);
+                  m->ajouterCommande(new CommandeFleche(3);
             }
             else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-                              m->ajouterCommande(new CommandeFleche(1);
+                  m->ajouterCommande(new CommandeFleche(1);
             }
             else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-                              m->ajouterCommande(new CommandeFleche(2);
+                  m->ajouterCommande(new CommandeFleche(2);
             
         }
         scene->afficher();
