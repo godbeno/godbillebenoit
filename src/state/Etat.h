@@ -27,6 +27,9 @@ namespace state {
     ListeElement* liste;
     GrilleElement* grille;
     Personnage* selectionne;
+    float zoom;
+    int camerax;
+    int cameray;
     // Operations
   public:
     Etat ();
@@ -46,6 +49,12 @@ namespace state {
     void attaquer (int i1, int j1, int i2, int j2);
     std::vector<CaseTerrain*> getCaseAtteignable (Personnage* p);
     std::vector<CaseTerrain*> rechercheCaseRec (CaseTerrain* ct, Personnage* p);
+    void setCamerax (int cx);
+    int getCamerax ();
+    void setCameray (int cy);
+    int getCameray ();
+    void setZoom (float z);
+    float getZoom ();
   };
 
 };

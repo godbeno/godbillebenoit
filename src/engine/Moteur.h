@@ -28,6 +28,9 @@ namespace engine {
     ListeCommande listeCommande;
     clock_t derniereMaj;
     Mode mode;
+    float zoom;
+    int camerax;
+    int cameray;
     // Operations
   public:
     Moteur (state::Etat* etat);
@@ -38,6 +41,12 @@ namespace engine {
     void update (clock_t t);
     void setMode (Mode mode);
     void convertirCommande ();
+    float getZoom ( );
+    void setZoom (float z);
+    int getCamerax ();
+    void setCamerax (int cx);
+    int getCameray ();
+    void setCameray (int cy);
   };
 
 };
