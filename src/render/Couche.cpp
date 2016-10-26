@@ -59,4 +59,14 @@ void Couche::afficher()
         window->draw(tuiles[i]->getSprite());
         //window->draw((new TuileStatique(100,100,73,200))->getSprite());
     }
+    for (int i = 0; i < brillance.size(); i++)
+        window->draw(brillance[i]);
+}
+void Couche::setSurbrillance(int x, int y)
+{
+    sf::RectangleShape rect(sf::Vector2f(50,50));
+    rect.setFillColor(sf::Color(0,0,255,128));
+    rect.setPosition(x,y);
+    brillance.push_back(rect);
+    
 }

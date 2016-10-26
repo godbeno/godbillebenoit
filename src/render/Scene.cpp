@@ -60,6 +60,10 @@ void Scene::changementEtat(state::EvenementEtat& e)
     {
         this->zoom=e.getCamerax(); this->zoom = e.getCameray();
     }
+    else if (e.getTypeEvenement() == state::ModeDeplacement)
+    {
+        coucheTerrain->setSurbrillance(e.getX()*tx, e.getY()*tx);
+    }
     
     
 }
