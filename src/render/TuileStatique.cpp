@@ -236,14 +236,20 @@ TuileStatique::TuileStatique(int x, int y, int id, float w) : Tuile(x,y,id)
             break;
         case 72: // Attaque Canon rouge
             texture.loadFromFile("res/Textures/canon-tir.png");
+        
+        case 73: // Barre des tâches
+            texture.loadFromFile("res/Textures/Barre-menu.png");
             break;
-            
-            
     }
+            
+            
+    
     sprite.setTexture(texture);
     sprite.setPosition(x,y);
     if (id > 43)
         sprite.setScale(w/100, w/100);
+    else if(id > 73)
+        sprite.setScale(w/100,w/100);
     else
         sprite.setScale(w/100,w/100);
     //std::cout << "Sprite position : (" << sprite.getPosition().x << ", " << sprite.getPosition().y << ") " << std::endl;
