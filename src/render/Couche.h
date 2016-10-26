@@ -24,6 +24,8 @@ namespace render {
   private:
     std::vector<Tuile*> tuiles;
     sf::RenderWindow* window;
+    /// 		
+    std::vector<sf::RectangleShape> brillance;
     // Operations
   public:
     Couche (sf::RenderWindow* window);
@@ -33,6 +35,7 @@ namespace render {
     void changementEtat (state::EvenementEtat& e);
     void afficher ();
     void addTuile (Tuile* tuile);
+    void setSurbrillance (int x, int y);
   };
 
 };

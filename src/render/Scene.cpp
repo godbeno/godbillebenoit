@@ -60,6 +60,10 @@ void Scene::changementEtat(state::EvenementEtat& e)
     {
         this->camerax=e.getCamerax(); this->cameray = e.getCameray();
     }
+    else if (e.getTypeEvenement() == state::ModeDeplacement)
+    {
+        coucheTerrain->setSurbrillance(e.getX()*tx, e.getY()*tx);
+    }
     
     
 }

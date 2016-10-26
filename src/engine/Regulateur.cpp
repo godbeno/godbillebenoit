@@ -20,6 +20,8 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
             std::cout << "V size :" << v.size() << std::endl;
             state::CaseTerrain* ct = static_cast<Deplacement*>(lsAction->get(i))->getCaseArrivee(etat);
             std::cout << "Case Clic : " << ct->getX() << " " << ct->getY() << std::endl;
+            for (int j = 0; j < v.size(); j++)
+                etat->setBrillant(true, v[j]);
             if (std::find(v.begin(), v.end(), ct) == v.end())
             {
                 lsAction->supprimer(i);

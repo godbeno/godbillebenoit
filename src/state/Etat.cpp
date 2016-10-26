@@ -213,3 +213,7 @@ int Etat::getCameray()
 {
     return cameray;
 }
+void Etat::setBrillant(bool b, CaseTerrain* ct)
+{
+    avertirObservateurs(new EvenementEtat(TypeEvenementEtat(7), this, ct->getX(), ct->getY(), 0,0));
+}
