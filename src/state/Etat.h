@@ -34,7 +34,7 @@ namespace state {
     Etat* const clone ();
     void copy (const Etat& other);
     bool const equals (const Etat& other);
-    const GrilleElement&  getGrille ();
+    GrilleElement&  getGrille ();
     const ListeElement&  getListe ();
     void setGrille (const GrilleElement& grille);
     void setListe (const ListeElement& list);

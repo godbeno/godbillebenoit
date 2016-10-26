@@ -31,6 +31,7 @@ namespace engine {
     void ajouter (Action* action);
     void appliquer ();
     int taille ();
+    void supprimer (int i);
   };
 
 };

@@ -44,5 +44,8 @@ int ListeActions::taille()
 {
     return actions.size();
 }
-
+void ListeActions::supprimer(int i)
+{
+    actions.erase(actions.begin() + i);
+}
 
