@@ -100,3 +100,19 @@ void Etat::attaquer(int i1, int j1, int i2, int j2)
         //Compléter
     }
 }
+
+{
+    if (p->getPA() == 0)
+    {
+        //On ne peut plus rien faire, on retourne cette Case ?
+    }
+    else if (p->getPA() > 0)
+    {
+        int i = p->getX(), j = p->getY();
+        //Vérifier qu'on ne sort pas du cadre de la loi
+        if(grille->getCelluleDecor(i+1, j)) // On vérifie que cette case est accessible par cette case
+        {
+            //Si oui on décrémente les PA [Sinon, il faudra les remettre à la bonne valeur après]
+        }
+    }
+}

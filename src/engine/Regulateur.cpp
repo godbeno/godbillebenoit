@@ -10,6 +10,13 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
     commandes = lsCmd;
     
     //Vérification des actions
+    for (int i = 0; i < lsAction->taille(); i++)
+    {
+        if (dynamic_cast<Deplacement*>(lsAction->get(i))) // On se place dans le cadre de Deplacement
+        {
+            //On verifie qu'il s'agit d'un déplacement autorisé 
+        }
+    }
     
 }
 Regulateur::~Regulateur()

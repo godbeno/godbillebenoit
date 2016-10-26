@@ -42,6 +42,7 @@ namespace state {
     Personnage* getSelectionne ();
     void setSelectionne (int i, int j);
     void attaquer (int i1, int j1, int i2, int j2);
+    std::vector<CaseTerrain*> getCaseAtteignable(Personnage* p);
   };
 
 };
