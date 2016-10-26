@@ -2,12 +2,14 @@
 #ifndef STATE__ETAT__H
 #define STATE__ETAT__H
 
+#include <vector>
 
 namespace state {
   class ListeElement;
   class GrilleElement;
   class Personnage;
   class Etat;
+  class CaseTerrain;
   class Observable;
 }
 
@@ -42,7 +44,8 @@ namespace state {
     Personnage* getSelectionne ();
     void setSelectionne (int i, int j);
     void attaquer (int i1, int j1, int i2, int j2);
-    std::vector<CaseTerrain*> getCaseAtteignable(Personnage* p);
+    std::vector<CaseTerrain*> getCaseAtteignable (Personnage* p);
+    std::vector<CaseTerrain*> rechercheCaseRec (CaseTerrain* ct, Personnage* p);
   };
 
 };

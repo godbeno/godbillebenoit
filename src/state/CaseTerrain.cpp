@@ -243,3 +243,10 @@ CaseTerrain* CaseTerrain::clone()
     c->setY(y);
     return c;
 }
+bool CaseTerrain::estAccessible(Acces acces)
+{
+    for (unsigned int i = 0; i < liste_acces.size(); i++)
+        if (liste_acces[i] == acces)
+            return true;
+    return false;
+}

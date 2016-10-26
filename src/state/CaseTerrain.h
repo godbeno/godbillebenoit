@@ -28,6 +28,7 @@ namespace state {
     bool const estPersonnage ();
     int const getID ();
     CaseTerrain* clone ();
+    bool estAccessible (Acces acces);
   };
 
 };

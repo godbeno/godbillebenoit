@@ -1,5 +1,6 @@
 #include "Etat.h"
 #include <iostream>
+#include <algorithm>
 using namespace state;
 
 Etat::Etat ()
@@ -100,19 +101,80 @@ void Etat::attaquer(int i1, int j1, int i2, int j2)
         //Compléter
     }
 }
-
+std::vector<CaseTerrain*> Etat::getCaseAtteignable(Personnage* p)
 {
+    CaseTerrain* ct = grille->getCelluleDecor(p->getX(), p->getY());
+    int y = p->getPA();
+    std::vector<CaseTerrain*> v = rechercheCaseRec(ct, p);
+    p->setPArestant(y);
+    return v;
+}
+std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
+{
+    std::vector<CaseTerrain*> v, v2;
     if (p->getPA() == 0)
     {
-        //On ne peut plus rien faire, on retourne cette Case ?
+        v.push_back(ct);
+        return v;
     }
     else if (p->getPA() > 0)
     {
-        int i = p->getX(), j = p->getY();
-        //Vérifier qu'on ne sort pas du cadre de la loi
-        if(grille->getCelluleDecor(i+1, j)) // On vérifie que cette case est accessible par cette case
+        int i = ct->getX(), j = ct->getY();
+        
+        if(grille->getCelluleDecor(i+1,j)) // On vérifie que cette case est accessible par cette case
         {
-            //Si oui on décrémente les PA [Sinon, il faudra les remettre à la bonne valeur après]
+            if (grille->getCelluleDecor(i+1,j)->estAccessible(Acces::Ouest))
+            {
+                p->setPArestant(p->getPA()-1);
+                v = rechercheCaseRec(grille->getCelluleDecor(i+1,j), p);
+                if(std::find(v.begin(), v.end(), ct) == v.end()) 
+                {
+                    v.push_back(ct);
+                }
+            }
         }
+        if(grille->getCelluleDecor(i-1,j)) // On vérifie que cette case est accessible par cette case
+        {
+            if (grille->getCelluleDecor(i-1,j)->estAccessible(Acces::Est))
+            {
+                p->setPArestant(p->getPA()-1);
+                v2 = rechercheCaseRec(grille->getCelluleDecor(i-1,j), p);
+                for (unsigned int i = 0; i < v2.size(); i++)
+                    if (std::find(v.begin(), v.end(), v2[i]) == v.end())
+                        v.push_back(v2[i]);
+                if(std::find(v.begin(), v.end(), ct) == v.end())
+                    v.push_back(ct);
+                v2.clear();
+            }
+        }
+        if(grille->getCelluleDecor(i,j+1)) // On vérifie que cette case est accessible par cette case
+        {
+            if (grille->getCelluleDecor(i,j+1)->estAccessible(Acces::Nord))
+            {
+                p->setPArestant(p->getPA()-1);
+                v2 = rechercheCaseRec(grille->getCelluleDecor(i,j+1), p);
+                for (unsigned int i = 0; i < v2.size(); i++)
+                    if (std::find(v.begin(), v.end(), v2[i]) == v.end())
+                        v.push_back(v2[i]);
+                if(std::find(v.begin(), v.end(), ct) == v.end())
+                    v.push_back(ct);
+                v2.clear();
+            }
+        }
+        if(grille->getCelluleDecor(i,j-1)) // On vérifie que cette case est accessible par cette case
+        {
+            if (grille->getCelluleDecor(i,j-1)->estAccessible(Acces::Sud))
+            {
+                p->setPArestant(p->getPA()-1);
+                v2 = rechercheCaseRec(grille->getCelluleDecor(i,j-1), p);
+                for (unsigned int i = 0; i < v2.size(); i++)
+                    if (std::find(v.begin(), v.end(), v2[i]) == v.end())
+                        v.push_back(v2[i]);
+                if(std::find(v.begin(), v.end(), ct) == v.end())
+                    v.push_back(ct);
+                v2.clear();
+            }
+        }
+        return v;
     }
 }
