@@ -37,6 +37,7 @@ namespace render {
     TuileStatique* copy ();
     bool getEstAffiche ();
     void setEstAffiche (bool b);
+    void updateSpritePosition (int x, int y);
   };
 
 };

@@ -17,8 +17,6 @@ namespace state {
     // Attributes
   public:
     float zoom;
-    int camerax;
-    int cameray;
   private:
     TypeEvenementEtat id;
     Etat* etat;
@@ -29,7 +27,7 @@ namespace state {
     int newY;
     // Operations
   public:
-    EvenementEtat (TypeEvenementEtat id, Etat* etat, int x, int y, int pid, bool equipe, int newX = -1, int newY = -1, float zoom = 1, int camerax = 0, int cameray = 0);
+    EvenementEtat (TypeEvenementEtat id, Etat* etat, int x, int y, int pid, bool equipe, int newX = -1, int newY = -1, float zoom = 1);
     TypeEvenementEtat getTypeEvenement ();
     int getX ();
     int getY ();
@@ -37,8 +35,6 @@ namespace state {
     int getNewx ();
     int getNewy ();
     float getZoom ();
-    int getCamerax ();
-    int getCameray ();
   };
 
 };

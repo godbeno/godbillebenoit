@@ -58,8 +58,11 @@ void Scene::changementEtat(state::EvenementEtat& e)
     }
     else if (e.getTypeEvenement() == state::DeplacementCamera)
     {
-        this->camerax=e.getCamerax(); this->cameray = e.getCameray();
+        this->camerax=e.getNewx(); 
+        this->cameray = e.getNewy();
         std::cout << "ON ENREGISTRE" << this->camerax << "  ,  " << this->cameray << std::endl;
+        couchePersonnage->deplacerCamera(camerax*tx, cameray*ty);
+        coucheTerrain->deplacerCamera(camerax*tx, cameray*ty);
     }
     else if (e.getTypeEvenement() == state::ModeDeplacement)
     {

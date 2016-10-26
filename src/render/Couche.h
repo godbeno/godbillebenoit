@@ -36,6 +36,7 @@ namespace render {
     void afficher ();
     void addTuile (Tuile* tuile);
     void setSurbrillance (int x, int y);
+    void deplacerCamera (int x, int y);
   };
 
 };

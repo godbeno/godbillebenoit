@@ -2,7 +2,7 @@
 
 using namespace state;
 
-EvenementEtat::EvenementEtat(TypeEvenementEtat id, Etat* etat, int x, int y, int pid, bool equipe, int newX, int newY, float zoom, int camerax, int cameray)
+EvenementEtat::EvenementEtat(TypeEvenementEtat id, Etat* etat, int x, int y, int pid, bool equipe, int newX, int newY, float zoom)
 {
     this->id = id;
     this->etat = etat;
@@ -12,8 +12,6 @@ EvenementEtat::EvenementEtat(TypeEvenementEtat id, Etat* etat, int x, int y, int
     this->newX = newX;
     this->newY = newY;
     this->zoom = zoom;
-    this->camerax = camerax;
-    this->cameray = cameray;
     
 }
 TypeEvenementEtat EvenementEtat::getTypeEvenement()
@@ -44,14 +42,4 @@ int EvenementEtat::getNewy()
 float EvenementEtat::getZoom()
 {
     return zoom;
-}
-
-int EvenementEtat::getCamerax()
-{
-    return camerax;
-}
-
-int EvenementEtat::getCameray()
-{
-    return cameray;
 }

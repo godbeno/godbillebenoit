@@ -70,3 +70,15 @@ void Couche::setSurbrillance(int x, int y)
     brillance.push_back(rect);
     
 }
+void Couche::deplacerCamera(int x, int y)
+{
+    for (unsigned int i = 0; i < tuiles.size(); i++)
+    {
+        tuiles[i]->setX(tuiles[i]->getX()+x);
+        tuiles[i]->setY(tuiles[i]->getY()+y);
+        if (tuiles[i]->estAnime())
+        {
+            static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(x, y);
+        }
+    }
+}

@@ -7,6 +7,8 @@ Etat::Etat ()
 {
     liste = new ListeElement(this);
     grille = new GrilleElement(this);
+    camerax = 0;
+    cameray = 0;
 }
 
 Etat::~Etat ()

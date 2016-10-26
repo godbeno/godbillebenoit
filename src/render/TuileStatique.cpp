@@ -298,3 +298,7 @@ bool TuileStatique::getEstAffiche()
 {
     return this->estAffiche;
 }
+void TuileStatique::updateSpritePosition(int x, int y)
+{
+    sprite.setPosition(sprite.getPosition().x+x, sprite.getPosition().y+y);
+}
