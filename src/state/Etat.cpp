@@ -178,3 +178,33 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
         return v;
     }
 }
+
+void Etat::setZoom(float z)
+{
+    this->zoom = z ;
+}
+
+float Etat::getZoom()
+{
+    return zoom;
+}
+
+void Etat::setCamerax(int cx)
+{
+    this->camerax = cx;
+}
+
+int Etat::getCamerax()
+{
+    return camerax;
+}
+
+void Etat::setCameray(int cy)
+{ 
+    this->cameray = cy;
+}
+
+int Etat::getCameray()
+{
+    return cameray;
+}
