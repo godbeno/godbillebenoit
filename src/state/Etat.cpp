@@ -106,6 +106,7 @@ std::vector<CaseTerrain*> Etat::getCaseAtteignable(Personnage* p)
     CaseTerrain* ct = grille->getCelluleDecor(p->getX(), p->getY());
     int y = p->getPA();
     std::vector<CaseTerrain*> v = rechercheCaseRec(ct, p);
+    std::cout << "taille à la fin de la recherche : " << v.size() << std::endl;
     p->setPArestant(y);
     return v;
 }
@@ -120,12 +121,12 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
     else if (p->getPA() > 0)
     {
         int i = ct->getX(), j = ct->getY();
+        p->setPArestant(p->getPA()-1);
         
         if(grille->getCelluleDecor(i+1,j)) // On vérifie que cette case est accessible par cette case
         {
             if (grille->getCelluleDecor(i+1,j)->estAccessible(Acces::Ouest))
             {
-                p->setPArestant(p->getPA()-1);
                 v = rechercheCaseRec(grille->getCelluleDecor(i+1,j), p);
                 if(std::find(v.begin(), v.end(), ct) == v.end()) 
                 {
@@ -137,7 +138,6 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
         {
             if (grille->getCelluleDecor(i-1,j)->estAccessible(Acces::Est))
             {
-                p->setPArestant(p->getPA()-1);
                 v2 = rechercheCaseRec(grille->getCelluleDecor(i-1,j), p);
                 for (unsigned int i = 0; i < v2.size(); i++)
                     if (std::find(v.begin(), v.end(), v2[i]) == v.end())
@@ -151,7 +151,6 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
         {
             if (grille->getCelluleDecor(i,j+1)->estAccessible(Acces::Nord))
             {
-                p->setPArestant(p->getPA()-1);
                 v2 = rechercheCaseRec(grille->getCelluleDecor(i,j+1), p);
                 for (unsigned int i = 0; i < v2.size(); i++)
                     if (std::find(v.begin(), v.end(), v2[i]) == v.end())
@@ -165,7 +164,6 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
         {
             if (grille->getCelluleDecor(i,j-1)->estAccessible(Acces::Sud))
             {
-                p->setPArestant(p->getPA()-1);
                 v2 = rechercheCaseRec(grille->getCelluleDecor(i,j-1), p);
                 for (unsigned int i = 0; i < v2.size(); i++)
                     if (std::find(v.begin(), v.end(), v2[i]) == v.end())
@@ -175,6 +173,7 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
                 v2.clear();
             }
         }
+        std::cout << "Dans cette recherche: v = " << v.size() << std::endl;
         return v;
     }
 }
