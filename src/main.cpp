@@ -22,7 +22,6 @@ int main(int argc,char* argv[])
     RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Test Affichage", Style::Fullscreen);
     Etat *etat = new Etat;
     Moteur *m = new Moteur(etat);
-    m->setMode(Mode::deplacement);
 
     etat->initialiserTerrain(true);
     Scene* scene = new Scene(etat, window);
@@ -34,6 +33,7 @@ int main(int argc,char* argv[])
     etat->ajouterPersonnage(true, 1, 6, 8);
     etat->ajouterPersonnage(true, 6, 10, 12);
     etat->setSelectionne(12,10);
+    m->setMode(Mode::deplacement);
     
     
 

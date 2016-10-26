@@ -44,6 +44,16 @@ void Moteur::update(clock_t t)
 void Moteur::setMode(Mode mode)
 {
     this->mode = mode;
+    if (mode == deplacement)
+    {
+        std::vector<state::CaseTerrain*> v = etat->getCaseAtteignable(etat->getSelectionne());
+        for (int j = 0; j < v.size(); j++)
+            etat->setBrillant(true, v[j]);
+    }
+    else
+    {
+        
+    }
 }
 void Moteur::convertirCommande()
 {
