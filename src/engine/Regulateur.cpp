@@ -20,11 +20,9 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
             std::cout << "V size :" << v.size() << std::endl;
             state::CaseTerrain* ct = static_cast<Deplacement*>(lsAction->get(i))->getCaseArrivee(etat);
             std::cout << "Case Clic : " << ct->getX() << " " << ct->getY() << std::endl;
-            std::cout << "V[0] : " << v[0]->getX() << " " << v[0]->getY() << std::endl;
             if (std::find(v.begin(), v.end(), ct) == v.end())
             {
                 lsAction->supprimer(i);
-                std::cout << "ICI " << std::endl;
             }
         }
     }
