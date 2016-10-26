@@ -1,6 +1,7 @@
 #include "Regulateur.h"
 #include <iostream>
 #include "ListeCommande.h"
+#include "Deplacement.h"
 using namespace engine;
 
 Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd)

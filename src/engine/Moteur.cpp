@@ -1,5 +1,6 @@
 #include "Moteur.h"
 #include "CommandeClic.h"
+#include "CommandeFleche.h"
 #include "Deplacement.h"
 #include <iostream>
 
@@ -64,9 +65,9 @@ void Moteur::convertirCommande()
 
         
        std::cout << "Traitement de la commande ! " << std::endl;
-       CommandeCamera* cc = static_cast<CommandeCamera*>(listeCommande.get(1));
+       CommandeFleche* cc = static_cast<CommandeFleche*>(listeCommande.get(1));
        std::cout << "Cast de la commande ! " << std::endl;
-       aVerifier.ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
+       //aVerifier.ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
        std::cout << "Conversion de la commande ! " << std::endl;
 
     }    

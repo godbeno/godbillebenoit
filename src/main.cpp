@@ -4,6 +4,8 @@
 #include "render/TuileStatique.h"
 #include "engine/Moteur.h"
 #include "engine/CommandeClic.h"
+#include "engine/Direction.h"
+#include "engine/CommandeFleche.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
@@ -51,17 +53,17 @@ int main(int argc,char* argv[])
             {
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
             {
-                 m->ajouterCommande(new CommandeFleche(4);
+                 m->ajouterCommande(new CommandeFleche(Direction(4)));
             }
             else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             {
-                  m->ajouterCommande(new CommandeFleche(3);
+                  m->ajouterCommande(new CommandeFleche(Direction(3)));
             }
             else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-                  m->ajouterCommande(new CommandeFleche(1);
+                  m->ajouterCommande(new CommandeFleche(Direction(1)));
             }
             else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-                  m->ajouterCommande(new CommandeFleche(2);
+                  m->ajouterCommande(new CommandeFleche(Direction(2)));
             
         }
         scene->afficher();
