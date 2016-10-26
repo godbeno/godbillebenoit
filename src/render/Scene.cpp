@@ -12,21 +12,23 @@ Scene::Scene(state::Etat* etat, sf::RenderWindow* window)
 {
     coucheTerrain = new Couche(window);
     couchePersonnage = new Couche(window);
-    tx = sf::VideoMode::getDesktopMode().height/24.;
+    this->zoom = 2;    
+    tx = (sf::VideoMode::getDesktopMode().width*zoom)/24.;
     //couchePersonnage->addTuile(new TuileAnimee(tx*15, tx*15, 0, 36, couchePersonnage));
     this->etat = etat;
     this->window = window;
-    this->zoom = 1;
+    this->camerax = 11;
+    this->cameray = 14;
     state::ListeElement l = etat->getListe();
     for (int i = 0; i < l.size(); i++)
     {
         if (!l.get(i)->estPersonnage() )
         {
-            coucheTerrain->addTuile(new TuileStatique(l.get(i)->getX()*tx, l.get(i)->getY()*tx, l.get(i)->getID(), tx)); 
+            coucheTerrain->addTuile(new TuileStatique((l.get(i)->getX()-camerax)*tx, (l.get(i)->getY()-cameray)*tx, l.get(i)->getID(), tx)); 
         }
         if (l.get(i)->estPersonnage())
         {
-            couchePersonnage->addTuile(new TuileStatique(l.get(i)->getX()*tx, l.get(i)->getY()*tx, l.get(i)->getID()+50+10*!(static_cast<state::Personnage*>(l.get(i))->getEquipe()), tx));
+            couchePersonnage->addTuile(new TuileStatique((l.get(i)->getX()-camerax)*tx, (l.get(i)->getY()-cameray)*tx, l.get(i)->getID()+50+10*!(static_cast<state::Personnage*>(l.get(i))->getEquipe()), tx));
         }
     }
 }
@@ -40,15 +42,15 @@ void Scene::changementEtat(state::EvenementEtat& e)
     if (e.getTypeEvenement() == state::NouveauPersonnage)
     {
         std::cout << "Un nouveau personnage a été créé (" << e.getPid() << ")" << std::endl;
-        couchePersonnage->addTuile(new TuileStatique(e.getX()*tx, e.getY()*tx,e.getPid(), tx));
+        couchePersonnage->addTuile(new TuileStatique((e.getX()-camerax)*tx, (e.getY()-cameray)*tx,e.getPid(), tx));
     }
     else if (e.getTypeEvenement() == state::PersonnageDeplace)
     {
         std::cout << "Un personnage a été déplacé" << std::endl;
         //On récupère l'ID de ce personnage
-        if (couchePersonnage->getTuile(e.getX()*tx, e.getY()*tx) != nullptr)
+        if (couchePersonnage->getTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx) != nullptr)
         {
-            couchePersonnage->setTuile(e.getX()*tx, e.getY()*tx, new TuileStatique(e.getNewx()*tx, e.getNewy()*tx, e.getPid(), tx));
+            couchePersonnage->setTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, new TuileStatique((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, e.getPid(), tx));
             std::cout << "FIN" << std::endl;
         }
         else

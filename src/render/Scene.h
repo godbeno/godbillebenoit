@@ -26,7 +26,8 @@ namespace render {
     state::Etat* etat;
     sf::RenderWindow* window;
     float tx;
-    int zoom;
+    float ty;
+    float zoom;
     int camerax;
     int cameray;
     // Operations
