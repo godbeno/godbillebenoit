@@ -115,33 +115,42 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
     std::vector<CaseTerrain*> v, v2;
     if (p->getPA() == 0)
     {
+        std::cout << "On retourne ct " << std::endl;
         v.push_back(ct);
         return v;
     }
     else if (p->getPA() > 0)
     {
+        std::cout << "On check l'ensemble des cases" << std::endl;
         int i = ct->getX(), j = ct->getY();
-        p->setPArestant(p->getPA()-1);
         
         if(grille->getCelluleDecor(i+1,j)) // On vérifie que cette case est accessible par cette case
         {
             if (grille->getCelluleDecor(i+1,j)->estAccessible(Acces::Ouest))
             {
-                v = rechercheCaseRec(grille->getCelluleDecor(i+1,j), p);
-                if(std::find(v.begin(), v.end(), ct) == v.end()) 
-                {
+                std::cout << "Ouest ok" << std::endl;
+                p->setPArestant(p->getPA()-1);
+                v2 = rechercheCaseRec(grille->getCelluleDecor(i+1,j), p);
+                p->setPArestant(p->getPA()+1);
+                for (unsigned int k = 0; k < v2.size(); k++)
+                    if (std::find(v.begin(), v.end(), v2[k]) == v.end())
+                        v.push_back(v2[k]);
+                if(std::find(v.begin(), v.end(), ct) == v.end())
                     v.push_back(ct);
-                }
+                v2.clear();
             }
         }
         if(grille->getCelluleDecor(i-1,j)) // On vérifie que cette case est accessible par cette case
         {
             if (grille->getCelluleDecor(i-1,j)->estAccessible(Acces::Est))
             {
+                std::cout << "Est ok" << std::endl;
+                p->setPArestant(p->getPA()-1);
                 v2 = rechercheCaseRec(grille->getCelluleDecor(i-1,j), p);
-                for (unsigned int i = 0; i < v2.size(); i++)
-                    if (std::find(v.begin(), v.end(), v2[i]) == v.end())
-                        v.push_back(v2[i]);
+                p->setPArestant(p->getPA()+1);
+                for (unsigned int k = 0; k < v2.size(); k++)
+                    if (std::find(v.begin(), v.end(), v2[k]) == v.end())
+                        v.push_back(v2[k]);
                 if(std::find(v.begin(), v.end(), ct) == v.end())
                     v.push_back(ct);
                 v2.clear();
@@ -151,10 +160,13 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
         {
             if (grille->getCelluleDecor(i,j+1)->estAccessible(Acces::Nord))
             {
+                std::cout << "Nord ok" << std::endl;
+                p->setPArestant(p->getPA()-1);
                 v2 = rechercheCaseRec(grille->getCelluleDecor(i,j+1), p);
-                for (unsigned int i = 0; i < v2.size(); i++)
-                    if (std::find(v.begin(), v.end(), v2[i]) == v.end())
-                        v.push_back(v2[i]);
+                p->setPArestant(p->getPA()+1);
+                for (unsigned int k = 0; k < v2.size(); k++)
+                    if (std::find(v.begin(), v.end(), v2[k]) == v.end())
+                        v.push_back(v2[k]);
                 if(std::find(v.begin(), v.end(), ct) == v.end())
                     v.push_back(ct);
                 v2.clear();
@@ -164,10 +176,14 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
         {
             if (grille->getCelluleDecor(i,j-1)->estAccessible(Acces::Sud))
             {
+                
+                std::cout << "Sud ok" << std::endl;
+                p->setPArestant(p->getPA()-1);
                 v2 = rechercheCaseRec(grille->getCelluleDecor(i,j-1), p);
-                for (unsigned int i = 0; i < v2.size(); i++)
-                    if (std::find(v.begin(), v.end(), v2[i]) == v.end())
-                        v.push_back(v2[i]);
+                p->setPArestant(p->getPA()+1);
+                for (unsigned int k = 0; k < v2.size(); k++)
+                    if (std::find(v.begin(), v.end(), v2[k]) == v.end())
+                        v.push_back(v2[k]);
                 if(std::find(v.begin(), v.end(), ct) == v.end())
                     v.push_back(ct);
                 v2.clear();
