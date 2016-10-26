@@ -20,5 +20,7 @@ void Deplacement::appliquer(state::Etat* etat)
 }
 state::CaseTerrain* Deplacement::getCaseArrivee(state::Etat* etat)
 {
-    return etat->getGrille().getCelluleDecor(cibleX, cibleY);
+    int tx = sf::VideoMode::getDesktopMode().height/24.;
+    //std::cout << 
+    return etat->getGrille().getCelluleDecor(cibleX/tx, cibleY/tx);
 }
