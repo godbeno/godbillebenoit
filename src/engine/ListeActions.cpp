@@ -1,4 +1,5 @@
 #include "ListeActions.h"
+#include <iostream>
 
 using namespace engine;
 
@@ -14,10 +15,11 @@ ListeActions::ListeActions(state::Etat* s)
 
 ListeActions::~ListeActions()
 {
+    std::cout << "Début du destructeur" << std::endl;
     for (unsigned int i = 0; i < actions.size(); i++)
-    {
-        delete actions[i];
-    }
+        if (actions[i])
+            delete actions[i];
+    std::cout << "Fin du destructeur" << std::endl;
 }
 
 

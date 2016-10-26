@@ -1,9 +1,9 @@
 #include "Regulateur.h"
 #include <iostream>
-
+#include "ListeCommande.h"
 using namespace engine;
 
-Regulateur::Regulateur(ListeActions& lsAction, state::Etat* etat, ListeCommande& lsCmd)
+Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd)
 {
     actions = lsAction;
     etatCourant = etat;
@@ -14,10 +14,12 @@ Regulateur::Regulateur(ListeActions& lsAction, state::Etat* etat, ListeCommande&
 }
 Regulateur::~Regulateur()
 {
+    std::cout << "Destructeur de Regulateur" << std::endl;
 }
 
 void Regulateur::appliquer()
 {
+    std::cout << "(" << actions->taille() << ", " << commandes->taille() << ")" << std::endl;
     std::cout << "Application des actions ! " << std::endl;
-    actions.appliquer(); 
+    actions->appliquer(); 
 }

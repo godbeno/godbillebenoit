@@ -32,9 +32,9 @@ void Moteur::update(clock_t t)
 {
     if ((t-derniereMaj) > 0.2)
     {
+        std::cout << "update" << std::endl;
         convertirCommande();
         derniereMaj = t;
-        
     }
     
 }
@@ -44,6 +44,8 @@ void Moteur::setMode(Mode mode)
 }
 void Moteur::convertirCommande()
 {
+    std::cout << "--------------------------------" << std::endl;
+    std::cout << "On entre dans Convertir Commande" << std::endl;
     ListeActions aVerifier(etat); 
     if (listeCommande.get(3) != nullptr) // Gestion du clic de souris
     {
@@ -56,7 +58,9 @@ void Moteur::convertirCommande()
             std::cout << "Conversion de la commande ! " << std::endl;
         }
     }
-    Regulateur r(aVerifier, etat, listeCommande);
+    Regulateur r(&aVerifier, etat, &listeCommande);
     r.appliquer();
+    std::cout << "Fin de l'application" << std::endl;
     listeCommande.vider();
+    std::cout << "Liste vidée ! " << std::endl;
 }

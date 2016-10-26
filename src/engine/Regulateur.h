@@ -11,7 +11,6 @@ namespace engine {
   class ListeActions;
 }
 
-#include "ListeCommande.h"
 #include "ListeActions.h"
 
 namespace engine {
@@ -22,11 +21,11 @@ namespace engine {
     // Attributes
   protected:
     state::Etat* etatCourant;
-    ListeCommande commandes;
-    ListeActions actions;
+    ListeCommande* commandes;
+    ListeActions* actions;
     // Operations
   public:
-    Regulateur (ListeActions& lsAction, state::Etat* etat, ListeCommande& lsCmd);
+    Regulateur (ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd);
     ~Regulateur ();
     void appliquer ();
   };

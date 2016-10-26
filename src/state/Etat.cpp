@@ -75,6 +75,7 @@ void Etat::deplacerElement(int i1, int j1, int i2, int j2)
         grille->deplacerElement(p, i2, j2);
         liste->copy(*grille);
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(1), this, i1,j1, p->getID(),p->getEquipe(), i2, j2));
+        std::cout << "Les observateurs ont été notifiés" << std::endl;
     }
     else
     {

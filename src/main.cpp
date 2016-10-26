@@ -28,6 +28,7 @@ int main(int argc,char* argv[])
     etat->ajouterPersonnage(true, 5, 10, 10);
     etat->ajouterPersonnage(true, 3, 12, 10);
     etat->ajouterPersonnage(true, 4, 10, 8);
+    etat->setSelectionne(12,10);
     
     
 

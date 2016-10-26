@@ -40,6 +40,12 @@ int ListeCommande::taille ()
 void ListeCommande::vider()
 {
     for (int i = 1; i < 5; i++)
+    {
         if (commandes[i])
+        {
             delete commandes[i];
+            commandes[i] = nullptr;
+        }
+    }
+    
 }
