@@ -33,7 +33,7 @@ void Moteur::update(clock_t t)
 {
     if ((t-derniereMaj) > 0.2)
     {
-        std::cout << "update" << std::endl;
+        //std::cout << "update" << std::endl;
         if (listeCommande.taille() != 0)
             convertirCommande();
         derniereMaj = t;
