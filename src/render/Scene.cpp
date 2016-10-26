@@ -58,7 +58,7 @@ void Scene::changementEtat(state::EvenementEtat& e)
     }
     else if (e.getTypeEvenement() == state::DeplacementCamera)
     {
-        this->zoom=e.getCamerax(); this->zoom = e.getCameray();
+        this->camerax=e.getCamerax(); this->cameray = e.getCameray();
     }
     
     

@@ -181,7 +181,7 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
 void Etat::setZoom(float z)
 {
     this->zoom = z ;
-        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(6), this, 0,0, 0,z, 0, 0));    
+        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(6), this, 0,0, 0,z, 0, 0));       
 }
 
 float Etat::getZoom()
@@ -193,6 +193,7 @@ void Etat::setCamerax(int cx)
 {
     this->camerax = cx;
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(5), this, 0,0, 0,0, cx, 0));
+        std::cout << "SETCAMERA X DANS ETAT " << std::endl;  
 }
 
 int Etat::getCamerax()
@@ -204,6 +205,7 @@ void Etat::setCameray(int cy)
 { 
     this->cameray = cy;
     avertirObservateurs(new EvenementEtat(TypeEvenementEtat(5), this, 0,0, 0,0, 0, cy));
+    std::cout << "SETCAMERA Y DANS ETAT " << std::endl;  
 
 }
 
