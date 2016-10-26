@@ -1,4 +1,5 @@
 #include "DeplacementCamera.h"
+#include <iostream>
 
 using namespace engine;
 
@@ -14,4 +15,5 @@ void DeplacementCamera::appliquer(state::Etat* etat)
 {
     etat->setCamerax(ciblex);
     etat->setCameray(cibley);
+    std::cout << "TEEEEESSSTTTTTTTT" << std::endl;
 }

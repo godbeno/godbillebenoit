@@ -2,6 +2,7 @@
 #include "CommandeClic.h"
 #include "CommandeFleche.h"
 #include "Deplacement.h"
+#include "DeplacementCamera.h"
 #include <iostream>
 
 using namespace engine;
@@ -63,14 +64,20 @@ void Moteur::convertirCommande()
     
     if (listeCommande.get(1) != nullptr) // Gestion des touches caméra
     {
-
-        
        //std::cout << "Traitement de la commande ! " << std::endl;
        CommandeFleche* cc = static_cast<CommandeFleche*>(listeCommande.get(1));
-       //std::cout << "Cast de la commande ! " << std::endl;
-       //aVerifier.ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
-       //std::cout << "Conversion de la commande ! " << std::endl;
-
+       if (cc->getDirection() == 1){
+          aVerifier.ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax(), etat->getCameray()-1));
+       }
+       else if(cc->getDirection() == 2){
+          aVerifier.ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax(), etat->getCameray()+1));
+       }
+       else if(cc->getDirection() == 3){
+          aVerifier.ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax()+1, etat->getCameray()));
+       }
+       else if(cc->getDirection() == 4){
+          aVerifier.ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax()-1, etat->getCameray()));
+       }
     }    
     
    
