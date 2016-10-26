@@ -57,6 +57,7 @@ void Scene::changementEtat(state::EvenementEtat& e)
             std::cout << "Null ptr" << std::endl;
     }
 }
+ 
 void Scene::afficher()
 {
     window->clear();
