@@ -18,3 +18,7 @@ void Deplacement::appliquer(state::Etat* etat)
     std::cout << "direction : (" << cibleX/tx << ", " << cibleY/tx << ")" << std::endl;
     etat->deplacerElement(origineX, origineY, (int)cibleX/tx, (int)cibleY/tx);
 }
+state::CaseTerrain* Deplacement::getCaseArrivee(state::Etat* etat)
+{
+    return etat->getGrille().getCelluleDecor(cibleX, cibleY);
+}

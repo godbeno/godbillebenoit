@@ -2,6 +2,7 @@
 #include <iostream>
 #include "ListeCommande.h"
 #include "Deplacement.h"
+#include <algorithm>
 using namespace engine;
 
 Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd)
@@ -15,7 +16,10 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
     {
         if (dynamic_cast<Deplacement*>(lsAction->get(i))) // On se place dans le cadre de Deplacement
         {
-            //On verifie qu'il s'agit d'un déplacement autorisé 
+            std::vector<state::CaseTerrain*> v = etat->getCaseAtteignable(etat->getSelectionne());
+            state::CaseTerrain* ct = static_cast<Deplacement*>(lsAction->get(i))->getCaseArrivee(etat);
+            if (std::find(v.begin(), v.end(), ct) == v.end())
+                lsAction->supprimer(i);
         }
     }
     
