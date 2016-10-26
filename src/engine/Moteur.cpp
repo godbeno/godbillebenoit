@@ -34,7 +34,8 @@ void Moteur::update(clock_t t)
     if ((t-derniereMaj) > 0.2)
     {
         std::cout << "update" << std::endl;
-        convertirCommande();
+        if (listeCommande.taille() != 0)
+            convertirCommande();
         derniereMaj = t;
     }
     
@@ -52,11 +53,11 @@ void Moteur::convertirCommande()
     {
         if (mode == Mode::deplacement) // Si on est en mode déplacement
         {
-            std::cout << "Traitement de la commande ! " << std::endl;
+            //std::cout << "Traitement de la commande ! " << std::endl;
             CommandeClic* cc = static_cast<CommandeClic*>(listeCommande.get(3));
-            std::cout << "Cast de la commande ! " << std::endl;
+            //std::cout << "Cast de la commande ! " << std::endl;
             aVerifier.ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
-            std::cout << "Conversion de la commande ! " << std::endl;
+            //std::cout << "Conversion de la commande ! " << std::endl;
         }
     }
     
@@ -64,20 +65,20 @@ void Moteur::convertirCommande()
     {
 
         
-       std::cout << "Traitement de la commande ! " << std::endl;
+       //std::cout << "Traitement de la commande ! " << std::endl;
        CommandeFleche* cc = static_cast<CommandeFleche*>(listeCommande.get(1));
-       std::cout << "Cast de la commande ! " << std::endl;
+       //std::cout << "Cast de la commande ! " << std::endl;
        //aVerifier.ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
-       std::cout << "Conversion de la commande ! " << std::endl;
+       //std::cout << "Conversion de la commande ! " << std::endl;
 
     }    
     
    
     Regulateur r(&aVerifier, etat, &listeCommande);
     r.appliquer();
-    std::cout << "Fin de l'application" << std::endl;
+    //std::cout << "Fin de l'application" << std::endl;
     listeCommande.vider();
-    std::cout << "Liste vidée ! " << std::endl;
+    //std::cout << "Liste vidée ! " << std::endl;
 }
 
 void Moteur::setZoom(float z)

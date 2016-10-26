@@ -57,6 +57,6 @@ void Couche::afficher()
             static_cast<TuileAnimee*>(tuiles[i])->update(t);
         }
         window->draw(tuiles[i]->getSprite());
-        window->draw((new TuileStatique(100,100,73,200))->getSprite());
+        //window->draw((new TuileStatique(100,100,73,200))->getSprite());
     }
 }

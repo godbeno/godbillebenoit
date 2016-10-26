@@ -15,11 +15,11 @@ ListeActions::ListeActions(state::Etat* s)
 
 ListeActions::~ListeActions()
 {
-    std::cout << "Début du destructeur" << std::endl;
+    //std::cout << "Début du destructeur" << std::endl;
     for (unsigned int i = 0; i < actions.size(); i++)
         if (actions[i])
             delete actions[i];
-    std::cout << "Fin du destructeur" << std::endl;
+    //std::cout << "Fin du destructeur" << std::endl;
 }
 
 

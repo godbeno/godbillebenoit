@@ -22,16 +22,16 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
                 lsAction->supprimer(i);
         }
     }
-    
+    std::cout << "TAILLE : "<< lsAction->taille() << std::endl;   
 }
 Regulateur::~Regulateur()
 {
-    std::cout << "Destructeur de Regulateur" << std::endl;
+    //std::cout << "Destructeur de Regulateur" << std::endl;
 }
 
 void Regulateur::appliquer()
 {
-    std::cout << "(" << actions->taille() << ", " << commandes->taille() << ")" << std::endl;
-    std::cout << "Application des actions ! " << std::endl;
+    //std::cout << "(" << actions->taille() << ", " << commandes->taille() << ")" << std::endl;
+    //std::cout << "Application des actions ! " << std::endl;
     actions->appliquer(); 
 }
