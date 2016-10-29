@@ -79,6 +79,7 @@ void Etat::deplacerElement(int i1, int j1, int i2, int j2)
         liste->copy(*grille);
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(1), this, i1,j1, p->getID(),p->getEquipe(), i2, j2));
         std::cout << "Les observateurs ont été notifiés" << std::endl;
+        p->setPArestant(p->getPA()-(abs(i1-i2)+abs(j1-j2)));
     }
     else
     {
@@ -108,7 +109,6 @@ std::vector<CaseTerrain*> Etat::getCaseAtteignable(Personnage* p)
     CaseTerrain* ct = grille->getCelluleDecor(p->getX(), p->getY());
     int y = p->getPA();
     std::vector<CaseTerrain*> v = rechercheCaseRec(ct, p);
-    std::cout << "taille à la fin de la recherche : " << v.size() << std::endl;
     p->setPArestant(y);
     return v;
 }
@@ -117,20 +117,19 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
     std::vector<CaseTerrain*> v, v2;
     if (p->getPA() == 0)
     {
-        std::cout << "On retourne ct " << std::endl;
         v.push_back(ct);
         return v;
     }
     else if (p->getPA() > 0)
     {
-        std::cout << "On check l'ensemble des cases" << std::endl;
         int i = ct->getX(), j = ct->getY();
         
         if(grille->getCelluleDecor(i+1,j)) // On vérifie que cette case est accessible par cette case
         {
-            if (grille->getCelluleDecor(i+1,j)->estAccessible(Acces::Ouest))
+            if (grille->getCelluleDecor(i+1,j)->estAccessible(Acces::Ouest)
+                    && ct->estAccessible(Acces::Est)
+                    && grille->getCellulePersonnage(i+1, j) == nullptr)
             {
-                std::cout << "Ouest ok" << std::endl;
                 p->setPArestant(p->getPA()-1);
                 v2 = rechercheCaseRec(grille->getCelluleDecor(i+1,j), p);
                 p->setPArestant(p->getPA()+1);
@@ -144,9 +143,10 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
         }
         if(grille->getCelluleDecor(i-1,j)) // On vérifie que cette case est accessible par cette case
         {
-            if (grille->getCelluleDecor(i-1,j)->estAccessible(Acces::Est))
+            if (grille->getCelluleDecor(i-1,j)->estAccessible(Acces::Est)
+                    && ct->estAccessible(Acces::Ouest)
+                    && grille->getCellulePersonnage(i-1, j) == nullptr)
             {
-                std::cout << "Est ok" << std::endl;
                 p->setPArestant(p->getPA()-1);
                 v2 = rechercheCaseRec(grille->getCelluleDecor(i-1,j), p);
                 p->setPArestant(p->getPA()+1);
@@ -160,9 +160,10 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
         }
         if(grille->getCelluleDecor(i,j+1)) // On vérifie que cette case est accessible par cette case
         {
-            if (grille->getCelluleDecor(i,j+1)->estAccessible(Acces::Nord))
+            if (grille->getCelluleDecor(i,j+1)->estAccessible(Acces::Nord)
+                    && ct->estAccessible(Acces::Sud)
+                    && grille->getCellulePersonnage(i, j+1) == nullptr)
             {
-                std::cout << "Nord ok" << std::endl;
                 p->setPArestant(p->getPA()-1);
                 v2 = rechercheCaseRec(grille->getCelluleDecor(i,j+1), p);
                 p->setPArestant(p->getPA()+1);
@@ -176,10 +177,10 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
         }
         if(grille->getCelluleDecor(i,j-1)) // On vérifie que cette case est accessible par cette case
         {
-            if (grille->getCelluleDecor(i,j-1)->estAccessible(Acces::Sud))
+            if (grille->getCelluleDecor(i,j-1)->estAccessible(Acces::Sud)
+                    && ct->estAccessible(Acces::Nord)
+                    && grille->getCellulePersonnage(i, j-1) == nullptr)
             {
-                
-                std::cout << "Sud ok" << std::endl;
                 p->setPArestant(p->getPA()-1);
                 v2 = rechercheCaseRec(grille->getCelluleDecor(i,j-1), p);
                 p->setPArestant(p->getPA()+1);
@@ -191,7 +192,6 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
                 v2.clear();
             }
         }
-        std::cout << "Dans cette recherche: v = " << v.size() << std::endl;
         return v;
     }
 }
@@ -233,5 +233,9 @@ int Etat::getCameray()
 }
 void Etat::setBrillant(bool b, CaseTerrain* ct)
 {
-    avertirObservateurs(new EvenementEtat(TypeEvenementEtat(7), this, ct->getX(), ct->getY(), 0,0));
+    if (b)
+        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(7), this, ct->getX(), ct->getY(), 0, true));
+    else
+        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(7), this, 0, 0, 0, false));
+        
 }

@@ -2,10 +2,11 @@
 #include <iostream>
 #include "ListeCommande.h"
 #include "Deplacement.h"
+#include "ChangerMode.h"
 #include <algorithm>
 using namespace engine;
 
-Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd)
+Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd, Moteur *moteur)
 {
     actions = lsAction;
     etatCourant = etat;
@@ -22,10 +23,14 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
             if (ct)
                 std::cout << "Case Clic : " << ct->getX() << " " << ct->getY() << std::endl;
             //for (int j = 0; j < v.size(); j++)
-            //    etat->setBrillant(true, v[j]);
+            //    std::cout << "tableau " << j << " : " << v[j]->getX() << ", " << v[j]->getY() << std::endl;
             if (std::find(v.begin(), v.end(), ct) == v.end())
             {
                 lsAction->supprimer(i);
+            }
+            else
+            {
+                lsAction->ajouter(new ChangerMode(4, moteur));
             }
         }
     }

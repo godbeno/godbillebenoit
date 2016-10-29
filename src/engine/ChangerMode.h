@@ -3,6 +3,9 @@
 #define ENGINE__CHANGERMODE__H
 
 
+namespace engine {
+  class Moteur;
+};
 namespace state {
   class Etat;
 };
@@ -17,11 +20,14 @@ namespace engine {
   /// class ChangerMode - 
   class ChangerMode : public engine::Action {
     // Attributes
+  private:
+    /// 		
+    Moteur* moteur;
   protected:
     int idMode;
     // Operations
   public:
-    ChangerMode (int IdMode);
+    ChangerMode (int IdMode, Moteur* moteur);
     void appliquer (state::Etat* etat);
   };
 

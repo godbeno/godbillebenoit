@@ -13,14 +13,12 @@ Deplacement::Deplacement(int Originex, int Originey, int Ciblex, int Cibley)
 
 void Deplacement::appliquer(state::Etat* etat)
 {
-    int tx = sf::VideoMode::getDesktopMode().height/24.;
+    //int tx = sf::VideoMode::getDesktopMode().height/24.;
     std::cout << "origine : (" << origineX << ", " << origineY << ")" << std::endl;
-    std::cout << "direction : (" << cibleX/tx << ", " << cibleY/tx << ")" << std::endl;
-    etat->deplacerElement(origineX, origineY, (int)cibleX/tx, (int)cibleY/tx);
+    std::cout << "direction : (" << cibleX << ", " << cibleY << ")" << std::endl;
+    etat->deplacerElement(origineX, origineY, cibleX, cibleY);
 }
 state::CaseTerrain* Deplacement::getCaseArrivee(state::Etat* etat)
 {
-    int tx = sf::VideoMode::getDesktopMode().height/24.;
-    //std::cout << 
-    return etat->getGrille().getCelluleDecor(cibleX/tx, cibleY/tx);
+    return etat->getGrille().getCelluleDecor(cibleX, cibleY);
 }

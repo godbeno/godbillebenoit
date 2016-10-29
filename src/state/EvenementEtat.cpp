@@ -12,6 +12,7 @@ EvenementEtat::EvenementEtat(TypeEvenementEtat id, Etat* etat, int x, int y, int
     this->newX = newX;
     this->newY = newY;
     this->zoom = zoom;
+    this->equipe = equipe;
     
 }
 TypeEvenementEtat EvenementEtat::getTypeEvenement()
@@ -42,4 +43,8 @@ int EvenementEtat::getNewy()
 float EvenementEtat::getZoom()
 {
     return zoom;
+}
+bool EvenementEtat::getEquipe()
+{
+    return equipe;
 }

@@ -39,6 +39,9 @@ namespace render {
     int getZoom ();
     void setZoom (int z);
     void setCamera (int x, int y);
+    float getCoeff ();
+    int getCamerax ();
+    int getCameray ();
   };
 
 };

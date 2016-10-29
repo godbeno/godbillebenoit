@@ -15,8 +15,6 @@ namespace state {
   class EvenementEtat {
     // Associations
     // Attributes
-  public:
-    float zoom;
   private:
     TypeEvenementEtat id;
     Etat* etat;
@@ -25,6 +23,8 @@ namespace state {
     int pid;
     int newX;
     int newY;
+    float zoom;
+    bool equipe;
     // Operations
   public:
     EvenementEtat (TypeEvenementEtat id, Etat* etat, int x, int y, int pid, bool equipe, int newX = -1, int newY = -1, float zoom = 1);
@@ -35,6 +35,7 @@ namespace state {
     int getNewx ();
     int getNewy ();
     float getZoom ();
+    bool getEquipe ();
   };
 
 };

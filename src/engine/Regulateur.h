@@ -9,6 +9,7 @@ namespace state {
 namespace engine {
   class ListeCommande;
   class ListeActions;
+  class Moteur;
 }
 
 #include "ListeActions.h"
@@ -25,7 +26,7 @@ namespace engine {
     ListeActions* actions;
     // Operations
   public:
-    Regulateur (ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd);
+    Regulateur (ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd, Moteur* moteur);
     ~Regulateur ();
     void appliquer ();
   };

@@ -35,6 +35,8 @@ int main(int argc,char* argv[])
     etat->setSelectionne(12,10);
     m->setMode(Mode::deplacement);
     
+    std::cout << " COEFFICIENT : " << scene->getCoeff() << std::endl;
+    
     
 
     while (window->isOpen())
@@ -47,7 +49,11 @@ int main(int argc,char* argv[])
                 window->close();
             if (event.type == sf::Event::MouseButtonPressed)
                 if (event.mouseButton.button == sf::Mouse::Left)
-                    m->ajouterCommande(new CommandeClic(event.mouseButton.x, event.mouseButton.y));
+                {
+                    m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray()));
+                    std::cout << "commande x : " << (int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax() << std::endl;
+                    std::cout << "commande y : " << (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray() << std::endl;
+                }
             if (event.type == sf::Event::KeyPressed)
             {
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))

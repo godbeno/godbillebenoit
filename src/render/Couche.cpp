@@ -59,7 +59,7 @@ void Couche::afficher()
         window->draw(tuiles[i]->getSprite());
         //window->draw((new TuileStatique(100,100,73,200))->getSprite());
     }
-    for (int i = 0; i < brillance.size(); i++)
+    for (unsigned int i = 0; i < brillance.size(); i++)
         window->draw(brillance[i]);
 }
 void Couche::setSurbrillance(int x, int y)
@@ -81,4 +81,8 @@ void Couche::deplacerCamera(int x, int y)
             static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(x, y);
         }
     }
+}
+void Couche::unsetSurbrillance()
+{
+    brillance.clear();
 }

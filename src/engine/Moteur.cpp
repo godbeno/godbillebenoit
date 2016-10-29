@@ -43,11 +43,17 @@ void Moteur::update(clock_t t)
 }
 void Moteur::setMode(Mode mode)
 {
+    std::cout << "On enlève l'ancien état" << std::endl;
+    if (this->mode == deplacement)
+    {
+        etat->setBrillant(false, nullptr);
+    }
+    std::cout << 'On update' << std::endl;
     this->mode = mode;
     if (mode == deplacement)
     {
         std::vector<state::CaseTerrain*> v = etat->getCaseAtteignable(etat->getSelectionne());
-        for (int j = 0; j < v.size(); j++)
+        for (unsigned int j = 0; j < v.size(); j++)
             etat->setBrillant(true, v[j]);
     }
     else
@@ -91,7 +97,7 @@ void Moteur::convertirCommande()
     }    
     
    
-    Regulateur r(&aVerifier, etat, &listeCommande);
+    Regulateur r(&aVerifier, etat, &listeCommande, this);
     r.appliquer();
     //std::cout << "Fin de l'application" << std::endl;
     listeCommande.vider();

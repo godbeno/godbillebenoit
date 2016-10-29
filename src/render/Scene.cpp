@@ -66,7 +66,10 @@ void Scene::changementEtat(state::EvenementEtat& e)
     }
     else if (e.getTypeEvenement() == state::ModeDeplacement)
     {
-        coucheTerrain->setSurbrillance(e.getX()*tx, e.getY()*tx);
+        if (e.getEquipe())
+            coucheTerrain->setSurbrillance((e.getX()-camerax)*tx, (e.getY()-cameray)*tx);
+        else
+            coucheTerrain->unsetSurbrillance();
     }
     
     
@@ -94,4 +97,16 @@ void Scene::setCamera(int x, int y)
 {
     this->camerax = x;
     this->cameray = y;
+}
+float Scene::getCoeff()
+{
+    return tx;
+}
+int Scene::getCamerax()
+{
+    return camerax;
+}
+int Scene::getCameray()
+{
+    return cameray;
 }
