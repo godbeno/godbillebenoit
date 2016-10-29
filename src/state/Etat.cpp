@@ -94,6 +94,7 @@ Personnage* Etat::getSelectionne()
 void Etat::setSelectionne(int i, int j)
 {
     selectionne = grille->getCellulePersonnage(i, j);
+    avertirObservateurs(new EvenementEtat(TypeEvenementEtat(8), this, i, j, 0, 0));
 }
 void Etat::attaquer(int i1, int j1, int i2, int j2)
 {

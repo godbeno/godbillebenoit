@@ -51,6 +51,7 @@ void Scene::changementEtat(state::EvenementEtat& e)
         if (couchePersonnage->getTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx) != nullptr)
         {
             couchePersonnage->setTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, new TuileStatique((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, e.getPid(), tx));
+            coucheTerrain->setSelectionne((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, tx);
             std::cout << "FIN" << std::endl;
         }
         else
@@ -67,9 +68,13 @@ void Scene::changementEtat(state::EvenementEtat& e)
     else if (e.getTypeEvenement() == state::ModeDeplacement)
     {
         if (e.getEquipe())
-            coucheTerrain->setSurbrillance((e.getX()-camerax)*tx, (e.getY()-cameray)*tx);
+            coucheTerrain->setSurbrillance((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx);
         else
             coucheTerrain->unsetSurbrillance();
+    }
+    else if (e.getTypeEvenement() == state::ChangementSelectionne)
+    {
+        coucheTerrain->setSelectionne((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx);
     }
     
     

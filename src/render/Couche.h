@@ -26,6 +26,7 @@ namespace render {
     sf::RenderWindow* window;
     /// 		
     std::vector<sf::RectangleShape> brillance;
+    sf::RectangleShape* select;
     // Operations
   public:
     Couche (sf::RenderWindow* window);
@@ -35,9 +36,10 @@ namespace render {
     void changementEtat (state::EvenementEtat& e);
     void afficher ();
     void addTuile (Tuile* tuile);
-    void setSurbrillance (int x, int y);
+    void setSurbrillance (int x, int y, float tx);
     void deplacerCamera (int x, int y);
     void unsetSurbrillance ();
+    void setSelectionne (int x, int y, float tx);
   };
 
 };

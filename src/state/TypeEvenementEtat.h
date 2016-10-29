@@ -12,7 +12,8 @@ namespace state {
     NouveauDecor     = 4,
     DeplacementCamera     = 5,
     ZoomCamera     = 6,
-    ModeDeplacement     = 7
+    ModeDeplacement     = 7,
+    ChangementSelectionne     = 8
   };
 
 };

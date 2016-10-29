@@ -9,6 +9,7 @@ Couche::Couche(sf::RenderWindow* window)
 {
     tuiles.clear();
     this->window = window;
+    select = 0;
 }
 Couche::~Couche()
 {
@@ -61,10 +62,12 @@ void Couche::afficher()
     }
     for (unsigned int i = 0; i < brillance.size(); i++)
         window->draw(brillance[i]);
+    if (select)
+        window->draw(*select);
 }
-void Couche::setSurbrillance(int x, int y)
+void Couche::setSurbrillance(int x, int y, float tx)
 {
-    sf::RectangleShape rect(sf::Vector2f(50,50));
+    sf::RectangleShape rect(sf::Vector2f(tx,tx));
     rect.setFillColor(sf::Color(0,0,255,128));
     rect.setPosition(x,y);
     brillance.push_back(rect);
@@ -85,4 +88,18 @@ void Couche::deplacerCamera(int x, int y)
 void Couche::unsetSurbrillance()
 {
     brillance.clear();
+}
+void Couche::setSelectionne(int x, int y, float tx)
+{
+    if (select)
+    {
+        delete select;
+        std::cout << "Destruction de select" << std::endl;
+    }
+    select = new sf::RectangleShape(sf::Vector2f(tx, tx));
+    //select->setPosition(x+(tx/4), y+(tx/4));
+    select->setPosition(x, y);
+    select->setOutlineColor(sf::Color(255,255,0));
+    select->setOutlineThickness(1.5);
+    select->setFillColor(sf::Color(0,0,0,0));
 }
