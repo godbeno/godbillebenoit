@@ -6,6 +6,7 @@
 
 namespace render {
   class Couche;
+  class Panneau;
 };
 namespace state {
   class Observateur;
@@ -30,6 +31,7 @@ namespace render {
     float zoom;
     int camerax;
     int cameray;
+    Panneau* panneau;
     // Operations
   public:
     Scene (state::Etat* etat, sf::RenderWindow* window);

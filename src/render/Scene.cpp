@@ -3,6 +3,7 @@
 #include "TuileStatique.h"
 #include "TuileAnimee.h"
 #include <iostream>
+#include "Panneau.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Audio.hpp>
 
@@ -12,6 +13,7 @@ Scene::Scene(state::Etat* etat, sf::RenderWindow* window)
 {
     coucheTerrain = new Couche(window);
     couchePersonnage = new Couche(window);
+    panneau = new Panneau();
     this->zoom = 1;    
     tx = (sf::VideoMode::getDesktopMode().width*zoom)/24.;
     //couchePersonnage->addTuile(new TuileAnimee(tx*15, tx*15, 0, 36, couchePersonnage));
@@ -85,6 +87,7 @@ void Scene::afficher()
     window->clear();
     coucheTerrain->afficher();
     couchePersonnage->afficher();
+    panneau->draw(window);
     window->display();
 }
 

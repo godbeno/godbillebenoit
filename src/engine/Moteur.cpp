@@ -3,6 +3,7 @@
 #include "CommandeFleche.h"
 #include "Deplacement.h"
 #include "DeplacementCamera.h"
+#include "ChangerMode.h"
 #include <iostream>
 
 using namespace engine;
@@ -68,14 +69,11 @@ void Moteur::convertirCommande()
     ListeActions aVerifier(etat); 
     if (listeCommande.get(3) != nullptr) // Gestion du clic de souris
     {
-        if (mode == Mode::deplacement) // Si on est en mode déplacement
-        {
-            //std::cout << "Traitement de la commande ! " << std::endl;
-            CommandeClic* cc = static_cast<CommandeClic*>(listeCommande.get(3));
-            //std::cout << "Cast de la commande ! " << std::endl;
+        CommandeClic* cc = static_cast<CommandeClic*>(listeCommande.get(3));
+        if (mode == Mode::deplacement)
             aVerifier.ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
-            //std::cout << "Conversion de la commande ! " << std::endl;
-        }
+        else if (mode == Mode::jeu)
+            aVerifier.ajouter(new ChangerMode(6, this));
     }
     
     if (listeCommande.get(1) != nullptr) // Gestion des touches caméra

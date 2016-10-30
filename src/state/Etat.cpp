@@ -111,6 +111,9 @@ std::vector<CaseTerrain*> Etat::getCaseAtteignable(Personnage* p)
     int y = p->getPA();
     std::vector<CaseTerrain*> v = rechercheCaseRec(ct, p);
     p->setPArestant(y);
+    for(unsigned int i = 0; i < v.size(); i++)
+        if (v[i] == ct)
+            v.erase(v.begin()+i);
     return v;
 }
 std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)

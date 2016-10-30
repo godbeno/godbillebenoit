@@ -10,7 +10,8 @@ namespace engine {
     initialisation     = 2,
     jeu     = 3,
     deplacement     = 4,
-    attaque     = 5
+    attaque     = 5,
+    selection
   };
 
 };

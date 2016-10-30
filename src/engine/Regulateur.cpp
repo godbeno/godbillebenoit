@@ -15,7 +15,11 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
     //Vérification des actions
     for (int i = 0; i < lsAction->taille(); i++)
     {
-        if (dynamic_cast<Deplacement*>(lsAction->get(i))) // On se place dans le cadre de Deplacement
+        if (dynamic_cast<ChangerMode*>(lsAction->get(i)))
+        {
+            ChangerMode *cm = static_cast<ChangerMode*>(lsAction->get(i));
+        }
+        else if (dynamic_cast<Deplacement*>(lsAction->get(i))) // On se place dans le cadre de Deplacement
         {
             std::vector<state::CaseTerrain*> v = etat->getCaseAtteignable(etat->getSelectionne());
             std::cout << "V size :" << v.size() << std::endl;
