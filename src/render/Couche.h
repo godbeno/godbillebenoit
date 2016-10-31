@@ -21,6 +21,8 @@ namespace render {
   class Couche : public state::Observateur {
     // Associations
     // Attributes
+  public:
+    std::vector<sf::RectangleShape> rouge;
   private:
     std::vector<Tuile*> tuiles;
     sf::RenderWindow* window;
@@ -41,6 +43,8 @@ namespace render {
     void unsetSurbrillance ();
     void setSelectionne (int x, int y, float tx);
     void unsetSelectionne ();
+    void setRouge (int x, int y, float tx);
+    void unsetRouge ();
   };
 
 };

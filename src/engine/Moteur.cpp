@@ -48,6 +48,8 @@ void Moteur::setMode(Mode mode)
     {
         etat->setBrillant(false, nullptr);
     }
+    else if (this->mode == attaque)
+        etat->setRouge(false, nullptr);
     this->mode = mode;
     if (mode == deplacement)
     {
@@ -55,9 +57,12 @@ void Moteur::setMode(Mode mode)
         for (unsigned int j = 0; j < v.size(); j++)
             etat->setBrillant(true, v[j]);
     }
-    else
+    else if (mode == attaque)
     {
-        
+        std::vector<state::CaseTerrain*> v = etat->getCaseAttaquable(etat->getSelectionne());
+        std::cout << "Taille des cases à colorer : " << v.size() << std::endl;
+        for (unsigned int j = 0; j < v.size(); j++)
+            etat->setRouge(true, v[j]);
     }
 }
 void Moteur::convertirCommande()

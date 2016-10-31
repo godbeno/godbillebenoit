@@ -29,6 +29,12 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
                 lsAction->supprimer(i);
                 lsAction->ajouter(new ChangerMode(4,-1,-1,moteur));
             }
+            else if (etat->getSelectionne() != 0 && cm->getX()*etat->getCoeff() > largeur/2-180 && cm->getX()*etat->getCoeff() < largeur/2-120 && cm->getY()*etat->getCoeff() > hauteur-100 && cm->getY()*etat->getCoeff() < hauteur-40)
+            {
+                std::cout << "ON PASSE EN MODE ATTAQUE" << std::endl;
+                lsAction->supprimer(i);
+                lsAction->ajouter(new ChangerMode(5,-1,-1,moteur));
+            }
             else if (!cm->getPersonnage(etat))
             {
                 lsAction->supprimer(i);

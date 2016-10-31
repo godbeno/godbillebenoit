@@ -62,6 +62,8 @@ void Couche::afficher()
     }
     for (unsigned int i = 0; i < brillance.size(); i++)
         window->draw(brillance[i]);
+    for (unsigned int i = 0; i < rouge.size(); i++)
+        window->draw(rouge[i]);
     if (select)
         window->draw(*select);
 }
@@ -107,4 +109,15 @@ void Couche::unsetSelectionne()
 {
     delete select;
     select = nullptr;
+}
+void Couche::setRouge(int x, int y, float tx)
+{
+    sf::RectangleShape rect(sf::Vector2f(tx,tx));
+    rect.setFillColor(sf::Color(255,0,0,128));
+    rect.setPosition(x,y);
+    rouge.push_back(rect);
+}
+void Couche::unsetRouge()
+{
+    rouge.clear();
 }

@@ -249,3 +249,41 @@ float Etat::getCoeff()
 {
     return (sf::VideoMode::getDesktopMode().width*zoom)/24.;
 }
+std::vector<CaseTerrain*> Etat::getCaseAttaquable(Personnage *p)
+{
+    std::vector<CaseTerrain*> v;
+    bool equipe = p->getEquipe();
+    int cx = p->getX();
+    int cy = p->getY();
+    for (int z = p->getPorteeMin(); z <= p->getPorteeMax(); z++)
+    {
+        for (int i = 0; i <= z; i++)
+        {
+            
+            if (grille->getCellulePersonnage(cx-z+i, cy-i))
+                if (grille->getCellulePersonnage(cx-z+i, cy-i)->getEquipe() != equipe)
+                    if (std::find(v.begin(), v.end(), grille->getCelluleDecor(cx-z+i, cy-i)) == v.end())
+                        v.push_back(grille->getCelluleDecor(cx-z+i, cy-i));
+            if (grille->getCellulePersonnage(cx-z+i, cy+i))
+                if (grille->getCellulePersonnage(cx-z+i, cy+i)->getEquipe() != equipe)
+                    if (std::find(v.begin(), v.end(), grille->getCelluleDecor(cx-z+i, cy+i)) == v.end())
+                        v.push_back(grille->getCelluleDecor(cx-z+i, cy+i));
+            if (grille->getCellulePersonnage(cx+z-i, cy-i))
+                if (grille->getCellulePersonnage(cx+z-i, cy-i)->getEquipe() != equipe)
+                    if (std::find(v.begin(), v.end(), grille->getCelluleDecor(cx+z-i, cy-i)) == v.end())
+                        v.push_back(grille->getCelluleDecor(cx+z-i, cy-i));
+            if (grille->getCellulePersonnage(cx+z-i, cy+i))
+                if (grille->getCellulePersonnage(cx+z-i, cy+i)->getEquipe() != equipe)
+                    if (std::find(v.begin(), v.end(), grille->getCelluleDecor(cx+z-i, cy+i)) == v.end())
+                        v.push_back(grille->getCelluleDecor(cx+z-i, cy+i));
+        }
+    }
+    return v;
+}
+void Etat::setRouge(bool b, CaseTerrain* ct)
+{
+    if (b)
+        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(9), this, ct->getX(), ct->getY(), 0, true));
+    else
+        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(9), this, 0, 0, 0, false));
+}

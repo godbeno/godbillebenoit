@@ -57,6 +57,8 @@ namespace state {
     float getZoom ();
     void setBrillant (bool b, CaseTerrain* ct);
     float getCoeff ();
+    std::vector<CaseTerrain*> getCaseAttaquable (Personnage* p);
+    void setRouge (bool b, CaseTerrain* ct);
   };
 
 };

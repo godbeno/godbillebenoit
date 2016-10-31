@@ -66,10 +66,10 @@ void Panneau::setSelectionne(state::Etat* etat, state::Personnage* p)
     int hauteur = sf::VideoMode::getDesktopMode().height;
     
     estSelect = true;
-    int paRestant, unitePa, pvRestant, unitePv;
+    float paRestant, unitePa, pvRestant, unitePv;
     unitePa = 100/p->getPAMax();
     paRestant = p->getPA()*unitePa;
-    unitePv = 100/p->getPVMax();
+    unitePv = 100./p->getPVMax();
     pvRestant = p->getPV()*unitePv;
     
     

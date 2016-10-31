@@ -74,6 +74,13 @@ void Scene::changementEtat(state::EvenementEtat& e)
         else
             coucheTerrain->unsetSurbrillance();
     }
+    else if (e.getTypeEvenement() == state::ModeAttaque)
+    {
+        if (e.getEquipe())
+            coucheTerrain->setRouge((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx);
+        else
+            coucheTerrain->unsetRouge();
+    }
     else if (e.getTypeEvenement() == state::ChangementSelectionne)
     {
         std::cout << "On traite le changement dans Scene" << std::endl;

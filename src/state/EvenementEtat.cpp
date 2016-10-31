@@ -8,7 +8,7 @@ EvenementEtat::EvenementEtat(TypeEvenementEtat id, Etat* etat, int x, int y, int
     this->etat = etat;
     this->x = x;
     this->y = y;
-    this->pid = pid*2 + 43 + !equipe;
+    this->pid = pid*2 + 42 + !equipe;
     this->newX = newX;
     this->newY = newY;
     this->zoom = zoom;

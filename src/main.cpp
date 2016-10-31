@@ -31,7 +31,7 @@ int main(int argc,char* argv[])
     etat->ajouterPersonnage(true, 4, 10, 8);
     etat->ajouterPersonnage(true, 2, 8, 8);   
     etat->ajouterPersonnage(true, 1, 6, 8);
-    etat->ajouterPersonnage(true, 6, 10, 12);
+    etat->ajouterPersonnage(false, 6, 10, 6);
     etat->setSelectionne(12,10);
     m->setMode(Mode::jeu);
     
