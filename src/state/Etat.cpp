@@ -1,6 +1,7 @@
 #include "Etat.h"
 #include <iostream>
 #include <algorithm>
+#include <SFML/Graphics.hpp>
 using namespace state;
 
 Etat::Etat ()
@@ -9,6 +10,7 @@ Etat::Etat ()
     grille = new GrilleElement(this);
     camerax = 0;
     cameray = 0;
+    zoom = 1;
 }
 
 Etat::~Etat ()
@@ -242,4 +244,8 @@ void Etat::setBrillant(bool b, CaseTerrain* ct)
     else
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(7), this, 0, 0, 0, false));
         
+}
+float Etat::getCoeff()
+{
+    return (sf::VideoMode::getDesktopMode().width*zoom)/24.;
 }

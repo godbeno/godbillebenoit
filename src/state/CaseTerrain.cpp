@@ -143,12 +143,12 @@ CaseTerrain::CaseTerrain (int id)
             break;
         case 30:
             liste_acces.push_back(Sud);
-            liste_acces.push_back(Ouest);
+            liste_acces.push_back(Est);
             hauteur = 2;
             break;
         case 31:
             liste_acces.push_back(Sud);
-            liste_acces.push_back(Est);
+            liste_acces.push_back(Ouest);
             hauteur = 2;
             break;
         case 32:

@@ -83,7 +83,7 @@ void Scene::changementEtat(state::EvenementEtat& e)
             coucheTerrain->setSelectionne((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx);
             panneau->setSelectionne(etat, etat->getGrille().getCellulePersonnage(e.getX(), e.getY()));
         }
-        else
+        else 
         {
             std::cout << "Le personnage n'existe pas" << std::endl;
             coucheTerrain->unsetSelectionne();

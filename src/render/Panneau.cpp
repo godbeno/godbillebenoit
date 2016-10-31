@@ -67,8 +67,6 @@ void Panneau::setSelectionne(state::Etat* etat, state::Personnage* p)
     
     estSelect = true;
     int paRestant, unitePa, pvRestant, unitePv;
-    p->setPArestant(2);
-    p->setPVrestant(1);
     unitePa = 100/p->getPAMax();
     paRestant = p->getPA()*unitePa;
     unitePv = 100/p->getPVMax();

@@ -33,6 +33,8 @@ namespace engine {
     ChangerMode (int IdMode, int x, int y, Moteur* moteur);
     void appliquer (state::Etat* etat);
     state::Personnage* getPersonnage (state::Etat* etat);
+    int getX ();
+    int getY ();
   };
 
 };

@@ -16,9 +16,18 @@ void ChangerMode::appliquer(state::Etat* etat)
 {
     std::cout << "On va appliquer le changement de mode" << std::endl;
     moteur->setMode(Mode(idMode));
-    etat->setSelectionne(x,y);
+    if (x != -1 && y != -1)
+        etat->setSelectionne(x,y);
 }
 state::Personnage* ChangerMode::getPersonnage(state::Etat* etat)
 {
     return etat->getGrille().getCellulePersonnage(x,y);
+}
+int ChangerMode::getX()
+{
+    return x;
+}
+int ChangerMode::getY()
+{
+    return y;
 }
