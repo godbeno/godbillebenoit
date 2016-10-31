@@ -76,7 +76,19 @@ void Scene::changementEtat(state::EvenementEtat& e)
     }
     else if (e.getTypeEvenement() == state::ChangementSelectionne)
     {
-        coucheTerrain->setSelectionne((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx);
+        std::cout << "On traite le changement dans Scene" << std::endl;
+        if (etat->getGrille().getCellulePersonnage(e.getX(), e.getY()))
+        {
+            std::cout << "Le personnage existe" << std::endl;
+            coucheTerrain->setSelectionne((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx);
+            panneau->setSelectionne(etat, etat->getGrille().getCellulePersonnage(e.getX(), e.getY()));
+        }
+        else
+        {
+            std::cout << "Le personnage n'existe pas" << std::endl;
+            coucheTerrain->unsetSelectionne();
+            panneau->unsetSelectionne();
+        }
     }
     
     

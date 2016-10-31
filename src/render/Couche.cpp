@@ -103,3 +103,8 @@ void Couche::setSelectionne(int x, int y, float tx)
     select->setOutlineThickness(1.5);
     select->setFillColor(sf::Color(0,0,0,0));
 }
+void Couche::unsetSelectionne()
+{
+    delete select;
+    select = nullptr;
+}

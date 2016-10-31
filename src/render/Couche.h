@@ -40,6 +40,7 @@ namespace render {
     void deplacerCamera (int x, int y);
     void unsetSurbrillance ();
     void setSelectionne (int x, int y, float tx);
+    void unsetSelectionne ();
   };
 
 };

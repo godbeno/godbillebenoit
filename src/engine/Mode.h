@@ -11,7 +11,7 @@ namespace engine {
     jeu     = 3,
     deplacement     = 4,
     attaque     = 5,
-    selection
+    selection     = 6
   };
 
 };

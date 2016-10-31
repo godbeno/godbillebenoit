@@ -17,7 +17,13 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
     {
         if (dynamic_cast<ChangerMode*>(lsAction->get(i)))
         {
+            std::cout << "On traite le changement de selection dans Regulateur" << std::endl;
             ChangerMode *cm = static_cast<ChangerMode*>(lsAction->get(i));
+            if (!cm->getPersonnage(etat))
+            {
+                lsAction->supprimer(i);
+                lsAction->ajouter(new ChangerMode(3,0,0,moteur));
+            }
         }
         else if (dynamic_cast<Deplacement*>(lsAction->get(i))) // On se place dans le cadre de Deplacement
         {
@@ -34,7 +40,7 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
             }
             else
             {
-                lsAction->ajouter(new ChangerMode(4, moteur));
+                lsAction->ajouter(new ChangerMode(4, 0, 0, moteur));
             }
         }
     }

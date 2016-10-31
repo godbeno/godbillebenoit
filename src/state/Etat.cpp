@@ -93,6 +93,7 @@ Personnage* Etat::getSelectionne()
 }
 void Etat::setSelectionne(int i, int j)
 {
+    std::cout << "On traite le changement de selection dans Etat" << std::endl;
     selectionne = grille->getCellulePersonnage(i, j);
     avertirObservateurs(new EvenementEtat(TypeEvenementEtat(8), this, i, j, 0, 0));
 }
@@ -122,7 +123,6 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
     if (p->getPA() == 0)
     {
         v.push_back(ct);
-        return v;
     }
     else if (p->getPA() > 0)
     {
@@ -196,8 +196,8 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
                 v2.clear();
             }
         }
-        return v;
     }
+    return v;
 }
 
 void Etat::setZoom(float z)

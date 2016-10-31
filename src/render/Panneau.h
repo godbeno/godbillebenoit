@@ -4,6 +4,14 @@
 
 #include <SFML/Graphics.hpp>
 
+namespace state {
+  class Personnage;
+  class Observateur;
+}
+
+#include "state/Personnage.h"
+#include "state/Observateur.h"
+
 namespace render {
 
   /// class Panneau - 
@@ -14,12 +22,25 @@ namespace render {
     sf::Sprite boutA;
     sf::Sprite boutD;
     sf::Texture textFond;
-    sf::Texture textBoutA;
-    sf::Texture textBoutD;
+    sf::Texture textBoutAOff;
+    sf::Texture textBoutDOff;
+    bool estSelect;
+    sf::Text nom;
+    sf::RectangleShape paTot;
+    sf::RectangleShape paRest;
+    sf::Font font;
+    sf::Text txtPa;
+    sf::RectangleShape pvTot;
+    sf::RectangleShape pvRest;
+    sf::Text txtPv;
+    sf::Texture textBoutAOn;
+    sf::Texture textBoutDOn;
     // Operations
   public:
     Panneau ();
     void draw (sf::RenderWindow* window);
+    void setSelectionne (state::Etat* etat, state::Personnage* p);
+    void unsetSelectionne ();
   };
 
 };

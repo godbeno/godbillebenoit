@@ -23,12 +23,16 @@ namespace engine {
   private:
     /// 		
     Moteur* moteur;
+    /// 	
+    int x;
+    int y;
   protected:
     int idMode;
     // Operations
   public:
-    ChangerMode (int IdMode, Moteur* moteur);
+    ChangerMode (int IdMode, int x, int y, Moteur* moteur);
     void appliquer (state::Etat* etat);
+    state::Personnage* getPersonnage (state::Etat* etat);
   };
 
 };

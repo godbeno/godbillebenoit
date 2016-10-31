@@ -44,12 +44,10 @@ void Moteur::update(clock_t t)
 }
 void Moteur::setMode(Mode mode)
 {
-    std::cout << "On enlève l'ancien état" << std::endl;
     if (this->mode == deplacement)
     {
         etat->setBrillant(false, nullptr);
     }
-    std::cout << 'On update' << std::endl;
     this->mode = mode;
     if (mode == deplacement)
     {
@@ -73,7 +71,9 @@ void Moteur::convertirCommande()
         if (mode == Mode::deplacement)
             aVerifier.ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
         else if (mode == Mode::jeu)
-            aVerifier.ajouter(new ChangerMode(6, this));
+            aVerifier.ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this));
+        else if (mode == Mode::selection)
+            aVerifier.ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this));
     }
     
     if (listeCommande.get(1) != nullptr) // Gestion des touches caméra

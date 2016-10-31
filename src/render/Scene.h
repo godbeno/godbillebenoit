@@ -13,6 +13,7 @@ namespace state {
 }
 
 #include "state/Observateur.h"
+#include "Panneau.h"
 #include "Couche.h"
 
 namespace render {

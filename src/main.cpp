@@ -33,7 +33,7 @@ int main(int argc,char* argv[])
     etat->ajouterPersonnage(true, 1, 6, 8);
     etat->ajouterPersonnage(true, 6, 10, 12);
     etat->setSelectionne(12,10);
-    m->setMode(Mode::deplacement);
+    m->setMode(Mode::jeu);
     
     std::cout << " COEFFICIENT : " << scene->getCoeff() << std::endl;
     
