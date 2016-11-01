@@ -83,6 +83,12 @@ void Couche::deplacerCamera(int x, int y)
         tuiles[i]->setY(tuiles[i]->getY()+y);
         static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(x, y);
     }
+    for (unsigned int i = 0; i < brillance.size(); i++)
+    {
+
+    }
+        
+        
 }
 void Couche::unsetSurbrillance()
 {

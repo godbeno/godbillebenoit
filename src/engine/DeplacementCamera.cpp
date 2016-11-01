@@ -15,5 +15,4 @@ void DeplacementCamera::appliquer(state::Etat* etat)
 {
     etat->setCamerax(ciblex);
     etat->setCameray(cibley);
-    std::cout << "TEEEEESSSTTTTTTTT" << std::endl;
 }
