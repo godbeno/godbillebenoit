@@ -63,11 +63,26 @@ void Scene::changementEtat(state::EvenementEtat& e)
     {
         int ancienneCamerax = this->camerax;
         int ancienneCameray = this->cameray;
-        this->camerax=e.getNewx(); 
+        this->camerax =  e.getNewx(); 
         this->cameray = e.getNewy();
         couchePersonnage->deplacerCamera(-(camerax-ancienneCamerax)*tx, -(cameray-ancienneCameray)*tx);
         coucheTerrain->deplacerCamera(-(camerax-ancienneCamerax)*tx, -(cameray-ancienneCameray)*tx);
     }
+    else if (e.getTypeEvenement() == state::ZoomCamera)
+    {   int ancienZoom = this->zoom;
+        this->zoom = e.getZoom();
+        couchePersonnage->zoomCamera(zoom);
+        coucheTerrain->zoomCamera(zoom);
+
+    }
+            
+            
+            
+            
+            
+            
+            
+            
     else if (e.getTypeEvenement() == state::ModeDeplacement)
     {
         if (e.getEquipe())

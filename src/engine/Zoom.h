@@ -16,8 +16,12 @@ namespace engine {
 
   /// class Zoom - 
   class Zoom : public engine::Action {
+    // Attributes
+  private:
+    int i;
     // Operations
   public:
+    Zoom (int i);
     void appliquer (state::Etat* etat);
   };
 

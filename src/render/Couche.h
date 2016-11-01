@@ -40,6 +40,7 @@ namespace render {
     void addTuile (Tuile* tuile);
     void setSurbrillance (int x, int y, float tx);
     void deplacerCamera (int x, int y);
+    void zoomCamera (float s);
     void unsetSurbrillance ();
     void setSelectionne (int x, int y, float tx);
     void unsetSelectionne ();

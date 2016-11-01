@@ -16,17 +16,13 @@ namespace engine {
   class CommandeZoomCamera : public engine::Commande {
     // Attributes
   private:
-    bool estHaut;
     /// 		
-    int x;
-    int y;
+    int i;
     // Operations
   public:
-    CommandeZoomCamera (bool haut, int i, int j);
+    CommandeZoomCamera (int i);
     CategorieCommande getCategorie ();
-    bool getDirection ();
-    int getX ();
-    int getY ();
+    int geti ();
   };
 
 };

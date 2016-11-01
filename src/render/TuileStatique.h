@@ -38,6 +38,7 @@ namespace render {
     bool getEstAffiche ();
     void setEstAffiche (bool b);
     void updateSpritePosition (int x, int y);
+    void updateSpriteScale (float s);
   };
 
 };

@@ -1,9 +1,11 @@
 #include "Moteur.h"
 #include "CommandeClic.h"
 #include "CommandeFleche.h"
+#include "CommandeZoomCamera.h"
 #include "Deplacement.h"
 #include "DeplacementCamera.h"
 #include "ChangerMode.h"
+#include "Zoom.h"
 #include <iostream>
 
 using namespace engine;
@@ -85,19 +87,33 @@ void Moteur::convertirCommande()
     {
        //std::cout << "Traitement de la commande ! " << std::endl;
        CommandeFleche* cc = static_cast<CommandeFleche*>(listeCommande.get(1));
-       if (cc->getDirection() == 1){
+       if (cc->getDirection() == 1)
+       {
           aVerifier.ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax(), etat->getCameray()-1));
        }
-       else if(cc->getDirection() == 2){
+       else if(cc->getDirection() == 2)
+       {
           aVerifier.ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax(), etat->getCameray()+1));
        }
-       else if(cc->getDirection() == 3){
+       else if(cc->getDirection() == 3)
+       {
           aVerifier.ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax()+1, etat->getCameray()));
        }
-       else if(cc->getDirection() == 4){
+       else if(cc->getDirection() == 4)
+       {
           aVerifier.ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax()-1, etat->getCameray()));
        }
-    }    
+    }
+    if (listeCommande.get(2) != nullptr) // Gestion du zoom caméra
+    {
+       CommandeZoomCamera* cc = static_cast<CommandeZoomCamera*>(listeCommande.get(2));
+       aVerifier.ajouter(new Zoom(cc->geti()));
+    }
+
+
+
+
+    
     
    
     Regulateur r(&aVerifier, etat, &listeCommande, this);

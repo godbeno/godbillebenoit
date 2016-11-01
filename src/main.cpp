@@ -6,6 +6,7 @@
 #include "engine/CommandeClic.h"
 #include "engine/Direction.h"
 #include "engine/CommandeFleche.h"
+#include "engine/CommandeZoomCamera.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
@@ -65,6 +66,11 @@ int main(int argc,char* argv[])
                 else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
                       m->ajouterCommande(new CommandeFleche(Direction(2)));
             }
+            if (event.type == sf::Event::MouseWheelMoved)
+                m->ajouterCommande(new CommandeZoomCamera((int)(event.mouseWheel.delta)));
+            
+            
+            
         }
         scene->afficher();
         m->update(clock());

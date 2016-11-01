@@ -2,25 +2,15 @@
 
 using namespace engine;
 
-CommandeZoomCamera::CommandeZoomCamera(bool haut, int i, int j)
+CommandeZoomCamera::CommandeZoomCamera(int i)
 {
-    estHaut = haut;
-    x = i;
-    y = j;
+    this->i = i;
 }
 CategorieCommande CommandeZoomCamera::getCategorie()
 {
     return CategorieCommande::zoomCamera;
 }
-bool CommandeZoomCamera::getDirection()
+int CommandeZoomCamera::geti()
 {
-    return estHaut;
-}
-int CommandeZoomCamera::getX()
-{
-    return x;
-}
-int CommandeZoomCamera::getY()
-{
-    return y;
+    return i;
 }

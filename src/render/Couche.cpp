@@ -87,8 +87,17 @@ void Couche::deplacerCamera(int x, int y)
     {
 
     }
-        
-        
+}
+void Couche::zoomCamera(float s)
+{
+    for (unsigned int i = 0; i < tuiles.size(); i++)
+    {
+        static_cast<TuileStatique*>(tuiles[i])->updateSpriteScale(s);
+    }
+    for (unsigned int i = 0; i < brillance.size(); i++)
+    {
+
+    }
 }
 void Couche::unsetSurbrillance()
 {

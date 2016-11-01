@@ -302,3 +302,7 @@ void TuileStatique::updateSpritePosition(int x, int y)
 {
     sprite.setPosition(sprite.getPosition().x+x, sprite.getPosition().y+y);
 }
+void TuileStatique::updateSpriteScale(float s)
+{
+    sprite.setScale(s,s);
+}
