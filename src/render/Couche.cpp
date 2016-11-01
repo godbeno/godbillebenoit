@@ -81,10 +81,7 @@ void Couche::deplacerCamera(int x, int y)
     {
         tuiles[i]->setX(tuiles[i]->getX()+x);
         tuiles[i]->setY(tuiles[i]->getY()+y);
-        if (tuiles[i]->estAnime())
-        {
-            static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(x, y);
-        }
+        static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(x, y);
     }
 }
 void Couche::unsetSurbrillance()
