@@ -69,10 +69,15 @@ void Scene::changementEtat(state::EvenementEtat& e)
         coucheTerrain->deplacerCamera(-(camerax-ancienneCamerax)*tx, -(cameray-ancienneCameray)*tx);
     }
     else if (e.getTypeEvenement() == state::ZoomCamera)
-    {   int ancienZoom = this->zoom;
+    {   float ancienZoom = this->zoom;
         this->zoom = e.getZoom();
-        couchePersonnage->zoomCamera(zoom);
-        coucheTerrain->zoomCamera(zoom);
+        tx = (sf::VideoMode::getDesktopMode().width*zoom)/24.;
+        std::cout << "Zoom passe dans Scene de " << ancienZoom << " à " << zoom << std::endl;
+        std::cout << "On envoie dans ZoomCamera l'argument " << zoom/ancienZoom << std::endl;
+
+        couchePersonnage->zoomCamera(zoom/ancienZoom);
+        coucheTerrain->zoomCamera(zoom/ancienZoom);
+        
 
     }
             
