@@ -95,7 +95,6 @@ void Couche::zoomCamera(float s)
         int anciennePosx = tuiles[i]->getX();
         int anciennePosy = tuiles[i]->getY();
         tuiles[i]->setX((int)((float)(anciennePosx)*s));
-        std::cout << "ZOOM CAMERA UPDATE POS DE " << anciennePosx << " A " << tuiles[i]->getX() << std::endl;
         tuiles[i]->setY((int)((float)(anciennePosy)*s));
         static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(+tuiles[i]->getX()-anciennePosx, tuiles[i]->getY()-anciennePosy);        
         static_cast<TuileStatique*>(tuiles[i])->updateSpriteScale(s);

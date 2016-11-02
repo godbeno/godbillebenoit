@@ -304,6 +304,5 @@ void TuileStatique::updateSpritePosition(int x, int y)
 }
 void TuileStatique::updateSpriteScale(float s)
 {
-    std::cout << "On met à jour les sprites avec l'argument " << s << std::endl;
     sprite.setScale(sprite.getScale().x*s,sprite.getScale().y*s);
 }
