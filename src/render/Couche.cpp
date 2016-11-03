@@ -83,8 +83,18 @@ void Couche::deplacerCamera(int x, int y)
         tuiles[i]->setY(tuiles[i]->getY()+y);
         static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(x, y);
     }
+    if (select)
+    {
+        int ancienSelx = select->getPosition().x;
+        int ancienSely = select->getPosition().y;
+        select->setPosition(ancienSelx+x, ancienSely+y);
+    }
+        
     for (unsigned int i = 0; i < brillance.size(); i++)
     {
+        int ancienBrix = brillance[i].getPosition().x;
+        int ancienBriy = brillance[i].getPosition().y;
+        brillance[i].setPosition(ancienBrix+x, ancienBriy+y);
 
     }
 }
@@ -99,9 +109,19 @@ void Couche::zoomCamera(float s)
         static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(+tuiles[i]->getX()-anciennePosx, tuiles[i]->getY()-anciennePosy);        
         static_cast<TuileStatique*>(tuiles[i])->updateSpriteScale(s);
     }
+    if (select)
+    {
+        int ancienSelx = select->getPosition().x;
+        int ancienSely = select->getPosition().y;
+        select->setPosition(ancienSelx*s, ancienSely*s);
+        select->setScale(select->getScale().x*s,select->getScale().y*s);
+    }
     for (unsigned int i = 0; i < brillance.size(); i++)
     {
-
+        int ancienBrix = brillance[i].getPosition().x;
+        int ancienBriy = brillance[i].getPosition().y;
+        brillance[i].setPosition(ancienBrix*s, ancienBriy*s);
+        brillance[i].setScale(brillance[i].getScale().x*s,brillance[i].getScale().y*s);
     }
 }
 void Couche::unsetSurbrillance()
