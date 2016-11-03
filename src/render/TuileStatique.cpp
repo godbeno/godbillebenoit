@@ -7,7 +7,7 @@ using namespace render;
 using namespace sf;
 
 
-TuileStatique::TuileStatique(int x, int y, int id, float w) : Tuile(x,y,id)
+TuileStatique::TuileStatique(float x, float y, int id, float w) : Tuile(x,y,id)
 {
     hauteur = x;
     largeur = y;
@@ -298,7 +298,7 @@ bool TuileStatique::getEstAffiche()
 {
     return this->estAffiche;
 }
-void TuileStatique::updateSpritePosition(int x, int y)
+void TuileStatique::updateSpritePosition(float x, float y)
 {
     sprite.setPosition(sprite.getPosition().x+x, sprite.getPosition().y+y);
 }

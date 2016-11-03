@@ -21,25 +21,24 @@ namespace render {
   class Couche : public state::Observateur {
     // Associations
     // Attributes
-  public:
-    std::vector<sf::RectangleShape> rouge;
   private:
     std::vector<Tuile*> tuiles;
     sf::RenderWindow* window;
     /// 		
     std::vector<sf::RectangleShape> brillance;
     sf::RectangleShape* select;
+    std::vector<sf::RectangleShape> rouge;
     // Operations
   public:
     Couche (sf::RenderWindow* window);
     virtual ~Couche ();
-    Tuile* getTuile (int i, int j);
+    Tuile* getTuile (float i, float j, float incr);
     void setTuile (int i, int j, Tuile* tuile);
     void changementEtat (state::EvenementEtat& e);
     void afficher ();
     void addTuile (Tuile* tuile);
     void setSurbrillance (int x, int y, float tx);
-    void deplacerCamera (int x, int y);
+    void deplacerCamera (float x, float y);
     void zoomCamera (float s);
     void unsetSurbrillance ();
     void setSelectionne (int x, int y, float tx);

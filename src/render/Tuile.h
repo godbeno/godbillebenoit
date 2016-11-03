@@ -10,19 +10,21 @@ namespace render {
   class Tuile {
     // Attributes
   protected:
-    int x;
-    int y;
+    float x;
+    float y;
     int id;
+    int trueX;
+    int trueY;
     // Operations
   public:
-    Tuile (int x, int y, int id);
+    Tuile (float x, float y, int id);
     virtual ~Tuile ();
     virtual bool estAnime () = 0;
     int const getID ();
-    int const getX ();
-    int const getY ();
-    void setX (int x);
-    void setY (int y);
+    float const getX ();
+    float const getY ();
+    void setX (float x);
+    void setY (float y);
     void setID (int id);
     virtual const sf::Sprite& getSprite () = 0;
   };

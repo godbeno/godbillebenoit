@@ -2,7 +2,7 @@
 
 using namespace render;
 
-Tuile::Tuile(int x, int y, int id)
+Tuile::Tuile(float x, float y, int id)
 {
     this->x = x;
     this->y = y;
@@ -16,19 +16,19 @@ int const Tuile::getID()
 {
     return id;
 }
-int const Tuile::getX()
+float const Tuile::getX()
 {
     return x;
 }
-int const Tuile::getY()
+float const Tuile::getY()
 {
     return y;
 }
-void Tuile::setX (int x)
+void Tuile::setX (float x)
 {
     this->x = x;
 }
-void Tuile::setY (int y)
+void Tuile::setY (float y)
 {
     this->y = y;
 }

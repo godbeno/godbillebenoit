@@ -16,11 +16,13 @@ Couche::~Couche()
     for (unsigned int i = 0; i < tuiles.size(); i++)
         delete tuiles[i];
 }
-Tuile* Couche::getTuile (int i, int j)
+Tuile* Couche::getTuile (float i, float j, float incr)
 {
     for (unsigned int k = 0; k < tuiles.size(); k++)
-        if (tuiles[k]->getX() == i && tuiles[k]->getY() == j)
+    {
+        if ((int)tuiles[k]->getX() == (int)i && (int)tuiles[k]->getY() == (int)j)
             return tuiles[k];
+    }
     return nullptr;
 }
 void Couche::setTuile (int i, int j, Tuile* tuile)
@@ -75,7 +77,7 @@ void Couche::setSurbrillance(int x, int y, float tx)
     brillance.push_back(rect);
     
 }
-void Couche::deplacerCamera(int x, int y)
+void Couche::deplacerCamera(float x, float y)
 {
     for (unsigned int i = 0; i < tuiles.size(); i++)
     {

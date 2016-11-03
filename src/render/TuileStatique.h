@@ -26,7 +26,7 @@ namespace render {
     bool estAffiche;
     // Operations
   public:
-    TuileStatique (int x, int y, int id, float w);
+    TuileStatique (float x, float y, int id, float w);
     ~TuileStatique ();
     int const getHauteur ();
     int const getLargeur ();
@@ -37,7 +37,7 @@ namespace render {
     TuileStatique* copy ();
     bool getEstAffiche ();
     void setEstAffiche (bool b);
-    void updateSpritePosition (int x, int y);
+    void updateSpritePosition (float x, float y);
     void updateSpriteScale (float s);
   };
 

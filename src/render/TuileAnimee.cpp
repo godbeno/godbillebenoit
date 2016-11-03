@@ -5,7 +5,7 @@
 
 using namespace render;
 
-TuileAnimee::TuileAnimee(int x, int y, int id, float vitesse, Couche* couche) : Tuile(x,y,id)
+TuileAnimee::TuileAnimee(float x, float y, int id, float vitesse, Couche* couche) : Tuile(x,y,id)
 {
     nbr = 0;
     this->vitesse = vitesse;
