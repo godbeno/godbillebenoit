@@ -24,12 +24,12 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
         {
             ChangerMode *cm = static_cast<ChangerMode*>(lsAction->get(i));
             std::cout << "Hauteur : " << cm->getY()*etat->getCoeff() << ", Largeur : " << cm->getX()*etat->getCoeff() << std::endl;
-            if (etat->getSelectionne() != 0 && cm->getX()*etat->getCoeff() > largeur/2-110 && cm->getX()*etat->getCoeff() < largeur/2-50 && cm->getY()*etat->getCoeff() > hauteur-100 && cm->getY()*etat->getCoeff() < hauteur-40)
+            if (etat->getSelectionne() != 0 && (cm->getX()-etat->getCamerax())*etat->getCoeff() > largeur/2-110 && (cm->getX()-etat->getCamerax())*etat->getCoeff() < largeur/2-50 && (cm->getY()-etat->getCameray())*etat->getCoeff() > hauteur-100 && (cm->getY()-etat->getCameray())*etat->getCoeff() < hauteur-40)
             {
                 lsAction->supprimer(i);
                 lsAction->ajouter(new ChangerMode(4,-1,-1,moteur));
             }
-            else if (etat->getSelectionne() != 0 && cm->getX()*etat->getCoeff() > largeur/2-180 && cm->getX()*etat->getCoeff() < largeur/2-120 && cm->getY()*etat->getCoeff() > hauteur-100 && cm->getY()*etat->getCoeff() < hauteur-40)
+            else if (etat->getSelectionne() != 0 && (cm->getX()-etat->getCamerax())*etat->getCoeff() > largeur/2-180 && (cm->getX()-etat->getCamerax())*etat->getCoeff() < largeur/2-120 && (cm->getY()-etat->getCameray())*etat->getCoeff() > hauteur-100 && (cm->getY()-etat->getCameray())*etat->getCoeff() < hauteur-40)
             {
                 std::cout << "ON PASSE EN MODE ATTAQUE" << std::endl;
                 lsAction->supprimer(i);
