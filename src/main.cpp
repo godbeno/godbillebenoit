@@ -10,7 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-using namespace std;
+using namespace std; 
 using namespace state;
 using namespace render;
 using namespace engine;
