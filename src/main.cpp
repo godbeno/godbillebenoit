@@ -52,8 +52,6 @@ int main(int argc,char* argv[])
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
                     m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray()));
-                    std::cout << "commande x : " << (int)(event.mouseButton.x/scene->getCoeff()-0.5)+scene->getCamerax() << std::endl;
-                    std::cout << "commande y : " << (int)(event.mouseButton.y/scene->getCoeff()-0.5)+scene->getCameray() << std::endl;
                 }
             if (event.type == sf::Event::KeyPressed)
             {

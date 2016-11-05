@@ -28,7 +28,7 @@ Tuile* Couche::getTuile (float i, float j, float incr)
 void Couche::setTuile (int i, int j, Tuile* tuile)
 {
     for (unsigned int k = 0; k < tuiles.size(); k++)
-        if (tuiles[k]->getX() == i && tuiles[k]->getY() == j)
+        if ((int)tuiles[k]->getX() == (int)i && (int)tuiles[k]->getY() == (int)j)
         {
             delete tuiles[k];
             tuiles.erase(tuiles.begin()+k);
