@@ -37,6 +37,8 @@ int main(int argc,char* argv[])
     m->setMode(Mode::jeu);
     
     std::cout << " COEFFICIENT : " << scene->getCoeff() << std::endl;
+    int largeur = sf::VideoMode::getDesktopMode().width;
+    int hauteur = sf::VideoMode::getDesktopMode().height;
     
     
 
@@ -51,7 +53,13 @@ int main(int argc,char* argv[])
             if (event.type == sf::Event::MouseButtonPressed)
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
-                    m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray()));
+                    if (event.mouseButton.x > largeur/2 -180 && event.mouseButton.x < largeur/2 - 120 && event.mouseButton.y > hauteur-100 && event.mouseButton.y < hauteur-40)
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 1));
+                    else if (event.mouseButton.x > largeur/2 -110 && event.mouseButton.x < largeur/2 - 50 && event.mouseButton.y > hauteur-100 && event.mouseButton.y < hauteur-40)
+                        
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 2));
+                    else
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 0));
                 }
             if (event.type == sf::Event::KeyPressed)
             {

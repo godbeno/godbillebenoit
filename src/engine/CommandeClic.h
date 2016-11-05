@@ -18,12 +18,14 @@ namespace engine {
   private:
     int x;
     int y;
+    int bouton;
     // Operations
   public:
-    CommandeClic (int i, int j);
+    CommandeClic (int i, int j, int bouton);
     CategorieCommande getCategorie ();
     int getX ();
     int getY ();
+    int getBouton ();
   };
 
 };
