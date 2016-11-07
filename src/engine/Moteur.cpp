@@ -79,8 +79,12 @@ void Moteur::convertirCommande()
             aVerifier.ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
         else if (mode == Mode::jeu)
             aVerifier.ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this));
-        else if (mode == Mode::selection)
+        else if (mode == Mode::selection && cc->getBouton() == 0)
             aVerifier.ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this));
+        else if (mode == Mode::selection && cc->getBouton() == 1)
+            aVerifier.ajouter(new ChangerMode(5, -1, -1, this));
+        else if (mode == Mode::selection && cc->getBouton() == 2)
+            aVerifier.ajouter(new ChangerMode(4, -1, -1, this));
     }
     
     if (listeCommande.get(1) != nullptr) // Gestion des touches caméra
