@@ -3,6 +3,7 @@
 #include "ListeCommande.h"
 #include "Deplacement.h"
 #include "ChangerMode.h"
+#include "Attaquer.h"
 #include <algorithm>
 #include <SFML/Graphics.hpp>
 using namespace engine;
@@ -47,6 +48,17 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
             {
                 lsAction->ajouter(new ChangerMode(4, -1, -1, moteur));
             }
+        }
+        if (dynamic_cast<Attaquer*>(lsAction->get(i)))
+        {
+            std::vector<state::CaseTerrain*> v = etat->getCaseAttaquable(etat->getSelectionne());
+            state::CaseTerrain* ct = static_cast<Attaquer*>(lsAction->get(i))->getCaseArrivee(etat);
+            if (std::find(v.begin(), v.end(), ct) == v.end())
+            {
+                lsAction->supprimer(i);
+                lsAction->ajouter(new ChangerMode(6, -1, -1, moteur));
+            }
+
         }
     }
     std::cout << "TAILLE : "<< lsAction->taille() << std::endl;   

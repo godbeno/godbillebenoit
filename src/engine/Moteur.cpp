@@ -5,6 +5,7 @@
 #include "Deplacement.h"
 #include "DeplacementCamera.h"
 #include "ChangerMode.h"
+#include "Attaquer.h"
 #include "Zoom.h"
 #include <iostream>
 
@@ -85,6 +86,9 @@ void Moteur::convertirCommande()
             aVerifier.ajouter(new ChangerMode(5, -1, -1, this));
         else if (mode == Mode::selection && cc->getBouton() == 2)
             aVerifier.ajouter(new ChangerMode(4, -1, -1, this));
+        else if (mode == Mode::attaque)
+            aVerifier.ajouter(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
+        
     }
     
     if (listeCommande.get(1) != nullptr) // Gestion des touches caméra

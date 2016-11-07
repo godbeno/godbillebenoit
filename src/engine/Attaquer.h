@@ -26,6 +26,7 @@ namespace engine {
   public:
     Attaquer (int Attaquantx, int Attaquanty, int Ciblex, int Cibley);
     void appliquer (state::Etat* etat);
+    state::CaseTerrain* getCaseArrivee (state::Etat* etat);
   };
 
 };

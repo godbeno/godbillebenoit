@@ -2,6 +2,7 @@
 #include <iostream>
 #include <algorithm>
 #include <SFML/Graphics.hpp>
+#include <ctime>
 using namespace state;
 
 Etat::Etat ()
@@ -105,7 +106,14 @@ void Etat::attaquer(int i1, int j1, int i2, int j2)
     Personnage* p2 = grille->getCellulePersonnage(i2,j2);
     if (p1 != nullptr && p2 != nullptr)
     {
-        //Compléter
+        int att = p1->getAttaque();
+        int sup = rand()%((2*att)/5);
+        att += sup - (att/5);
+        std::cout << "Dégâts infligés : " << att << std::endl;
+        p2->setPVrestant(p2->getPV()-att);
+        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(10), this, i1, j1, att, 0, i2, j2));
+        if (p2->getPV() < 0)
+            std::cout << "Le personnage est mort !" << std::endl;
     }
 }
 std::vector<CaseTerrain*> Etat::getCaseAtteignable(Personnage* p)

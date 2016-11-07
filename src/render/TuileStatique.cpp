@@ -236,7 +236,7 @@ TuileStatique::TuileStatique(float x, float y, int id, float w) : Tuile(x,y,id)
             break;
         case 72: // Attaque Canon rouge
             texture.loadFromFile("res/Textures/canon-tir.png");
-        
+            break;
         case 73: // Barre des tâches
             texture.loadFromFile("res/Textures/Barre-menu.png");
             break;

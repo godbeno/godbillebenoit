@@ -27,6 +27,7 @@ namespace render {
     void setY (float y);
     void setID (int id);
     virtual const sf::Sprite& getSprite () = 0;
+    virtual void updateSpritePosition (float x, float y) = 0;
   };
 
 };

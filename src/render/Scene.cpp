@@ -107,6 +107,11 @@ void Scene::changementEtat(state::EvenementEtat& e)
             panneau->unsetSelectionne();
         }
     }
+    else if (e.getTypeEvenement() == state::Attaque)
+    {
+        couchePersonnage->setTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, new TuileAnimee((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, 5, tx, couchePersonnage));
+        couchePersonnage->setTuile((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, new TuileAnimee((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, 18, tx, couchePersonnage));
+    }
     
     
 }

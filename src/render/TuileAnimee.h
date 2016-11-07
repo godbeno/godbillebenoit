@@ -38,6 +38,7 @@ namespace render {
     void setTuile (int i, Tuile* tuile);
     void update (clock_t time);
     const sf::Sprite& getSprite ();
+    void updateSpritePosition (float x, float y);
   };
 
 };

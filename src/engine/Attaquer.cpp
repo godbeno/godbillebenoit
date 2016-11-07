@@ -14,3 +14,7 @@ void Attaquer::appliquer(state::Etat* etat)
 {
     etat->attaquer(attaquantX, attaquantY, cibleX, cibleY);
 }
+state::CaseTerrain* Attaquer::getCaseArrivee(state::Etat* etat)
+{
+    return etat->getGrille().getCelluleDecor(cibleX, cibleY);
+}

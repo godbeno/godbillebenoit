@@ -9,6 +9,7 @@
 #include "engine/CommandeZoomCamera.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <ctime>
 
 using namespace std; 
 using namespace state;
@@ -20,6 +21,7 @@ int main(int argc,char* argv[])
 {   
     
     // Test Unitaire - Etat du jeu 
+    srand(time(NULL));
     RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Test Affichage", Style::Fullscreen);
     Etat *etat = new Etat;
     Moteur *m = new Moteur(etat);

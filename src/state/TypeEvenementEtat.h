@@ -14,7 +14,8 @@ namespace state {
     ZoomCamera     = 6,
     ModeDeplacement     = 7,
     ChangementSelectionne     = 8,
-    ModeAttaque     = 9
+    ModeAttaque     = 9,
+    Attaque     = 10
   };
 
 };

@@ -99,6 +99,12 @@ void Couche::deplacerCamera(float x, float y)
         brillance[i].setPosition(ancienBrix+x, ancienBriy+y);
 
     }
+    for (unsigned int i = 0; i < rouge.size(); i++)
+    {
+        int ancienBrix = rouge[i].getPosition().x;
+        int ancienBriy = rouge[i].getPosition().y;
+        rouge[i].setPosition(ancienBrix+x, ancienBriy+y);
+    }
 }
 void Couche::zoomCamera(float s)
 {
@@ -124,6 +130,13 @@ void Couche::zoomCamera(float s)
         int ancienBriy = brillance[i].getPosition().y;
         brillance[i].setPosition(ancienBrix*s, ancienBriy*s);
         brillance[i].setScale(brillance[i].getScale().x*s,brillance[i].getScale().y*s);
+    }
+    for (unsigned int i = 0; i < rouge.size(); i++)
+    {
+        int ancienBrix = rouge[i].getPosition().x;
+        int ancienBriy = rouge[i].getPosition().y;
+        rouge[i].setPosition(ancienBrix*s, ancienBriy*s);
+        rouge[i].setScale(rouge[i].getScale().x*s,rouge[i].getScale().y*s);
     }
 }
 void Couche::unsetSurbrillance()

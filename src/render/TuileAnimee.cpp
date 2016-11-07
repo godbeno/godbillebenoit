@@ -9,7 +9,7 @@ TuileAnimee::TuileAnimee(float x, float y, int id, float vitesse, Couche* couche
 {
     nbr = 0;
     this->vitesse = vitesse;
-    float tx = sf::VideoMode::getDesktopMode().height/24.;
+    float tx = vitesse;
     debut = clock();
     parent = couche;
     switch(id)
@@ -343,4 +343,11 @@ void TuileAnimee::update (clock_t time)
 const sf::Sprite& TuileAnimee::getSprite()
 {
     return tuiles[nbr]->getSprite();
+}
+void TuileAnimee::updateSpritePosition(float x, float y)
+{
+    for (unsigned int i = 0; i < tuiles.size(); i++)
+        tuiles[i]->updateSpritePosition(x,y);
+    this->x = x;
+    this->y = y;
 }
