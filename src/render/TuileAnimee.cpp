@@ -330,6 +330,8 @@ void TuileAnimee::setTuile (int i, Tuile* tuile)
 }
 void TuileAnimee::update (clock_t time)
 {
+    //if (double(time-debut)/ CLOCKS_PER_SEC > 0.2)
+    parent->monterDegat();
     if (double(time-debut)/ CLOCKS_PER_SEC > 0.2)
     {
         nbr++;
@@ -338,6 +340,7 @@ void TuileAnimee::update (clock_t time)
     if (nbr > tuiles.size()-1)
     {
         parent->setTuile(x,y,static_cast<TuileStatique*>(tuiles[nbr-1])->copy());
+        parent->stopDegat();
     }
 }
 const sf::Sprite& TuileAnimee::getSprite()

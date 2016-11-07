@@ -118,3 +118,13 @@ void GrilleElement::deplacerElement(Personnage* p, int i, int j)
         }
     }
 }
+void GrilleElement::supprimerElement(int i, int j)
+{
+    for (unsigned int k = 0; k < elements.size(); k++)
+        if (elements[k]->estPersonnage() && elements[k]->getX() == i && elements[k]->getY() == j)
+        {
+            delete elements[k];
+            elements.erase(elements.begin()+k);
+        }
+            
+}

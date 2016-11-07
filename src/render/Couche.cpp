@@ -10,6 +10,9 @@ Couche::Couche(sf::RenderWindow* window)
     tuiles.clear();
     this->window = window;
     select = 0;
+    font.loadFromFile("res/Fonts/arial.ttf");
+    estDegat = false;
+    
 }
 Couche::~Couche()
 {
@@ -33,7 +36,8 @@ void Couche::setTuile (int i, int j, Tuile* tuile)
             delete tuiles[k];
             tuiles.erase(tuiles.begin()+k);
         }
-    tuiles.push_back(tuile);
+    if (tuile)
+        tuiles.push_back(tuile);
     
 }
 void Couche::addTuile(Tuile* tuile)
@@ -68,6 +72,8 @@ void Couche::afficher()
         window->draw(rouge[i]);
     if (select)
         window->draw(*select);
+    if (estDegat)
+        window->draw(degat);
 }
 void Couche::setSurbrillance(int x, int y, float tx)
 {
@@ -172,4 +178,21 @@ void Couche::setRouge(int x, int y, float tx)
 void Couche::unsetRouge()
 {
     rouge.clear();
+}
+void Couche::setDegat(float x, float y, int nbDegat)
+{
+    degat.setFont(font);
+    degat.setString("-" + std::to_string(nbDegat));
+    degat.setPosition(x+20, y-20);
+    degat.setColor(sf::Color::Red);
+    degat.setCharacterSize(20);
+    estDegat = true;
+}
+void Couche::stopDegat()
+{
+    estDegat = false;
+}
+void Couche::monterDegat()
+{
+    degat.setPosition(degat.getPosition().x, degat.getPosition().y-0.5);
 }

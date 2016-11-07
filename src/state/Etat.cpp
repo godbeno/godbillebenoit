@@ -80,9 +80,9 @@ void Etat::deplacerElement(int i1, int j1, int i2, int j2)
     {
         grille->deplacerElement(p, i2, j2);
         liste->copy(*grille);
+        p->setPArestant(p->getPA()-(abs(i1-i2)+abs(j1-j2)));
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(1), this, i1,j1, p->getID(),p->getEquipe(), i2, j2));
         std::cout << "Les observateurs ont été notifiés" << std::endl;
-        p->setPArestant(p->getPA()-(abs(i1-i2)+abs(j1-j2)));
     }
     else
     {
@@ -111,10 +111,14 @@ void Etat::attaquer(int i1, int j1, int i2, int j2)
         att += sup - (att/5);
         std::cout << "Dégâts infligés : " << att << std::endl;
         p2->setPVrestant(p2->getPV()-att);
-        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(10), this, i1, j1, att, 0, i2, j2));
         p1->setPArestant(p1->getPA()-2);
+        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(10), this, i1, j1, 0, 0, i2, j2, att));
         if (p2->getPV() < 0)
-            std::cout << "Le personnage est mort !" << std::endl;
+        {
+            //Le personnage attaqué est mort
+            avertirObservateurs(new EvenementEtat(TypeEvenementEtat(2), this, i2, j2, 0, 0));
+            grille->supprimerElement(i2,j2);
+        }
     }
 }
 std::vector<CaseTerrain*> Etat::getCaseAtteignable(Personnage* p)

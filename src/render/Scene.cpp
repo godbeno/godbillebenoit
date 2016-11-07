@@ -57,6 +57,7 @@ void Scene::changementEtat(state::EvenementEtat& e)
             couchePersonnage->setTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, new TuileStatique((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, e.getPid(), tx));
             coucheTerrain->setSelectionne((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, tx);
             std::cout << "FIN" << std::endl;
+            panneau->setSelectionne(etat, etat->getSelectionne());
         }
         else
             std::cout << "Null ptr" << std::endl;
@@ -117,6 +118,12 @@ void Scene::changementEtat(state::EvenementEtat& e)
         std::cout << idp2 << " -> " << id2 << " (" << (((idp2-43)/2)-1) << ", " << ((idp2+1)%2)*18 + ((idp2)%2)*12 << " )" << std::endl;
         couchePersonnage->setTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, new TuileAnimee((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, id1, tx, couchePersonnage));
         couchePersonnage->setTuile((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, new TuileAnimee((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, id2, tx, couchePersonnage));
+        couchePersonnage->setDegat((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, (int)e.getZoom());
+        panneau->setSelectionne(etat, etat->getSelectionne());
+    }
+    else if (e.getTypeEvenement() == state::PersonnageMort)
+    {
+        couchePersonnage->setTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx,nullptr);
     }
     
     

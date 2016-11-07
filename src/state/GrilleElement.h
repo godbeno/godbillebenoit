@@ -32,6 +32,7 @@ namespace state {
     CaseTerrain* const getCelluleDecor (int i, int j);
     void genererTerrainAleatoire (bool estChateau);
     void deplacerElement (Personnage* p, int i, int j);
+    void supprimerElement (int i, int j);
   };
 
 };

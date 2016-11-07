@@ -28,6 +28,9 @@ namespace render {
     std::vector<sf::RectangleShape> brillance;
     sf::RectangleShape* select;
     std::vector<sf::RectangleShape> rouge;
+    sf::Text degat;
+    sf::Font font;
+    bool estDegat;
     // Operations
   public:
     Couche (sf::RenderWindow* window);
@@ -45,6 +48,9 @@ namespace render {
     void unsetSelectionne ();
     void setRouge (int x, int y, float tx);
     void unsetRouge ();
+    void setDegat (float x, float y, int nbDegat);
+    void monterDegat ();
+    void stopDegat ();
   };
 
 };
