@@ -25,7 +25,7 @@ TuileAnimee::TuileAnimee(float x, float y, int id, float vitesse, Couche* couche
          * 0-5 : Attaque Personnage rouge
          * 6-11 : Attaque personnage bleu
          * 12-17 : Personnage rouge touché
-         * 17-23 : Personnage bleu touché
+         * 18-24 : Personnage bleu touché
          * 24-26 : Personnage rouge mort
          * 27-29 : personnage bleu mort
          *
@@ -74,10 +74,10 @@ TuileAnimee::TuileAnimee(float x, float y, int id, float vitesse, Couche* couche
             tuiles.push_back(new TuileStatique(x, y, 44, tx));
             break;
         case 7: 
+            tuiles.push_back(new TuileStatique(x, y, 61, tx));
             tuiles.push_back(new TuileStatique(x, y, 62, tx));
-            tuiles.push_back(new TuileStatique(x, y, 63, tx));
+            tuiles.push_back(new TuileStatique(x, y, 61, tx));
             tuiles.push_back(new TuileStatique(x, y, 62, tx));
-            tuiles.push_back(new TuileStatique(x, y, 63, tx));
             tuiles.push_back(new TuileStatique(x, y, 46, tx));
             break;
         case 8:

@@ -53,7 +53,8 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
         {
             std::vector<state::CaseTerrain*> v = etat->getCaseAttaquable(etat->getSelectionne());
             state::CaseTerrain* ct = static_cast<Attaquer*>(lsAction->get(i))->getCaseArrivee(etat);
-            if (std::find(v.begin(), v.end(), ct) == v.end())
+            state::Personnage* p = etat->getSelectionne();
+            if (std::find(v.begin(), v.end(), ct) == v.end() || p->getPA() < 2)
             {
                 lsAction->supprimer(i);
                 lsAction->ajouter(new ChangerMode(6, -1, -1, moteur));

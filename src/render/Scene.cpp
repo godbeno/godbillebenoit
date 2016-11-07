@@ -109,8 +109,14 @@ void Scene::changementEtat(state::EvenementEtat& e)
     }
     else if (e.getTypeEvenement() == state::Attaque)
     {
-        couchePersonnage->setTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, new TuileAnimee((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, 5, tx, couchePersonnage));
-        couchePersonnage->setTuile((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, new TuileAnimee((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, 18, tx, couchePersonnage));
+        int idp1 = couchePersonnage->getTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx)->getID();
+        int idp2 = couchePersonnage->getTuile((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, tx)->getID();
+        int id1 = (((idp1-43)/2)-1) + ((idp1+1)%2)*7;
+        int id2 = (((idp2-43)/2)-1) + ((idp2+1)%2)*19 + ((idp2)%2)*12;
+        std::cout << idp1 << " -> " << id1 << " (" << (((idp1-43)/2)-1) << ", " << ((idp1+1)%2)*7 << " )" << std::endl;
+        std::cout << idp2 << " -> " << id2 << " (" << (((idp2-43)/2)-1) << ", " << ((idp2+1)%2)*18 + ((idp2)%2)*12 << " )" << std::endl;
+        couchePersonnage->setTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, new TuileAnimee((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, id1, tx, couchePersonnage));
+        couchePersonnage->setTuile((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, new TuileAnimee((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, id2, tx, couchePersonnage));
     }
     
     

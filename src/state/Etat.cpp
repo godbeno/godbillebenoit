@@ -112,6 +112,7 @@ void Etat::attaquer(int i1, int j1, int i2, int j2)
         std::cout << "Dégâts infligés : " << att << std::endl;
         p2->setPVrestant(p2->getPV()-att);
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(10), this, i1, j1, att, 0, i2, j2));
+        p1->setPArestant(p1->getPA()-2);
         if (p2->getPV() < 0)
             std::cout << "Le personnage est mort !" << std::endl;
     }
