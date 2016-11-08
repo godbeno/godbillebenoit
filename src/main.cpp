@@ -41,6 +41,7 @@ int main(int argc,char* argv[])
     std::cout << " COEFFICIENT : " << scene->getCoeff() << std::endl;
     int largeur = sf::VideoMode::getDesktopMode().width;
     int hauteur = sf::VideoMode::getDesktopMode().height;
+    bool monTour = true;
     
     
 
@@ -52,7 +53,7 @@ int main(int argc,char* argv[])
             // évènement "fermeture demandée" : on ferme la fenêtre
             if (event.type == Event::Closed)
                 window->close();
-            if (event.type == sf::Event::MouseButtonPressed)
+            if (event.type == sf::Event::MouseButtonPressed && monTour)
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
                     if (event.mouseButton.x > largeur/2 -180 && event.mouseButton.x < largeur/2 - 120 && event.mouseButton.y > hauteur-100 && event.mouseButton.y < hauteur-40)
