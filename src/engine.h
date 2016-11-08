@@ -21,4 +21,5 @@
 #include "engine/ListeCommande.h"
 #include "engine/Mode.h"
 #include "engine/Moteur.h"
+#include "engine/Historique.h"
 #endif

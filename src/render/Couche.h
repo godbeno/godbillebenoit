@@ -31,6 +31,8 @@ namespace render {
     sf::Text degat;
     sf::Font font;
     bool estDegat;
+    sf::Text mort;
+    bool estMort;
     // Operations
   public:
     Couche (sf::RenderWindow* window);
