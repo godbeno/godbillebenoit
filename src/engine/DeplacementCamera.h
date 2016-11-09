@@ -26,6 +26,7 @@ namespace engine {
   public:
     DeplacementCamera (int originex, int originey, int ciblex, int cibley);
     void appliquer (state::Etat* etat);
+    void annuler (state::Etat* etat);
   };
 
 };

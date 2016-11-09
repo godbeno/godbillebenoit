@@ -20,12 +20,15 @@ namespace engine {
   /// class ChangerMode - 
   class ChangerMode : public engine::Action {
     // Attributes
+  public:
+    state::Personnage* ancienPersonnage;
   private:
     /// 		
     Moteur* moteur;
     /// 	
     int x;
     int y;
+    int ancienMode;
   protected:
     int idMode;
     // Operations
@@ -35,6 +38,7 @@ namespace engine {
     state::Personnage* getPersonnage (state::Etat* etat);
     int getX ();
     int getY ();
+    void annuler (state::Etat* etat);
   };
 
 };

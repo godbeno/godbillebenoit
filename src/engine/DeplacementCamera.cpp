@@ -16,3 +16,8 @@ void DeplacementCamera::appliquer(state::Etat* etat)
     etat->setCamerax(ciblex);
     etat->setCameray(cibley);
 }
+void DeplacementCamera::annuler (state::Etat* etat)
+{
+    etat->setCamerax(originex);
+    etat->setCameray(originey);
+}

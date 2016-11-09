@@ -22,3 +22,7 @@ state::CaseTerrain* Deplacement::getCaseArrivee(state::Etat* etat)
 {
     return etat->getGrille().getCelluleDecor(cibleX, cibleY);
 }
+void Deplacement::annuler (state::Etat* etat)
+{
+    etat->deplacerElement(cibleX, cibleY, origineX, origineY);
+}

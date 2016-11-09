@@ -23,6 +23,7 @@ namespace engine {
   public:
     Zoom (int i);
     void appliquer (state::Etat* etat);
+    void annuler (state::Etat* etat);
   };
 
 };

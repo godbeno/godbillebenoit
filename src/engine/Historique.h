@@ -27,8 +27,8 @@ namespace engine {
   public:
     Historique (state::Etat* sauvegarde);
     void ajouterAction (Action* action);
-    void annulerUneAction ();
-    void annulerToutesActions ();
+    void annulerUneAction (state::Etat* etat);
+    void annulerToutesActions (state::Etat* etat);
     void retourSauvegarde (state::Etat* etat);
   };
 

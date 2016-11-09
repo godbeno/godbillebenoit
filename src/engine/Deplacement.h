@@ -27,6 +27,7 @@ namespace engine {
     Deplacement (int Originex, int Originey, int Ciblex, int Cibley);
     void appliquer (state::Etat* etat);
     state::CaseTerrain* getCaseArrivee (state::Etat* etat);
+    void annuler (state::Etat* etat);
   };
 
 };

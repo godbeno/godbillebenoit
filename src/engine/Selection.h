@@ -17,6 +17,8 @@ namespace engine {
   /// class Selection - 
   class Selection : public engine::Action {
     // Attributes
+  public:
+    state::Personnage* ancienSelect;
   protected:
     int selectionX;
     int selectionY;
@@ -24,6 +26,7 @@ namespace engine {
   public:
     Selection (int Selectionx, int Selectiony);
     void appliquer (state::Etat* etat);
+    void annuler (state::Etat* etat);
   };
 
 };

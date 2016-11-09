@@ -100,7 +100,7 @@ void Etat::setSelectionne(int i, int j)
     selectionne = grille->getCellulePersonnage(i, j);
     avertirObservateurs(new EvenementEtat(TypeEvenementEtat(8), this, i, j, 0, 0));
 }
-void Etat::attaquer(int i1, int j1, int i2, int j2)
+int Etat::attaquer(int i1, int j1, int i2, int j2)
 {
     Personnage* p1 = grille->getCellulePersonnage(i1,j1);
     Personnage* p2 = grille->getCellulePersonnage(i2,j2);
@@ -119,7 +119,9 @@ void Etat::attaquer(int i1, int j1, int i2, int j2)
             avertirObservateurs(new EvenementEtat(TypeEvenementEtat(2), this, i2, j2, 0, 0));
             grille->supprimerElement(i2,j2);
         }
+        return att;
     }
+    return 0;
 }
 std::vector<CaseTerrain*> Etat::getCaseAtteignable(Personnage* p)
 {
