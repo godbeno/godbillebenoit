@@ -44,7 +44,7 @@ GrilleElement& Etat::getGrille ()
     return *grille;
 }
 
-const ListeElement& Etat::getListe()
+ListeElement& Etat::getListe()
 {
     return *liste;
 }

@@ -7,6 +7,7 @@
 #include "engine/Direction.h"
 #include "engine/CommandeFleche.h"
 #include "engine/CommandeZoomCamera.h"
+#include "AI/IA.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <ctime>
@@ -16,6 +17,7 @@ using namespace state;
 using namespace render;
 using namespace engine;
 using namespace sf;
+using namespace AI;
 
 int main(int argc,char* argv[]) 
 {   
@@ -25,6 +27,7 @@ int main(int argc,char* argv[])
     RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Test Affichage", Style::Fullscreen);
     Etat *etat = new Etat;
     Moteur *m = new Moteur(etat);
+    IA *ia = new IA(etat);
 
     etat->initialiserTerrain(true);
     Scene* scene = new Scene(etat, window);
@@ -41,7 +44,7 @@ int main(int argc,char* argv[])
     std::cout << " COEFFICIENT : " << scene->getCoeff() << std::endl;
     int largeur = sf::VideoMode::getDesktopMode().width;
     int hauteur = sf::VideoMode::getDesktopMode().height;
-    bool monTour = true;
+    bool monTour = false;
     
     
 
@@ -83,7 +86,8 @@ int main(int argc,char* argv[])
         }
         scene->afficher();
         m->update(clock());
-        
+        ia->appliquer(1);
+        ia->appliquer(0);
     }
     
 

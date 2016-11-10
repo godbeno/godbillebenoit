@@ -14,11 +14,14 @@ namespace AI {
   /// class IA - 
   class IA {
     // Attributes
-  private:
+  protected:
     state::Etat* etat;
+    bool equipe;
     // Operations
   public:
-    IA (state::Etat* etat, bool equipe);
+    IA (state::Etat* etat);
+    ~IA ();
+    void appliquer ( bool);
   };
 
 };

@@ -1,27 +1,41 @@
 #include "IA.h"
+#include "engine.h"
+#include "state.h"
+
+using namespace AI;
+using namespace engine;
+using namespace state;
 
 
-IA (state::Etat* etat, bool equipe)
+IA::IA (state::Etat* etat)
 {
    this->etat = etat;
-   this->equipe = equipe;
+}
 
-   for (int i=0;i< etat->getListe().size();i++)
-   {
-      if (etat->getListe()->get(i)->estPersonnage() && etat->getListe()->get(i)->getEquipe()==bool)
-      {
-         while ( etat->getListe()->get(i)->getPA() > 0)
-         {
-            if (getCaseAttaquable(etat->getListe()->get(i)).size() != 0)
-            {  
-               Attaquer(etat->getListe()->get(i)->getX(),etat->getListe()->get(i)->getY(), getCaseAttaquable(etat->getListe()->get(i))[0]->getX(), getCaseAttaquable(etat->getListe()->get(i))[0]->getY();
-	    }
-	    {
-	       Deplacement(etat->getListe()->get(i)->getX(),etat->getListe()->get(i)->getY(),etat->getListe()->get(i)->getX()+1,etat->getListe()->get(i)->getY()+1);
-	    }
-         }
-      }   
-   }
+void IA::appliquer(bool equipe)
+{
+   for (int i=0;i< this->etat->getListe().size();i++)
+   {   
+       if (etat->getListe().get(i)->estPersonnage())
+       {
+           if(static_cast<Personnage*>(etat->getListe().get(i))->getEquipe()==equipe)
+           {
+               while (static_cast<Personnage*>(etat->getListe().get(i))->getPA() > 0)
+               {
+                   if (etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i))).size() != 0)
+                   {  
+                       engine::Attaquer(etat->getListe().get(i)->getX(),etat->getListe().get(i)->getY(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getY());
+                   }
+                   {
+                       engine::Deplacement(static_cast<Personnage*>(etat->getListe().get(i))->getX(),static_cast<Personnage*>(etat->getListe().get(i))->getY(),static_cast<Personnage*>(etat->getListe().get(i))->getX()+1,static_cast<Personnage*>(etat->getListe().get(i))->getY()+1);
+                   }
+               }
+           }
+       }
+    }
 }
  	
-
+IA::~IA()
+{
+    delete this;
+}
