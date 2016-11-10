@@ -3,6 +3,12 @@
 #define AI__IA__H
 
 
+namespace state {
+  class Etat;
+}
+
+#include "state/Etat.h"
+
 namespace AI {
 
   /// class IA - 
@@ -10,10 +16,9 @@ namespace AI {
     // Attributes
   private:
     state::Etat* etat;
-    bool equipe;
     // Operations
   public:
-    IA (bool equipe);
+    IA (state::Etat* etat, bool equipe);
   };
 
 };

@@ -2,16 +2,5 @@
 #ifndef __STATE__H
 #define __STATE__H
 
-#include "state/TypeEvenementEtat.h"
-#include "state/EvenementEtat.h"
-#include "state/Observateur.h"
-#include "state/Observable.h"
-#include "state/TypePersonnage.h"
-#include "state/Element.h"
-#include "state/Personnage.h"
-#include "state/ListeElement.h"
-#include "state/Acces.h"
-#include "state/CaseTerrain.h"
-#include "state/GrilleElement.h"
 #include "state/Etat.h"
 #endif
