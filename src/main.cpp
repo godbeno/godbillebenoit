@@ -8,9 +8,11 @@
 #include "engine/CommandeFleche.h"
 #include "engine/CommandeZoomCamera.h"
 #include "AI/IA.h"
+#include "engine/Regulateur.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <ctime>
+#include <unistd.h>
 
 using namespace std; 
 using namespace state;
@@ -85,9 +87,12 @@ int main(int argc,char* argv[])
             
         }
         scene->afficher();
+        ia->appliquer(true);
+        usleep(150000);
+        ia->appliquer(false);
+        usleep(150000);
         m->update(clock());
-        ia->appliquer(1);
-        ia->appliquer(0);
+        
     }
     
 

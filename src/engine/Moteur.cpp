@@ -36,7 +36,7 @@ Mode Moteur::getMode()
 }
 void Moteur::update(clock_t t)
 {
-    if ((t-derniereMaj) > 0.2)
+    if ((t-derniereMaj) > 1)
     {
         //std::cout << "update" << std::endl;
         if (listeCommande.taille() != 0)

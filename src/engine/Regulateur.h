@@ -3,12 +3,14 @@
 #define ENGINE__REGULATEUR__H
 
 
+namespace engine {
+  class ListeActions;
+};
 namespace state {
   class Etat;
 };
 namespace engine {
   class ListeCommande;
-  class ListeActions;
   class Moteur;
 }
 
@@ -20,10 +22,11 @@ namespace engine {
   class Regulateur {
     // Associations
     // Attributes
+  public:
+    ListeActions* actions;
   protected:
     state::Etat* etatCourant;
     ListeCommande* commandes;
-    ListeActions* actions;
     // Operations
   public:
     Regulateur (ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd, Moteur* moteur);
