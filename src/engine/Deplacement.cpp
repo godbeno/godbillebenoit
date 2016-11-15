@@ -26,3 +26,7 @@ void Deplacement::annuler (state::Etat* etat)
 {
     etat->deplacerElement(cibleX, cibleY, origineX, origineY);
 }
+int Deplacement::getDistance()
+{
+    return abs(cibleX-origineX)+abs(cibleY-origineY);
+}
