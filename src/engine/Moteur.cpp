@@ -16,6 +16,7 @@ Moteur::Moteur(state::Etat* etat)
     mode = Mode::demarrer;
     derniereMaj = clock();
     this->etat = etat;
+    aVerifier = new ListeActions(etat);
 }
 Moteur::~Moteur()
 {
@@ -72,22 +73,21 @@ void Moteur::convertirCommande()
 {
     std::cout << "--------------------------------" << std::endl;
     std::cout << "On entre dans Convertir Commande" << std::endl;
-    ListeActions aVerifier(etat); 
     if (listeCommande.get(3) != nullptr) // Gestion du clic de souris
     {
         CommandeClic* cc = static_cast<CommandeClic*>(listeCommande.get(3));
         if (mode == Mode::deplacement)
-            aVerifier.ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
+            aVerifier->ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
         else if (mode == Mode::jeu)
-            aVerifier.ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this));
+            aVerifier->ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this));
         else if (mode == Mode::selection && cc->getBouton() == 0)
-            aVerifier.ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this));
+            aVerifier->ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this));
         else if (mode == Mode::selection && cc->getBouton() == 1)
-            aVerifier.ajouter(new ChangerMode(5, -1, -1, this));
+            aVerifier->ajouter(new ChangerMode(5, -1, -1, this));
         else if (mode == Mode::selection && cc->getBouton() == 2)
-            aVerifier.ajouter(new ChangerMode(4, -1, -1, this));
+            aVerifier->ajouter(new ChangerMode(4, -1, -1, this));
         else if (mode == Mode::attaque)
-            aVerifier.ajouter(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
+            aVerifier->ajouter(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
         
     }
     
@@ -97,25 +97,25 @@ void Moteur::convertirCommande()
        CommandeFleche* cc = static_cast<CommandeFleche*>(listeCommande.get(1));
        if (cc->getDirection() == 1)
        {
-          aVerifier.ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax(), etat->getCameray()-1));
+          aVerifier->ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax(), etat->getCameray()-1));
        }
        else if(cc->getDirection() == 2)
        {
-          aVerifier.ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax(), etat->getCameray()+1));
+          aVerifier->ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax(), etat->getCameray()+1));
        }
        else if(cc->getDirection() == 3)
        {
-          aVerifier.ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax()+1, etat->getCameray()));
+          aVerifier->ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax()+1, etat->getCameray()));
        }
        else if(cc->getDirection() == 4)
        {
-          aVerifier.ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax()-1, etat->getCameray()));
+          aVerifier->ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax()-1, etat->getCameray()));
        }
     }
     if (listeCommande.get(2) != nullptr) // Gestion du zoom caméra
     {
        CommandeZoomCamera* cc = static_cast<CommandeZoomCamera*>(listeCommande.get(2));
-       aVerifier.ajouter(new Zoom(cc->geti()));
+       aVerifier->ajouter(new Zoom(cc->geti()));
     }
 
 
@@ -159,4 +159,8 @@ void Moteur::setCameray(int cy)
 int Moteur::getCameray()
 {
     return cameray;
+}
+void Moteur::ajouterAction(Action* action)
+{
+    aVerifier->ajouter(action);
 }

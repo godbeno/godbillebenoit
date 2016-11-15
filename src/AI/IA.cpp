@@ -9,9 +9,10 @@ using namespace engine;
 using namespace state;
 
 
-IA::IA (state::Etat* etat)
+IA::IA (state::Etat* etat, engine::Moteur* moteur)
 {
    this->etat = etat;
+   this->moteur = moteur;
 }
 
 void IA::appliquer(bool equipe)
@@ -27,11 +28,15 @@ void IA::appliquer(bool equipe)
                while (static_cast<Personnage*>(etat->getListe().get(i))->getPA() > 0)
                {        
                    std::cout << "PA du perso courant = " << static_cast<Personnage*>(etat->getListe().get(i))->getPA() << std::endl;
-                   if (etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i))).size() != 0)
-                   {  std::cout << "Il attaque depuis " << etat->getListe().get(i)->getX() << " , " << etat->getListe().get(i)->getY() << " vers " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX() << " , " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX() << std::endl;
+                   if (static_cast<Personnage*>(etat->getListe().get(i))->getPA() > 1 && etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i))).size() != 0)
+                   {  
+                       std::cout << "Il attaque depuis " << etat->getListe().get(i)->getX() << " , " << etat->getListe().get(i)->getY() << " vers " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX() << " , " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX() << std::endl;
+                       
                        etat->attaquer(etat->getListe().get(i)->getX(),etat->getListe().get(i)->getY(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getY());
-                   }        
-                   { std::cout << "Il se déplace de " << static_cast<Personnage*>(etat->getListe().get(i))->getX() << " , " << static_cast<Personnage*>(etat->getListe().get(i))->getY() << " vers " << etat->getCaseAtteignable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX() << " , "<< etat->getCaseAtteignable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX() << std::endl;
+                   } 
+                   else
+                   {
+                       std::cout << "Il se déplace de " << static_cast<Personnage*>(etat->getListe().get(i))->getX() << " , " << static_cast<Personnage*>(etat->getListe().get(i))->getY() << " vers " << etat->getCaseAtteignable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX() << " , "<< etat->getCaseAtteignable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX() << std::endl;
                        etat->deplacerElement(static_cast<Personnage*>(etat->getListe().get(i))->getX(),static_cast<Personnage*>(etat->getListe().get(i))->getY(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX());
                    }
                }

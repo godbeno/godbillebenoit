@@ -32,6 +32,7 @@ namespace engine {
     void appliquer ();
     int taille ();
     void supprimer (int i);
+    void vider ();
   };
 
 };

@@ -3,12 +3,16 @@
 #define ENGINE__MOTEUR__H
 
 
+namespace engine {
+  class ListeActions;
+};
 namespace state {
   class Etat;
 };
 namespace engine {
   class ListeCommande;
   class Commande;
+  class Action;
   class Regulateur;
 }
 
@@ -23,6 +27,9 @@ namespace engine {
   class Moteur {
     // Associations
     // Attributes
+  public:
+    /// 	
+    ListeActions* aVerifier;
   private:
     state::Etat* etat;
     ListeCommande listeCommande;
@@ -47,6 +54,7 @@ namespace engine {
     void setCamerax (int cx);
     int getCameray ();
     void setCameray (int cy);
+    void ajouterAction (Action* action);
   };
 
 };

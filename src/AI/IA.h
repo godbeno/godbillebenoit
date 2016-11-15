@@ -5,6 +5,9 @@
 
 namespace state {
   class Etat;
+};
+namespace engine {
+  class Moteur;
 }
 
 #include "state/Etat.h"
@@ -17,9 +20,11 @@ namespace AI {
   protected:
     state::Etat* etat;
     bool equipe;
+    /// 			
+    engine::Moteur* moteur;
     // Operations
   public:
-    IA (state::Etat* etat);
+    IA (state::Etat* etat, engine::Moteur* moteur);
     ~IA ();
     void appliquer ( bool);
   };
