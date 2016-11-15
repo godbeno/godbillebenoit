@@ -124,10 +124,11 @@ void Moteur::convertirCommande()
     
     
    
-    Regulateur r(&aVerifier, etat, &listeCommande, this);
+    Regulateur r(aVerifier, etat, &listeCommande, this);
     r.appliquer();
     //std::cout << "Fin de l'application" << std::endl;
     listeCommande.vider();
+    aVerifier->vider();
     //std::cout << "Liste vidée ! " << std::endl;
 }
 

@@ -48,4 +48,7 @@ void ListeActions::supprimer(int i)
 {
     actions.erase(actions.begin() + i);
 }
-
+void ListeActions::vider()
+{
+    actions.clear();
+}
