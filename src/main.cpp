@@ -26,7 +26,7 @@ int main(int argc,char* argv[])
     
     // Test Unitaire - Etat du jeu 
     srand(time(NULL));
-    RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Test Affichage", Style::Fullscreen);
+    RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Test Affichage");
     Etat *etat = new Etat;
     Moteur *m = new Moteur(etat);
     IA *ia = new IA(etat,m);
@@ -46,7 +46,7 @@ int main(int argc,char* argv[])
     std::cout << " COEFFICIENT : " << scene->getCoeff() << std::endl;
     int largeur = sf::VideoMode::getDesktopMode().width;
     int hauteur = sf::VideoMode::getDesktopMode().height;
-    bool monTour = false;
+    bool monTour = true;
     
     
 
@@ -61,9 +61,9 @@ int main(int argc,char* argv[])
             if (event.type == sf::Event::MouseButtonPressed && monTour)
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
-                    if (event.mouseButton.x > largeur/2 -180 && event.mouseButton.x < largeur/2 - 120 && event.mouseButton.y > hauteur-100 && event.mouseButton.y < hauteur-40)
+                    if (event.mouseButton.x > largeur/2 -185 && event.mouseButton.x < largeur/2 - 115 && event.mouseButton.y > hauteur-105 && event.mouseButton.y < hauteur-35)
                         m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 1));
-                    else if (event.mouseButton.x > largeur/2 -110 && event.mouseButton.x < largeur/2 - 50 && event.mouseButton.y > hauteur-100 && event.mouseButton.y < hauteur-40)
+                    else if (event.mouseButton.x > largeur/2 -115 && event.mouseButton.x < largeur/2 - 45 && event.mouseButton.y > hauteur-105 && event.mouseButton.y < hauteur-35)
                         
                         m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 2));
                     else
@@ -87,8 +87,6 @@ int main(int argc,char* argv[])
             
         }
         scene->afficher();
-        ia->appliquer(true);
-        ia->appliquer(false);
         m->update(clock());
         
     }
