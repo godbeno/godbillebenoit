@@ -29,7 +29,7 @@ int main(int argc,char* argv[])
     RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Test Affichage", Style::Fullscreen);
     Etat *etat = new Etat;
     Moteur *m = new Moteur(etat);
-    IA *ia = new IA(etat);
+    IA *ia = new IA(etat,m);
 
     etat->initialiserTerrain(true);
     Scene* scene = new Scene(etat, window);
