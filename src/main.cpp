@@ -88,9 +88,7 @@ int main(int argc,char* argv[])
         }
         scene->afficher();
         ia->appliquer(true);
-        usleep(150000);
         ia->appliquer(false);
-        usleep(150000);
         m->update(clock());
         
     }
