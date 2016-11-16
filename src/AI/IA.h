@@ -10,15 +10,18 @@ namespace engine {
   class Moteur;
 }
 
+#include "Niveau.h"
 #include "state/Etat.h"
 
 namespace AI {
 
   /// class IA - 
   class IA {
+    // Associations
     // Attributes
   private:
     int i;
+    Niveau niveau;
   protected:
     state::Etat* etat;
     bool equipe;
@@ -26,12 +29,14 @@ namespace AI {
     engine::Moteur* moteur;
     // Operations
   public:
-    IA (state::Etat* etat, engine::Moteur* moteur);
+    IA (state::Etat* etat, engine::Moteur* moteur, Niveau niv);
     ~IA ();
-    bool appliquer ( bool);
+    bool appliquerAleatoire (bool equipe);
     bool estFini ();
     void reset ();
     state::CaseTerrain* getMeilleureCase (state::Personnage* p);
+    bool jouer (bool equipe);
+    bool appliquerHeuristique (bool equipe);
   };
 
 };

@@ -10,14 +10,15 @@ using namespace engine;
 using namespace state;
 
 
-IA::IA (state::Etat* etat, engine::Moteur* moteur)
+IA::IA (state::Etat* etat, engine::Moteur* moteur, Niveau niv)
 {
    this->etat = etat;
    this->moteur = moteur;
    i = 575;
+   niveau = niv;
 }
 
-bool IA::appliquer(bool equipe)
+bool IA::appliquerHeuristique(bool equipe)
 {
     state::Personnage* currentPersonnage = nullptr;
     if (etat->getGrille().get(i)->estPersonnage())
@@ -98,9 +99,8 @@ bool IA::estFini()
     else
         return false;
 }
-/*
- * IA RANDOM QUI MARCHE
- * bool IA::appliquer(bool equipe)
+
+bool IA::appliquerAleatoire(bool equipe)
 {
     if (etat->getGrille().get(i)->estPersonnage())
     {
@@ -169,7 +169,7 @@ bool IA::estFini()
         return false;
         //std::cout << "PERSONNAGE NON UTILISABLE" << std::endl;
     }
-}*/
+}
 void IA::reset()
 {
     i = 575;
@@ -193,54 +193,15 @@ state::CaseTerrain* IA::getMeilleureCase(state::Personnage* p)
     else
         return nullptr;
 }
-//Brouillon déplacement
-
-/*Personnage* enn = etat->getPlusProcheEnnemi(static_cast<Personnage*>(etat->getGrille().get(i)));
-                int dx = enn->getX();
-                int dy = enn->getY();
-                int px = static_cast<Personnage*>(etat->getGrille().get(i))->getX();
-                int py = static_cast<Personnage*>(etat->getGrille().get(i))->getY();
-                int bx(0), by(0);
-                bx = dx-px;
-                by = dy-py;
-                if (by != 0)
-                    by = (by/abs(by))*(abs(by)-1);
-                else
-                    bx = (bx/abs(bx))*(abs(bx)-1);
-                if (static_cast<Personnage*>(etat->getGrille().get(i))->getPA() < abs(bx))
-                {
-                    bx = (bx/abs(bx))*static_cast<Personnage*>(etat->getGrille().get(i))->getPA();
-                    by = 0;
-                }
-                else if (static_cast<Personnage*>(etat->getGrille().get(i))->getPA() < abs(bx)+abs(by))
-                    by = (by/abs(by))*(static_cast<Personnage*>(etat->getGrille().get(i))->getPA()-abs(bx));
-                if (bx != 0 || by != 0)
-                {
-                    std::vector<state::CaseTerrain*> v = etat->getCaseAtteignable(etat->getSelectionne());
-                    state::CaseTerrain* ct = etat->getGrille().getCelluleDecor(px+bx, py+by);
-                    while(std::find(v.begin(), v.end(), ct) == v.end())
-                    {
-                        if (rand()%2 == 0)
-                            if (bx != 0)
-                                bx = (bx/abs(bx))*(abs(bx)-1);
-                        else
-                            if (by != 0)
-                                by = (by/abs(by))*(abs(by)-1);
-                        ct = etat->getGrille().getCelluleDecor(px+bx, py+by);
-                        if (bx == 0 && by == 0)
-                        {
-                            i++;
-                            moteur->ajouterAction(new Selection(-1, -1));
-                            moteur->convertirCommande();
-                            return false;
-                        }
-                    } 
-                    moteur->ajouterAction(new Deplacement(px, py, px+bx, py+by));
-                }
-                else
-                {
-                    i++;
-                    moteur->ajouterAction(new Selection(-1, -1));
-                    moteur->convertirCommande();
-                    return false;
-                }*/
+bool IA::jouer(bool equipe)
+{
+    switch(niveau)
+    {
+        case Aleatoire:
+            return appliquerAleatoire(equipe);
+            break;
+        case Heuristique:
+            return appliquerHeuristique(equipe);
+            break;
+    }
+}

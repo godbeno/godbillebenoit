@@ -29,7 +29,7 @@ int main(int argc,char* argv[])
     RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Test Affichage");
     Etat *etat = new Etat;
     Moteur *m = new Moteur(etat);
-    IA *ia = new IA(etat,m);
+    IA *ia = new IA(etat,m, Niveau::Aleatoire);
 
     etat->initialiserTerrain(true);
     Scene* scene = new Scene(etat, window);
@@ -56,12 +56,15 @@ int main(int argc,char* argv[])
     bool attente = true;
     int enCours = 0;
     
+    bool joueur1IA  = true;
+    bool joueur2IA  = true;
+    
     //Affichage de message
     sf::Text message;
     sf::Font font;
     font.loadFromFile("res/Fonts/arial.ttf");
     message.setFont(font);
-    message.setString("Tour de l'équipe rouge");
+    message.setString("Tour de l'equipe rouge");
     message.setPosition(largeur/2, hauteur/2);
     message.setColor(sf::Color::Red);
     message.setCharacterSize(30);
@@ -103,40 +106,38 @@ int main(int argc,char* argv[])
         scene->afficher();
         window->draw(message);
         window->display();
-        if (monTour == false && enCours == 0)
+        if (monTour == false && enCours == 0 && joueur2IA)
         {
             if (double(clock()-tpsIA)/CLOCKS_PER_SEC > attente*1.)
             {
                 message.setString("");
-                attente = ia->appliquer(false);
+                attente = ia->jouer(false);
                 tpsIA = clock();
                 monTour = ia->estFini();
                 if (monTour)
                 {
-                    std::cout << "Mon tour ! " << std::endl;
                     m->finDuTour();
                     ia->reset();
                     attente = true;
-                    message.setString("Tour de l'équipe bleue");
+                    message.setString("Tour de l'equipe bleue");
                     message.setColor(sf::Color::Blue);
                 }
             }
         }
-        else if (monTour == true && enCours == 0)
+        else if (monTour == true && enCours == 0 && joueur1IA)
         {
             if (double(clock()-tpsIA)/CLOCKS_PER_SEC > attente*1.)
             {
                 message.setString("");
-                attente = ia->appliquer(true);
+                attente = ia->jouer(true);
                 tpsIA = clock();
                 monTour = !ia->estFini();
                 if (!monTour)
                 {
-                    std::cout << "Mon tour ! " << std::endl;
                     m->finDuTour();
                     ia->reset();
                     attente = true;
-                    message.setString("Tour de l'équipe rouge");
+                    message.setString("Tour de l'equipe rouge");
                     message.setColor(sf::Color::Red);
                 }
             }
@@ -146,14 +147,14 @@ int main(int argc,char* argv[])
             enCours = etat->partieContinue();
         if (enCours == 1)
         {
-            message.setString("Victoire de l'équipe rouge");
+            message.setString("Victoire de l'equipe rouge");
             message.setColor(sf::Color::Red);
             std::cout << "Victoire de l'équipe rouge" << std::endl;
             enCours = 3;
         }
         if (enCours == 2)
         {
-            message.setString("Victoire de l'équipe bleue");
+            message.setString("Victoire de l'equipe bleue");
             message.setColor(sf::Color::Blue);
             std::cout << "Victoire de l'équipe bleue" << std::endl;
             enCours = 3;
