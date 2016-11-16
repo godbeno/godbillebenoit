@@ -29,7 +29,7 @@ int main(int argc,char* argv[])
     RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Test Affichage");
     Etat *etat = new Etat;
     Moteur *m = new Moteur(etat);
-    IA *ia = new IA(etat,m, Niveau::Aleatoire);
+    IA *ia = new IA(etat,m, Niveau::Heuristique);
 
     etat->initialiserTerrain(true);
     Scene* scene = new Scene(etat, window);
@@ -39,8 +39,9 @@ int main(int argc,char* argv[])
     etat->ajouterPersonnage(true, 4, 10, 8);
     etat->ajouterPersonnage(true, 2, 8, 8);   
     etat->ajouterPersonnage(false, 1, 4, 8);
+    etat->ajouterPersonnage(false, 5, 15, 7);
     etat->ajouterPersonnage(false, 6, 10, 6);
-    
+    //etat->ajouterPersonnage(false, 5, 15, 7);
     //std::cout << "Test de l'heuristique" << std::endl;
     //std::cout << etat->getPlusProcheEnnemi(etat->getGrille().getCellulePersonnage(10,6))->getX() << std::endl;
     //std::cout << etat->getPlusProcheEnnemi(etat->getGrille().getCellulePersonnage(10,6))->getY() << std::endl;

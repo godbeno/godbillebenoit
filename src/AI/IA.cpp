@@ -63,6 +63,7 @@ bool IA::appliquerHeuristique(bool equipe)
                     return false;
                 }
             }
+            moteur->ajouterAction(new Selection(-1, -1));
             moteur->convertirCommande();
             return true;
         }
@@ -138,9 +139,9 @@ bool IA::appliquerAleatoire(bool equipe)
                 {
                     compt++;
                     dep = new Deplacement(static_cast<Personnage*>(etat->getGrille().get(i))->getX(),static_cast<Personnage*>(etat->getGrille().get(i))->getY(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[compt]->getX(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[compt]->getY());
-                } while (dep->getDistance() > static_cast<Personnage*>(etat->getGrille().get(i))->getPA() && compt < etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i))).size());
+                } while (dep->getDistance() > static_cast<Personnage*>(etat->getGrille().get(i))->getPA() && static_cast<unsigned int>(compt) < etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i))).size());
                 //moteur->ajouterAction(new Deplacement(static_cast<Personnage*>(etat->getGrille().get(i))->getX(),static_cast<Personnage*>(etat->getGrille().get(i))->getY(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY()));
-                if (compt < etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i))).size())
+                if (static_cast<unsigned int>(compt) < etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i))).size())
                 {
                     moteur->ajouterAction(dep);
                 }
@@ -204,4 +205,5 @@ bool IA::jouer(bool equipe)
             return appliquerHeuristique(equipe);
             break;
     }
+    return false;
 }

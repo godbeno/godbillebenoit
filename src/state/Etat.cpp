@@ -331,6 +331,7 @@ Personnage* Etat::getPlusProcheEnnemi(Personnage* p)
     else
     {
         std::cout << "L'argument n'existe pas " << std::endl;
+        return nullptr;
     }
 }
 

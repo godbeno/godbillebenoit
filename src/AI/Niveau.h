@@ -7,8 +7,7 @@ namespace AI {
 
   enum Niveau {
     Aleatoire     = 1,
-    Heuristique     = 2,
-    MinMax     = 3
+    Heuristique     = 2
   };
 
 };
