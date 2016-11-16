@@ -119,6 +119,7 @@ int Etat::attaquer(int i1, int j1, int i2, int j2)
             avertirObservateurs(new EvenementEtat(TypeEvenementEtat(2), this, i2, j2, 0, 0));
             grille->supprimerElement(i2,j2);
         }
+        liste->copy(*grille);
         return att;
     }
     return 0;

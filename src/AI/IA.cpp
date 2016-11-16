@@ -16,21 +16,35 @@ IA::IA (state::Etat* etat, engine::Moteur* moteur)
    i = 575;
 }
 
-void IA::appliquer(bool equipe)
+bool IA::appliquer(bool equipe)
 {
+    std::cout << "1" << std::endl;
     if (etat->getGrille().get(i)->estPersonnage())
     {
-        if(static_cast<Personnage*>(etat->getListe().get(i))->getEquipe()==equipe)
+        std::cout << "2" << std::endl;
+        if(static_cast<Personnage*>(etat->getGrille().get(i))->getEquipe()==equipe)
         {
 
             std::cout << "NOUVEAU PERSONNAGE UTILISABLE " << std::endl;
-            etat->setSelectionne(static_cast<Personnage*>(etat->getListe().get(i))->getX(), static_cast<Personnage*>(etat->getListe().get(i))->getY());
+            //etat->setSelectionne(static_cast<Personnage*>(etat->getListe().get(i))->getX(), static_cast<Personnage*>(etat->getListe().get(i))->getY());
+            if (etat->getSelectionne() == nullptr)
+            {
+                moteur->ajouterAction(new Selection(etat->getGrille().get(i)->getX(), etat->getGrille().get(i)->getY()));
+                moteur->convertirCommande();
+                return false;
+            }
             std::cout << "PA du perso courant = " << static_cast<Personnage*>(etat->getListe().get(i))->getPA() << std::endl;
-            std::cout << "PA du perso courant = " << etat->getSelectionne()->getPA() << std::endl;
-            if (etat->getSelectionne()->getPA() > 1 && etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i))).size() != 0)
+            //std::cout << "PA du perso courant = " << etat->getSelectionne()->getPA() << std::endl;
+            if (static_cast<Personnage*>(etat->getListe().get(i))->getPA() <= 0)
+            {
+                i++;
+                moteur->ajouterAction(new Selection(-1, -1));
+                return false;
+            }
+            if (static_cast<Personnage*>(etat->getListe().get(i))->getPA() > 1 && etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i))).size() != 0)
             {  
                 std::cout << "Il attaque depuis " << etat->getListe().get(i)->getX() << " , " << etat->getListe().get(i)->getY() << " vers " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX() << " , " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getY() << std::endl;
-                moteur->ajouterAction(new Attaquer(etat->getListe().get(i)->getX(),etat->getListe().get(i)->getY(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getY()));
+                moteur->ajouterAction(new Attaquer(static_cast<Personnage*>(etat->getListe().get(i))->getX(),static_cast<Personnage*>(etat->getListe().get(i))->getY(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getY()));
                 //etat->attaquer(etat->getListe().get(i)->getX(),etat->getListe().get(i)->getY(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getY());
             } 
             else if (etat->getCaseAtteignable(static_cast<Personnage*>(etat->getListe().get(i))).size() != 0)
@@ -41,7 +55,7 @@ void IA::appliquer(bool equipe)
                 {
                     compt++;
                     dep = new Deplacement(static_cast<Personnage*>(etat->getListe().get(i))->getX(),static_cast<Personnage*>(etat->getListe().get(i))->getY(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getListe().get(i)))[compt]->getX(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getListe().get(i)))[compt]->getY());
-                } while (dep->getDistance() > etat->getSelectionne()->getPA() && compt < etat->getCaseAtteignable(static_cast<Personnage*>(etat->getListe().get(i))).size());
+                } while (dep->getDistance() > static_cast<Personnage*>(etat->getListe().get(i))->getPA() && compt < etat->getCaseAtteignable(static_cast<Personnage*>(etat->getListe().get(i))).size());
                 //moteur->ajouterAction(new Deplacement(static_cast<Personnage*>(etat->getListe().get(i))->getX(),static_cast<Personnage*>(etat->getListe().get(i))->getY(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getX(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getListe().get(i)))[0]->getY()));
                 if (compt < etat->getCaseAtteignable(static_cast<Personnage*>(etat->getListe().get(i))).size())
                 {
@@ -54,19 +68,20 @@ void IA::appliquer(bool equipe)
                 std::cout << "Cas douteux de d'Alembert" << std::endl;
             }
             moteur->convertirCommande();
-            if (etat->getSelectionne()->getPA() <= 0)
-            {
-                i++;
-            }
+            return true;
         }
         else
         {
             i++;
+            moteur->ajouterAction(new Selection(-1, -1));
+            return false;
         }
     }
     else
     {
         i++;
+        moteur->ajouterAction(new Selection(-1, -1));
+        return false;
         //std::cout << "PERSONNAGE NON UTILISABLE" << std::endl;
     }
 }

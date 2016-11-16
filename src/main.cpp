@@ -49,6 +49,7 @@ int main(int argc,char* argv[])
     bool monTour = false;
     clock_t tpsIA;
     tpsIA = clock();
+    bool attente = true;
     
     
     while (window->isOpen())
@@ -90,12 +91,14 @@ int main(int argc,char* argv[])
         scene->afficher();
         if (monTour == false)
         {
-            if (double(clock()-tpsIA)/CLOCKS_PER_SEC > 1.)
+            if (double(clock()-tpsIA)/CLOCKS_PER_SEC > attente*1.)
             {
                 std::cout << "ICI" << std::endl;
-                ia->appliquer(false);
+                attente = ia->appliquer(false);
                 tpsIA = clock();
                 monTour = ia->estFini();
+                if (monTour)
+                    std::cout << "Mon tour ! " << std::endl;
             }
         }
         m->update(clock());

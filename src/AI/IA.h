@@ -28,7 +28,7 @@ namespace AI {
   public:
     IA (state::Etat* etat, engine::Moteur* moteur);
     ~IA ();
-    void appliquer ( bool);
+    bool appliquer ( bool);
     bool estFini ();
   };
 
