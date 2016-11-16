@@ -334,3 +334,16 @@ Personnage* Etat::getPlusProcheEnnemi(Personnage* p)
     }
 }
 
+int Etat::partieContinue()
+{
+    int nbEq1(0), nbEq2(0);
+    for (int i = 575; i < grille->size(); i++)
+        if (grille->get(i)->estPersonnage())
+        {
+            if (static_cast<Personnage*>(grille->get(i))->getEquipe())
+                nbEq1++;
+            else
+                nbEq2++;
+        }
+    return (nbEq1 == 0) + (nbEq2 == 0)*2;
+}

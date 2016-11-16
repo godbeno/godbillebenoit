@@ -61,6 +61,7 @@ namespace state {
     void setRouge (bool b, CaseTerrain* ct);
     void finDuTour ();
     Personnage* getPlusProcheEnnemi (Personnage* p);
+    int partieContinue ();
   };
 
 };
