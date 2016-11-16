@@ -66,14 +66,19 @@ void Couche::afficher()
         window->draw(tuiles[i]->getSprite());
         //window->draw((new TuileStatique(100,100,73,200))->getSprite());
     }
+    //std::cout << "Les pers affichés" << std::endl;
     for (unsigned int i = 0; i < brillance.size(); i++)
         window->draw(brillance[i]);
+    //std::cout << "Brillance affichés" << std::endl;
     for (unsigned int i = 0; i < rouge.size(); i++)
         window->draw(rouge[i]);
+    //std::cout << "Lrouge affichés" << std::endl;
     if (select)
         window->draw(*select);
+    //std::cout << "SSelect affichés" << std::endl;
     if (estDegat)
         window->draw(degat);
+    //std::cout << "Degat affichés" << std::endl;
 }
 void Couche::setSurbrillance(int x, int y, float tx)
 {

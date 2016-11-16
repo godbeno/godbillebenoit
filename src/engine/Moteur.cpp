@@ -39,7 +39,7 @@ void Moteur::update(clock_t t)
 {
     if ((t-derniereMaj) > 1)
     {
-        //std::cout << "update" << std::endl;
+        //std::cout << "update " << listeCommande.taille() << std::endl;
         if (listeCommande.taille() != 0)
             convertirCommande();
         derniereMaj = t;
@@ -119,11 +119,6 @@ void Moteur::convertirCommande()
     }
 
 
-
-
-    
-    
-   
     Regulateur r(aVerifier, etat, &listeCommande, this);
     r.appliquer();
     //std::cout << "Fin de l'application" << std::endl;

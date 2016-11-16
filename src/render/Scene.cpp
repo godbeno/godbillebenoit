@@ -132,8 +132,11 @@ void Scene::changementEtat(state::EvenementEtat& e)
 void Scene::afficher()
 {
     window->clear();
+    //std::cout << "Avnt couche Terrain" << std::endl;
     coucheTerrain->afficher();
+    //std::cout << "Couche Terrain dessinée" << std::endl;
     couchePersonnage->afficher();
+    //std::cout << "Les couches ont été dessinées" << std::endl;
     panneau->draw(window);
     window->display();
 }

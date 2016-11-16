@@ -40,16 +40,17 @@ int main(int argc,char* argv[])
     etat->ajouterPersonnage(true, 2, 8, 8);   
     etat->ajouterPersonnage(false, 1, 6, 8);
     etat->ajouterPersonnage(false, 6, 10, 6);
-    etat->setSelectionne(12,10);
+    //etat->setSelectionne(12,10);
     m->setMode(Mode::jeu);
     
     std::cout << " COEFFICIENT : " << scene->getCoeff() << std::endl;
     int largeur = sf::VideoMode::getDesktopMode().width;
     int hauteur = sf::VideoMode::getDesktopMode().height;
-    bool monTour = true;
+    bool monTour = false;
+    clock_t tpsIA;
+    tpsIA = clock();
     
     
-
     while (window->isOpen())
     { 
         Event event;
@@ -87,6 +88,16 @@ int main(int argc,char* argv[])
             
         }
         scene->afficher();
+        if (monTour == false)
+        {
+            if (double(clock()-tpsIA)/CLOCKS_PER_SEC > 1.)
+            {
+                std::cout << "ICI" << std::endl;
+                ia->appliquer(false);
+                tpsIA = clock();
+                monTour = ia->estFini();
+            }
+        }
         m->update(clock());
         
     }

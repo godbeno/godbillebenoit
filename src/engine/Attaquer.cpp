@@ -1,4 +1,5 @@
 #include "Attaquer.h"
+#include <iostream>
 
 using namespace engine;
 
@@ -13,6 +14,7 @@ Attaquer::Attaquer (int Attaquantx, int Attaquanty, int Ciblex, int Cibley)
 void Attaquer::appliquer(state::Etat* etat)
 {
     degat = etat->attaquer(attaquantX, attaquantY, cibleX, cibleY);
+    std::cout << "Fin de l'attaque" << std::endl;
 }
 state::CaseTerrain* Attaquer::getCaseArrivee(state::Etat* etat)
 {

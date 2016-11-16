@@ -17,6 +17,8 @@ namespace AI {
   /// class IA - 
   class IA {
     // Attributes
+  private:
+    int i;
   protected:
     state::Etat* etat;
     bool equipe;
@@ -27,6 +29,7 @@ namespace AI {
     IA (state::Etat* etat, engine::Moteur* moteur);
     ~IA ();
     void appliquer ( bool);
+    bool estFini ();
   };
 
 };
