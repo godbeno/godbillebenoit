@@ -59,6 +59,7 @@ namespace state {
     float getCoeff ();
     std::vector<CaseTerrain*> getCaseAttaquable (Personnage* p);
     void setRouge (bool b, CaseTerrain* ct);
+    void finDuTour ();
   };
 
 };

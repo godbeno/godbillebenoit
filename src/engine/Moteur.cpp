@@ -88,6 +88,12 @@ void Moteur::convertirCommande()
             aVerifier->ajouter(new ChangerMode(4, -1, -1, this));
         else if (mode == Mode::attaque)
             aVerifier->ajouter(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
+        std::cout << "Jusque là" << std::endl;
+        if (dynamic_cast<ChangerMode*>(aVerifier->get(aVerifier->taille()-1)))
+            if (static_cast<ChangerMode*>(aVerifier->get(aVerifier->taille()-1))->getPersonnage(etat))
+                if (!static_cast<ChangerMode*>(aVerifier->get(aVerifier->taille()-1))->getPersonnage(etat)->getEquipe())
+                    aVerifier->supprimer(aVerifier->taille()-1);
+        std::cout << "Jusque là 1.5" << std::endl;
         
     }
     
@@ -117,6 +123,7 @@ void Moteur::convertirCommande()
        CommandeZoomCamera* cc = static_cast<CommandeZoomCamera*>(listeCommande.get(2));
        aVerifier->ajouter(new Zoom(cc->geti()));
     }
+    std::cout << "Jusque là 2" << std::endl;
 
 
     Regulateur r(aVerifier, etat, &listeCommande, this);
@@ -159,4 +166,8 @@ int Moteur::getCameray()
 void Moteur::ajouterAction(Action* action)
 {
     aVerifier->ajouter(action);
+}
+void Moteur::finDuTour()
+{
+    etat->finDuTour();
 }

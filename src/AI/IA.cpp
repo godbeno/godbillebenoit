@@ -18,10 +18,8 @@ IA::IA (state::Etat* etat, engine::Moteur* moteur)
 
 bool IA::appliquer(bool equipe)
 {
-    std::cout << "1" << std::endl;
     if (etat->getGrille().get(i)->estPersonnage())
     {
-        std::cout << "2" << std::endl;
         if(static_cast<Personnage*>(etat->getGrille().get(i))->getEquipe()==equipe)
         {
 
@@ -74,6 +72,7 @@ bool IA::appliquer(bool equipe)
         {
             i++;
             moteur->ajouterAction(new Selection(-1, -1));
+            moteur->convertirCommande();
             return false;
         }
     }
@@ -81,6 +80,7 @@ bool IA::appliquer(bool equipe)
     {
         i++;
         moteur->ajouterAction(new Selection(-1, -1));
+        moteur->convertirCommande();
         return false;
         //std::cout << "PERSONNAGE NON UTILISABLE" << std::endl;
     }
@@ -92,7 +92,14 @@ IA::~IA()
 }
 bool IA::estFini()
 {
-    return (i >= this->etat->getListe().size()); 
+    if(i >= this->etat->getListe().size())
+    {
+        moteur->ajouterAction(new Selection(-1, -1));
+        moteur->convertirCommande();
+        return true;
+    }
+    else
+        return false;
 }
 /*void IA::appliquer(bool equipe)
 {

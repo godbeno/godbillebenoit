@@ -38,7 +38,7 @@ int main(int argc,char* argv[])
     etat->ajouterPersonnage(true, 3, 12, 10);
     etat->ajouterPersonnage(true, 4, 10, 8);
     etat->ajouterPersonnage(true, 2, 8, 8);   
-    etat->ajouterPersonnage(false, 1, 6, 8);
+    etat->ajouterPersonnage(false, 1, 4, 8);
     etat->ajouterPersonnage(false, 6, 10, 6);
     //etat->setSelectionne(12,10);
     m->setMode(Mode::jeu);
@@ -93,12 +93,14 @@ int main(int argc,char* argv[])
         {
             if (double(clock()-tpsIA)/CLOCKS_PER_SEC > attente*1.)
             {
-                std::cout << "ICI" << std::endl;
                 attente = ia->appliquer(false);
                 tpsIA = clock();
                 monTour = ia->estFini();
                 if (monTour)
+                {
                     std::cout << "Mon tour ! " << std::endl;
+                    m->finDuTour();
+                }
             }
         }
         m->update(clock());

@@ -44,10 +44,10 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
                 lsAction->supprimer(i);
                 lsAction->ajouter(new ChangerMode(6, -1, -1, moteur));
             }
-            else
-            {
-                lsAction->ajouter(new ChangerMode(4, -1, -1, moteur));
-            }
+            //else
+            //{
+            //    lsAction->ajouter(new ChangerMode(4, -1, -1, moteur));
+            //}
         }
         if (dynamic_cast<Attaquer*>(lsAction->get(i)))
         {
@@ -61,6 +61,11 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
             }
 
         }
+        /*if (dynamic_cast<ChangerMode*>(lsAction->get(i)))
+        {
+            if (!static_cast<ChangerMode*>(lsAction->get(i))->getPersonnage(etat)->getEquipe())
+                lsAction->supprimer(i);
+        }*/
     }
     std::cout << "TAILLE : "<< lsAction->taille() << std::endl;   
 }
@@ -72,6 +77,6 @@ Regulateur::~Regulateur()
 void Regulateur::appliquer()
 {
     //std::cout << "(" << actions->taille() << ", " << commandes->taille() << ")" << std::endl;
-    //std::cout << "Application des actions ! " << std::endl;
+    std::cout << "Application des actions ! " << std::endl;
     actions->appliquer(); 
 }

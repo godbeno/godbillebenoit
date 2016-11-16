@@ -301,3 +301,10 @@ void Etat::setRouge(bool b, CaseTerrain* ct)
     else
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(9), this, 0, 0, 0, false));
 }
+void Etat::finDuTour()
+{
+    for (int i = 0; i < grille->size(); i++)
+        if (grille->get(i)->estPersonnage())
+            static_cast<Personnage*>(grille->get(i))->setPArestant(static_cast<Personnage*>(grille->get(i))->getPAMax());
+    liste->copy(*grille);
+}

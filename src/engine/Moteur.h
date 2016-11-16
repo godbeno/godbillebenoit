@@ -3,14 +3,12 @@
 #define ENGINE__MOTEUR__H
 
 
-namespace engine {
-  class ListeActions;
-};
 namespace state {
   class Etat;
 };
 namespace engine {
   class ListeCommande;
+  class ListeActions;
   class Commande;
   class Action;
   class Regulateur;
@@ -27,9 +25,6 @@ namespace engine {
   class Moteur {
     // Associations
     // Attributes
-  public:
-    /// 	
-    ListeActions* aVerifier;
   private:
     state::Etat* etat;
     ListeCommande listeCommande;
@@ -38,6 +33,8 @@ namespace engine {
     float zoom;
     int camerax;
     int cameray;
+    /// 	
+    ListeActions* aVerifier;
     // Operations
   public:
     Moteur (state::Etat* etat);
@@ -55,6 +52,7 @@ namespace engine {
     int getCameray ();
     void setCameray (int cy);
     void ajouterAction (Action* action);
+    void finDuTour ();
   };
 
 };
