@@ -308,3 +308,29 @@ void Etat::finDuTour()
             static_cast<Personnage*>(grille->get(i))->setPArestant(static_cast<Personnage*>(grille->get(i))->getPAMax());
     liste->copy(*grille);
 }
+Personnage* Etat::getPlusProcheEnnemi(Personnage* p)
+{
+    if (p)
+    {
+        int x = p->getX();
+        int y = p->getY();
+        int distMin = 50;
+        Personnage* p2 = nullptr;
+        for (int i = 0; i < grille->size(); i++)
+            if (grille->get(i)->estPersonnage())
+                if (static_cast<Personnage*>(grille->get(i))->getEquipe() != p->getEquipe())
+                    if (abs(x-grille->get(i)->getX())+abs(y-grille->get(i)->getY()) < distMin)
+                    {
+                        distMin = abs(x-grille->get(i)->getX())+abs(y-grille->get(i)->getY());
+                        p2 = static_cast<Personnage*>(grille->get(i));
+                    }
+        if (p2 == nullptr)
+            std::cout << "Aucun ennemi n'a été trouvé" << std::endl;
+        return p2;
+    }
+    else
+    {
+        std::cout << "L'argument n'existe pas " << std::endl;
+    }
+}
+

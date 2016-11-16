@@ -60,6 +60,7 @@ namespace state {
     std::vector<CaseTerrain*> getCaseAttaquable (Personnage* p);
     void setRouge (bool b, CaseTerrain* ct);
     void finDuTour ();
+    Personnage* getPlusProcheEnnemi (Personnage* p);
   };
 
 };

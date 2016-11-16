@@ -40,6 +40,11 @@ int main(int argc,char* argv[])
     etat->ajouterPersonnage(true, 2, 8, 8);   
     etat->ajouterPersonnage(false, 1, 4, 8);
     etat->ajouterPersonnage(false, 6, 10, 6);
+    
+    //std::cout << "Test de l'heuristique" << std::endl;
+    //std::cout << etat->getPlusProcheEnnemi(etat->getGrille().getCellulePersonnage(10,6))->getX() << std::endl;
+    //std::cout << etat->getPlusProcheEnnemi(etat->getGrille().getCellulePersonnage(10,6))->getY() << std::endl;
+    
     //etat->setSelectionne(12,10);
     m->setMode(Mode::jeu);
     
@@ -49,7 +54,7 @@ int main(int argc,char* argv[])
     bool monTour = false;
     clock_t tpsIA;
     tpsIA = clock();
-    bool attente = true;
+    bool attente = false;
     
     
     while (window->isOpen())
@@ -100,6 +105,22 @@ int main(int argc,char* argv[])
                 {
                     std::cout << "Mon tour ! " << std::endl;
                     m->finDuTour();
+                    ia->reset();
+                }
+            }
+        }
+        else if (monTour == true)
+        {
+            if (double(clock()-tpsIA)/CLOCKS_PER_SEC > attente*1.)
+            {
+                attente = ia->appliquer(true);
+                tpsIA = clock();
+                monTour = !ia->estFini();
+                if (!monTour)
+                {
+                    std::cout << "Mon tour ! " << std::endl;
+                    m->finDuTour();
+                    ia->reset();
                 }
             }
         }

@@ -30,6 +30,8 @@ namespace AI {
     ~IA ();
     bool appliquer ( bool);
     bool estFini ();
+    void reset ();
+    state::CaseTerrain* getMeilleureCase (state::Personnage* p);
   };
 
 };
