@@ -100,6 +100,7 @@ bool IA::estFini()
         moteur->convertirCommande();
         reset();
         etat->finDuTour();
+        attendre = true;
         return true;
     }
     else
@@ -214,7 +215,7 @@ state::CaseTerrain* IA::getMeilleureCase(state::Personnage* p)
 }
 void IA::jouer()
 {
-    if (etat->joueurIA() && (!attendre || (attendre && double(clock()-temps)/CLOCKS_PER_SEC > 1)))
+    if (!etat->partieContinue() && etat->joueurIA() && (!attendre || (attendre && double(clock()-temps)/CLOCKS_PER_SEC > 1)))
     {
         switch(niveau)
         {

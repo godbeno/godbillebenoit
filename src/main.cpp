@@ -48,8 +48,6 @@ int main(int argc,char* argv[])
     int largeur = sf::VideoMode::getDesktopMode().width;
     int hauteur = sf::VideoMode::getDesktopMode().height;
     
-    int enCours = 0;
-    
     //On spécifie que les deux joueurs sont des IAs
     etat->configurerJoueur(true, true);
     etat->changerTour();

@@ -1,4 +1,5 @@
 #include <SFML/Graphics/Text.hpp>
+#include <iostream>
 
 #include "Message.h"
 
@@ -8,8 +9,6 @@ Message::Message()
 {
     int largeur = sf::VideoMode::getDesktopMode().width;
     int hauteur = sf::VideoMode::getDesktopMode().height;
-    sf::Text texte;
-    sf::Font font;
     font.loadFromFile("res/Fonts/arial.ttf");
     texte.setFont(font);
     texte.setPosition(largeur/2 - 200, hauteur/2);
@@ -25,7 +24,7 @@ void Message::dessiner(sf::RenderWindow* window)
 {
     if (active)
         window->draw(texte);
-    if (double(clock()-temps)/CLOCKS_PER_SEC > .5 && !fin)
+    if (double(clock()-temps)/CLOCKS_PER_SEC > 1 && !fin)
         finAffichage();
 }
 void Message::changerTour()

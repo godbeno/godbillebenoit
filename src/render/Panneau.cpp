@@ -39,7 +39,7 @@ Panneau::Panneau()
     nom.setColor(sf::Color::White);
     nom.setCharacterSize(30);
     
-    estSelect = true;
+    estSelect = false;
     
     //rajouter PA et PV etc 
     
