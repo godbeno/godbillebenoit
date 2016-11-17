@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 namespace render {
+  class Message;
   class Couche;
   class Panneau;
 };
@@ -13,6 +14,7 @@ namespace state {
 }
 
 #include "state/Observateur.h"
+#include "Message.h"
 #include "Panneau.h"
 #include "Couche.h"
 
@@ -22,6 +24,8 @@ namespace render {
   class Scene : public state::Observateur {
     // Associations
     // Attributes
+  public:
+    Message* message;
   private:
     Couche* couchePersonnage;
     Couche* coucheTerrain;

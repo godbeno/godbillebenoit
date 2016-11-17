@@ -3,6 +3,8 @@
 #define RENDER__TUILEANIMEE__H
 
 #include <vector>
+#include <ctime>
+#include <ctime>
 #include <SFML/Graphics.hpp>
 
 namespace render {

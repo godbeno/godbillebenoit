@@ -2,6 +2,7 @@
 #ifndef AI__IA__H
 #define AI__IA__H
 
+#include <ctime>
 
 namespace state {
   class Etat;
@@ -22,6 +23,8 @@ namespace AI {
   private:
     int i;
     Niveau niveau;
+    bool attendre;
+    clock_t temps;
   protected:
     state::Etat* etat;
     bool equipe;
@@ -35,7 +38,7 @@ namespace AI {
     bool estFini ();
     void reset ();
     state::CaseTerrain* getMeilleureCase (state::Personnage* p);
-    bool jouer (bool equipe);
+    void jouer ();
     bool appliquerHeuristique (bool equipe);
   };
 

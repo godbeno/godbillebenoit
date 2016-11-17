@@ -30,6 +30,9 @@ namespace state {
     float zoom;
     int camerax;
     int cameray;
+    bool tour;
+    bool joueur1IA;
+    bool joueur2IA;
     // Operations
   public:
     Etat ();
@@ -62,6 +65,10 @@ namespace state {
     void finDuTour ();
     Personnage* getPlusProcheEnnemi (Personnage* p);
     int partieContinue ();
+    void configurerJoueur (bool joueur1estIA, bool joueur2estIA);
+    void changerTour ();
+    bool getTour ();
+    bool joueurIA ();
   };
 
 };

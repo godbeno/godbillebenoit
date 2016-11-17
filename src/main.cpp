@@ -30,10 +30,11 @@ int main(int argc,char* argv[])
     Etat *etat = new Etat;
     Moteur *m = new Moteur(etat);
     IA *ia = new IA(etat,m, Niveau::Heuristique);
-
     etat->initialiserTerrain(true);
     Scene* scene = new Scene(etat, window);
     etat->enregistrerObservateur(scene);
+    
+    //Définition de personnage
     etat->ajouterPersonnage(true, 5, 10, 10);
     etat->ajouterPersonnage(true, 3, 12, 10);
     etat->ajouterPersonnage(true, 4, 10, 7);
@@ -41,33 +42,17 @@ int main(int argc,char* argv[])
     etat->ajouterPersonnage(false, 1, 4, 8);
     etat->ajouterPersonnage(false, 5, 15, 7);
     etat->ajouterPersonnage(false, 6, 10, 6);
-    //std::cout << "Test de l'heuristique" << std::endl;
-    //std::cout << etat->getPlusProcheEnnemi(etat->getGrille().getCellulePersonnage(10,6))->getX() << std::endl;
-    //std::cout << etat->getPlusProcheEnnemi(etat->getGrille().getCellulePersonnage(10,6))->getY() << std::endl;
     
-    //etat->setSelectionne(12,10);
     m->setMode(Mode::jeu);
     
     int largeur = sf::VideoMode::getDesktopMode().width;
     int hauteur = sf::VideoMode::getDesktopMode().height;
-    bool monTour = false;
-    clock_t tpsIA;
-    tpsIA = clock();
-    bool attente = true;
+    
     int enCours = 0;
     
-    bool joueur1IA  = true;
-    bool joueur2IA  = true;
-    
-    //Affichage de message
-    sf::Text message;
-    sf::Font font;
-    font.loadFromFile("res/Fonts/arial.ttf");
-    message.setFont(font);
-    message.setString("Tour de l'equipe rouge");
-    message.setPosition(largeur/2, hauteur/2);
-    message.setColor(sf::Color::Red);
-    message.setCharacterSize(30);
+    //On spécifie que les deux joueurs sont des IAs
+    etat->configurerJoueur(true, true);
+    etat->changerTour();
     
     
     while (window->isOpen())
@@ -78,7 +63,7 @@ int main(int argc,char* argv[])
             // évènement "fermeture demandée" : on ferme la fenêtre
             if (event.type == Event::Closed)
                 window->close();
-            if (event.type == sf::Event::MouseButtonPressed && monTour)
+            if (event.type == sf::Event::MouseButtonPressed)
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
                     if (event.mouseButton.x > largeur/2 -185 && event.mouseButton.x < largeur/2 - 115 && event.mouseButton.y > hauteur-105 && event.mouseButton.y < hauteur-35)
@@ -104,62 +89,8 @@ int main(int argc,char* argv[])
                 m->ajouterCommande(new CommandeZoomCamera((int)(event.mouseWheel.delta)));
         }
         scene->afficher();
-        window->draw(message);
-        window->display();
-        if (monTour == false && enCours == 0 && joueur2IA)
-        {
-            if (double(clock()-tpsIA)/CLOCKS_PER_SEC > attente*1.)
-            {
-                message.setString("");
-                attente = ia->jouer(false);
-                tpsIA = clock();
-                monTour = ia->estFini();
-                if (monTour)
-                {
-                    m->finDuTour();
-                    ia->reset();
-                    attente = true;
-                    message.setString("Tour de l'equipe bleue");
-                    message.setColor(sf::Color::Blue);
-                }
-            }
-        }
-        else if (monTour == true && enCours == 0 && joueur1IA)
-        {
-            if (double(clock()-tpsIA)/CLOCKS_PER_SEC > attente*1.)
-            {
-                message.setString("");
-                attente = ia->jouer(true);
-                tpsIA = clock();
-                monTour = !ia->estFini();
-                if (!monTour)
-                {
-                    m->finDuTour();
-                    ia->reset();
-                    attente = true;
-                    message.setString("Tour de l'equipe rouge");
-                    message.setColor(sf::Color::Red);
-                }
-            }
-        }
+        ia->jouer();
         m->update(clock());
-        if (enCours == 0)
-            enCours = etat->partieContinue();
-        if (enCours == 1)
-        {
-            message.setString("Victoire de l'equipe rouge");
-            message.setColor(sf::Color::Red);
-            std::cout << "Victoire de l'équipe rouge" << std::endl;
-            enCours = 3;
-        }
-        if (enCours == 2)
-        {
-            message.setString("Victoire de l'equipe bleue");
-            message.setColor(sf::Color::Blue);
-            std::cout << "Victoire de l'équipe bleue" << std::endl;
-            enCours = 3;
-        }
-        
     }
     
 

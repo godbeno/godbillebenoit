@@ -14,6 +14,7 @@ Scene::Scene(state::Etat* etat, sf::RenderWindow* window)
     coucheTerrain = new Couche(window);
     couchePersonnage = new Couche(window);
     panneau = new Panneau();
+    message = new Message();
     this->zoom = 1;    
     tx = (sf::VideoMode::getDesktopMode().width*zoom)/24.;
     //couchePersonnage->addTuile(new TuileAnimee(tx*15, tx*15, 0, 36, couchePersonnage));
@@ -125,6 +126,14 @@ void Scene::changementEtat(state::EvenementEtat& e)
     {
         couchePersonnage->setTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx,nullptr);
     }
+    else if (e.getTypeEvenement() == state::ChangementDeTour)
+    {
+        message->changerTour();
+    }
+    else if (e.getTypeEvenement() == state::FinDePartie)
+    {
+        message->finDePartie(e.getEquipe());
+    }
     
     
 }
@@ -138,6 +147,7 @@ void Scene::afficher()
     couchePersonnage->afficher();
     //std::cout << "Les couches ont été dessinées" << std::endl;
     panneau->draw(window);
+    message->dessiner(window);
     window->display();
 }
 

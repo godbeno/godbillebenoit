@@ -16,6 +16,7 @@ IA::IA (state::Etat* etat, engine::Moteur* moteur, Niveau niv)
    this->moteur = moteur;
    i = 575;
    niveau = niv;
+   attendre = false;
 }
 
 bool IA::appliquerHeuristique(bool equipe)
@@ -95,7 +96,10 @@ bool IA::estFini()
     if(i >= this->etat->getListe().size())
     {
         moteur->ajouterAction(new Selection(-1, -1));
+        moteur->ajouterAction(new ChangerTour());
         moteur->convertirCommande();
+        reset();
+        etat->finDuTour();
         return true;
     }
     else
@@ -208,16 +212,23 @@ state::CaseTerrain* IA::getMeilleureCase(state::Personnage* p)
     }
     return ct;
 }
-bool IA::jouer(bool equipe)
+void IA::jouer()
 {
-    switch(niveau)
+    if (etat->joueurIA() && (!attendre || (attendre && double(clock()-temps)/CLOCKS_PER_SEC > 1)))
     {
-        case Aleatoire:
-            return appliquerAleatoire(equipe);
-            break;
-        case Heuristique:
-            return appliquerHeuristique(equipe);
-            break;
+        switch(niveau)
+        {
+            case Aleatoire:
+                attendre = appliquerAleatoire(etat->getTour());
+                if (attendre)
+                    temps = clock();
+                break;
+            case Heuristique:
+                attendre = appliquerHeuristique(etat->getTour());
+                if (attendre)
+                    temps = clock();
+                break;
+        }
     }
-    return false;
+    estFini();
 }

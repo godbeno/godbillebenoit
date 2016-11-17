@@ -22,4 +22,5 @@
 #include "engine/Mode.h"
 #include "engine/Moteur.h"
 #include "engine/Historique.h"
+#include "engine/ChangerTour.h"
 #endif

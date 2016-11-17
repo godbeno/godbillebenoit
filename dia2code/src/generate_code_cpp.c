@@ -651,6 +651,7 @@ struct stdlib_includes {
    int mutex;
    int sfG;
    int sfA;
+   int temps; 
 };
 
 void print_include_stdlib(struct stdlib_includes* si,char* name) {
@@ -740,6 +741,11 @@ void print_include_stdlib(struct stdlib_includes* si,char* name) {
 	|| !si->sfA && strstr(name, "sf::SoundBuffer"))
 	{
 		print("#include <SFML/Audio.hpp>\n");
+		si->sfA = 1;
+	}
+       if (!si->temps && strstr(name, "clock_t"))
+	{
+		print("#include <ctime>\n");
 		si->sfA = 1;
 	}
     }

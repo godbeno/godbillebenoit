@@ -12,6 +12,7 @@ Etat::Etat ()
     camerax = 0;
     cameray = 0;
     zoom = 1;
+    tour = true;
 }
 
 Etat::~Etat ()
@@ -346,5 +347,25 @@ int Etat::partieContinue()
             else
                 nbEq2++;
         }
+    if (nbEq1 == 0 || nbEq2 == 0)
+        avertirObservateurs(new EvenementEtat(state::FinDePartie, this, 0, 0, 0, nbEq2 == 0));
     return (nbEq1 == 0) + (nbEq2 == 0)*2;
+}
+void Etat::configurerJoueur(bool joueur1estIA, bool joueur2estIA)
+{
+    joueur1IA = joueur1estIA;
+    joueur2IA = joueur2estIA;
+}
+void Etat::changerTour()
+{
+    tour = !tour;
+    avertirObservateurs(new EvenementEtat(state::ChangementDeTour, this, 0, 0, 0, false));
+}
+bool Etat::getTour()
+{
+    return tour;
+}
+bool Etat::joueurIA()
+{
+    return (tour&&joueur1IA)||((!tour)&&joueur2IA);
 }
