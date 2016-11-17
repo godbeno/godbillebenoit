@@ -29,7 +29,6 @@ bool IA::appliquerHeuristique(bool equipe)
             currentPersonnage = static_cast<Personnage*>(etat->getGrille().get(i));
 
             std::cout << "NOUVEAU PERSONNAGE UTILISABLE " << std::endl;
-            //etat->setSelectionne(static_cast<Personnage*>(etat->getGrille().get(i))->getX(), static_cast<Personnage*>(etat->getGrille().get(i))->getY());
             if (etat->getSelectionne() == nullptr || etat->getSelectionne() != currentPersonnage)
             {
                 moteur->ajouterAction(new Selection(currentPersonnage->getX(), currentPersonnage->getY()));
@@ -65,7 +64,6 @@ bool IA::appliquerHeuristique(bool equipe)
                     return false;
                 }
             }
-            //moteur->ajouterAction(new Selection(-1, -1));
             moteur->convertirCommande();
             return true;
         }
@@ -83,7 +81,6 @@ bool IA::appliquerHeuristique(bool equipe)
         moteur->ajouterAction(new Selection(-1, -1));
         moteur->convertirCommande();
         return false;
-        //std::cout << "PERSONNAGE NON UTILISABLE" << std::endl;
     }
 }
  	
@@ -115,7 +112,6 @@ bool IA::appliquerAleatoire(bool equipe)
         {
 
             std::cout << "NOUVEAU PERSONNAGE UTILISABLE " << std::endl;
-            //etat->setSelectionne(static_cast<Personnage*>(etat->getGrille().get(i))->getX(), static_cast<Personnage*>(etat->getGrille().get(i))->getY());
             if (etat->getSelectionne() == nullptr)
             {
                 moteur->ajouterAction(new Selection(etat->getGrille().get(i)->getX(), etat->getGrille().get(i)->getY()));
@@ -190,7 +186,6 @@ state::CaseTerrain* IA::getMeilleureCase(state::Personnage* p)
     state::CaseTerrain* ct = nullptr;
     if (abs(p->getX()-ennemi->getX()) + abs(p->getY()-ennemi->getY()) > p->getPorteeMax())
     {
-        std::cout << "On s'avance" << std::endl;
         for (unsigned int i = 0; i < v.size(); i++)
         {
             if (abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) <= distMin
@@ -216,13 +211,21 @@ state::CaseTerrain* IA::getMeilleureCase(state::Personnage* p)
     }
     else
     {
-        std::cout << "On recule" << std::endl;
         for (unsigned int i = 0; i < v.size(); i++)
         {
             if (abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) < distMin
                 && abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) >= p->getPorteeMin())
             {
-                if (abs(v[i]->getX()-p->getX()) + abs(v[i]->getY()-p->getY())< paUt)
+                if (abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) == distMin)
+                {
+                    if (abs(v[i]->getX()-p->getX()) + abs(v[i]->getY()-p->getY())< paUt)
+                    {
+                        distMin = abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY());
+                        ct = v[i];
+                        paUt = abs(v[i]->getX()-p->getX()) + abs(v[i]->getY()-p->getY());
+                    }
+                }
+                else
                 {
                     distMin = abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY());
                     ct = v[i];
