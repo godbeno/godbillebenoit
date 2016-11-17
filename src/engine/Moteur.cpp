@@ -73,7 +73,7 @@ void Moteur::convertirCommande()
 {
     std::cout << "--------------------------------" << std::endl;
     std::cout << "On entre dans Convertir Commande" << std::endl;
-    if (listeCommande.get(3) != nullptr) // Gestion du clic de souris
+    if (listeCommande.get(3) != nullptr && !etat->joueurIA()) // Gestion du clic de souris
     {
         CommandeClic* cc = static_cast<CommandeClic*>(listeCommande.get(3));
         if (mode == Mode::deplacement)
@@ -88,10 +88,10 @@ void Moteur::convertirCommande()
             aVerifier->ajouter(new ChangerMode(4, -1, -1, this));
         else if (mode == Mode::attaque)
             aVerifier->ajouter(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
-        if (dynamic_cast<ChangerMode*>(aVerifier->get(aVerifier->taille()-1)))
+        /*if (dynamic_cast<ChangerMode*>(aVerifier->get(aVerifier->taille()-1)))
             if (static_cast<ChangerMode*>(aVerifier->get(aVerifier->taille()-1))->getPersonnage(etat))
                 if (!static_cast<ChangerMode*>(aVerifier->get(aVerifier->taille()-1))->getPersonnage(etat)->getEquipe())
-                    aVerifier->supprimer(aVerifier->taille()-1);
+                    aVerifier->supprimer(aVerifier->taille()-1);*/
         
     }
     

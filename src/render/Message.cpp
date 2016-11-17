@@ -24,7 +24,7 @@ void Message::dessiner(sf::RenderWindow* window)
 {
     if (active)
         window->draw(texte);
-    if (double(clock()-temps)/CLOCKS_PER_SEC > 1 && !fin)
+    if (double(clock()-temps)/CLOCKS_PER_SEC > .5 && !fin)
         finAffichage();
 }
 void Message::changerTour()
@@ -32,7 +32,7 @@ void Message::changerTour()
     tour = !tour;
     if (tour)
     {
-        texte.setString("Tour de l'équipe bleue ! ");
+        texte.setString("Tour de l'equipe bleue ! ");
         texte.setColor(sf::Color::Blue);
     }
     else

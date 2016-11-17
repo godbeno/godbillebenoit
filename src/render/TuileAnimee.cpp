@@ -332,7 +332,7 @@ void TuileAnimee::update (clock_t time)
 {
     //if (double(time-debut)/ CLOCKS_PER_SEC > 0.2)
     parent->monterDegat();
-    if (double(time-debut)/ CLOCKS_PER_SEC > 0.2)
+    if (double(time-debut)/ CLOCKS_PER_SEC > 0.1)
     {
         nbr++;
         debut = clock();

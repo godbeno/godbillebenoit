@@ -186,28 +186,48 @@ state::CaseTerrain* IA::getMeilleureCase(state::Personnage* p)
     std::vector<state::CaseTerrain*> v = etat->getCaseAtteignable(p);
     state::Personnage* ennemi = etat->getPlusProcheEnnemi(p);
     int distMin = 50;
+    int paUt = 100;
     state::CaseTerrain* ct = nullptr;
     if (abs(p->getX()-ennemi->getX()) + abs(p->getY()-ennemi->getY()) > p->getPorteeMax())
     {
+        std::cout << "On s'avance" << std::endl;
         for (unsigned int i = 0; i < v.size(); i++)
         {
-            if (abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) < distMin
+            if (abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) <= distMin
                 && abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) >= p->getPorteeMax())
             {
-                distMin = abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY());
-                ct = v[i];
+                if (abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) == distMin)
+                {
+                    if (abs(v[i]->getX()-p->getX()) + abs(v[i]->getY()-p->getY())< paUt)
+                    {
+                        distMin = abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY());
+                        ct = v[i];
+                        paUt = abs(v[i]->getX()-p->getX()) + abs(v[i]->getY()-p->getY());
+                    }
+                }
+                else
+                {
+                    distMin = abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY());
+                    ct = v[i];
+                    paUt = abs(v[i]->getX()-p->getX()) + abs(v[i]->getY()-p->getY());
+                }
             }
         }
     }
     else
     {
+        std::cout << "On recule" << std::endl;
         for (unsigned int i = 0; i < v.size(); i++)
         {
             if (abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) < distMin
                 && abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) >= p->getPorteeMin())
             {
-                distMin = abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY());
-                ct = v[i];
+                if (abs(v[i]->getX()-p->getX()) + abs(v[i]->getY()-p->getY())< paUt)
+                {
+                    distMin = abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY());
+                    ct = v[i];
+                    paUt = abs(v[i]->getX()-p->getX()) + abs(v[i]->getY()-p->getY());
+                }
             }
         }
     }
@@ -215,7 +235,7 @@ state::CaseTerrain* IA::getMeilleureCase(state::Personnage* p)
 }
 void IA::jouer()
 {
-    if (!etat->partieContinue() && etat->joueurIA() && (!attendre || (attendre && double(clock()-temps)/CLOCKS_PER_SEC > 1)))
+    if (!etat->partieContinue() && etat->joueurIA() && (!attendre || (attendre && double(clock()-temps)/CLOCKS_PER_SEC > 0.5)))
     {
         switch(niveau)
         {
