@@ -29,7 +29,7 @@ bool IA::appliquerHeuristique(bool equipe)
 
             std::cout << "NOUVEAU PERSONNAGE UTILISABLE " << std::endl;
             //etat->setSelectionne(static_cast<Personnage*>(etat->getGrille().get(i))->getX(), static_cast<Personnage*>(etat->getGrille().get(i))->getY());
-            if (etat->getSelectionne() == nullptr)
+            if (etat->getSelectionne() == nullptr || etat->getSelectionne() != currentPersonnage)
             {
                 moteur->ajouterAction(new Selection(currentPersonnage->getX(), currentPersonnage->getY()));
                 moteur->convertirCommande();
@@ -57,13 +57,14 @@ bool IA::appliquerHeuristique(bool equipe)
                     moteur->ajouterAction(new Deplacement(currentPersonnage->getX(), currentPersonnage->getY(), ct->getX(), ct->getY()));
                 else
                 {
+                    std::cout << "Auncune case satisfaisante trouvée" << std::endl;
                     i++;
                     moteur->ajouterAction(new Selection(-1, -1));
                     moteur->convertirCommande();
                     return false;
                 }
             }
-            moteur->ajouterAction(new Selection(-1, -1));
+            //moteur->ajouterAction(new Selection(-1, -1));
             moteur->convertirCommande();
             return true;
         }
@@ -181,18 +182,31 @@ state::CaseTerrain* IA::getMeilleureCase(state::Personnage* p)
     state::Personnage* ennemi = etat->getPlusProcheEnnemi(p);
     int distMin = 50;
     state::CaseTerrain* ct = nullptr;
-    for (unsigned int i = 0; i < v.size(); i++)
+    if (abs(p->getX()-ennemi->getX()) + abs(p->getY()-ennemi->getY()) > p->getPorteeMax())
     {
-        if (abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) < distMin)
+        for (unsigned int i = 0; i < v.size(); i++)
         {
-            distMin = abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY());
-            ct = v[i];
+            if (abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) < distMin
+                && abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) >= p->getPorteeMax())
+            {
+                distMin = abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY());
+                ct = v[i];
+            }
         }
     }
-    if (abs(ct->getX()-ennemi->getX()) + abs(ct->getY()-ennemi->getY()) < abs(p->getX()-ennemi->getX()) + abs(p->getY()-ennemi->getY()))
-        return ct;
     else
-        return nullptr;
+    {
+        for (unsigned int i = 0; i < v.size(); i++)
+        {
+            if (abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) < distMin
+                && abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY()) >= p->getPorteeMin())
+            {
+                distMin = abs(v[i]->getX()-ennemi->getX()) + abs(v[i]->getY()-ennemi->getY());
+                ct = v[i];
+            }
+        }
+    }
+    return ct;
 }
 bool IA::jouer(bool equipe)
 {

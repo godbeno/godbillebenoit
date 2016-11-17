@@ -36,12 +36,11 @@ int main(int argc,char* argv[])
     etat->enregistrerObservateur(scene);
     etat->ajouterPersonnage(true, 5, 10, 10);
     etat->ajouterPersonnage(true, 3, 12, 10);
-    etat->ajouterPersonnage(true, 4, 10, 8);
+    etat->ajouterPersonnage(true, 4, 10, 7);
     etat->ajouterPersonnage(true, 2, 8, 8);   
     etat->ajouterPersonnage(false, 1, 4, 8);
     etat->ajouterPersonnage(false, 5, 15, 7);
     etat->ajouterPersonnage(false, 6, 10, 6);
-    //etat->ajouterPersonnage(false, 5, 15, 7);
     //std::cout << "Test de l'heuristique" << std::endl;
     //std::cout << etat->getPlusProcheEnnemi(etat->getGrille().getCellulePersonnage(10,6))->getX() << std::endl;
     //std::cout << etat->getPlusProcheEnnemi(etat->getGrille().getCellulePersonnage(10,6))->getY() << std::endl;
