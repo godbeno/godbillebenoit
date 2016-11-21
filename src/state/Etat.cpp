@@ -366,6 +366,7 @@ void Etat::configurerJoueur(bool joueur1estIA, bool joueur2estIA)
 void Etat::changerTour(bool afficher)
 {
     tour = !tour;
+    finDuTour();
     if (afficher)
         avertirObservateurs(new EvenementEtat(state::ChangementDeTour, this, 0, 0, 0, false));
 }

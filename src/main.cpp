@@ -49,7 +49,7 @@ int main(int argc,char* argv[])
     int hauteur = sf::VideoMode::getDesktopMode().height;
     
     //On spécifie que les deux joueurs sont des IAs
-    etat->configurerJoueur(true, true);
+    etat->configurerJoueur(false, false);
     etat->changerTour(true);
     
     
@@ -69,8 +69,11 @@ int main(int argc,char* argv[])
                     else if (event.mouseButton.x > largeur/2 -115 && event.mouseButton.x < largeur/2 - 45 && event.mouseButton.y > hauteur-105 && event.mouseButton.y < hauteur-35)
                         
                         m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 2));
+                    else if(event.mouseButton.x > 1002 && event.mouseButton.x < 1286 && event.mouseButton.y > 685 && event.mouseButton.y < 738) 
+                    m->ajouterCommande(new CommandeClic(0,0,3));
                     else
                         m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 0));
+                    std::cout << event.mouseButton.x << " , " << event.mouseButton.y << std::endl;
                 }
             if (event.type == sf::Event::KeyPressed)
             {

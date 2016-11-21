@@ -5,6 +5,7 @@
 #include "Deplacement.h"
 #include "DeplacementCamera.h"
 #include "ChangerMode.h"
+#include "ChangerTour.h"
 #include "Attaquer.h"
 #include "Zoom.h"
 #include <iostream>
@@ -86,6 +87,8 @@ void Moteur::convertirCommande(bool afficher)
             aVerifier->ajouter(new ChangerMode(5, -1, -1, this));
         else if (mode == Mode::selection && cc->getBouton() == 2)
             aVerifier->ajouter(new ChangerMode(4, -1, -1, this));
+        else if (mode == Mode::selection && cc->getBouton() == 3)
+            aVerifier->ajouter(new ChangerTour());      
         else if (mode == Mode::attaque)
             aVerifier->ajouter(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
         /*if (dynamic_cast<ChangerMode*>(aVerifier->get(aVerifier->taille()-1)))
