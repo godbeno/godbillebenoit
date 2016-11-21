@@ -1,9 +1,19 @@
 [x] Faire IA min-max
-	[x] NotifyObserveur
-	[x] Faire algo
-[x] Faire le bouton Changement tour
-	[x] Image bouton
+	[0k] notifyObserveur appliquer
+	[0k] NotifyObserveur annuler
+	[x] Faire algo min-max basique
+	[x] alpha-beta
+	[x] Optimiser
+[0k] Faire le bouton Changement tour
+	[0k] Image bouton
+	[0k] Transformer en action
 	[x] Gestion du clic
-	[x] Transformer en action
-[x] Faire la gestion de la pause
+
 [x] Faire organisation du début
+	[x] Gerer le placement des troupes
+
+---- DEBUG -----
+
+
+[x] Régler probleme caméra
+[x] Régler problème deplacement mauvais tour
