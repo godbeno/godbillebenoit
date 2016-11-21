@@ -11,16 +11,16 @@ Attaquer::Attaquer (int Attaquantx, int Attaquanty, int Ciblex, int Cibley)
    this->cibleX = Ciblex;
    this->cibleY = Cibley;
 }
-void Attaquer::appliquer(state::Etat* etat)
+void Attaquer::appliquer(state::Etat* etat, bool afficher)
 {
-    degat = etat->attaquer(attaquantX, attaquantY, cibleX, cibleY);
+    degat = etat->attaquer(attaquantX, attaquantY, cibleX, cibleY, afficher);
     std::cout << "Fin de l'attaque" << std::endl;
 }
 state::CaseTerrain* Attaquer::getCaseArrivee(state::Etat* etat)
 {
     return etat->getGrille().getCelluleDecor(cibleX, cibleY);
 }
-void Attaquer::annuler(state::Etat* etat)
+void Attaquer::annuler(state::Etat* etat, bool afficher)
 {
     etat->getGrille().getCellulePersonnage(cibleX, cibleY)->setPVrestant(etat->getGrille().getCellulePersonnage(cibleX, cibleY)->getPV() + degat);
 }

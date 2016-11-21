@@ -41,7 +41,7 @@ void Moteur::update(clock_t t)
     {
         //std::cout << "update " << listeCommande.taille() << std::endl;
         if (listeCommande.taille() != 0)
-            convertirCommande();
+            convertirCommande(true);
         derniereMaj = t;
     }
     
@@ -69,7 +69,7 @@ void Moteur::setMode(Mode mode)
             etat->setRouge(true, v[j]);
     }
 }
-void Moteur::convertirCommande()
+void Moteur::convertirCommande(bool afficher)
 {
     std::cout << "--------------------------------" << std::endl;
     std::cout << "On entre dans Convertir Commande" << std::endl;
@@ -124,7 +124,7 @@ void Moteur::convertirCommande()
 
 
     Regulateur r(aVerifier, etat, &listeCommande, this);
-    r.appliquer();
+    r.appliquer(afficher);
     //std::cout << "Fin de l'application" << std::endl;
     listeCommande.vider();
     aVerifier->vider();

@@ -32,7 +32,7 @@ bool IA::appliquerHeuristique(bool equipe)
             if (etat->getSelectionne() == nullptr || etat->getSelectionne() != currentPersonnage)
             {
                 moteur->ajouterAction(new Selection(currentPersonnage->getX(), currentPersonnage->getY()));
-                moteur->convertirCommande();
+                moteur->convertirCommande(true);
                 return false;
             }
             std::cout << "PA du perso courant = " << static_cast<Personnage*>(etat->getGrille().get(i))->getPA() << std::endl;
@@ -41,7 +41,7 @@ bool IA::appliquerHeuristique(bool equipe)
             {
                 i++;
                 moteur->ajouterAction(new Selection(-1, -1));
-                moteur->convertirCommande();
+                moteur->convertirCommande(true);
                 return false;
             }
             if (currentPersonnage->getPA() > 1 && etat->getCaseAttaquable(currentPersonnage).size() != 0)
@@ -60,18 +60,18 @@ bool IA::appliquerHeuristique(bool equipe)
                     std::cout << "Auncune case satisfaisante trouvée" << std::endl;
                     i++;
                     moteur->ajouterAction(new Selection(-1, -1));
-                    moteur->convertirCommande();
+                    moteur->convertirCommande(true);
                     return false;
                 }
             }
-            moteur->convertirCommande();
+            moteur->convertirCommande(true);
             return true;
         }
         else
         {
             i++;
             moteur->ajouterAction(new Selection(-1, -1));
-            moteur->convertirCommande();
+            moteur->convertirCommande(true);
             return false;
         }
     }
@@ -79,7 +79,7 @@ bool IA::appliquerHeuristique(bool equipe)
     {
         i++;
         moteur->ajouterAction(new Selection(-1, -1));
-        moteur->convertirCommande();
+        moteur->convertirCommande(true);
         return false;
     }
 }
@@ -94,7 +94,7 @@ bool IA::estFini()
     {
         moteur->ajouterAction(new Selection(-1, -1));
         moteur->ajouterAction(new ChangerTour());
-        moteur->convertirCommande();
+        moteur->convertirCommande(true);
         reset();
         etat->finDuTour();
         attendre = true;
@@ -115,7 +115,7 @@ bool IA::appliquerAleatoire(bool equipe)
             if (etat->getSelectionne() == nullptr)
             {
                 moteur->ajouterAction(new Selection(etat->getGrille().get(i)->getX(), etat->getGrille().get(i)->getY()));
-                moteur->convertirCommande();
+                moteur->convertirCommande(true);
                 return false;
             }
             std::cout << "PA du perso courant = " << static_cast<Personnage*>(etat->getGrille().get(i))->getPA() << std::endl;
@@ -124,7 +124,7 @@ bool IA::appliquerAleatoire(bool equipe)
             {
                 i++;
                 moteur->ajouterAction(new Selection(-1, -1));
-                moteur->convertirCommande();
+                moteur->convertirCommande(true);
                 return false;
             }
             if (static_cast<Personnage*>(etat->getGrille().get(i))->getPA() > 1 && etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i))).size() != 0)
@@ -153,14 +153,14 @@ bool IA::appliquerAleatoire(bool equipe)
             {
                 std::cout << "Cas douteux de d'Alembert" << std::endl;
             }
-            moteur->convertirCommande();
+            moteur->convertirCommande(true);
             return true;
         }
         else
         {
             i++;
             moteur->ajouterAction(new Selection(-1, -1));
-            moteur->convertirCommande();
+            moteur->convertirCommande(true);
             return false;
         }
     }
@@ -168,7 +168,7 @@ bool IA::appliquerAleatoire(bool equipe)
     {
         i++;
         moteur->ajouterAction(new Selection(-1, -1));
-        moteur->convertirCommande();
+        moteur->convertirCommande(true);
         return false;
         //std::cout << "PERSONNAGE NON UTILISABLE" << std::endl;
     }

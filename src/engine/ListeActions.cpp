@@ -35,10 +35,10 @@ void ListeActions::ajouter (Action* action)
 {
    actions.push_back(action);
 }
-void ListeActions::appliquer()
+void ListeActions::appliquer(bool afficher)
 {
     for(unsigned int i = 0; i < actions.size(); i++)
-        actions[i]->appliquer(s);
+        actions[i]->appliquer(s, afficher);
 }
 int ListeActions::taille()
 {

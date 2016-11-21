@@ -29,7 +29,7 @@ namespace engine {
     ~ListeActions ();
     Action* const get (int i);
     void ajouter (Action* action);
-    void appliquer ();
+    void appliquer (bool afficher);
     int taille ();
     void supprimer (int i);
     void vider ();

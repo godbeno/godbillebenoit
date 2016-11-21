@@ -27,9 +27,9 @@ namespace engine {
     // Operations
   public:
     Attaquer (int Attaquantx, int Attaquanty, int Ciblex, int Cibley);
-    void appliquer (state::Etat* etat);
+    void appliquer (state::Etat* etat, bool afficher);
     state::CaseTerrain* getCaseArrivee (state::Etat* etat);
-    void annuler (state::Etat* etat);
+    void annuler (state::Etat* etat, bool afficher);
   };
 
 };

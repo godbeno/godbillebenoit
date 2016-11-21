@@ -11,20 +11,20 @@ Deplacement::Deplacement(int Originex, int Originey, int Ciblex, int Cibley)
    this->cibleY = Cibley;
 }
 
-void Deplacement::appliquer(state::Etat* etat)
+void Deplacement::appliquer(state::Etat* etat, bool afficher)
 {
     //int tx = sf::VideoMode::getDesktopMode().height/24.;
     std::cout << "origine : (" << origineX << ", " << origineY << ")" << std::endl;
     std::cout << "direction : (" << cibleX << ", " << cibleY << ")" << std::endl;
-    etat->deplacerElement(origineX, origineY, cibleX, cibleY);
+    etat->deplacerElement(origineX, origineY, cibleX, cibleY, afficher);
 }
 state::CaseTerrain* Deplacement::getCaseArrivee(state::Etat* etat)
 {
     return etat->getGrille().getCelluleDecor(cibleX, cibleY);
 }
-void Deplacement::annuler (state::Etat* etat)
+void Deplacement::annuler (state::Etat* etat, bool afficher)
 {
-    etat->deplacerElement(cibleX, cibleY, origineX, origineY);
+    etat->deplacerElement(cibleX, cibleY, origineX, origineY, afficher);
 }
 int Deplacement::getDistance()
 {

@@ -22,7 +22,7 @@ namespace engine {
   class Regulateur {
     // Associations
     // Attributes
-  public:
+  private:
     ListeActions* actions;
   protected:
     state::Etat* etatCourant;
@@ -31,7 +31,7 @@ namespace engine {
   public:
     Regulateur (ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd, Moteur* moteur);
     ~Regulateur ();
-    void appliquer ();
+    void appliquer (bool afficher);
   };
 
 };

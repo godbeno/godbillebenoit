@@ -74,7 +74,7 @@ void Etat::ajouterPersonnage(bool equipe, int id, int x, int y)
     avertirObservateurs(new EvenementEtat(TypeEvenementEtat(3), this, x, y, id, equipe));
 }
 
-void Etat::deplacerElement(int i1, int j1, int i2, int j2)
+void Etat::deplacerElement(int i1, int j1, int i2, int j2, bool afficher)
 {
     Personnage* p = grille->getCellulePersonnage(i1,j1);
     if (p != nullptr)
@@ -82,7 +82,8 @@ void Etat::deplacerElement(int i1, int j1, int i2, int j2)
         grille->deplacerElement(p, i2, j2);
         liste->copy(*grille);
         p->setPArestant(p->getPA()-(abs(i1-i2)+abs(j1-j2)));
-        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(1), this, i1,j1, p->getID(),p->getEquipe(), i2, j2));
+        if (afficher)
+            avertirObservateurs(new EvenementEtat(TypeEvenementEtat(1), this, i1,j1, p->getID(),p->getEquipe(), i2, j2));
         std::cout << "Les observateurs ont été notifiés" << std::endl;
     }
     else
@@ -95,13 +96,14 @@ Personnage* Etat::getSelectionne()
 {
     return selectionne;
 }
-void Etat::setSelectionne(int i, int j)
+void Etat::setSelectionne(int i, int j, bool afficher)
 {
     std::cout << "On traite le changement de selection dans Etat" << std::endl;
     selectionne = grille->getCellulePersonnage(i, j);
-    avertirObservateurs(new EvenementEtat(TypeEvenementEtat(8), this, i, j, 0, 0));
+    if (afficher)
+        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(8), this, i, j, 0, 0));
 }
-int Etat::attaquer(int i1, int j1, int i2, int j2)
+int Etat::attaquer(int i1, int j1, int i2, int j2, bool afficher)
 {
     Personnage* p1 = grille->getCellulePersonnage(i1,j1);
     Personnage* p2 = grille->getCellulePersonnage(i2,j2);
@@ -113,11 +115,13 @@ int Etat::attaquer(int i1, int j1, int i2, int j2)
         std::cout << "Dégâts infligés : " << att << std::endl;
         p2->setPVrestant(p2->getPV()-att);
         p1->setPArestant(p1->getPA()-2);
-        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(10), this, i1, j1, 0, 0, i2, j2, att));
+        if (afficher)
+            avertirObservateurs(new EvenementEtat(TypeEvenementEtat(10), this, i1, j1, 0, 0, i2, j2, att));
         if (p2->getPV() < 0)
         {
             //Le personnage attaqué est mort
-            avertirObservateurs(new EvenementEtat(TypeEvenementEtat(2), this, i2, j2, 0, 0));
+            if (afficher)
+                avertirObservateurs(new EvenementEtat(TypeEvenementEtat(2), this, i2, j2, 0, 0));
             grille->supprimerElement(i2,j2);
         }
         liste->copy(*grille);
@@ -219,10 +223,11 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
     return v;
 }
 
-void Etat::setZoom(float z)
+void Etat::setZoom(float z, bool afficher)
 {
     this->zoom = z ; 
     std::cout << " Zoom est modifié dans l'Etat avec la valeur " << zoom << std::endl;
+    if (afficher)
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(6), this, 0,0, 0,0, camerax, cameray, zoom));       
 }
 
@@ -231,9 +236,10 @@ float Etat::getZoom()
     return zoom;
 }
 
-void Etat::setCamerax(int cx)
+void Etat::setCamerax(int cx, bool afficher)
 {
     this->camerax = cx;
+    if (afficher)
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(5), this, 0,0, 0,0, camerax, cameray, zoom)); 
 }
 
@@ -242,10 +248,11 @@ int Etat::getCamerax()
     return camerax;
 }
 
-void Etat::setCameray(int cy)
+void Etat::setCameray(int cy, bool afficher)
 { 
     this->cameray = cy;
-    avertirObservateurs(new EvenementEtat(TypeEvenementEtat(5), this, 0,0, 0,0,camerax, cameray, zoom));
+    if (afficher)
+        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(5), this, 0,0, 0,0,camerax, cameray, zoom));
 }
 
 int Etat::getCameray()
@@ -356,10 +363,11 @@ void Etat::configurerJoueur(bool joueur1estIA, bool joueur2estIA)
     joueur1IA = joueur1estIA;
     joueur2IA = joueur2estIA;
 }
-void Etat::changerTour()
+void Etat::changerTour(bool afficher)
 {
     tour = !tour;
-    avertirObservateurs(new EvenementEtat(state::ChangementDeTour, this, 0, 0, 0, false));
+    if (afficher)
+        avertirObservateurs(new EvenementEtat(state::ChangementDeTour, this, 0, 0, 0, false));
 }
 bool Etat::getTour()
 {

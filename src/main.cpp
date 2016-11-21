@@ -50,7 +50,7 @@ int main(int argc,char* argv[])
     
     //On spécifie que les deux joueurs sont des IAs
     etat->configurerJoueur(true, true);
-    etat->changerTour();
+    etat->changerTour(true);
     
     
     while (window->isOpen())

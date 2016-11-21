@@ -13,14 +13,14 @@ void Historique::ajouterAction (Action* action)
 }
 void Historique::annulerUneAction (state::Etat* etat)
 {
-    lsHistorique->get(lsHistorique->taille()-1)->annuler(etat);
+    lsHistorique->get(lsHistorique->taille()-1)->annuler(etat, false);
     lsHistorique->supprimer(lsHistorique->taille()-1);
 }
 void Historique::annulerToutesActions (state::Etat* etat)
 {
     for (int i = 0; i < lsHistorique->taille(); i++)
     {
-        lsHistorique->get(lsHistorique->taille()-i)->annuler(etat);
+        lsHistorique->get(lsHistorique->taille()-i)->annuler(etat, false);
         lsHistorique->supprimer(lsHistorique->taille()-i);
     }
 }

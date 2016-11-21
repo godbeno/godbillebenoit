@@ -6,11 +6,11 @@ ChangerTour::ChangerTour()
 {
     
 }
-void ChangerTour::appliquer(state::Etat* etat)
+void ChangerTour::appliquer(state::Etat* etat, bool afficher)
 {
-    etat->changerTour();
+    etat->changerTour(afficher);
 }
-void ChangerTour::annuler(state::Etat* etat)
+void ChangerTour::annuler(state::Etat* etat, bool afficher)
 {
-    etat->changerTour();
+    etat->changerTour(afficher);
 }

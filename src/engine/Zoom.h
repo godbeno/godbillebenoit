@@ -22,8 +22,8 @@ namespace engine {
     // Operations
   public:
     Zoom (int i);
-    void appliquer (state::Etat* etat);
-    void annuler (state::Etat* etat);
+    void appliquer (state::Etat* etat, bool afficher);
+    void annuler (state::Etat* etat, bool afficher);
   };
 
 };

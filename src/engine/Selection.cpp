@@ -8,12 +8,12 @@ Selection::Selection(int Selectionx, int Selectiony)
    ancienSelect = nullptr;
 }
 
-void Selection::appliquer(state::Etat* etat)
+void Selection::appliquer(state::Etat* etat, bool afficher)
 {
     ancienSelect = etat->getSelectionne();
-    etat->setSelectionne(selectionX, selectionY);
+    etat->setSelectionne(selectionX, selectionY, afficher);
 }
-void Selection::annuler (state::Etat* etat)
+void Selection::annuler (state::Etat* etat, bool afficher)
 {
-    etat->setSelectionne(ancienSelect->getX(), ancienSelect->getY());
+    etat->setSelectionne(ancienSelect->getX(), ancienSelect->getY(), afficher);
 }

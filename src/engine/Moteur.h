@@ -46,7 +46,7 @@ namespace engine {
     Mode getMode ();
     void update (clock_t t);
     void setMode (Mode mode);
-    void convertirCommande ();
+    void convertirCommande (bool afficher);
     float getZoom ( );
     void setZoom (float z);
     int getCamerax ();

@@ -58,9 +58,9 @@ Regulateur::~Regulateur()
     //std::cout << "Destructeur de Regulateur" << std::endl;
 }
 
-void Regulateur::appliquer()
+void Regulateur::appliquer(bool afficher)
 {
     //std::cout << "(" << actions->taille() << ", " << commandes->taille() << ")" << std::endl;
     std::cout << "Application des actions ! " << std::endl;
-    actions->appliquer(); 
+    actions->appliquer(afficher); 
 }
