@@ -21,16 +21,21 @@ Panneau::Panneau()
     textBoutDOff.loadFromFile("res/Textures/Bouton-déplacement-Off.png");
     textBoutAOn.loadFromFile("res/Textures/Bouton-attaque-On.png");
     textBoutDOn.loadFromFile("res/Textures/Bouton-déplacement-On.png");
+    textBoutFinTourOn.loadFromFile("res/Textures/Bouton-On.png");
+    textBoutFinTourOff.loadFromFile("res/Textures/Bouton-Off.png");
     
     fond.setTexture(textFond);
     boutA.setTexture(textBoutAOff);
     boutD.setTexture(textBoutDOff);
+    boutFinTour.setTexture(textBoutFinTourOff);
     
     fond.setPosition(largeur/2 - 195, hauteur-120);
     boutA.setPosition(largeur/2 - 180, hauteur-100);
     boutD.setPosition(largeur/2 - 110, hauteur-100);
+    boutFinTour.setPosition(3*largeur/4-20,hauteur-220);
     
     fond.setScale(2,2);
+    boutFinTour.setScale(3,3);
     
     font.loadFromFile("res/Fonts/arial.ttf");
     nom.setFont(font);
@@ -49,6 +54,7 @@ void Panneau::draw(sf::RenderWindow* window)
     window->draw(fond);
     window->draw(boutA);
     window->draw(boutD);
+    window->draw(boutFinTour);    
     if (estSelect)
     {
         window->draw(nom);

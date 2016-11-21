@@ -21,6 +21,7 @@ namespace render {
     sf::Sprite fond;
     sf::Sprite boutA;
     sf::Sprite boutD;
+    sf::Sprite boutFinTour;
     sf::Texture textFond;
     sf::Texture textBoutAOff;
     sf::Texture textBoutDOff;
@@ -35,6 +36,8 @@ namespace render {
     sf::Text txtPv;
     sf::Texture textBoutAOn;
     sf::Texture textBoutDOn;
+    sf::Texture textBoutFinTourOn;
+    sf::Texture textBoutFinTourOff;
     // Operations
   public:
     Panneau ();
