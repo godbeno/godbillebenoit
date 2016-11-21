@@ -40,6 +40,8 @@ namespace AI {
     state::CaseTerrain* getMeilleureCase (state::Personnage* p);
     void jouer ();
     bool appliquerHeuristique (bool equipe);
+    bool appliquerMinMax ();
+    int minmax (bool joueur);
   };
 
 };
