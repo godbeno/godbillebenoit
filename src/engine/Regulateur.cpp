@@ -28,10 +28,10 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
                 lsAction->supprimer(i);
                 lsAction->ajouter(new ChangerMode(6, -1, -1, moteur));
             }
-            //else
-            //{
-            //    lsAction->ajouter(new ChangerMode(4, -1, -1, moteur));
-            //}
+            else
+            {
+                lsAction->ajouter(new ChangerMode(4, -1, -1, moteur));
+            }
         }
         if (dynamic_cast<Attaquer*>(lsAction->get(i)))
         {

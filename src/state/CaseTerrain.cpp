@@ -1,4 +1,5 @@
 #include "CaseTerrain.h"
+#include <iostream>
 
 using namespace state;
 
@@ -218,13 +219,6 @@ CaseTerrain::CaseTerrain (int id)
             liste_acces.push_back(Est);
             liste_acces.push_back(Ouest);
             hauteur = 1;
-            break;
-        default:
-            liste_acces.push_back(Nord);
-            liste_acces.push_back(Sud);
-            liste_acces.push_back(Est);
-            liste_acces.push_back(Ouest);
-            hauteur = 0;
             break;
     }
 }
