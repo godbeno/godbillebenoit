@@ -96,7 +96,6 @@ bool IA::estFini()
         moteur->ajouterAction(new ChangerTour());
         moteur->convertirCommande(true);
         reset();
-        etat->finDuTour();
         attendre = true;
         return true;
     }
@@ -256,3 +255,65 @@ void IA::jouer()
     }
     estFini();
 }
+/*
+bool IA::appliquerMinMax()
+{
+    int max = -1, tmp = 0, nbAtt = -1, nbDep = -1;
+    state::Personnage* currentPersonnage = nullptr;
+    if (etat->getGrille().get(i)->estPersonnage())
+    {
+        if(static_cast<Personnage*>(etat->getGrille().get(i))->getEquipe()==equipe)
+        {
+            currentPersonnage = static_cast<Personnage*>(etat->getGrille().get(i));
+            if (etat->getSelectionne() == nullptr || etat->getSelectionne() != currentPersonnage)
+            {
+                moteur->ajouterAction(new Selection(currentPersonnage->getX(), currentPersonnage->getY()));
+                moteur->convertirCommande(true);
+                return false;
+            }
+            if (currentPersonnage->getPA() > 0)
+            {
+                //moteur->commencerEnregistrement();
+                //std::vector<CaseTerrain*> va = getCaseAttaquable(currentPersonnage);
+                for (unsigned int j = 0; j < va.size(); j++)
+                {
+                    //moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[j]->getX(), va[j]->getY(), false));
+                    tmp = minmax(etat->getTour());
+                    if (tmp > max)
+                    {
+                        max = tmp;
+                        nbAtt = j;
+                    }
+                    //moteur->annuler();
+                }
+                std::vector<CaseTerrain*> vd = etat->getCaseAtteignable(currentPersonnage);
+                for (unsigned int j = 0; j < vd.size(); j++)
+                {
+                    //moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), va[j]->getX(), va[j]->getY(), false));
+                    tmp = minmax(etat->getTour());
+                    if (tmp > max)
+                    {
+                        max = tmp;
+                        nbAtt = -1;
+                        nbDep = j;
+                    }
+                    //moteur->annuler();
+                }
+                if (nbAtt != -1)
+                    moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[tmp]->getX(), va[tmp]->getY(), false));
+                else if (nbDep != -1)
+                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), va[tmp]->getX(), va[tmp]->getY(), false));
+            }
+            else
+            {
+                i++;
+                moteur->ajouterAction(new Selection(-1, -1));
+                moteur->convertirCommande(true);
+                return false;
+            }
+        }
+    }
+}
+        
+*/
+//int IA::minmax(bool equipe)
