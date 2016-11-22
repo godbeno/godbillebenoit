@@ -111,9 +111,21 @@ void Scene::changementEtat(state::EvenementEtat& e)
     }
     else if (e.getTypeEvenement() == state::Attaque)
     {
-        std::cout << "OUI, ON EN EST LA !!!" << std::endl;
+        std::cout << "PREMIERE ID" << std::endl;
+        std::cout << "On appelle e.getX() " << e.getX() << std::endl;
+        std::cout << "On appelle e.getY() " << e.getY() << std::endl;
+        std::cout << "On appelle getTuile() " << couchePersonnage->getTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx)->getID() << std::endl;
+
+        
+        
+        
         int idp1 = couchePersonnage->getTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx)->getID();
-        std::cout << "OUI, ON AVANCE !!!" << std::endl;
+        std::cout << "Deuxieme ID "<< std::endl; 
+        std::cout << "On appelle e.getX() " << e.getNewx() << std::endl;
+        std::cout << "On appelle e.getY() " << e.getNewy() << std::endl;
+        std::cout << "On appelle getTuile() " << couchePersonnage->getTuile((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, tx)->getID() << std::endl;
+        
+        
         int idp2 = couchePersonnage->getTuile((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, tx)->getID();
         int id1 = (((idp1-43)/2)-1) + ((idp1+1)%2)*7;
         int id2 = (((idp2-43)/2)-1) + ((idp2+1)%2)*19 + ((idp2)%2)*12;
