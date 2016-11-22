@@ -17,6 +17,8 @@ namespace render {
   /// class Panneau - 
   class Panneau {
     // Attributes
+  public:
+    sf::Text texteFinTour;
   private:
     sf::Sprite fond;
     sf::Sprite boutA;

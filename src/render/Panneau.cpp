@@ -27,7 +27,7 @@ Panneau::Panneau()
     fond.setTexture(textFond);
     boutA.setTexture(textBoutAOff);
     boutD.setTexture(textBoutDOff);
-    boutFinTour.setTexture(textBoutFinTourOff);
+    boutFinTour.setTexture(textBoutFinTourOn);
     
     fond.setPosition(largeur/2 - 195, hauteur-120);
     boutA.setPosition(largeur/2 - 180, hauteur-100);
@@ -44,6 +44,12 @@ Panneau::Panneau()
     nom.setColor(sf::Color::White);
     nom.setCharacterSize(30);
     
+    texteFinTour.setFont(font);
+    texteFinTour.setString("Fin de Tour");
+    texteFinTour.setPosition(3*largeur/4+50, hauteur-100);
+    texteFinTour.setColor(sf::Color::White);
+    texteFinTour.setCharacterSize(30);
+    
     estSelect = false;
     
     //rajouter PA et PV etc 
@@ -54,7 +60,8 @@ void Panneau::draw(sf::RenderWindow* window)
     window->draw(fond);
     window->draw(boutA);
     window->draw(boutD);
-    window->draw(boutFinTour);    
+    window->draw(boutFinTour);  
+    window->draw(texteFinTour);
     if (estSelect)
     {
         window->draw(nom);
