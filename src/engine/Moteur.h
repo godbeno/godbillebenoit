@@ -11,6 +11,7 @@ namespace state {
 namespace engine {
   class ListeCommande;
   class ListeActions;
+  class Historique;
   class Commande;
   class Action;
   class Regulateur;
@@ -37,6 +38,9 @@ namespace engine {
     int cameray;
     /// 	
     ListeActions* aVerifier;
+    /// 	
+    Historique* historique;
+    bool enregistrer;
     // Operations
   public:
     Moteur (state::Etat* etat);
@@ -55,6 +59,11 @@ namespace engine {
     void setCameray (int cy);
     void ajouterAction (Action* action);
     void finDuTour ();
+    void annuler ();
+    void commencerEnregistrement ();
+    void arreterEnregistrement ();
+    bool enregistrementActive ();
+    void enregistrerAction (Action* action);
   };
 
 };

@@ -6,6 +6,7 @@
 #include "Attaquer.h"
 #include <algorithm>
 #include <SFML/Graphics.hpp>
+#include "Moteur.h"
 using namespace engine;
 
 Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd, Moteur *moteur)
@@ -58,9 +59,12 @@ Regulateur::~Regulateur()
     //std::cout << "Destructeur de Regulateur" << std::endl;
 }
 
-void Regulateur::appliquer(bool afficher)
+void Regulateur::appliquer(bool afficher, Moteur* moteur)
 {
     //std::cout << "(" << actions->taille() << ", " << commandes->taille() << ")" << std::endl;
     std::cout << "Application des actions ! " << std::endl;
+    if (moteur->enregistrementActive())
+        for (int i = 0; i < actions->taille(); i++)
+            moteur->enregistrerAction(actions->get(i));
     actions->appliquer(afficher); 
 }
