@@ -25,6 +25,7 @@ namespace AI {
     Niveau niveau;
     bool attendre;
     clock_t temps;
+    bool archer;
   protected:
     state::Etat* etat;
     bool equipe;
