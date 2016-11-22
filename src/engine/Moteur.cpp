@@ -8,6 +8,7 @@
 #include "ChangerTour.h"
 #include "Attaquer.h"
 #include "Zoom.h"
+#include "Historique.h"
 #include <iostream>
 
 using namespace engine;
@@ -18,6 +19,8 @@ Moteur::Moteur(state::Etat* etat)
     derniereMaj = clock();
     this->etat = etat;
     aVerifier = new ListeActions(etat);
+    historique = new Historique(etat);
+    enregistrer = false;
 }
 Moteur::~Moteur()
 {
@@ -127,7 +130,7 @@ void Moteur::convertirCommande(bool afficher)
 
 
     Regulateur r(aVerifier, etat, &listeCommande, this);
-    r.appliquer(afficher);
+    r.appliquer(afficher, this);
     //std::cout << "Fin de l'application" << std::endl;
     listeCommande.vider();
     aVerifier->vider();
@@ -170,4 +173,24 @@ void Moteur::ajouterAction(Action* action)
 void Moteur::finDuTour()
 {
     etat->finDuTour();
+}
+void Moteur::annuler()
+{
+    historique->annulerUneAction(etat);
+}
+void Moteur::commencerEnregistrement()
+{
+    enregistrer = true;
+}
+void Moteur::arreterEnregistrement()
+{
+    enregistrer = false;
+}
+bool Moteur::enregistrementActive()
+{
+    return enregistrer;
+}
+void Moteur::enregistrerAction(Action* action)
+{
+    historique->ajouterAction(action);
 }

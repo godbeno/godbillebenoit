@@ -251,11 +251,16 @@ void IA::jouer()
                 if (attendre)
                     temps = clock();
                 break;
+            case MinMax:
+                attendre = appliquerMinMax();
+                if (attendre)
+                    temps = clock();
+                break;
         }
     }
     estFini();
 }
-/*
+
 bool IA::appliquerMinMax()
 {
     int max = -1, tmp = 0, nbAtt = -1, nbDep = -1;
@@ -273,23 +278,23 @@ bool IA::appliquerMinMax()
             }
             if (currentPersonnage->getPA() > 0)
             {
-                //moteur->commencerEnregistrement();
-                //std::vector<CaseTerrain*> va = getCaseAttaquable(currentPersonnage);
+                moteur->commencerEnregistrement();
+                std::vector<CaseTerrain*> va = etat->getCaseAttaquable(currentPersonnage);
                 for (unsigned int j = 0; j < va.size(); j++)
                 {
-                    //moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[j]->getX(), va[j]->getY(), false));
+                    moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[j]->getX(), va[j]->getY()));
                     tmp = minmax(etat->getTour());
                     if (tmp > max)
                     {
                         max = tmp;
                         nbAtt = j;
                     }
-                    //moteur->annuler();
+                    moteur->annuler();
                 }
                 std::vector<CaseTerrain*> vd = etat->getCaseAtteignable(currentPersonnage);
                 for (unsigned int j = 0; j < vd.size(); j++)
                 {
-                    //moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), va[j]->getX(), va[j]->getY(), false));
+                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), va[j]->getX(), va[j]->getY()));
                     tmp = minmax(etat->getTour());
                     if (tmp > max)
                     {
@@ -297,12 +302,12 @@ bool IA::appliquerMinMax()
                         nbAtt = -1;
                         nbDep = j;
                     }
-                    //moteur->annuler();
+                    moteur->annuler();
                 }
                 if (nbAtt != -1)
-                    moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[tmp]->getX(), va[tmp]->getY(), false));
+                    moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[tmp]->getX(), va[tmp]->getY()));
                 else if (nbDep != -1)
-                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), va[tmp]->getX(), va[tmp]->getY(), false));
+                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), va[tmp]->getX(), va[tmp]->getY()));
             }
             else
             {
@@ -313,7 +318,10 @@ bool IA::appliquerMinMax()
             }
         }
     }
+    return false;
 }
         
-*/
-//int IA::minmax(bool equipe)
+int IA::minmax(bool equipe)
+{
+    return 0;
+}

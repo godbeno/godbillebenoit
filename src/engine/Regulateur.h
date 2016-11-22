@@ -31,7 +31,7 @@ namespace engine {
   public:
     Regulateur (ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd, Moteur* moteur);
     ~Regulateur ();
-    void appliquer (bool afficher);
+    void appliquer (bool afficher, Moteur* moteur);
   };
 
 };
