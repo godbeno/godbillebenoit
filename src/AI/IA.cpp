@@ -283,7 +283,7 @@ bool IA::appliquerMinMax()
                 for (unsigned int j = 0; j < va.size(); j++)
                 {
                     moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[j]->getX(), va[j]->getY()));
-                    tmp = minmax(etat->getTour());
+                    tmp = minmax(2);
                     if (tmp > max)
                     {
                         max = tmp;
@@ -295,7 +295,7 @@ bool IA::appliquerMinMax()
                 for (unsigned int j = 0; j < vd.size(); j++)
                 {
                     moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), va[j]->getX(), va[j]->getY()));
-                    tmp = minmax(etat->getTour());
+                    tmp = minmax(2);
                     if (tmp > max)
                     {
                         max = tmp;
@@ -321,7 +321,66 @@ bool IA::appliquerMinMax()
     return false;
 }
         
-int IA::minmax(bool equipe)
+int IA::minmax(int prof)
 {
-    return 0;
+    //Pour l'instant ne marche que pour le max
+    int tmp = -1, nbAtt = -1, nbDep = -1, max  = -1; 
+    state::Personnage* currentPersonnage = nullptr;
+    int j = 0;
+    while (j < etat->getGrille().size())
+    {
+        if (etat->getGrille().get(j)->estPersonnage())
+        {
+            if(static_cast<Personnage*>(etat->getGrille().get(j))->getEquipe()==equipe)
+            {
+                currentPersonnage = static_cast<Personnage*>(etat->getGrille().get(j));
+                if (etat->getSelectionne() == nullptr || etat->getSelectionne() != currentPersonnage)
+                {
+                    moteur->ajouterAction(new Selection(currentPersonnage->getX(), currentPersonnage->getY()));
+                    moteur->convertirCommande(false);
+                }
+                if (currentPersonnage->getPA() > 0)
+                {
+                    std::vector<CaseTerrain*> va = etat->getCaseAttaquable(currentPersonnage);
+                    std::vector<CaseTerrain*> vd = etat->getCaseAtteignable(currentPersonnage);
+                    for (unsigned int k = 0; k < va.size(); k++)
+                    {
+                        moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[k]->getX(), va[k]->getY()));
+                        moteur->convertirCommande(false);
+                        tmp = minmax(prof--);
+                        if (tmp > max)
+                        {
+                            max = tmp;
+                            nbAtt = k;
+                        }
+                        moteur->annuler();
+                    }
+                    for (unsigned int k = 0; k < vd.size(); k++)
+                    {
+                        moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), va[k]->getX(), va[k]->getY()));
+                        tmp = minmax(prof--);
+                        if (tmp > max)
+                        {
+                            max = tmp;
+                            nbAtt = -1;
+                            nbDep = k;
+                        }
+                        moteur->annuler();
+                    }
+                    if (nbAtt != -1)
+                        moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[tmp]->getX(), va[tmp]->getY()));
+                    else if (nbDep != -1)
+                        moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), va[tmp]->getX(), va[tmp]->getY()));
+                }
+                else
+                {
+                    j++;
+                }
+            }
+            else
+                j++;
+        }
+        else
+            j++;
+    }
 }

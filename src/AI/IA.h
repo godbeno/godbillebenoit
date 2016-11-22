@@ -41,7 +41,7 @@ namespace AI {
     void jouer ();
     bool appliquerHeuristique (bool equipe);
     bool appliquerMinMax ();
-    int minmax (bool joueur);
+    int minmax (int prof);
   };
 
 };
