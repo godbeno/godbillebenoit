@@ -83,9 +83,9 @@ void Moteur::convertirCommande(bool afficher)
             aVerifier->ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this));
         else if (mode == Mode::selection && cc->getBouton() == 0)
             aVerifier->ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this));
-        else if (mode == Mode::selection && cc->getBouton() == 1)
+        else if (mode == Mode::selection && cc->getBouton() == 1 && etat->getSelectionne()->getEquipe() == etat->getTour())
             aVerifier->ajouter(new ChangerMode(5, -1, -1, this));
-        else if (mode == Mode::selection && cc->getBouton() == 2)
+        else if (mode == Mode::selection && cc->getBouton() == 2 && etat->getSelectionne()->getEquipe() == etat->getTour())
             aVerifier->ajouter(new ChangerMode(4, -1, -1, this));
         else if (mode == Mode::selection && cc->getBouton() == 3)
             aVerifier->ajouter(new ChangerTour());      
