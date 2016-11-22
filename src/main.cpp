@@ -39,9 +39,12 @@ int main(int argc,char* argv[])
     etat->ajouterPersonnage(true, 3, 12, 10);
     etat->ajouterPersonnage(true, 4, 10, 7);
     etat->ajouterPersonnage(true, 2, 8, 8);   
-    etat->ajouterPersonnage(false, 1, 4, 8);
+    etat->ajouterPersonnage(true, 1, 4, 8);
     etat->ajouterPersonnage(false, 5, 15, 7);
-    etat->ajouterPersonnage(false, 6, 10, 6);
+    etat->ajouterPersonnage(false, 1, 11, 6);
+    etat->ajouterPersonnage(false, 1, 12, 6);
+    etat->ajouterPersonnage(false, 4, 13, 6);
+    etat->ajouterPersonnage(false, 3, 15, 6);
     
     m->setMode(Mode::jeu);
     
