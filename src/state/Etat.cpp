@@ -104,7 +104,7 @@ void Etat::setSelectionne(int i, int j, bool afficher)
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(8), this, i, j, 0, 0));
 }
 int Etat::attaquer(int i1, int j1, int i2, int j2, bool afficher)
-{
+{   std::cout << "ON EST DANS ATTAQUER" << std::endl;
     Personnage* p1 = grille->getCellulePersonnage(i1,j1);
     Personnage* p2 = grille->getCellulePersonnage(i2,j2);
     if (p1 != nullptr && p2 != nullptr)
@@ -115,9 +115,11 @@ int Etat::attaquer(int i1, int j1, int i2, int j2, bool afficher)
         std::cout << "Dégâts infligés : " << att << std::endl;
         p2->setPVrestant(p2->getPV()-att);
         p1->setPArestant(p1->getPA()-2);
-        if (afficher)
+        if (afficher) {
+            std::cout << "ON EST DANS ATTAQUER 2" << std::endl;
             avertirObservateurs(new EvenementEtat(TypeEvenementEtat(10), this, i1, j1, 0, 0, i2, j2, att));
-        if (p2->getPV() < 0)
+        }
+            if (p2->getPV() < 0)
         {
             //Le personnage attaqué est mort
             if (afficher)
@@ -128,6 +130,7 @@ int Etat::attaquer(int i1, int j1, int i2, int j2, bool afficher)
         return att;
     }
     return 0;
+    std::cout << "ON SORT DE ATTAQUER" << std::endl;
 }
 std::vector<CaseTerrain*> Etat::getCaseAtteignable(Personnage* p)
 {

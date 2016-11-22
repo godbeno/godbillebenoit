@@ -49,7 +49,7 @@ int main(int argc,char* argv[])
     int hauteur = sf::VideoMode::getDesktopMode().height;
     
     //On spécifie que les deux joueurs sont des IAs
-    etat->configurerJoueur(false, false);
+    etat->configurerJoueur(true, true);
     etat->changerTour(true);
     
     
@@ -67,10 +67,9 @@ int main(int argc,char* argv[])
                     if (event.mouseButton.x > largeur/2 -185 && event.mouseButton.x < largeur/2 - 115 && event.mouseButton.y > hauteur-105 && event.mouseButton.y < hauteur-35)
                         m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 1));
                     else if (event.mouseButton.x > largeur/2 -115 && event.mouseButton.x < largeur/2 - 45 && event.mouseButton.y > hauteur-105 && event.mouseButton.y < hauteur-35)
-                        
                         m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 2));
                     else if(event.mouseButton.x > 1002 && event.mouseButton.x < 1286 && event.mouseButton.y > 650 && event.mouseButton.y < 738) 
-                    m->ajouterCommande(new CommandeClic(0,0,3));
+                        m->ajouterCommande(new CommandeClic(0,0,3));
                     else
                         m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 0));
                     std::cout << event.mouseButton.x << " , " << event.mouseButton.y << std::endl;
@@ -78,7 +77,7 @@ int main(int argc,char* argv[])
             if (event.type == sf::Event::KeyPressed)
             {
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-                     m->ajouterCommande(new CommandeFleche(Direction(4)));
+                      m->ajouterCommande(new CommandeFleche(Direction(4)));
                 else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
                       m->ajouterCommande(new CommandeFleche(Direction(3)));
                 else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
