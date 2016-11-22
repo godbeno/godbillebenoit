@@ -91,13 +91,9 @@ int main(int argc,char* argv[])
             if (event.type == sf::Event::MouseWheelMoved)
                 m->ajouterCommande(new CommandeZoomCamera((int)(event.mouseWheel.delta)));
         }
-        std::cout << "Avant afficher" << std::endl;
         scene->afficher();
-        std::cout << "Après afficher" << std::endl;
         ia->jouer();
-        std::cout << "Avant update moteur" << std::endl;
         m->update(clock());
-        std::cout << "Après update moteur" << std::endl;
     }
     
 

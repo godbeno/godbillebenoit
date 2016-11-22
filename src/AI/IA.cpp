@@ -38,7 +38,7 @@ bool IA::appliquerHeuristique(bool equipe)
                 return false;
             }
             std::cout << "PA du perso courant = " << static_cast<Personnage*>(etat->getGrille().get(i))->getPA() << std::endl;
-            std::cout << "PA du perso courant = " << etat->getSelectionne()->getPA() << std::endl;
+            //std::cout << "PA du perso courant = " << etat->getSelectionne()->getPA() << std::endl;
             if (currentPersonnage->getPA() <= 0)
             {
                 i++;
@@ -48,7 +48,7 @@ bool IA::appliquerHeuristique(bool equipe)
             }
             if (currentPersonnage->getPA() > 1 && etat->getCaseAttaquable(currentPersonnage).size() != 0)
             {  
-                std::cout << "Il attaque depuis " << etat->getGrille().get(i)->getX() << " , " << etat->getGrille().get(i)->getY() << " vers " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX() << " , " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY() << std::endl;
+                std::cout << "IA décide : Il attaque depuis " << etat->getGrille().get(i)->getX() << " , " << etat->getGrille().get(i)->getY() << " vers " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX() << " , " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY() << std::endl;
                 moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), etat->getCaseAttaquable(currentPersonnage)[0]->getX(), etat->getCaseAttaquable(currentPersonnage)[0]->getY()));
                 if (currentPersonnage->getType() == TypePersonnage::Archer)
                     archer = true;
@@ -97,10 +97,10 @@ IA::~IA()
 }
 bool IA::estFini()
 {
-    std::cout << "On vérifie si le tour est fini " << std::endl;
+    //std::cout << "On vérifie si le tour est fini " << std::endl;
     if(i >= this->etat->getListe().size())
     {
-        std::cout << "Il l'est" << std::endl;
+        //std::cout << "Il l'est" << std::endl;
         moteur->ajouterAction(new Selection(-1, -1));
         moteur->ajouterAction(new ChangerTour());
         moteur->convertirCommande(true);
@@ -110,7 +110,7 @@ bool IA::estFini()
     }
     else
     {
-        std::cout << "Il ne l'est pas" << std::endl;
+        //std::cout << "Il ne l'est pas" << std::endl;
         return false;
     }
 }
@@ -129,7 +129,7 @@ bool IA::appliquerAleatoire(bool equipe)
                 moteur->convertirCommande(true);
                 return false;
             }
-            std::cout << "PA du perso courant = " << static_cast<Personnage*>(etat->getGrille().get(i))->getPA() << std::endl;
+            //std::cout << "PA du perso courant = " << static_cast<Personnage*>(etat->getGrille().get(i))->getPA() << std::endl;
             std::cout << "PA du perso courant = " << etat->getSelectionne()->getPA() << std::endl;
             if (static_cast<Personnage*>(etat->getGrille().get(i))->getPA() <= 0)
             {
@@ -140,13 +140,13 @@ bool IA::appliquerAleatoire(bool equipe)
             }
             if (static_cast<Personnage*>(etat->getGrille().get(i))->getPA() > 1 && etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i))).size() != 0)
             {  
-                std::cout << "Il attaque depuis " << etat->getGrille().get(i)->getX() << " , " << etat->getGrille().get(i)->getY() << " vers " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX() << " , " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY() << std::endl;
+                std::cout << "IA décide : Il attaque depuis " << etat->getGrille().get(i)->getX() << " , " << etat->getGrille().get(i)->getY() << " vers " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX() << " , " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY() << std::endl;
                 moteur->ajouterAction(new Attaquer(static_cast<Personnage*>(etat->getGrille().get(i))->getX(),static_cast<Personnage*>(etat->getGrille().get(i))->getY(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY()));
                 //etat->attaquer(etat->getGrille().get(i)->getX(),etat->getGrille().get(i)->getY(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY());
             } 
             else if (etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i))).size() != 0)
             {
-                std::cout << "Il se déplace de " << static_cast<Personnage*>(etat->getGrille().get(i))->getX() << " , " << static_cast<Personnage*>(etat->getGrille().get(i))->getY() << " vers " << etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX() << " , "<< etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY() << std::endl;
+                std::cout << "IA décide : Il se déplace de " << static_cast<Personnage*>(etat->getGrille().get(i))->getX() << " , " << static_cast<Personnage*>(etat->getGrille().get(i))->getY() << " vers " << etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX() << " , "<< etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY() << std::endl;
                 Deplacement* dep;
                 int compt = -1;
                 {
@@ -159,10 +159,6 @@ bool IA::appliquerAleatoire(bool equipe)
                     moteur->ajouterAction(dep);
                 }
                     //etat->deplacerElement(static_cast<Personnage*>(etat->getGrille().get(i))->getX(),static_cast<Personnage*>(etat->getGrille().get(i))->getY(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX());
-            }
-            else
-            {
-                std::cout << "Cas douteux de d'Alembert" << std::endl;
             }
             moteur->convertirCommande(true);
             return true;
@@ -251,7 +247,7 @@ void IA::jouer()
 {
     if (!etat->partieContinue() && etat->joueurIA() && (!attendre || (attendre && double(clock()-temps)/CLOCKS_PER_SEC > 0.5*(archer+1))))
     {
-        std::cout << "On va jouer à nouveau ! " << std::endl;
+        //std::cout << "On va jouer à nouveau ! " << std::endl;
         switch(niveau)
         {
             case Aleatoire:
