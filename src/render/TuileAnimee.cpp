@@ -338,9 +338,8 @@ void TuileAnimee::update (clock_t time)
         debut = clock();
     }
     if (nbr > tuiles.size()-1)
-    {   std::cout << "On fait un setTuile des plus étonnants!" << std::endl;
-        parent->setTuile(x,y,static_cast<TuileStatique*>(tuiles[nbr-1])->copy());
-        std::cout << "C'était bien, c'était chouette ce setTuile" << std::endl;
+    {   
+        parent->setTuile(trueX,trueY,static_cast<TuileStatique*>(tuiles[tuiles.size()-1])->copy());
         parent->stopDegat();
     }
 }
@@ -351,7 +350,11 @@ const sf::Sprite& TuileAnimee::getSprite()
 void TuileAnimee::updateSpritePosition(float x, float y)
 {
     for (unsigned int i = 0; i < tuiles.size(); i++)
+    {
         tuiles[i]->updateSpritePosition(x,y);
-    this->x = x;
-    this->y = y;
+        tuiles[i]->setX(this->x);
+        tuiles[i]->setY(this->y);
+    }
+    //this->x = x;
+    //this->y = y;
 }

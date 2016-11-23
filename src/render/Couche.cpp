@@ -22,9 +22,8 @@ Couche::~Couche()
 }
 Tuile* Couche::getTuile (int i, int j, float incr)
 {
-    std::cout << "Tuile demandée : " << (int)i << ", " << (int)j << std::endl;
     for (unsigned int k = 0; k < tuiles.size(); k++)
-    {   std::cout << "Tuiles présentes : " << tuiles[k]->getTrueX() << ", " << tuiles[k]->getTrueY() << std::endl;
+    {   
         if (tuiles[k]->getTrueX()==i && tuiles[k]->getTrueY()==j)
             return tuiles[k];
     }
@@ -64,28 +63,21 @@ void Couche::afficher()
         if (tuiles[i]->estAnime())
         {
             t = clock();
-            std::cout << "MaJ d'une tuile animée" << std::endl;
             static_cast<TuileAnimee*>(tuiles[i])->update(t);
-            std::cout << "le bug est après" << std::endl;
         }
-        std::cout << "draw des tuiles" << std::endl;
         window->draw(tuiles[i]->getSprite());
         //window->draw((new TuileStatique(100,100,73,200))->getSprite());
     }
     //std::cout << "Les pers affichés" << std::endl;
-    std::cout << "draw des brillances" << std::endl;
     for (unsigned int i = 0; i < brillance.size(); i++)
         window->draw(brillance[i]);
     //std::cout << "Brillance affichés" << std::endl;
-    std::cout << "draw des rouges" << std::endl;
     for (unsigned int i = 0; i < rouge.size(); i++)
         window->draw(rouge[i]);
     //std::cout << "Lrouge affichés" << std::endl;
-    std::cout << "draw du select" << std::endl;
     if (select)
         window->draw(*select);
     //std::cout << "SSelect affichés" << std::endl;
-    std::cout << "draw des dégâts" << std::endl;
     if (estDegat)
         window->draw(degat);
     //std::cout << "Degat affichés" << std::endl;
@@ -104,8 +96,9 @@ void Couche::deplacerCamera(float x, float y)
     {
         tuiles[i]->setX(tuiles[i]->getX()+x);
         tuiles[i]->setY(tuiles[i]->getY()+y);
-        static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(x, y);
-        //tuiles[i]->updateSpritePosition(x,y);
+        //if (!tuiles[i]->estAnime())
+            //static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(x, y);
+        tuiles[i]->updateSpritePosition(x,y);
     }
     if (select)
     {
@@ -127,6 +120,8 @@ void Couche::deplacerCamera(float x, float y)
         int ancienBriy = rouge[i].getPosition().y;
         rouge[i].setPosition(ancienBrix+x, ancienBriy+y);
     }
+    if (estDegat)
+        degat.setPosition(degat.getPosition().x+x, degat.getPosition().y+y);
 }
 void Couche::zoomCamera(float s)
 {

@@ -275,7 +275,7 @@ void TuileStatique::setLargeur(int largeur)
     this->largeur = largeur;
 }
 const sf::Sprite& TuileStatique::getSprite ()
-{   std::cout << "Oh la belle sprite" << std::endl;
+{   
     return sprite;
 }
 bool TuileStatique::estAnime ()
