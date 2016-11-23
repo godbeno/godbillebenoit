@@ -22,8 +22,8 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
         {
             std::vector<state::CaseTerrain*> v = etat->getCaseAtteignable(etat->getSelectionne());
             state::CaseTerrain* ct = static_cast<Deplacement*>(lsAction->get(i))->getCaseArrivee(etat);
-            if (ct)
-                std::cout << "Case Clic : " << ct->getX() << " " << ct->getY() << std::endl;
+            //if (ct)
+                //std::cout << "Case Clic : " << ct->getX() << " " << ct->getY() << std::endl;
             if (std::find(v.begin(), v.end(), ct) == v.end())
             {
                 lsAction->supprimer(i);
@@ -52,7 +52,7 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
                 lsAction->supprimer(i);
         }*/
     }
-    std::cout << "TAILLE : "<< lsAction->taille() << std::endl;   
+    //std::cout << "TAILLE : "<< lsAction->taille() << std::endl;   
 }
 Regulateur::~Regulateur()
 {
@@ -62,7 +62,7 @@ Regulateur::~Regulateur()
 void Regulateur::appliquer(bool afficher, Moteur* moteur)
 {
     //std::cout << "(" << actions->taille() << ", " << commandes->taille() << ")" << std::endl;
-    std::cout << "Application des actions ! " << std::endl;
+    //std::cout << "Application des actions ! " << std::endl;
     if (moteur->enregistrementActive())
         for (int i = 0; i < actions->taille(); i++)
             moteur->enregistrerAction(actions->get(i));

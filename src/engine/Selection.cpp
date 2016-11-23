@@ -1,4 +1,5 @@
 #include "Selection.h"
+#include <iostream>
 using namespace engine;
 
 Selection::Selection(int Selectionx, int Selectiony)
@@ -16,4 +17,5 @@ void Selection::appliquer(state::Etat* etat, bool afficher)
 void Selection::annuler (state::Etat* etat, bool afficher)
 {
     etat->setSelectionne(ancienSelect->getX(), ancienSelect->getY(), afficher);
+    std::cout << "Fin de l'annulation" << std::endl;
 }

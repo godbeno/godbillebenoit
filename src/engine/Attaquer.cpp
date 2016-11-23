@@ -22,5 +22,6 @@ state::CaseTerrain* Attaquer::getCaseArrivee(state::Etat* etat)
 }
 void Attaquer::annuler(state::Etat* etat, bool afficher)
 {
+    etat->getGrille().getCellulePersonnage(attaquantX, attaquantY)->setPArestant(etat->getGrille().getCellulePersonnage(attaquantX, attaquantY)->getPA() + 2);
     etat->getGrille().getCellulePersonnage(cibleX, cibleY)->setPVrestant(etat->getGrille().getCellulePersonnage(cibleX, cibleY)->getPV() + degat);
 }

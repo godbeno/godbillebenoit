@@ -1,4 +1,5 @@
 #include "Historique.h"
+#include <iostream>
 
 using namespace engine;
 
@@ -9,6 +10,7 @@ Historique::Historique(state::Etat* sauvegarde)
 }
 void Historique::ajouterAction (Action* action)
 {
+    std::cout << "UNE ACTION AJOUTEE" << std::endl;
     lsHistorique->ajouter(action);
 }
 void Historique::annulerUneAction (state::Etat* etat)

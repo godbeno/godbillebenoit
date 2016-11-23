@@ -292,19 +292,24 @@ bool IA::appliquerMinMax()
                 for (unsigned int j = 0; j < va.size(); j++)
                 {
                     moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[j]->getX(), va[j]->getY()));
-                    tmp = minmax(2);
+                    moteur->convertirCommande(false);
+                    tmp = minmax(1);
                     if (tmp > max)
                     {
                         max = tmp;
                         nbAtt = j;
                     }
                     moteur->annuler();
+                    std::cout << " -> attaque annulée (appelant)" << currentPersonnage->getPA() << std::endl;
                 }
+                std::cout << currentPersonnage << std::endl;
                 std::vector<CaseTerrain*> vd = etat->getCaseAtteignable(currentPersonnage);
+                std::cout << "On a trouvé les cases atteignables (" << vd.size() << ")" << std::endl;
                 for (unsigned int j = 0; j < vd.size(); j++)
                 {
-                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), va[j]->getX(), va[j]->getY()));
-                    tmp = minmax(2);
+                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[j]->getX(), vd[j]->getY()));
+                    moteur->convertirCommande(false);
+                    tmp = minmax(1);
                     if (tmp > max)
                     {
                         max = tmp;
@@ -312,11 +317,14 @@ bool IA::appliquerMinMax()
                         nbDep = j;
                     }
                     moteur->annuler();
+                    std::cout << "-> déplacement annulée (appelant)" << std::endl;
                 }
                 if (nbAtt != -1)
-                    moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[tmp]->getX(), va[tmp]->getY()));
+                    moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[max]->getX(), va[max]->getY()));
                 else if (nbDep != -1)
-                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), va[tmp]->getX(), va[tmp]->getY()));
+                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[max]->getX(), vd[max]->getY()));
+                moteur->convertirCommande(true);
+                return true;
             }
             else
             {
@@ -326,7 +334,10 @@ bool IA::appliquerMinMax()
                 return false;
             }
         }
+        else
+            i++;
     }
+    i++;
     return false;
 }
         
@@ -354,8 +365,11 @@ int IA::minmax(int prof)
                 }
                 if (currentPersonnage->getPA() > 0)
                 {
+                    std::cout << "Avant le calcul des vector" << std::endl;
                     std::vector<CaseTerrain*> va = etat->getCaseAttaquable(currentPersonnage);
                     std::vector<CaseTerrain*> vd = etat->getCaseAtteignable(currentPersonnage);
+                    std::cout << "VA: " << va.size() << std::endl;
+                    std::cout << "VD: " << vd.size() << std::endl;
                     for (unsigned int k = 0; k < va.size(); k++)
                     {
                         moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[k]->getX(), va[k]->getY()));
@@ -367,10 +381,14 @@ int IA::minmax(int prof)
                             nbAtt = k;
                         }
                         moteur->annuler();
+                        std::cout << "Juste après l'annulation [appelé]" << currentPersonnage->getPA() << std::endl;
                     }
+                    std::cout << "On dépasse cette phase sans problème" << std::endl;
                     for (unsigned int k = 0; k < vd.size(); k++)
                     {
-                        moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), va[k]->getX(), va[k]->getY()));
+                        std::cout << currentPersonnage->getX() << ", " << currentPersonnage->getY() << std::endl;
+                        moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[k]->getX(), vd[k]->getY()));
+                        moteur->convertirCommande(false);
                         tmp = minmax(prof--);
                         if (tmp > max)
                         {
@@ -379,11 +397,17 @@ int IA::minmax(int prof)
                             nbDep = k;
                         }
                         moteur->annuler();
-                    }
+                        std::cout << "Juste après annulation[deplacement]" << currentPersonnage->getPA() << std::endl;
+                        std::cout << currentPersonnage->getX() << ", " << currentPersonnage->getY() << std::endl;
+                    
+                    }/*
                     if (nbAtt != -1)
                         moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[tmp]->getX(), va[tmp]->getY()));
                     else if (nbDep != -1)
-                        moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), va[tmp]->getX(), va[tmp]->getY()));
+                        moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[tmp]->getX(), vd[tmp]->getY()));
+                    */
+                    std::cout << "On fait l'accordéon" << std::endl;
+                    return max;
                 }
                 else
                 {

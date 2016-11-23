@@ -16,7 +16,7 @@ void Deplacement::appliquer(state::Etat* etat, bool afficher)
     //int tx = sf::VideoMode::getDesktopMode().height/24.;
     std::cout << "origine : (" << origineX << ", " << origineY << ")" << std::endl;
     std::cout << "direction : (" << cibleX << ", " << cibleY << ")" << std::endl;
-    etat->deplacerElement(origineX, origineY, cibleX, cibleY, afficher);
+    etat->deplacerElement(origineX, origineY, cibleX, cibleY, afficher, false);
 }
 state::CaseTerrain* Deplacement::getCaseArrivee(state::Etat* etat)
 {
@@ -24,7 +24,7 @@ state::CaseTerrain* Deplacement::getCaseArrivee(state::Etat* etat)
 }
 void Deplacement::annuler (state::Etat* etat, bool afficher)
 {
-    etat->deplacerElement(cibleX, cibleY, origineX, origineY, afficher);
+    etat->deplacerElement(cibleX, cibleY, origineX, origineY, afficher, true);
 }
 int Deplacement::getDistance()
 {

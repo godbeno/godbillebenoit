@@ -75,8 +75,8 @@ void Moteur::setMode(Mode mode)
 }
 void Moteur::convertirCommande(bool afficher)
 {
-    std::cout << "--------------------------------" << std::endl;
-    std::cout << "On entre dans Convertir Commande" << std::endl;
+    //std::cout << "--------------------------------" << std::endl;
+    //std::cout << "On entre dans Convertir Commande" << std::endl;
     if (listeCommande.get(3) != nullptr && !etat->joueurIA()) // Gestion du clic de souris
     {
         CommandeClic* cc = static_cast<CommandeClic*>(listeCommande.get(3));
@@ -134,7 +134,7 @@ void Moteur::convertirCommande(bool afficher)
     //std::cout << "Fin de l'application" << std::endl;
     listeCommande.vider();
     aVerifier->vider();
-    std::cout << "Liste vidée ! " << std::endl;
+    //std::cout << "Liste vidée ! " << std::endl;
 }
 
 void Moteur::setZoom(float z)
@@ -177,6 +177,7 @@ void Moteur::finDuTour()
 void Moteur::annuler()
 {
     historique->annulerUneAction(etat);
+    //std::cout << "Annulation réussie" << std::endl;
 }
 void Moteur::commencerEnregistrement()
 {

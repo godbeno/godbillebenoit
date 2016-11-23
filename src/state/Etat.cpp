@@ -74,14 +74,19 @@ void Etat::ajouterPersonnage(bool equipe, int id, int x, int y)
     avertirObservateurs(new EvenementEtat(TypeEvenementEtat(3), this, x, y, id, equipe));
 }
 
-void Etat::deplacerElement(int i1, int j1, int i2, int j2, bool afficher)
+void Etat::deplacerElement(int i1, int j1, int i2, int j2, bool afficher, bool annuler)
 {
     Personnage* p = grille->getCellulePersonnage(i1,j1);
     if (p != nullptr)
     {
         grille->deplacerElement(p, i2, j2);
         liste->copy(*grille);
-        p->setPArestant(p->getPA()-(abs(i1-i2)+abs(j1-j2)));
+        if (annuler)
+            p->setPArestant(p->getPA()+(abs(i1-i2)+abs(j1-j2)));
+        else
+            p->setPArestant(p->getPA()-(abs(i1-i2)+abs(j1-j2)));
+        liste->copy(*grille);
+
         if (afficher)
             avertirObservateurs(new EvenementEtat(TypeEvenementEtat(1), this, i1,j1, p->getID(),p->getEquipe(), i2, j2));
         std::cout << "Les observateurs ont été notifiés" << std::endl;
@@ -98,13 +103,13 @@ Personnage* Etat::getSelectionne()
 }
 void Etat::setSelectionne(int i, int j, bool afficher)
 {
-    std::cout << "On traite le changement de selection dans Etat" << std::endl;
+    //std::cout << "On traite le changement de selection dans Etat" << std::endl;
     selectionne = grille->getCellulePersonnage(i, j);
     if (afficher)
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(8), this, i, j, 0, 0));
 }
 int Etat::attaquer(int i1, int j1, int i2, int j2, bool afficher)
-{   std::cout << "ON EST DANS ATTAQUER" << std::endl;
+{   //std::cout << "ON EST DANS ATTAQUER" << std::endl;
     Personnage* p1 = grille->getCellulePersonnage(i1,j1);
     Personnage* p2 = grille->getCellulePersonnage(i2,j2);
     if (p1 != nullptr && p2 != nullptr)
@@ -116,7 +121,7 @@ int Etat::attaquer(int i1, int j1, int i2, int j2, bool afficher)
         p2->setPVrestant(p2->getPV()-att);
         p1->setPArestant(p1->getPA()-2);
         if (afficher) {
-            std::cout << "ON EST DANS ATTAQUER 2" << std::endl;
+            //std::cout << "ON EST DANS ATTAQUER 2" << std::endl;
             avertirObservateurs(new EvenementEtat(TypeEvenementEtat(10), this, i1, j1, 0, 0, i2, j2, att));
         }
             if (p2->getPV() < 0)
@@ -130,7 +135,6 @@ int Etat::attaquer(int i1, int j1, int i2, int j2, bool afficher)
         return att;
     }
     return 0;
-    std::cout << "ON SORT DE ATTAQUER" << std::endl;
 }
 std::vector<CaseTerrain*> Etat::getCaseAtteignable(Personnage* p)
 {
