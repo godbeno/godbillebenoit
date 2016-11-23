@@ -71,6 +71,7 @@ void Scene::changementEtat(state::EvenementEtat& e)
         int ancienneCameray = this->cameray;
         this->camerax =  e.getNewx(); 
         this->cameray = e.getNewy();
+        std::cout << "Deplacement camera de " << -(camerax-ancienneCamerax)*tx << ", " <<-(cameray-ancienneCameray)*tx << std::endl;
         couchePersonnage->deplacerCamera(-(camerax-ancienneCamerax)*tx, -(cameray-ancienneCameray)*tx);
         coucheTerrain->deplacerCamera(-(camerax-ancienneCamerax)*tx, -(cameray-ancienneCameray)*tx);
     }

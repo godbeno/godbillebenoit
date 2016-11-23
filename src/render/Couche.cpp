@@ -2,6 +2,7 @@
 #include "TuileStatique.h"
 #include "TuileAnimee.h"
 #include <iostream>
+#include <stdlib.h>
 
 using namespace render;
 
@@ -23,11 +24,11 @@ Tuile* Couche::getTuile (float i, float j, float incr)
 {
     std::cout << "Tuile demandée : " << (int)i << ", " << (int)j << std::endl;
     for (unsigned int k = 0; k < tuiles.size(); k++)
-    {
-        std::cout << "Tuiles possibles : " << (int)tuiles[k]->getX() << ", " << (int)tuiles[k]->getY() << std::endl;
-        if ((int)tuiles[k]->getX() == (int)i && (int)tuiles[k]->getY() == (int)j)
+    {   std::cout << "Tuiles présentes : " << tuiles[k]->getX() << ", " << tuiles[k]->getY() << std::endl;
+        if (abs(tuiles[k]->getX()-i) < 10 && abs(tuiles[k]->getY()-j) < 10)
             return tuiles[k];
     }
+    std::cout << "On retourne nullptr" << std::endl;
     return nullptr;
 }
 void Couche::setTuile (int i, int j, Tuile* tuile)
@@ -97,8 +98,8 @@ void Couche::deplacerCamera(float x, float y)
     {
         tuiles[i]->setX(tuiles[i]->getX()+x);
         tuiles[i]->setY(tuiles[i]->getY()+y);
-        //static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(x, y);
-        tuiles[i]->updateSpritePosition(x,y);
+        static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(x, y);
+        //tuiles[i]->updateSpritePosition(x,y);
     }
     if (select)
     {
