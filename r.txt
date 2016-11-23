@@ -1,4 +1,0 @@
-/home/nicolas/Documents/ProjetLT/godbillebenoit/src/AI/IA.cpp: In member function ‘int AI::IA::minmax(int)’:
-/home/nicolas/Documents/ProjetLT/godbillebenoit/src/AI/IA.cpp:399:1: warning: control reaches end of non-void function [-Wreturn-type]
- }
- ^
