@@ -43,6 +43,7 @@ namespace AI {
     bool appliquerHeuristique (bool equipe);
     bool appliquerMinMax ();
     int minmax (int prof);
+    int fonctionEvaluation (state::Etat* etat);
   };
 
 };

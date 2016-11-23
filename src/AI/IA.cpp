@@ -336,6 +336,10 @@ int IA::minmax(int prof)
     int tmp = -1, nbAtt = -1, nbDep = -1, max  = -1; 
     state::Personnage* currentPersonnage = nullptr;
     int j = 0;
+    if (prof == 0)
+    {
+        return fonctionEvaluation(etat);
+    }
     while (j < etat->getGrille().size())
     {
         if (etat->getGrille().get(j)->estPersonnage())
@@ -392,4 +396,23 @@ int IA::minmax(int prof)
         else
             j++;
     }
+}
+int IA::fonctionEvaluation(state::Etat* etat)
+{
+    int eval = 0;
+    int pv = 0;
+    int coeff;
+    //Evaluation des forces en présences (nbPersonnages + nbPV);
+    for (int i = 575; i < etat->getGrille().size(); i++)
+    {
+        if (i < etat->getGrille().get(i)->estPersonnage())
+        {
+            coeff = static_cast<Personnage*>(etat->getGrille().get(i))->getEquipe();
+            coeff = !coeff*(-1) + coeff;
+            eval += coeff*500;
+            pv += coeff*static_cast<Personnage*>(etat->getGrille().get(i))->getPV();
+        }
+    }
+    return pv+eval;
+    //Evaluation des positions
 }
