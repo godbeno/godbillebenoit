@@ -65,6 +65,7 @@ void Scene::changementEtat(state::EvenementEtat& e)
     }
     else if (e.getTypeEvenement() == state::DeplacementCamera)
     {
+        std::cout << "Modification de la caméra" << std::endl;
         int ancienneCamerax = this->camerax;
         int ancienneCameray = this->cameray;
         this->camerax =  e.getNewx(); 
@@ -115,9 +116,6 @@ void Scene::changementEtat(state::EvenementEtat& e)
         std::cout << "On appelle e.getX() " << e.getX() << std::endl;
         std::cout << "On appelle e.getY() " << e.getY() << std::endl;
         std::cout << "On appelle getTuile() " << couchePersonnage->getTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx)->getID() << std::endl;
-
-        
-        
         
         int idp1 = couchePersonnage->getTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx)->getID();
         std::cout << "Deuxieme ID "<< std::endl; 

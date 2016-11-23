@@ -25,6 +25,7 @@ namespace AI {
     Niveau niveau;
     bool attendre;
     clock_t temps;
+    bool archer;
   protected:
     state::Etat* etat;
     bool equipe;
@@ -41,7 +42,7 @@ namespace AI {
     void jouer ();
     bool appliquerHeuristique (bool equipe);
     bool appliquerMinMax ();
-    int minmax (bool joueur);
+    int minmax (int prof);
   };
 
 };

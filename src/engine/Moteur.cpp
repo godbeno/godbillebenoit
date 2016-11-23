@@ -134,7 +134,7 @@ void Moteur::convertirCommande(bool afficher)
     //std::cout << "Fin de l'application" << std::endl;
     listeCommande.vider();
     aVerifier->vider();
-    //std::cout << "Liste vidée ! " << std::endl;
+    std::cout << "Liste vidée ! " << std::endl;
 }
 
 void Moteur::setZoom(float z)

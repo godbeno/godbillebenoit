@@ -21,8 +21,10 @@ Couche::~Couche()
 }
 Tuile* Couche::getTuile (float i, float j, float incr)
 {
+    std::cout << "Tuile demandée : " << (int)i << ", " << (int)j << std::endl;
     for (unsigned int k = 0; k < tuiles.size(); k++)
     {
+        std::cout << "Tuiles possibles : " << (int)tuiles[k]->getX() << ", " << (int)tuiles[k]->getY() << std::endl;
         if ((int)tuiles[k]->getX() == (int)i && (int)tuiles[k]->getY() == (int)j)
             return tuiles[k];
     }
@@ -61,6 +63,7 @@ void Couche::afficher()
         if (tuiles[i]->estAnime())
         {
             t = clock();
+            std::cout << "MaJ d'une tuile animée" << std::endl;
             static_cast<TuileAnimee*>(tuiles[i])->update(t);
         }
         window->draw(tuiles[i]->getSprite());
@@ -94,7 +97,8 @@ void Couche::deplacerCamera(float x, float y)
     {
         tuiles[i]->setX(tuiles[i]->getX()+x);
         tuiles[i]->setY(tuiles[i]->getY()+y);
-        static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(x, y);
+        //static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(x, y);
+        tuiles[i]->updateSpritePosition(x,y);
     }
     if (select)
     {
