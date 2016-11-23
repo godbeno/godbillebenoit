@@ -46,16 +46,16 @@ void Scene::changementEtat(state::EvenementEtat& e)
     {
         std::cout << "Un nouveau personnage a été créé (" << e.getPid() << ")" << std::endl;
         couchePersonnage->addTuile(new TuileStatique((e.getX()-camerax)*tx, (e.getY()-cameray)*tx,e.getPid(), tx));
-    }
+    })-camerax)*tx, (e.getY()-cameray)*tx, zoom*tx) != nullptr)
+        {
+            couchePersonnage->setTuile((e.getX()-camer
     else if (e.getTypeEvenement() == state::PersonnageDeplace)
     {
         std::cout << "Un personnage va être déplacé" << std::endl;
         std::cout << "Coordonées : " << (e.getX()-camerax)*tx << ", " << (e.getY()-cameray)*tx << std::endl;
         std::cout << "Coordonées 2 : " << e.getX() << ", " << e.getY() << std::endl;
         //On récupère l'ID de ce personnage
-        if (couchePersonnage->getTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, zoom*tx) != nullptr)
-        {
-            couchePersonnage->setTuile((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, new TuileStatique((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, e.getPid(), tx));
+        if (couchePersonnage->getTuile((e.getX(ax)*tx, (e.getY()-cameray)*tx, new TuileStatique((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, e.getPid(), tx));
             coucheTerrain->setSelectionne((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, tx);
             std::cout << "FIN" << std::endl;
             panneau->setSelectionne(etat, etat->getSelectionne());
