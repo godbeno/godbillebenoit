@@ -20,12 +20,12 @@ Couche::~Couche()
     for (unsigned int i = 0; i < tuiles.size(); i++)
         delete tuiles[i];
 }
-Tuile* Couche::getTuile (float i, float j, float incr)
+Tuile* Couche::getTuile (int i, int j, float incr)
 {
     std::cout << "Tuile demandée : " << (int)i << ", " << (int)j << std::endl;
     for (unsigned int k = 0; k < tuiles.size(); k++)
-    {   std::cout << "Tuiles présentes : " << tuiles[k]->getX() << ", " << tuiles[k]->getY() << std::endl;
-        if (abs(tuiles[k]->getX()-i) < 10 && abs(tuiles[k]->getY()-j) < 10)
+    {   std::cout << "Tuiles présentes : " << tuiles[k]->getTrueX() << ", " << tuiles[k]->getTrueY() << std::endl;
+        if (tuiles[k]->getTrueX()==i && tuiles[k]->getTrueY()==j)
             return tuiles[k];
     }
     std::cout << "On retourne nullptr" << std::endl;
@@ -34,7 +34,7 @@ Tuile* Couche::getTuile (float i, float j, float incr)
 void Couche::setTuile (int i, int j, Tuile* tuile)
 {
     for (unsigned int k = 0; k < tuiles.size(); k++)
-        if ((int)tuiles[k]->getX() == (int)i && (int)tuiles[k]->getY() == (int)j)
+        if ((int)tuiles[k]->getTrueX() == (int)i && (int)tuiles[k]->getTrueY() == (int)j)
         {
             delete tuiles[k];
             tuiles.erase(tuiles.begin()+k);
@@ -66,20 +66,26 @@ void Couche::afficher()
             t = clock();
             std::cout << "MaJ d'une tuile animée" << std::endl;
             static_cast<TuileAnimee*>(tuiles[i])->update(t);
+            std::cout << "le bug est après" << std::endl;
         }
+        std::cout << "draw des tuiles" << std::endl;
         window->draw(tuiles[i]->getSprite());
         //window->draw((new TuileStatique(100,100,73,200))->getSprite());
     }
     //std::cout << "Les pers affichés" << std::endl;
+    std::cout << "draw des brillances" << std::endl;
     for (unsigned int i = 0; i < brillance.size(); i++)
         window->draw(brillance[i]);
     //std::cout << "Brillance affichés" << std::endl;
+    std::cout << "draw des rouges" << std::endl;
     for (unsigned int i = 0; i < rouge.size(); i++)
         window->draw(rouge[i]);
     //std::cout << "Lrouge affichés" << std::endl;
+    std::cout << "draw du select" << std::endl;
     if (select)
         window->draw(*select);
     //std::cout << "SSelect affichés" << std::endl;
+    std::cout << "draw des dégâts" << std::endl;
     if (estDegat)
         window->draw(degat);
     //std::cout << "Degat affichés" << std::endl;

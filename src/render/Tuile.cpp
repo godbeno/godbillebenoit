@@ -2,11 +2,13 @@
 
 using namespace render;
 
-Tuile::Tuile(float x, float y, int id)
+Tuile::Tuile(float x, float y, int id,int truex,int truey)
 {
     this->x = x;
     this->y = y;
     this->id = id;
+    this->trueX = truex;
+    this->trueY = truey;
 }
 Tuile::~Tuile()
 {
@@ -35,4 +37,20 @@ void Tuile::setY (float y)
 void Tuile::setID (int id)
 {
     this->id = id;
+}
+int Tuile::getTrueX ()
+{
+    return trueX;
+}
+int Tuile::getTrueY ()
+{
+    return trueY;
+}
+void Tuile::setTrueX (int truex)
+{
+    this->trueX = truex;
+}
+void Tuile::setTrueY (int truey)
+{
+    this->trueY = truey;
 }

@@ -26,7 +26,7 @@ namespace render {
     bool estAffiche;
     // Operations
   public:
-    TuileStatique (float x, float y, int id, float w);
+    TuileStatique (float x, float y, int id, float w, int TrueX, int TrueY);
     ~TuileStatique ();
     int const getHauteur ();
     int const getLargeur ();

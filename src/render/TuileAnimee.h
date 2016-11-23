@@ -28,7 +28,7 @@ namespace render {
     Couche* parent;
     // Operations
   public:
-    TuileAnimee (float x, float y, int id, float vitesse, Couche* couche);
+    TuileAnimee (float x, float y, int id, float vitesse, Couche* couche, int TrueX, int TrueY);
     ~TuileAnimee ();
     bool estAnime ();
     const float getPourcentage ();

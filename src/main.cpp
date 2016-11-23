@@ -29,22 +29,28 @@ int main(int argc,char* argv[])
     RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Test Affichage");
     Etat *etat = new Etat;
     Moteur *m = new Moteur(etat);
-    IA *ia = new IA(etat,m, Niveau::MinMax);
+    IA *ia = new IA(etat,m, Niveau::Heuristique);
     etat->initialiserTerrain(true);
     Scene* scene = new Scene(etat, window);
     etat->enregistrerObservateur(scene);
     
     //Définition de personnage
-    etat->ajouterPersonnage(true, 5, 10, 10);
-    etat->ajouterPersonnage(true, 3, 12, 10);
-    etat->ajouterPersonnage(true, 4, 10, 7);
-    etat->ajouterPersonnage(true, 2, 8, 8);   
-    etat->ajouterPersonnage(true, 1, 4, 8);
-    etat->ajouterPersonnage(false, 5, 15, 7);
-    etat->ajouterPersonnage(false, 1, 11, 6);
-    etat->ajouterPersonnage(false, 1, 12, 6);
-    etat->ajouterPersonnage(false, 4, 13, 6);
-    etat->ajouterPersonnage(false, 3, 15, 6);
+    etat->ajouterPersonnage(true, 1, 14, 15);
+    etat->ajouterPersonnage(true, 2, 13, 5);
+    etat->ajouterPersonnage(false, 3, 10, 5);
+    etat->ajouterPersonnage(false, 4, 4, 15);    
+    etat->ajouterPersonnage(true, 5, 12, 5);
+    etat->ajouterPersonnage(false, 6, 11, 5);
+    etat->ajouterPersonnage(false, 1,10, 15);    
+    etat->ajouterPersonnage(true, 2, 16, 5);
+    etat->ajouterPersonnage(false, 3, 5, 6);
+    etat->ajouterPersonnage(false, 4, 5, 16);    
+    etat->ajouterPersonnage(true, 5, 15, 7);
+    etat->ajouterPersonnage(false, 6, 5, 8);
+    etat->ajouterPersonnage(false, 1, 5, 12);    
+    etat->ajouterPersonnage(true, 2, 15, 13);
+    etat->ajouterPersonnage(false, 3, 5, 11);
+    etat->ajouterPersonnage(false, 4, 5, 10);
     
     m->setMode(Mode::jeu);
     

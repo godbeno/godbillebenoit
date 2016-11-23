@@ -17,7 +17,7 @@ namespace render {
     int trueY;
     // Operations
   public:
-    Tuile (float x, float y, int id);
+    Tuile (float x, float y, int id, int trueX, int trueY);
     virtual ~Tuile ();
     virtual bool estAnime () = 0;
     int const getID ();
@@ -28,6 +28,10 @@ namespace render {
     void setID (int id);
     virtual const sf::Sprite& getSprite () = 0;
     virtual void updateSpritePosition (float x, float y) = 0;
+    int getTrueX ();
+    int getTrueY ();
+    void setTrueX (int trueX);
+    void setTrueY (int trueY);
   };
 
 };

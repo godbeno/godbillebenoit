@@ -7,7 +7,7 @@ using namespace render;
 using namespace sf;
 
 
-TuileStatique::TuileStatique(float x, float y, int id, float w) : Tuile(x,y,id)
+TuileStatique::TuileStatique(float x, float y, int id, float w,int TrueX,int TrueY) : Tuile(x,y,id,TrueX,TrueY)
 {
     hauteur = x;
     largeur = y;
@@ -275,7 +275,7 @@ void TuileStatique::setLargeur(int largeur)
     this->largeur = largeur;
 }
 const sf::Sprite& TuileStatique::getSprite ()
-{
+{   std::cout << "Oh la belle sprite" << std::endl;
     return sprite;
 }
 bool TuileStatique::estAnime ()
@@ -284,7 +284,7 @@ bool TuileStatique::estAnime ()
 }
 TuileStatique* TuileStatique::copy()
 {
-    TuileStatique* t = new TuileStatique(x, y, id, w);
+    TuileStatique* t = new TuileStatique(x, y, id, w,trueX,trueY);
     t->hauteur = hauteur;
     t->largeur = largeur;
     return t;

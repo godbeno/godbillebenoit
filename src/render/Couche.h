@@ -37,7 +37,7 @@ namespace render {
   public:
     Couche (sf::RenderWindow* window);
     virtual ~Couche ();
-    Tuile* getTuile (float i, float j, float incr);
+    Tuile* getTuile (int i, int j, float incr);
     void setTuile (int i, int j, Tuile* tuile);
     void changementEtat (state::EvenementEtat& e);
     void afficher ();
