@@ -9,7 +9,6 @@ CommandeClic::CommandeClic (int i, int j, int bouton)
     x = i;
     y = j;
     this->bouton = bouton;
-    std::cout << "Création d'un événement clic !" << std::endl;
 }
 CategorieCommande CommandeClic::getCategorie ()
 {

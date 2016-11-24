@@ -33,7 +33,6 @@ state::Etat* Moteur::getEtat()
 void Moteur::ajouterCommande (Commande* cmd)
 {
     listeCommande.set(cmd);
-    std::cout << " Commande ajoutée " << std::endl;
 }
 Mode Moteur::getMode()
 {
@@ -68,15 +67,12 @@ void Moteur::setMode(Mode mode)
     else if (mode == attaque)
     {
         std::vector<state::CaseTerrain*> v = etat->getCaseAttaquable(etat->getSelectionne());
-        std::cout << "Taille des cases à colorer : " << v.size() << std::endl;
         for (unsigned int j = 0; j < v.size(); j++)
             etat->setRouge(true, v[j]);
     }
 }
 void Moteur::convertirCommande(bool afficher)
 {
-    //std::cout << "--------------------------------" << std::endl;
-    //std::cout << "On entre dans Convertir Commande" << std::endl;
     if (listeCommande.get(3) != nullptr && !etat->joueurIA()) // Gestion du clic de souris
     {
         CommandeClic* cc = static_cast<CommandeClic*>(listeCommande.get(3));
@@ -127,8 +123,8 @@ void Moteur::convertirCommande(bool afficher)
        CommandeZoomCamera* cc = static_cast<CommandeZoomCamera*>(listeCommande.get(2));
        aVerifier->ajouter(new Zoom(cc->geti()));
     }
-
-
+    if (listeCommande.get(1) != nullptr || listeCommande.get(2) != nullptr || listeCommande.get(3) != nullptr)
+        std::cout << "Humain->";
     Regulateur r(aVerifier, etat, &listeCommande, this);
     r.appliquer(afficher, this);
     //std::cout << "Fin de l'application" << std::endl;

@@ -89,11 +89,6 @@ void Etat::deplacerElement(int i1, int j1, int i2, int j2, bool afficher, bool a
 
         if (afficher)
             avertirObservateurs(new EvenementEtat(TypeEvenementEtat(1), this, i1,j1, p->getID(),p->getEquipe(), i2, j2));
-        std::cout << "Les observateurs ont été notifiés" << std::endl;
-    }
-    else
-    {
-        std::cout << "pointeur null " << std::endl;
     }
 }
 
@@ -117,11 +112,9 @@ int Etat::attaquer(int i1, int j1, int i2, int j2, bool afficher)
         int att = p1->getAttaque();
         int sup = rand()%((2*att)/5);
         att += sup - (att/5);
-        std::cout << "Dégâts infligés : " << att << std::endl;
         p2->setPVrestant(p2->getPV()-att);
         p1->setPArestant(p1->getPA()-2);
         if (afficher) {
-            //std::cout << "ON EST DANS ATTAQUER 2" << std::endl;
             avertirObservateurs(new EvenementEtat(TypeEvenementEtat(10), this, i1, j1, 0, 0, i2, j2, att));
         }
             if (p2->getPV() < 0)
@@ -233,7 +226,6 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
 void Etat::setZoom(float z, bool afficher)
 {
     this->zoom = z ; 
-    std::cout << " Zoom est modifié dans l'Etat avec la valeur " << zoom << std::endl;
     if (afficher)
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(6), this, 0,0, 0,0, camerax, cameray, zoom));       
 }
@@ -339,13 +331,10 @@ Personnage* Etat::getPlusProcheEnnemi(Personnage* p)
                         distMin = abs(x-grille->get(i)->getX())+abs(y-grille->get(i)->getY());
                         p2 = static_cast<Personnage*>(grille->get(i));
                     }
-        if (p2 == nullptr)
-            std::cout << "Aucun ennemi n'a été trouvé" << std::endl;
         return p2;
     }
     else
     {
-        std::cout << "L'argument n'existe pas " << std::endl;
         return nullptr;
     }
 }

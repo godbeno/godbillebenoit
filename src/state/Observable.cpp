@@ -9,7 +9,6 @@ void Observable::enregistrerObservateur (Observateur* observateur){
 
 void Observable::avertirObservateurs(EvenementEtat* e){
 	for(auto observateur : observateurs){
-            std::cout << "On rentre dans avertirObservateurs" << std::endl;
 		observateur->changementEtat(*e);
 	}
 }

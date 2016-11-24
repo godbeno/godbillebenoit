@@ -17,7 +17,7 @@ namespace engine {
   /// class Attaquer - 
   class Attaquer : public engine::Action {
     // Attributes
-  public:
+  private:
     int degat;
   protected:
     int attaquantX;
@@ -30,6 +30,8 @@ namespace engine {
     void appliquer (state::Etat* etat, bool afficher);
     state::CaseTerrain* getCaseArrivee (state::Etat* etat);
     void annuler (state::Etat* etat, bool afficher);
+    void printOrigine ();
+    void printArrivee ();
   };
 
 };

@@ -23,38 +23,33 @@ IA::IA (state::Etat* etat, engine::Moteur* moteur, Niveau niv)
 bool IA::appliquerHeuristique(bool equipe)
 {
     state::Personnage* currentPersonnage = nullptr;
-    std::cout << i << " : " << etat->getGrille().size() << std::endl;
     if (etat->getGrille().get(i)->estPersonnage())
     {
         if(static_cast<Personnage*>(etat->getGrille().get(i))->getEquipe()==equipe)
         {
             currentPersonnage = static_cast<Personnage*>(etat->getGrille().get(i));
-
-            std::cout << "NOUVEAU PERSONNAGE UTILISABLE " << std::endl;
             if (etat->getSelectionne() == nullptr || etat->getSelectionne() != currentPersonnage)
             {
                 moteur->ajouterAction(new Selection(currentPersonnage->getX(), currentPersonnage->getY()));
+                std::cout << "IA->";
                 moteur->convertirCommande(true);
                 return false;
             }
-            std::cout << "PA du perso courant = " << static_cast<Personnage*>(etat->getGrille().get(i))->getPA() << std::endl;
-            //std::cout << "PA du perso courant = " << etat->getSelectionne()->getPA() << std::endl;
             if (currentPersonnage->getPA() <= 0)
             {
                 i++;
                 moteur->ajouterAction(new Selection(-1, -1));
+                std::cout << "IA->";
                 moteur->convertirCommande(true);
                 return false;
             }
             if (currentPersonnage->getPA() > 1 && etat->getCaseAttaquable(currentPersonnage).size() != 0)
             {  
-                std::cout << "IA décide : Il attaque depuis " << etat->getGrille().get(i)->getX() << " , " << etat->getGrille().get(i)->getY() << " vers " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX() << " , " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY() << std::endl;
                 moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), etat->getCaseAttaquable(currentPersonnage)[0]->getX(), etat->getCaseAttaquable(currentPersonnage)[0]->getY()));
                 if (currentPersonnage->getType() == TypePersonnage::Archer)
                     archer = true;
                 else
                     archer = false;
-                //etat->attaquer(etat->getGrille().get(i)->getX(),etat->getGrille().get(i)->getY(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY());
             } 
             else if (etat->getCaseAtteignable(currentPersonnage).size() != 0)
             {
@@ -63,21 +58,22 @@ bool IA::appliquerHeuristique(bool equipe)
                     moteur->ajouterAction(new Deplacement(currentPersonnage->getX(), currentPersonnage->getY(), ct->getX(), ct->getY()));
                 else
                 {
-                    std::cout << "Auncune case satisfaisante trouvée" << std::endl;
                     i++;
                     moteur->ajouterAction(new Selection(-1, -1));
+                    std::cout << "IA->";
                     moteur->convertirCommande(true);
                     return true;
                 }
             }
+            std::cout << "IA->";
             moteur->convertirCommande(true);
-            std::cout << "On va retourner true" << std::endl;
             return true;
         }
         else
         {
             i++;
             moteur->ajouterAction(new Selection(-1, -1));
+            std::cout << "IA->";
             moteur->convertirCommande(true);
             return false;
         }
@@ -86,6 +82,7 @@ bool IA::appliquerHeuristique(bool equipe)
     {
         i++;
         moteur->ajouterAction(new Selection(-1, -1));
+        std::cout << "IA->";
         moteur->convertirCommande(true);
         return false;
     }
@@ -97,10 +94,8 @@ IA::~IA()
 }
 bool IA::estFini()
 {
-    //std::cout << "On vérifie si le tour est fini " << std::endl;
     if(i >= this->etat->getListe().size())
     {
-        //std::cout << "Il l'est" << std::endl;
         moteur->ajouterAction(new Selection(-1, -1));
         moteur->ajouterAction(new ChangerTour());
         moteur->convertirCommande(true);
@@ -110,7 +105,6 @@ bool IA::estFini()
     }
     else
     {
-        //std::cout << "Il ne l'est pas" << std::endl;
         return false;
     }
 }
@@ -122,44 +116,43 @@ bool IA::appliquerAleatoire(bool equipe)
         if(static_cast<Personnage*>(etat->getGrille().get(i))->getEquipe()==equipe)
         {
 
-            std::cout << "NOUVEAU PERSONNAGE UTILISABLE " << std::endl;
             if (etat->getSelectionne() == nullptr)
             {
                 moteur->ajouterAction(new Selection(etat->getGrille().get(i)->getX(), etat->getGrille().get(i)->getY()));
+                std::cout << "IA->";
                 moteur->convertirCommande(true);
                 return false;
             }
-            //std::cout << "PA du perso courant = " << static_cast<Personnage*>(etat->getGrille().get(i))->getPA() << std::endl;
-            std::cout << "PA du perso courant = " << etat->getSelectionne()->getPA() << std::endl;
             if (static_cast<Personnage*>(etat->getGrille().get(i))->getPA() <= 0)
             {
                 i++;
                 moteur->ajouterAction(new Selection(-1, -1));
+                std::cout << "IA->";
                 moteur->convertirCommande(true);
                 return false;
             }
             if (static_cast<Personnage*>(etat->getGrille().get(i))->getPA() > 1 && etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i))).size() != 0)
             {  
-                std::cout << "IA décide : Il attaque depuis " << etat->getGrille().get(i)->getX() << " , " << etat->getGrille().get(i)->getY() << " vers " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX() << " , " << etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY() << std::endl;
                 moteur->ajouterAction(new Attaquer(static_cast<Personnage*>(etat->getGrille().get(i))->getX(),static_cast<Personnage*>(etat->getGrille().get(i))->getY(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY()));
-                //etat->attaquer(etat->getGrille().get(i)->getX(),etat->getGrille().get(i)->getY(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY());
+                if (static_cast<Personnage*>(etat->getGrille().get(i))->getType() == TypePersonnage::Archer)
+                    archer = true;
+                else
+                    archer = false;
             } 
             else if (etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i))).size() != 0)
             {
-                std::cout << "IA décide : Il se déplace de " << static_cast<Personnage*>(etat->getGrille().get(i))->getX() << " , " << static_cast<Personnage*>(etat->getGrille().get(i))->getY() << " vers " << etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX() << " , "<< etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY() << std::endl;
                 Deplacement* dep;
                 int compt = -1;
                 {
                     compt++;
                     dep = new Deplacement(static_cast<Personnage*>(etat->getGrille().get(i))->getX(),static_cast<Personnage*>(etat->getGrille().get(i))->getY(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[compt]->getX(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[compt]->getY());
                 } while (dep->getDistance() > static_cast<Personnage*>(etat->getGrille().get(i))->getPA() && static_cast<unsigned int>(compt) < etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i))).size());
-                //moteur->ajouterAction(new Deplacement(static_cast<Personnage*>(etat->getGrille().get(i))->getX(),static_cast<Personnage*>(etat->getGrille().get(i))->getY(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY()));
                 if (static_cast<unsigned int>(compt) < etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i))).size())
                 {
                     moteur->ajouterAction(dep);
                 }
-                    //etat->deplacerElement(static_cast<Personnage*>(etat->getGrille().get(i))->getX(),static_cast<Personnage*>(etat->getGrille().get(i))->getY(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX());
             }
+            std::cout << "IA->";
             moteur->convertirCommande(true);
             return true;
         }
@@ -167,6 +160,7 @@ bool IA::appliquerAleatoire(bool equipe)
         {
             i++;
             moteur->ajouterAction(new Selection(-1, -1));
+            std::cout << "IA->";
             moteur->convertirCommande(true);
             return false;
         }
@@ -175,9 +169,9 @@ bool IA::appliquerAleatoire(bool equipe)
     {
         i++;
         moteur->ajouterAction(new Selection(-1, -1));
+        std::cout << "IA->";
         moteur->convertirCommande(true);
         return false;
-        //std::cout << "PERSONNAGE NON UTILISABLE" << std::endl;
     }
 }
 void IA::reset()
@@ -300,11 +294,9 @@ bool IA::appliquerMinMax()
                         nbAtt = j;
                     }
                     moteur->annuler();
-                    std::cout << " -> attaque annulée (appelant)" << currentPersonnage->getPA() << std::endl;
                 }
                 std::cout << currentPersonnage << std::endl;
                 std::vector<CaseTerrain*> vd = etat->getCaseAtteignable(currentPersonnage);
-                std::cout << "On a trouvé les cases atteignables (" << vd.size() << ")" << std::endl;
                 for (unsigned int j = 0; j < vd.size(); j++)
                 {
                     moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[j]->getX(), vd[j]->getY()));
@@ -317,7 +309,6 @@ bool IA::appliquerMinMax()
                         nbDep = j;
                     }
                     moteur->annuler();
-                    std::cout << "-> déplacement annulée (appelant)" << std::endl;
                 }
                 if (nbAtt != -1)
                     moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[max]->getX(), va[max]->getY()));
@@ -365,11 +356,8 @@ int IA::minmax(int prof)
                 }
                 if (currentPersonnage->getPA() > 0)
                 {
-                    std::cout << "Avant le calcul des vector" << std::endl;
                     std::vector<CaseTerrain*> va = etat->getCaseAttaquable(currentPersonnage);
                     std::vector<CaseTerrain*> vd = etat->getCaseAtteignable(currentPersonnage);
-                    std::cout << "VA: " << va.size() << std::endl;
-                    std::cout << "VD: " << vd.size() << std::endl;
                     for (unsigned int k = 0; k < va.size(); k++)
                     {
                         moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[k]->getX(), va[k]->getY()));
@@ -381,9 +369,7 @@ int IA::minmax(int prof)
                             nbAtt = k;
                         }
                         moteur->annuler();
-                        std::cout << "Juste après l'annulation [appelé]" << currentPersonnage->getPA() << std::endl;
                     }
-                    std::cout << "On dépasse cette phase sans problème" << std::endl;
                     for (unsigned int k = 0; k < vd.size(); k++)
                     {
                         std::cout << currentPersonnage->getX() << ", " << currentPersonnage->getY() << std::endl;
@@ -397,16 +383,8 @@ int IA::minmax(int prof)
                             nbDep = k;
                         }
                         moteur->annuler();
-                        std::cout << "Juste après annulation[deplacement]" << currentPersonnage->getPA() << std::endl;
-                        std::cout << currentPersonnage->getX() << ", " << currentPersonnage->getY() << std::endl;
                     
-                    }/*
-                    if (nbAtt != -1)
-                        moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[tmp]->getX(), va[tmp]->getY()));
-                    else if (nbDep != -1)
-                        moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[tmp]->getX(), vd[tmp]->getY()));
-                    */
-                    std::cout << "On fait l'accordéon" << std::endl;
+                    }
                     return max;
                 }
                 else

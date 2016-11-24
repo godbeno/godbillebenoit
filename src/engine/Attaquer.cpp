@@ -14,7 +14,6 @@ Attaquer::Attaquer (int Attaquantx, int Attaquanty, int Ciblex, int Cibley)
 void Attaquer::appliquer(state::Etat* etat, bool afficher)
 {
     degat = etat->attaquer(attaquantX, attaquantY, cibleX, cibleY, afficher);
-    std::cout << "Fin de l'attaque" << std::endl;
 }
 state::CaseTerrain* Attaquer::getCaseArrivee(state::Etat* etat)
 {
@@ -24,4 +23,12 @@ void Attaquer::annuler(state::Etat* etat, bool afficher)
 {
     etat->getGrille().getCellulePersonnage(attaquantX, attaquantY)->setPArestant(etat->getGrille().getCellulePersonnage(attaquantX, attaquantY)->getPA() + 2);
     etat->getGrille().getCellulePersonnage(cibleX, cibleY)->setPVrestant(etat->getGrille().getCellulePersonnage(cibleX, cibleY)->getPV() + degat);
+}
+void Attaquer::printOrigine()
+{
+    std::cout << "(" << attaquantX << ", " << attaquantY << ")->";
+}
+void Attaquer::printArrivee()
+{
+    std::cout << "(" << cibleX << ", " << cibleY << ")";
 }

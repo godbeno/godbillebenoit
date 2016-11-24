@@ -27,7 +27,6 @@ Tuile* Couche::getTuile (int i, int j, float incr)
         if (tuiles[k]->getTrueX()==i && tuiles[k]->getTrueY()==j)
             return tuiles[k];
     }
-    std::cout << "On retourne nullptr" << std::endl;
     return nullptr;
 }
 void Couche::setTuile (int i, int j, Tuile* tuile)
@@ -48,10 +47,7 @@ void Couche::addTuile(Tuile* tuile)
 }
 void Couche::changementEtat(state::EvenementEtat& e)
 {
-    if (e.getTypeEvenement() == state::NouveauPersonnage)
-    {
-        std::cout << "Couche: Nouveau personnage" << std::endl;
-    }
+    
 }
 void Couche::afficher()
 {
@@ -165,7 +161,6 @@ void Couche::setSelectionne(int x, int y, float tx)
     if (select)
     {
         delete select;
-        std::cout << "Destruction de select" << std::endl;
     }
     select = new sf::RectangleShape(sf::Vector2f(tx, tx));
     //select->setPosition(x+(tx/4), y+(tx/4));

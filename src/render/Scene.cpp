@@ -42,38 +42,27 @@ Scene::~Scene()
 }
 void Scene::changementEtat(state::EvenementEtat& e)
 {
+    std::cout << "Affichage->";
     if (e.getTypeEvenement() == state::NouveauPersonnage)
     {
-        std::cout << "Un nouveau personnage a été créé (" << e.getPid() << ")" << std::endl;
         couchePersonnage->addTuile(new TuileStatique((e.getX()-camerax)*tx, (e.getY()-cameray)*tx,e.getPid(), tx,e.getX(),e.getY()));
     }
        
     else if (e.getTypeEvenement() == state::PersonnageDeplace)
     {
-        std::cout << "Un personnage va être déplacé" << std::endl;
-        std::cout << "Coordonées : " << (e.getX()-camerax)*tx << ", " << (e.getY()-cameray)*tx << std::endl;
-        std::cout << "Coordonées 2 : " << e.getX() << ", " << e.getY() << std::endl;
-        //On récupère l'ID de ce personnage
         if (couchePersonnage->getTuile(e.getX(), e.getY(), zoom*tx) != nullptr)
         {		
             couchePersonnage->setTuile(e.getX(), e.getY(), new TuileStatique((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, e.getPid(), tx,e.getNewx(),e.getNewy()));   
             coucheTerrain->setSelectionne((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, tx);
-            std::cout << "FIN" << std::endl;
             panneau->setSelectionne(etat, etat->getSelectionne());
         }
-        else
-            std::cout << "Null ptr" << std::endl;
     }
     else if (e.getTypeEvenement() == state::DeplacementCamera)
     {
-        std::cout << "Modification de la caméra" << std::endl;
         int ancienneCamerax = this->camerax;
         int ancienneCameray = this->cameray;
-        std::cout << "Ancienne caméra : " << ancienneCamerax << ", " <<ancienneCameray <<std::endl;
         this->camerax =  e.getNewx(); 
         this->cameray = e.getNewy();
-        std::cout << "Nouvelle caméra : " << camerax << ", " <<cameray <<std::endl;
-        std::cout << "Deplacement camera de " << -(camerax-ancienneCamerax)*tx << ", " <<-(cameray-ancienneCameray)*tx << std::endl;
         couchePersonnage->deplacerCamera(-(camerax-ancienneCamerax)*tx, -(cameray-ancienneCameray)*tx);
         coucheTerrain->deplacerCamera(-(camerax-ancienneCamerax)*tx, -(cameray-ancienneCameray)*tx);
     }
@@ -100,39 +89,24 @@ void Scene::changementEtat(state::EvenementEtat& e)
     }
     else if (e.getTypeEvenement() == state::ChangementSelectionne)
     {
-        std::cout << "On traite le changement dans Scene" << std::endl;
         if (etat->getGrille().getCellulePersonnage(e.getX(), e.getY()))
         {
-            std::cout << "Le personnage existe" << std::endl;
             coucheTerrain->setSelectionne((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx);
             panneau->setSelectionne(etat, etat->getGrille().getCellulePersonnage(e.getX(), e.getY()));
         }
         else 
         {
-            std::cout << "Le personnage n'existe pas" << std::endl;
             coucheTerrain->unsetSelectionne();
             panneau->unsetSelectionne();
         }
     }
     else if (e.getTypeEvenement() == state::Attaque)
     {
-        std::cout << "PREMIERE ID" << std::endl;
-        std::cout << "On appelle e.getX() " << e.getX() << std::endl;
-        std::cout << "On appelle e.getY() " << e.getY() << std::endl;
-        std::cout << "On appelle getTuile() " << couchePersonnage->getTuile(e.getX(),e.getY(), tx)->getID() << std::endl;
-        
         int idp1 = couchePersonnage->getTuile(e.getX(), e.getY(), tx)->getID();
-        std::cout << "Deuxieme ID "<< std::endl; 
-        std::cout << "On appelle e.getX() " << e.getNewx() << std::endl;
-        std::cout << "On appelle e.getY() " << e.getNewy() << std::endl;
-        std::cout << "On appelle getTuile() " << couchePersonnage->getTuile(e.getNewx(),e.getNewy(), tx)->getID() << std::endl;
-        
         
         int idp2 = couchePersonnage->getTuile(e.getNewx(), e.getNewy(), tx)->getID();
         int id1 = (((idp1-43)/2)-1) + ((idp1+1)%2)*7;
         int id2 = (((idp2-43)/2)-1) + ((idp2+1)%2)*19 + ((idp2)%2)*12;
-        std::cout << idp1 << " -> " << id1 << " (" << (((idp1-43)/2)-1) << ", " << ((idp1+1)%2)*7 << " )" << std::endl;
-        std::cout << idp2 << " -> " << id2 << " (" << (((idp2-43)/2)-1) << ", " << ((idp2+1)%2)*18 + ((idp2)%2)*12 << " )" << std::endl;
         couchePersonnage->setTuile(e.getX(), e.getY(), new TuileAnimee((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, id1, tx, couchePersonnage,e.getX(),e.getY()));
         couchePersonnage->setTuile(e.getNewx(), e.getNewy(), new TuileAnimee((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, id2, tx,couchePersonnage,e.getNewx(),e.getNewy()));
         couchePersonnage->setDegat((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, (int)e.getZoom());

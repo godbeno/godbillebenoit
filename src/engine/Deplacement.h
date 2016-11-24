@@ -17,7 +17,7 @@ namespace engine {
   /// class Deplacement - 
   class Deplacement : public engine::Action {
     // Attributes
-  public:
+  private:
     int origineX;
     int origineY;
     int cibleX;
@@ -29,6 +29,8 @@ namespace engine {
     state::CaseTerrain* getCaseArrivee (state::Etat* etat);
     void annuler (state::Etat* etat, bool afficher);
     int getDistance ();
+    void printOrigine ();
+    void printArrivee ();
   };
 
 };

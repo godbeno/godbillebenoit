@@ -6,7 +6,6 @@ using namespace engine;
 CommandeFleche::CommandeFleche(Direction direction)
 {
     this->direction = direction;
-     std::cout << "Création d'un événement fleche !" << std::endl;
 }
 CategorieCommande CommandeFleche::getCategorie()
 {

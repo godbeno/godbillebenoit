@@ -25,6 +25,7 @@ int main(int argc,char* argv[])
 {   
     
     // Test Unitaire - Etat du jeu 
+    std::cout << "--------------------INITIALISATION-------------" << std::endl;
     srand(time(NULL));
     RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Test Affichage");
     Etat *etat = new Etat;
@@ -62,6 +63,9 @@ int main(int argc,char* argv[])
     etat->changerTour(true);
     
     
+    std::cout << std::endl << "--------------------FIN INITIALISATION-------------" << std::endl;
+    
+    
     while (window->isOpen())
     { 
         Event event;
@@ -81,7 +85,6 @@ int main(int argc,char* argv[])
                         m->ajouterCommande(new CommandeClic(0,0,3));
                     else
                         m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 0));
-                    std::cout << event.mouseButton.x << " , " << event.mouseButton.y << std::endl;
                 }
             if (event.type == sf::Event::KeyPressed)
             {
