@@ -56,7 +56,7 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
             state::Personnage* p = etat->getSelectionne();
             if (std::find(v.begin(), v.end(), ct) == v.end() || p->getPA() < 2)
             {
-                //std::cout << "Annulé->";
+                std::cout << "Annulé->";
                 lsAction->supprimer(i);
                 //std::cout << "Mode Selection->";
                 lsAction->ajouter(new ChangerMode(6, -1, -1, moteur));
@@ -92,7 +92,40 @@ void Regulateur::appliquer(bool afficher, Moteur* moteur)
                 moteur->enregistrerAction(actions->get(i));
             }
         }
+    for (unsigned int i = 0; i < actions->taille(); i++)
+    {
+        if (afficher)
+        {
+            if (dynamic_cast<ChangerTour*>(actions->get(i)))
+                std::cout << "Changement de Tour->";
+            if (dynamic_cast<ChangerMode*>(actions->get(i)))
+                std::cout << "Changement de Mode->";
+            if (dynamic_cast<Selection*>(actions->get(i)))
+                std::cout << "Selection->";
+            if (dynamic_cast<Zoom*>(actions->get(i)))
+                std::cout << "Zoom->";
+            if (dynamic_cast<DeplacementCamera*>(actions->get(i)))
+                std::cout << "Deplacement de la Caméra->";
+            if (dynamic_cast<Attaquer*>(actions->get(i)))
+            {
+                Attaquer* att = static_cast<Attaquer*>(actions->get(i));
+                std::cout << "Attaque[";
+                att->printOrigine();
+                att->printArrivee();
+                std::cout << "]->";
+            }
+            if (dynamic_cast<Deplacement*>(actions->get(i)))
+            {
+                Deplacement* dep = static_cast<Deplacement*>(actions->get(i));
+                std::cout << "Deplacement[";
+                dep->printOrigine();
+                dep->printArrivee();
+                std::cout << "]->";
+            }
+        }
+    }
     //std::cout << "Etat->";
     actions->appliquer(afficher);
-    //std::cout << "0k" << std::endl;
+    if (afficher)
+        std::cout << "0k" << std::endl;
 }

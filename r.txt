@@ -1,10 +1,3 @@
-/home/nicolas/Documents/ProjetLT/godbillebenoit/src/AI/IA.cpp: In member function ‘int AI::IA::minmax(int)’:
-/home/nicolas/Documents/ProjetLT/godbillebenoit/src/AI/IA.cpp:349:19: warning: variable ‘nbAtt’ set but not used [-Wunused-but-set-variable]
-     int tmp = -1, nbAtt = -1, nbDep = -1, max  = -1000000; 
-                   ^
-/home/nicolas/Documents/ProjetLT/godbillebenoit/src/AI/IA.cpp:349:31: warning: variable ‘nbDep’ set but not used [-Wunused-but-set-variable]
-     int tmp = -1, nbAtt = -1, nbDep = -1, max  = -1000000; 
-                               ^
 /home/nicolas/Documents/ProjetLT/godbillebenoit/src/engine/Regulateur.cpp: In constructor ‘engine::Regulateur::Regulateur(engine::ListeActions*, state::Etat*, engine::ListeCommande*, engine::Moteur*)’:
 /home/nicolas/Documents/ProjetLT/godbillebenoit/src/engine/Regulateur.cpp:27:26: warning: unused variable ‘dep’ [-Wunused-variable]
              Deplacement* dep = static_cast<Deplacement*>(lsAction->get(i));
@@ -12,3 +5,7 @@
 /home/nicolas/Documents/ProjetLT/godbillebenoit/src/engine/Regulateur.cpp:49:23: warning: unused variable ‘att’ [-Wunused-variable]
              Attaquer* att = static_cast<Attaquer*>(lsAction->get(i));
                        ^
+/home/nicolas/Documents/ProjetLT/godbillebenoit/src/engine/Regulateur.cpp: In member function ‘void engine::Regulateur::appliquer(bool, engine::Moteur*)’:
+/home/nicolas/Documents/ProjetLT/godbillebenoit/src/engine/Regulateur.cpp:95:32: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (unsigned int i = 0; i < actions->taille(); i++)
+                                ^

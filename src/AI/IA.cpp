@@ -12,12 +12,17 @@ using namespace state;
 
 IA::IA (state::Etat* etat, engine::Moteur* moteur, Niveau niv)
 {
-   this->etat = etat;
-   this->moteur = moteur;
-   i = 575;
-   niveau = niv;
-   attendre = false;
-   archer = false;
+    this->etat = etat;
+    this->moteur = moteur;
+    i = 575;
+    niveau = niv;
+    attendre = false;
+    archer = false;
+    iAtt = 0;
+    iDep = 0;
+    amax = -10000;
+    nbAtt = -1;
+    nbDep = -1;
 }
 
 bool IA::appliquerHeuristique(bool equipe)
@@ -266,7 +271,7 @@ void IA::jouer()
 
 bool IA::appliquerMinMax()
 {
-    int max = -1, tmp = 0, nbAtt = -1, nbDep = -1;
+    int tmp = 0;
     state::Personnage* currentPersonnage = nullptr;
     if (etat->getGrille().get(i)->estPersonnage())
     {
@@ -285,44 +290,59 @@ bool IA::appliquerMinMax()
                 moteur->commencerEnregistrement();
                 std::vector<CaseTerrain*> va = etat->getCaseAttaquable(currentPersonnage);
                 std::cout << "DEBUT DU CALCUL POUR UN JOUEUR(ATTAQUE)(" << i << ")" << std::endl;
-                for (unsigned int j = 0; j < va.size(); j++)
+                //for (unsigned int j = 0; j < va.size(); j++)
+                //{
+                if (iAtt < va.size())
                 {
-                    moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[j]->getX(), va[j]->getY()));
+                    moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[iAtt]->getX(), va[iAtt]->getY()));
                     std::cout << "IA->";
                     moteur->convertirCommande(false);
                     tmp = minmax(1);
-                    if (tmp > max)
+                    if (tmp > amax)
                     { 
-                        max = tmp;
-                        nbAtt = j;
+                        amax = tmp;
+                        nbAtt = iAtt;
                     }
                     std::cout << "[Annulation]IA->";
                     moteur->annuler();
+                    iAtt++;
+                    return false;
                 }
+                //}
                 std::vector<CaseTerrain*> vd = etat->getCaseAtteignable(currentPersonnage);
                 std::cout << "DEBUT DU CALCUL POUR UN JOUEUR(DEPLACEMENT)(" << i << ")" << std::endl;
-                for (unsigned int j = 0; j < vd.size(); j++)
+                //for (unsigned int j = 0; j < vd.size(); j++)
+                //{
+                if (iDep < vd.size())
                 {
-                    std::cout << "DEBUT DU CALCUL POUR LE DEPLACEMENT " << j << "/" << vd.size() << "  (" << i << ") " << std::endl;
-                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[j]->getX(), vd[j]->getY()));
+                    std::cout << "DEBUT DU CALCUL POUR LE DEPLACEMENT " << iDep << "/" << vd.size() << "  (" << i << ") " << std::endl;
+                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[iDep]->getX(), vd[iDep]->getY()));
                     //std::cout << "IA->";
                     moteur->convertirCommande(false);
                     tmp = minmax(1);
-                    if (tmp > max)
+                    if (tmp > amax)
                     {
-                        max = tmp;
+                        amax = tmp;
                         nbAtt = -1;
-                        nbDep = j;
+                        nbDep = iDep;
                     }
                     //std::cout << "[Annulation]IA->";
+                    iDep++;
                     moteur->annuler();
+                    return false;
                 }
+                //}
                 std::cout << "FIN DU CALCUL POUR UN JOUEUR: DECISION" << std::endl;
                 if (nbAtt != -1)
-                    moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[max]->getX(), va[max]->getY()));
+                    moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[nbAtt]->getX(), va[nbAtt]->getY()));
                 else if (nbDep != -1)
-                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[max]->getX(), vd[max]->getY()));
+                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[nbDep]->getX(), vd[nbDep]->getY()));
                 std::cout << "IA->";
+                iAtt = 0;
+                iDep = 0;
+                amax = -10000;
+                nbAtt = -1;
+                nbDep = -1;
                 moteur->convertirCommande(true);
                 return true;
             }
@@ -346,7 +366,7 @@ bool IA::appliquerMinMax()
 int IA::minmax(int prof)
 {
     //Pour l'instant ne marche que pour le max
-    int tmp = -1, nbAtt = -1, nbDep = -1, max  = -1000000; 
+    int tmp = -1, max  = -1000000; 
     state::Personnage* currentPersonnage = nullptr;
     int j = 575;
     if (prof <= 0)
@@ -381,7 +401,6 @@ int IA::minmax(int prof)
                         if (tmp > max)
                         {
                             max = tmp;
-                            nbAtt = k;
                         }
                         //std::cout << "[Annulation]IA->" << std::endl;
                         moteur->annuler();
@@ -397,8 +416,6 @@ int IA::minmax(int prof)
                         if (tmp > max)
                         {
                             max = tmp;
-                            nbAtt = -1;
-                            nbDep = k;
                         }
                         //std::cout << "[Annulation]IA->";
                         moteur->annuler();                        

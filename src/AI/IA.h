@@ -26,6 +26,11 @@ namespace AI {
     bool attendre;
     clock_t temps;
     bool archer;
+    unsigned int iAtt;
+    unsigned int iDep;
+    int amax;
+    int nbDep;
+    int nbAtt;
   protected:
     state::Etat* etat;
     bool equipe;
