@@ -447,7 +447,7 @@ int IA::fonctionEvaluation(state::Etat* etat)
     {
         if (etat->getGrille().get(k)->estPersonnage())
         {
-            coeff = static_cast<Personnage*>(etat->getGrille().get(k))->getEquipe();
+            coeff = (static_cast<Personnage*>(etat->getGrille().get(k))->getEquipe() == etat->getTour());
             coeff = (!coeff)*(-1) + coeff;
             eval += coeff*500;
             pv += coeff*static_cast<Personnage*>(etat->getGrille().get(k))->getPV();
