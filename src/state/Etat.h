@@ -45,11 +45,11 @@ namespace state {
     void setGrille (const GrilleElement& grille);
     void setListe (const ListeElement& list);
     void initialiserTerrain (bool estChateau);
-    void ajouterPersonnage (bool equipe, int id, int x, int y);
+    void ajouterPersonnage (bool equipe, int id, int x, int y, bool afficher);
     void deplacerElement (int i1, int j1, int i2, int j2, bool afficher, bool annuler);
     Personnage* getSelectionne ();
     void setSelectionne (int i, int j, bool afficher);
-    int attaquer (int i1, int j1, int i2, int j2, bool afficher);
+    void attaquer (int i1, int j1, int i2, int j2, bool afficher);
     std::vector<CaseTerrain*> getCaseAtteignable (Personnage* p);
     std::vector<CaseTerrain*> rechercheCaseRec (CaseTerrain* ct, Personnage* p);
     void setCamerax (int cx, bool afficher);

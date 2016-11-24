@@ -16,6 +16,6 @@ void Selection::appliquer(state::Etat* etat, bool afficher)
 }
 void Selection::annuler (state::Etat* etat, bool afficher)
 {
+    //std::cout << "Selection->";
     etat->setSelectionne(ancienSelect->getX(), ancienSelect->getY(), afficher);
-    std::cout << "Fin de l'annulation" << std::endl;
 }

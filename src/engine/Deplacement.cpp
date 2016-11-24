@@ -21,6 +21,10 @@ state::CaseTerrain* Deplacement::getCaseArrivee(state::Etat* etat)
 }
 void Deplacement::annuler (state::Etat* etat, bool afficher)
 {
+    /*std::cout << "Deplacement[";
+    printOrigine();
+    printArrivee();
+    std::cout << "]->";*/
     etat->deplacerElement(cibleX, cibleY, origineX, origineY, afficher, true);
 }
 int Deplacement::getDistance()

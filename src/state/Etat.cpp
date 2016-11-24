@@ -66,12 +66,13 @@ void Etat::initialiserTerrain(bool estChateau)
     liste->copy(*grille);
 }
 
-void Etat::ajouterPersonnage(bool equipe, int id, int x, int y)
+void Etat::ajouterPersonnage(bool equipe, int id, int x, int y, bool afficher)
 {
     Personnage* p = new Personnage(equipe, TypePersonnage(id), x, y);
     grille->add(p);
     liste->copy(*grille);
-    avertirObservateurs(new EvenementEtat(TypeEvenementEtat(3), this, x, y, id, equipe));
+    if (afficher)
+        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(3), this, x, y, id, equipe));
 }
 
 void Etat::deplacerElement(int i1, int j1, int i2, int j2, bool afficher, bool annuler)
@@ -103,7 +104,7 @@ void Etat::setSelectionne(int i, int j, bool afficher)
     if (afficher)
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(8), this, i, j, 0, 0));
 }
-int Etat::attaquer(int i1, int j1, int i2, int j2, bool afficher)
+void Etat::attaquer(int i1, int j1, int i2, int j2, bool afficher)
 {   //std::cout << "ON EST DANS ATTAQUER" << std::endl;
     Personnage* p1 = grille->getCellulePersonnage(i1,j1);
     Personnage* p2 = grille->getCellulePersonnage(i2,j2);
@@ -122,12 +123,11 @@ int Etat::attaquer(int i1, int j1, int i2, int j2, bool afficher)
             //Le personnage attaqué est mort
             if (afficher)
                 avertirObservateurs(new EvenementEtat(TypeEvenementEtat(2), this, i2, j2, 0, 0));
+            std::cout << "Le personnage attaqué est mort" << std::endl;
             grille->supprimerElement(i2,j2);
         }
         liste->copy(*grille);
-        return att;
     }
-    return 0;
 }
 std::vector<CaseTerrain*> Etat::getCaseAtteignable(Personnage* p)
 {

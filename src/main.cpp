@@ -30,28 +30,28 @@ int main(int argc,char* argv[])
     RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Test Affichage");
     Etat *etat = new Etat;
     Moteur *m = new Moteur(etat);
-    IA *ia = new IA(etat,m, Niveau::Heuristique);
+    IA *ia = new IA(etat,m, Niveau::MinMax);
     etat->initialiserTerrain(true);
     Scene* scene = new Scene(etat, window);
     etat->enregistrerObservateur(scene);
     
     //Définition de personnage
-    etat->ajouterPersonnage(true, 1, 14, 15);
-    etat->ajouterPersonnage(true, 2, 13, 5);
-    etat->ajouterPersonnage(false, 3, 10, 5);
-    etat->ajouterPersonnage(false, 4, 4, 15);    
-    etat->ajouterPersonnage(true, 5, 12, 5);
-    etat->ajouterPersonnage(false, 6, 11, 5);
-    etat->ajouterPersonnage(false, 1,10, 15);    
-    etat->ajouterPersonnage(true, 2, 16, 5);
-    etat->ajouterPersonnage(false, 3, 5, 6);
-    etat->ajouterPersonnage(false, 4, 5, 16);    
-    etat->ajouterPersonnage(true, 5, 15, 7);
-    etat->ajouterPersonnage(false, 6, 5, 8);
-    etat->ajouterPersonnage(false, 1, 5, 12);    
-    etat->ajouterPersonnage(true, 2, 15, 13);
-    etat->ajouterPersonnage(false, 3, 5, 11);
-    etat->ajouterPersonnage(false, 4, 5, 10);
+    //etat->ajouterPersonnage(true, 1, 14, 15);
+    etat->ajouterPersonnage(true, 2, 13, 5, true);
+    etat->ajouterPersonnage(false, 3, 10, 5, true);
+    //etat->ajouterPersonnage(false, 4, 4, 15);    
+    etat->ajouterPersonnage(true, 5, 12, 5, true);
+    etat->ajouterPersonnage(false, 6, 11, 5, true);
+    //etat->ajouterPersonnage(false, 1,10, 15);    
+    etat->ajouterPersonnage(true, 2, 16, 5, true);
+    etat->ajouterPersonnage(false, 3, 5, 6, true);
+    //etat->ajouterPersonnage(false, 4, 5, 16);    
+    etat->ajouterPersonnage(true, 5, 15, 7, true);
+    etat->ajouterPersonnage(false, 6, 5, 8, true);
+    //etat->ajouterPersonnage(false, 1, 5, 12);    
+    //etat->ajouterPersonnage(true, 2, 15, 13);
+    etat->ajouterPersonnage(false, 3, 5, 11, true);
+    //etat->ajouterPersonnage(false, 4, 5, 10, true);
     
     m->setMode(Mode::jeu);
     

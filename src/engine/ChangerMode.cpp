@@ -15,7 +15,6 @@ ChangerMode::ChangerMode(int IdMode, int x, int y, Moteur *moteur)
 }
 void ChangerMode::appliquer(state::Etat* etat, bool afficher)
 {
-    std::cout << "On va appliquer le changement de mode" << std::endl;
     ancienMode = (int)(moteur->getMode());
     ancienPersonnage = etat->getSelectionne();
     moteur->setMode(Mode(idMode));
@@ -36,6 +35,7 @@ int ChangerMode::getY()
 }
 void ChangerMode::annuler(state::Etat* etat, bool afficher)
 {
+    //std::cout << "Changement de Mode->";
     moteur->setMode(Mode(ancienMode));
     if (ancienPersonnage != nullptr)
         etat->setSelectionne(ancienPersonnage->getX(), ancienPersonnage->getY(), afficher);
