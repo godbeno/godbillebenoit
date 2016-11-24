@@ -270,12 +270,13 @@ bool IA::appliquerMinMax()
     state::Personnage* currentPersonnage = nullptr;
     if (etat->getGrille().get(i)->estPersonnage())
     {
-        if(static_cast<Personnage*>(etat->getGrille().get(i))->getEquipe()==equipe)
+        if(static_cast<Personnage*>(etat->getGrille().get(i))->getEquipe()==etat->getTour())
         {
             currentPersonnage = static_cast<Personnage*>(etat->getGrille().get(i));
             if (etat->getSelectionne() == nullptr || etat->getSelectionne() != currentPersonnage)
             {
                 moteur->ajouterAction(new Selection(currentPersonnage->getX(), currentPersonnage->getY()));
+                std::cout << "IA->";
                 moteur->convertirCommande(true);
                 return false;
             }
@@ -283,9 +284,11 @@ bool IA::appliquerMinMax()
             {
                 moteur->commencerEnregistrement();
                 std::vector<CaseTerrain*> va = etat->getCaseAttaquable(currentPersonnage);
+                std::cout << "DEBUT DU CALCUL POUR UN JOUEUR(ATTAQUE)(" << i << ")" << std::endl;
                 for (unsigned int j = 0; j < va.size(); j++)
                 {
                     moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[j]->getX(), va[j]->getY()));
+                    std::cout << "IA->";
                     moteur->convertirCommande(false);
                     tmp = minmax(1);
                     if (tmp > max)
@@ -293,13 +296,16 @@ bool IA::appliquerMinMax()
                         max = tmp;
                         nbAtt = j;
                     }
+                    std::cout << "[Annulation]IA->";
                     moteur->annuler();
                 }
-                std::cout << currentPersonnage << std::endl;
                 std::vector<CaseTerrain*> vd = etat->getCaseAtteignable(currentPersonnage);
+                std::cout << "DEBUT DU CALCUL POUR UN JOUEUR(DEPLACEMENT)(" << i << ")" << std::endl;
                 for (unsigned int j = 0; j < vd.size(); j++)
                 {
+                    std::cout << "DEBUT DU CALCUL POUR LE DEPLACEMENT " << j << "/" << vd.size() << "  (" << i << ") " << std::endl;
                     moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[j]->getX(), vd[j]->getY()));
+                    //std::cout << "IA->";
                     moteur->convertirCommande(false);
                     tmp = minmax(1);
                     if (tmp > max)
@@ -308,12 +314,15 @@ bool IA::appliquerMinMax()
                         nbAtt = -1;
                         nbDep = j;
                     }
+                    //std::cout << "[Annulation]IA->";
                     moteur->annuler();
                 }
+                std::cout << "FIN DU CALCUL POUR UN JOUEUR: DECISION" << std::endl;
                 if (nbAtt != -1)
                     moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[max]->getX(), va[max]->getY()));
                 else if (nbDep != -1)
                     moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[max]->getX(), vd[max]->getY()));
+                std::cout << "IA->";
                 moteur->convertirCommande(true);
                 return true;
             }
@@ -321,6 +330,7 @@ bool IA::appliquerMinMax()
             {
                 i++;
                 moteur->ajouterAction(new Selection(-1, -1));
+                std::cout << "IA->";
                 moteur->convertirCommande(true);
                 return false;
             }
@@ -328,64 +338,73 @@ bool IA::appliquerMinMax()
         else
             i++;
     }
-    i++;
+    else
+        i++;
     return false;
 }
         
 int IA::minmax(int prof)
 {
     //Pour l'instant ne marche que pour le max
-    int tmp = -1, nbAtt = -1, nbDep = -1, max  = -1; 
+    int tmp = -1, nbAtt = -1, nbDep = -1, max  = -1000000; 
     state::Personnage* currentPersonnage = nullptr;
-    int j = 0;
-    if (prof == 0)
+    int j = 575;
+    if (prof <= 0)
     {
         return fonctionEvaluation(etat);
     }
     while (j < etat->getGrille().size())
     {
+        //std::cout << j << " : " << etat->getGrille().size() << std::endl;
         if (etat->getGrille().get(j)->estPersonnage())
         {
-            if(static_cast<Personnage*>(etat->getGrille().get(j))->getEquipe()==equipe)
+            if(static_cast<Personnage*>(etat->getGrille().get(j))->getEquipe()==etat->getTour())
             {
                 currentPersonnage = static_cast<Personnage*>(etat->getGrille().get(j));
                 if (etat->getSelectionne() == nullptr || etat->getSelectionne() != currentPersonnage)
                 {
                     moteur->ajouterAction(new Selection(currentPersonnage->getX(), currentPersonnage->getY()));
+                    //std::cout << "IA->";
                     moteur->convertirCommande(false);
                 }
                 if (currentPersonnage->getPA() > 0)
                 {
                     std::vector<CaseTerrain*> va = etat->getCaseAttaquable(currentPersonnage);
-                    std::vector<CaseTerrain*> vd = etat->getCaseAtteignable(currentPersonnage);
+                    std::vector<CaseTerrain*> vd = etat->getCaseAtteignable(currentPersonnage); 
+                    //std::cout << std::endl << "Bloc simulation attaque sous-fils " << j << " (" << va.size() << ")" << std::endl;
                     for (unsigned int k = 0; k < va.size(); k++)
                     {
                         moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[k]->getX(), va[k]->getY()));
+                        //std::cout << "IA->" << std::endl;
                         moteur->convertirCommande(false);
-                        tmp = minmax(prof--);
+                        tmp = minmax(prof-1);
                         if (tmp > max)
                         {
                             max = tmp;
                             nbAtt = k;
                         }
+                        //std::cout << "[Annulation]IA->" << std::endl;
                         moteur->annuler();
                     }
+                    //std::cout << "Bloc simulation déplacement sous-fils " << j << " (" << vd.size() << ")" << std::endl;
                     for (unsigned int k = 0; k < vd.size(); k++)
                     {
-                        std::cout << currentPersonnage->getX() << ", " << currentPersonnage->getY() << std::endl;
                         moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[k]->getX(), vd[k]->getY()));
+                        //std::cout << "IA->";
                         moteur->convertirCommande(false);
-                        tmp = minmax(prof--);
+                        //std::cout << "Simulation du déplacement du personnage " << j << " coup " << k << " prof " << prof << std::endl;
+                        tmp = minmax(prof-1);
                         if (tmp > max)
                         {
                             max = tmp;
                             nbAtt = -1;
                             nbDep = k;
                         }
-                        moteur->annuler();
-                    
+                        //std::cout << "[Annulation]IA->";
+                        moteur->annuler();                        
+                        //std::cout << "Fin de Simulation du déplacement du personnage " << j << " coup " << k << " prof " << prof << std::endl;
                     }
-                    return max;
+                    j++;
                 }
                 else
                 {
@@ -398,6 +417,8 @@ int IA::minmax(int prof)
         else
             j++;
     }
+    //std::cout << "ON A TROUVE LA VALEUR : " << max << std::endl;
+    return max;
 }
 int IA::fonctionEvaluation(state::Etat* etat)
 {
@@ -405,14 +426,14 @@ int IA::fonctionEvaluation(state::Etat* etat)
     int pv = 0;
     int coeff;
     //Evaluation des forces en présences (nbPersonnages + nbPV);
-    for (int i = 575; i < etat->getGrille().size(); i++)
+    for (int k = 575; k < etat->getGrille().size(); k++)
     {
-        if (i < etat->getGrille().get(i)->estPersonnage())
+        if (etat->getGrille().get(k)->estPersonnage())
         {
-            coeff = static_cast<Personnage*>(etat->getGrille().get(i))->getEquipe();
-            coeff = !coeff*(-1) + coeff;
+            coeff = static_cast<Personnage*>(etat->getGrille().get(k))->getEquipe();
+            coeff = (!coeff)*(-1) + coeff;
             eval += coeff*500;
-            pv += coeff*static_cast<Personnage*>(etat->getGrille().get(i))->getPV();
+            pv += coeff*static_cast<Personnage*>(etat->getGrille().get(k))->getPV();
         }
     }
     return pv+eval;

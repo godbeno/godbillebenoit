@@ -17,8 +17,11 @@ namespace engine {
   /// class Attaquer - 
   class Attaquer : public engine::Action {
     // Attributes
+  public:
+    state::TypePersonnage sauvType;
   private:
     int degat;
+    bool sauvEquipe;
   protected:
     int attaquantX;
     int attaquantY;

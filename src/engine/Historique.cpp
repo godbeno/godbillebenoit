@@ -10,13 +10,16 @@ Historique::Historique(state::Etat* sauvegarde)
 }
 void Historique::ajouterAction (Action* action)
 {
-    std::cout << "UNE ACTION AJOUTEE" << std::endl;
     lsHistorique->ajouter(action);
 }
 void Historique::annulerUneAction (state::Etat* etat)
 {
-    lsHistorique->get(lsHistorique->taille()-1)->annuler(etat, false);
-    lsHistorique->supprimer(lsHistorique->taille()-1);
+    if (lsHistorique->taille() > 0)
+    {
+        //std::cout << "Taille ok (" << lsHistorique->taille() <<")" << std::endl;
+        lsHistorique->get(lsHistorique->taille()-1)->annuler(etat, false);
+        lsHistorique->supprimer(lsHistorique->taille()-1);
+    }
 }
 void Historique::annulerToutesActions (state::Etat* etat)
 {

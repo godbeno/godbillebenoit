@@ -173,7 +173,7 @@ void Moteur::finDuTour()
 void Moteur::annuler()
 {
     historique->annulerUneAction(etat);
-    //std::cout << "Annulation réussie" << std::endl;
+    //std::cout << "0k" << std::endl;
 }
 void Moteur::commencerEnregistrement()
 {

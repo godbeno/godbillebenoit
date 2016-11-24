@@ -1,4 +1,5 @@
 #include "ChangerTour.h"
+#include <iostream>
 
 using namespace engine; 
 
@@ -12,5 +13,6 @@ void ChangerTour::appliquer(state::Etat* etat, bool afficher)
 }
 void ChangerTour::annuler(state::Etat* etat, bool afficher)
 {
+    //std::cout << "Changement de tour->";
     etat->changerTour(afficher);
 }

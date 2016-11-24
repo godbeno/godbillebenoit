@@ -13,7 +13,10 @@ Attaquer::Attaquer (int Attaquantx, int Attaquanty, int Ciblex, int Cibley)
 }
 void Attaquer::appliquer(state::Etat* etat, bool afficher)
 {
-    degat = etat->attaquer(attaquantX, attaquantY, cibleX, cibleY, afficher);
+    degat = etat->getGrille().getCellulePersonnage(cibleX, cibleY)->getPV();
+    sauvEquipe = etat->getGrille().getCellulePersonnage(cibleX, cibleY)->getEquipe();
+    sauvType = etat->getGrille().getCellulePersonnage(cibleX, cibleY)->getType();
+    etat->attaquer(attaquantX, attaquantY, cibleX, cibleY, afficher);
 }
 state::CaseTerrain* Attaquer::getCaseArrivee(state::Etat* etat)
 {
@@ -21,8 +24,16 @@ state::CaseTerrain* Attaquer::getCaseArrivee(state::Etat* etat)
 }
 void Attaquer::annuler(state::Etat* etat, bool afficher)
 {
+    /*std::cout << "Attaque[";
+    printOrigine();
+    printArrivee();
+    std::cout << "]->";*/
     etat->getGrille().getCellulePersonnage(attaquantX, attaquantY)->setPArestant(etat->getGrille().getCellulePersonnage(attaquantX, attaquantY)->getPA() + 2);
-    etat->getGrille().getCellulePersonnage(cibleX, cibleY)->setPVrestant(etat->getGrille().getCellulePersonnage(cibleX, cibleY)->getPV() + degat);
+    if (etat->getGrille().getCellulePersonnage(cibleX, cibleY) == nullptr)  // Si personnage mort on le recréé
+    {
+        etat->ajouterPersonnage(sauvEquipe, (int)sauvType, cibleX, cibleY, false);
+    }        
+    etat->getGrille().getCellulePersonnage(cibleX, cibleY)->setPVrestant(degat);
 }
 void Attaquer::printOrigine()
 {
