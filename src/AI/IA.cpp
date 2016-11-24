@@ -292,7 +292,7 @@ bool IA::appliquerMinMax()
                     moteur->convertirCommande(false);
                     tmp = minmax(1);
                     if (tmp > max)
-                    {
+                    { 
                         max = tmp;
                         nbAtt = j;
                     }
