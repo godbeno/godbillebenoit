@@ -96,7 +96,7 @@ TuileAnimee::TuileAnimee(float x, float y, int id, float vitesse, Couche* couche
             tuiles.push_back(new TuileStatique(x, y, 69, tx,TrueX,TrueY));
             tuiles.push_back(new TuileStatique(x, y, 52, tx,TrueX,TrueY));
             tuiles.push_back(new TuileStatique(x, y, 69, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 52, tx,TrueX,TrueY));
+            tuiles.push_back(new pe dTuileStatique(x, y, 52, tx,TrueX,TrueY));
             break;
         case 11:
             tuiles.push_back(new TuileStatique(x, y, 71, tx,TrueX,TrueY));
