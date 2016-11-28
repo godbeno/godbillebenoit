@@ -137,7 +137,7 @@ void Scene::afficher()
     couchePersonnage->afficher();
     //std::cout << "Les couches ont été dessinées" << std::endl;
     panneau->draw(window);
-    message->dessiner(window);
+    //message->dessiner(window);
     window->display();
 }
 

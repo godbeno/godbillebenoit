@@ -122,7 +122,7 @@ void Couche::deplacerCamera(float x, float y)
 void Couche::zoomCamera(float s)
 {
     for (unsigned int i = 0; i < tuiles.size(); i++)
-    {
+    {   
         int anciennePosx = tuiles[i]->getX();
         int anciennePosy = tuiles[i]->getY();
         tuiles[i]->setX((int)((float)(anciennePosx)*s));
