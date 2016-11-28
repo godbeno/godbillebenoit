@@ -1,4 +1,0 @@
-/home/nicolas/Documents/ProjetLT/godbillebenoit/src/engine/Regulateur.cpp: In member function ‘void engine::Regulateur::appliquer(bool, engine::Moteur*)’:
-/home/nicolas/Documents/ProjetLT/godbillebenoit/src/engine/Regulateur.cpp:95:32: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     for (unsigned int i = 0; i < actions->taille(); i++)
-                                ^

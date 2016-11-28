@@ -98,22 +98,22 @@ void Couche::deplacerCamera(float x, float y)
     }
     if (select)
     {
-        int ancienSelx = select->getPosition().x;
-        int ancienSely = select->getPosition().y;
+        float ancienSelx = select->getPosition().x;
+        float ancienSely = select->getPosition().y;
         select->setPosition(ancienSelx+x, ancienSely+y);
     }
         
     for (unsigned int i = 0; i < brillance.size(); i++)
     {
-        int ancienBrix = brillance[i].getPosition().x;
-        int ancienBriy = brillance[i].getPosition().y;
+        float ancienBrix = brillance[i].getPosition().x;
+        float ancienBriy = brillance[i].getPosition().y;
         brillance[i].setPosition(ancienBrix+x, ancienBriy+y);
 
     }
     for (unsigned int i = 0; i < rouge.size(); i++)
     {
-        int ancienBrix = rouge[i].getPosition().x;
-        int ancienBriy = rouge[i].getPosition().y;
+        float ancienBrix = rouge[i].getPosition().x;
+        float ancienBriy = rouge[i].getPosition().y;
         rouge[i].setPosition(ancienBrix+x, ancienBriy+y);
     }
     if (estDegat)
