@@ -26,6 +26,7 @@ namespace render {
     float vitesse;
     clock_t debut;
     Couche* parent;
+    int zoom;
     // Operations
   public:
     TuileAnimee (float x, float y, int id, float vitesse, Couche* couche, int TrueX, int TrueY);
