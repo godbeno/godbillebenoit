@@ -10,7 +10,6 @@ Zoom::Zoom(int i)
 }  
 void Zoom::appliquer (state::Etat* etat, bool afficher)
 {
-    std::cout << "Zoom est appliqué avec l'argument " << i << std::endl;
     if(this->i == -1)
     {
         if(etat->getZoom() > 1. )

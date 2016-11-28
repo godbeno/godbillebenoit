@@ -285,7 +285,6 @@ TuileAnimee::TuileAnimee(float x, float y, int id, float vitesse, Couche* couche
             tuiles.push_back(new TuileStatique(x, y, -1, tx,TrueX,TrueY));
             break;
     }
-    zoom = s;
 }
 TuileAnimee::~TuileAnimee()
 {
@@ -341,7 +340,6 @@ void TuileAnimee::update (clock_t time)
     if (nbr > tuiles.size()-1)
     {   
         parent->setTuile(trueX,trueY,static_cast<TuileStatique*>(tuiles[tuiles.size()-1])->copy());
-        parent->getTuile(trueX, trueY, 0)->updateSpriteScale(zoom);
         parent->stopDegat();
     }
 }
@@ -357,12 +355,9 @@ void TuileAnimee::updateSpritePosition(float x, float y)
         tuiles[i]->setX(this->x);
         tuiles[i]->setY(this->y);
     }
-    //this->x = x;
-    //this->y = y;
 }
 void TuileAnimee::updateSpriteScale(float s)
 {
     for(unsigned int i = 0; i < tuiles.size(); i++)
         tuiles[i]->updateSpriteScale(s);
-    zoom = s;
 }

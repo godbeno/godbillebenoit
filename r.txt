@@ -1,7 +1,4 @@
-make[3]: *** [CMakeFiles/run.dir/src/state/ListeElement.cpp.o] Interrompre
-make[3]: *** [CMakeFiles/run.dir/src/AI/IA.cpp.o] Interrompre
-make[3]: *** [CMakeFiles/run.dir/src/state/CaseTerrain.cpp.o] Interrompre
-make[3]: *** [CMakeFiles/run.dir/src/state/Personnage.cpp.o] Interrompre
-make[2]: *** [CMakeFiles/run.dir/all] Interrompre
-make[1]: *** [all] Interrompre
-make: *** [build] Interrompre
+/home/nicolas/Documents/ProjetLT/godbillebenoit/src/engine/Regulateur.cpp: In member function ‘void engine::Regulateur::appliquer(bool, engine::Moteur*)’:
+/home/nicolas/Documents/ProjetLT/godbillebenoit/src/engine/Regulateur.cpp:95:32: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (unsigned int i = 0; i < actions->taille(); i++)
+                                ^
