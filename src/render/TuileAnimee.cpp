@@ -358,3 +358,8 @@ void TuileAnimee::updateSpritePosition(float x, float y)
     //this->x = x;
     //this->y = y;
 }
+void TuileAnimee::updateSpriteScale(float s)
+{
+    for(unsigned int i = 0; i < tuiles.size(); i++)
+        tuiles[i]->updateSpriteScale(s);
+}

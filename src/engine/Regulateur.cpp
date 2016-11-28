@@ -25,32 +25,32 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
         if (dynamic_cast<Deplacement*>(lsAction->get(i))) // On se place dans le cadre de Deplacement
         {
             Deplacement* dep = static_cast<Deplacement*>(lsAction->get(i));
-            /*std::cout << "Déplacement[";
+            std::cout << "Déplacement[";
             dep->printOrigine();
             dep->printArrivee();
-            std::cout << "]->";*/
+            std::cout << "]->";
             std::vector<state::CaseTerrain*> v = etat->getCaseAtteignable(etat->getSelectionne());
             state::CaseTerrain* ct = static_cast<Deplacement*>(lsAction->get(i))->getCaseArrivee(etat);
             if (std::find(v.begin(), v.end(), ct) == v.end())
             {
-                //std::cout << "Annulé->";
+                std::cout << "Annulé->";
                 lsAction->supprimer(i);
-                //std::cout << "Mode Selection->";
+                std::cout << "Mode Selection->";
                 lsAction->ajouter(new ChangerMode(6, -1, -1, moteur));
             }
-            /*else
+            else
             {
-                std::cout << "mode déplacement->"
+                std::cout << "mode déplacement->";
                 lsAction->ajouter(new ChangerMode(4, -1, -1, moteur));
-            }*/
+            }
         }
         if (dynamic_cast<Attaquer*>(lsAction->get(i)))
         {
             Attaquer* att = static_cast<Attaquer*>(lsAction->get(i));
-            /*std::cout << "Attaque[";
+            std::cout << "Attaque[";
             att->printOrigine();
             att->printArrivee();
-            std::cout << "]->";*/
+            std::cout << "]->";
             std::vector<state::CaseTerrain*> v = etat->getCaseAttaquable(etat->getSelectionne());
             state::CaseTerrain* ct = static_cast<Attaquer*>(lsAction->get(i))->getCaseArrivee(etat);
             state::Personnage* p = etat->getSelectionne();
@@ -58,11 +58,11 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
             {
                 std::cout << "Annulé->";
                 lsAction->supprimer(i);
-                //std::cout << "Mode Selection->";
+                std::cout << "Mode Selection->";
                 lsAction->ajouter(new ChangerMode(6, -1, -1, moteur));
             }
 
-        }/*
+        }
         if (dynamic_cast<ChangerTour*>(lsAction->get(i)))
             std::cout << "Changement de Tour->";
         if (dynamic_cast<ChangerMode*>(lsAction->get(i)))
@@ -72,7 +72,7 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
         if (dynamic_cast<Zoom*>(lsAction->get(i)))
             std::cout << "Zoom->";
         if (dynamic_cast<DeplacementCamera*>(lsAction->get(i)))
-            std::cout << "Deplacement de la Caméra->";*/
+            std::cout << "Deplacement de la Caméra->";
         
     }
 }
@@ -88,7 +88,7 @@ void Regulateur::appliquer(bool afficher, Moteur* moteur)
             if (dynamic_cast<Attaquer*>(actions->get(i)) || 
                 dynamic_cast<Deplacement*>(actions->get(i))) //On vérifie que ce sont bien les actions qu'on souhaite annuler
             {
-                //std::cout << "Enregistré->";
+                std::cout << "Enregistré->";
                 moteur->enregistrerAction(actions->get(i));
             }
         }
@@ -124,7 +124,7 @@ void Regulateur::appliquer(bool afficher, Moteur* moteur)
             }
         }
     }
-    //std::cout << "Etat->";
+    std::cout << "Etat->";
     actions->appliquer(afficher);
     if (afficher)
         std::cout << "0k" << std::endl;

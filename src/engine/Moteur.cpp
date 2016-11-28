@@ -10,6 +10,8 @@
 #include "Zoom.h"
 #include "Historique.h"
 #include <iostream>
+#include <thread>
+#include <mutex>
 
 using namespace engine;
 
@@ -44,10 +46,13 @@ void Moteur::update(clock_t t)
     {
         //std::cout << "update " << listeCommande.taille() << std::endl;
         if (listeCommande.taille() != 0)
-            convertirCommande(true);
+        {
+            std::thread th(&Moteur::convertirCommande, this, true);
+            th.join();
+        }
+            //convertirCommande(true);
         derniereMaj = t;
     }
-    
 }
 void Moteur::setMode(Mode mode)
 {
@@ -89,34 +94,19 @@ void Moteur::convertirCommande(bool afficher)
         else if (mode == Mode::selection && cc->getBouton() == 3)
             aVerifier->ajouter(new ChangerTour());      
         else if (mode == Mode::attaque)
-            aVerifier->ajouter(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
-        /*if (dynamic_cast<ChangerMode*>(aVerifier->get(aVerifier->taille()-1)))
-            if (static_cast<ChangerMode*>(aVerifier->get(aVerifier->taille()-1))->getPersonnage(etat))
-                if (!static_cast<ChangerMode*>(aVerifier->get(aVerifier->taille()-1))->getPersonnage(etat)->getEquipe())
-                    aVerifier->supprimer(aVerifier->taille()-1);*/
-        
+            aVerifier->ajouter(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));     
     }
-    
     if (listeCommande.get(1) != nullptr) // Gestion des touches caméra
     {
-       //std::cout << "Traitement de la commande ! " << std::endl;
        CommandeFleche* cc = static_cast<CommandeFleche*>(listeCommande.get(1));
        if (cc->getDirection() == 1)
-       {
           aVerifier->ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax(), etat->getCameray()-1));
-       }
        else if(cc->getDirection() == 2)
-       {
           aVerifier->ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax(), etat->getCameray()+1));
-       }
        else if(cc->getDirection() == 3)
-       {
           aVerifier->ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax()+1, etat->getCameray()));
-       }
        else if(cc->getDirection() == 4)
-       {
           aVerifier->ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax()-1, etat->getCameray()));
-       }
     }
     if (listeCommande.get(2) != nullptr) // Gestion du zoom caméra
     {
@@ -125,12 +115,13 @@ void Moteur::convertirCommande(bool afficher)
     }
     if (listeCommande.get(1) != nullptr || listeCommande.get(2) != nullptr || listeCommande.get(3) != nullptr)
         std::cout << "Humain->";
+    std::mutex mtx;
+    mtx.lock();
     Regulateur r(aVerifier, etat, &listeCommande, this);
     r.appliquer(afficher, this);
-    //std::cout << "Fin de l'application" << std::endl;
     listeCommande.vider();
     aVerifier->vider();
-    //std::cout << "Liste vidée ! " << std::endl;
+    mtx.unlock();
 }
 
 void Moteur::setZoom(float z)

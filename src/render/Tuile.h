@@ -32,6 +32,7 @@ namespace render {
     int getTrueY ();
     void setTrueX (int trueX);
     void setTrueY (int trueY);
+    virtual void updateSpriteScale (float s) = 0;
   };
 
 };

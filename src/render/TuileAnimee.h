@@ -41,6 +41,7 @@ namespace render {
     void update (clock_t time);
     const sf::Sprite& getSprite ();
     void updateSpritePosition (float x, float y);
+    void updateSpriteScale (float s);
   };
 
 };
