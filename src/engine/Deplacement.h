@@ -22,12 +22,13 @@ namespace engine {
     int origineY;
     int cibleX;
     int cibleY;
+    bool afficher;
     // Operations
   public:
-    Deplacement (int Originex, int Originey, int Ciblex, int Cibley);
-    void appliquer (state::Etat* etat, bool afficher);
+    Deplacement (int Originex, int Originey, int Ciblex, int Cibley, bool afficher);
+    void appliquer (state::Etat* etat);
     state::CaseTerrain* getCaseArrivee (state::Etat* etat);
-    void annuler (state::Etat* etat, bool afficher);
+    void annuler (state::Etat* etat);
     int getDistance ();
     void printOrigine ();
     void printArrivee ();

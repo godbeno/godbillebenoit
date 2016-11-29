@@ -223,11 +223,10 @@ std::vector<CaseTerrain*> Etat::rechercheCaseRec(CaseTerrain* ct, Personnage* p)
     return v;
 }
 
-void Etat::setZoom(float z, bool afficher)
+void Etat::setZoom(float z)
 {
-    this->zoom = z ; 
-    if (afficher)
-        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(6), this, 0,0, 0,0, camerax, cameray, zoom));       
+    this->zoom = z ;
+    avertirObservateurs(new EvenementEtat(TypeEvenementEtat(6), this, 0,0, 0,0, camerax, cameray, zoom));       
 }
 
 float Etat::getZoom()
@@ -235,11 +234,10 @@ float Etat::getZoom()
     return zoom;
 }
 
-void Etat::setCamerax(int cx, bool afficher)
+void Etat::setCamerax(int cx)
 {
     this->camerax = cx;
-    if (afficher)
-        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(5), this, 0,0, 0,0, camerax, cameray, zoom)); 
+    avertirObservateurs(new EvenementEtat(TypeEvenementEtat(5), this, 0,0, 0,0, camerax, cameray, zoom)); 
 }
 
 int Etat::getCamerax()
@@ -247,11 +245,10 @@ int Etat::getCamerax()
     return camerax;
 }
 
-void Etat::setCameray(int cy, bool afficher)
+void Etat::setCameray(int cy)
 { 
     this->cameray = cy;
-    if (afficher)
-        avertirObservateurs(new EvenementEtat(TypeEvenementEtat(5), this, 0,0, 0,0,camerax, cameray, zoom));
+    avertirObservateurs(new EvenementEtat(TypeEvenementEtat(5), this, 0,0, 0,0,camerax, cameray, zoom));
 }
 
 int Etat::getCameray()

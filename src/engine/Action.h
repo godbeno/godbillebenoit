@@ -16,8 +16,8 @@ namespace engine {
     // Operations
   public:
     virtual ~Action ();
-    virtual void appliquer (state::Etat* etat, bool afficher) = 0;
-    virtual void annuler (state::Etat* etat, bool afficher) = 0;
+    virtual void appliquer (state::Etat* etat) = 0;
+    virtual void annuler (state::Etat* etat) = 0;
   };
 
 };

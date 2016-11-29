@@ -52,11 +52,11 @@ namespace state {
     void attaquer (int i1, int j1, int i2, int j2, bool afficher);
     std::vector<CaseTerrain*> getCaseAtteignable (Personnage* p);
     std::vector<CaseTerrain*> rechercheCaseRec (CaseTerrain* ct, Personnage* p);
-    void setCamerax (int cx, bool afficher);
+    void setCamerax (int cx);
     int getCamerax ();
-    void setCameray (int cy, bool afficher);
+    void setCameray (int cy);
     int getCameray ();
-    void setZoom (float z, bool afficher);
+    void setZoom (float z);
     float getZoom ();
     void setBrillant (bool b, CaseTerrain* ct);
     float getCoeff ();

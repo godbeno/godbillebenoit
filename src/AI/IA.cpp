@@ -35,22 +35,22 @@ bool IA::appliquerHeuristique(bool equipe)
             currentPersonnage = static_cast<Personnage*>(etat->getGrille().get(i));
             if (etat->getSelectionne() == nullptr || etat->getSelectionne() != currentPersonnage)
             {
-                moteur->ajouterAction(new Selection(currentPersonnage->getX(), currentPersonnage->getY()));
-                std::cout << "IA->";
-                moteur->convertirCommande(true);
+                moteur->ajouterAction(new Selection(currentPersonnage->getX(), currentPersonnage->getY(), true));
+                //std::cout << "IA->";
+                //moteur->convertirCommande(true);
                 return false;
             }
             if (currentPersonnage->getPA() <= 0)
             {
                 i++;
-                moteur->ajouterAction(new Selection(-1, -1));
-                std::cout << "IA->";
-                moteur->convertirCommande(true);
+                moteur->ajouterAction(new Selection(-1, -1, true));
+                //std::cout << "IA->";
+                //moteur->convertirCommande(true);
                 return false;
             }
             if (currentPersonnage->getPA() > 1 && etat->getCaseAttaquable(currentPersonnage).size() != 0)
             {  
-                moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), etat->getCaseAttaquable(currentPersonnage)[0]->getX(), etat->getCaseAttaquable(currentPersonnage)[0]->getY()));
+                moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), etat->getCaseAttaquable(currentPersonnage)[0]->getX(), etat->getCaseAttaquable(currentPersonnage)[0]->getY(), true));
                 if (currentPersonnage->getType() == TypePersonnage::Archer)
                     archer = true;
                 else
@@ -60,35 +60,35 @@ bool IA::appliquerHeuristique(bool equipe)
             {
                 state::CaseTerrain* ct = getMeilleureCase(currentPersonnage);
                 if (ct != nullptr)
-                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(), currentPersonnage->getY(), ct->getX(), ct->getY()));
+                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(), currentPersonnage->getY(), ct->getX(), ct->getY(), true));
                 else
                 {
                     i++;
-                    moteur->ajouterAction(new Selection(-1, -1));
+                    moteur->ajouterAction(new Selection(-1, -1, true));
                     std::cout << "IA->";
-                    moteur->convertirCommande(true);
+                    //moteur->convertirCommande(true);
                     return true;
                 }
             }
-            std::cout << "IA->";
-            moteur->convertirCommande(true);
+            //std::cout << "IA->";
+            //moteur->convertirCommande(true);
             return true;
         }
         else
         {
             i++;
-            moteur->ajouterAction(new Selection(-1, -1));
-            std::cout << "IA->";
-            moteur->convertirCommande(true);
+            moteur->ajouterAction(new Selection(-1, -1, true));
+            //std::cout << "IA->";
+            //moteur->convertirCommande(true);
             return false;
         }
     }
     else
     {
         i++;
-        moteur->ajouterAction(new Selection(-1, -1));
-        std::cout << "IA->";
-        moteur->convertirCommande(true);
+        moteur->ajouterAction(new Selection(-1, -1, true));
+        //std::cout << "IA->";
+        //moteur->convertirCommande(true);
         return false;
     }
 }
@@ -101,9 +101,9 @@ bool IA::estFini()
 {
     if(i >= this->etat->getListe().size())
     {
-        moteur->ajouterAction(new ChangerMode(3,0,0,moteur));
-        moteur->ajouterAction(new ChangerTour());
-        moteur->convertirCommande(true);
+        moteur->ajouterAction(new ChangerMode(3,0,0,moteur, true));
+        moteur->ajouterAction(new ChangerTour(true));
+        //moteur->convertirCommande(true);
         reset();
         attendre = true;
         return true;
@@ -123,22 +123,22 @@ bool IA::appliquerAleatoire(bool equipe)
 
             if (etat->getSelectionne() == nullptr)
             {
-                moteur->ajouterAction(new Selection(etat->getGrille().get(i)->getX(), etat->getGrille().get(i)->getY()));
+                moteur->ajouterAction(new Selection(etat->getGrille().get(i)->getX(), etat->getGrille().get(i)->getY(), true));
                 std::cout << "IA->";
-                moteur->convertirCommande(true);
+                //moteur->convertirCommande(true);
                 return false;
             }
             if (static_cast<Personnage*>(etat->getGrille().get(i))->getPA() <= 0)
             {
                 i++;
-                moteur->ajouterAction(new Selection(-1, -1));
+                moteur->ajouterAction(new Selection(-1, -1, true));
                 std::cout << "IA->";
-                moteur->convertirCommande(true);
+                //moteur->convertirCommande(true);
                 return false;
             }
             if (static_cast<Personnage*>(etat->getGrille().get(i))->getPA() > 1 && etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i))).size() != 0)
             {  
-                moteur->ajouterAction(new Attaquer(static_cast<Personnage*>(etat->getGrille().get(i))->getX(),static_cast<Personnage*>(etat->getGrille().get(i))->getY(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY()));
+                moteur->ajouterAction(new Attaquer(static_cast<Personnage*>(etat->getGrille().get(i))->getX(),static_cast<Personnage*>(etat->getGrille().get(i))->getY(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getX(), etat->getCaseAttaquable(static_cast<Personnage*>(etat->getGrille().get(i)))[0]->getY(), true));
                 if (static_cast<Personnage*>(etat->getGrille().get(i))->getType() == TypePersonnage::Archer)
                     archer = true;
                 else
@@ -150,32 +150,32 @@ bool IA::appliquerAleatoire(bool equipe)
                 int compt = -1;
                 {
                     compt++;
-                    dep = new Deplacement(static_cast<Personnage*>(etat->getGrille().get(i))->getX(),static_cast<Personnage*>(etat->getGrille().get(i))->getY(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[compt]->getX(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[compt]->getY());
+                    dep = new Deplacement(static_cast<Personnage*>(etat->getGrille().get(i))->getX(),static_cast<Personnage*>(etat->getGrille().get(i))->getY(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[compt]->getX(),etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i)))[compt]->getY(), true);
                 } while (dep->getDistance() > static_cast<Personnage*>(etat->getGrille().get(i))->getPA() && static_cast<unsigned int>(compt) < etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i))).size());
                 if (static_cast<unsigned int>(compt) < etat->getCaseAtteignable(static_cast<Personnage*>(etat->getGrille().get(i))).size())
                 {
                     moteur->ajouterAction(dep);
                 }
             }
-            std::cout << "IA->";
-            moteur->convertirCommande(true);
+            //std::cout << "IA->";
+            //moteur->convertirCommande(true);
             return true;
         }
         else
         {
             i++;
-            moteur->ajouterAction(new Selection(-1, -1));
-            std::cout << "IA->";
-            moteur->convertirCommande(true);
+            moteur->ajouterAction(new Selection(-1, -1, true));
+            //std::cout << "IA->";
+            //moteur->convertirCommande(true);
             return false;
         }
     }
     else
     {
         i++;
-        moteur->ajouterAction(new Selection(-1, -1));
+        moteur->ajouterAction(new Selection(-1, -1, true));
         std::cout << "IA->";
-        moteur->convertirCommande(true);
+        //moteur->convertirCommande(true);
         return false;
     }
 }
@@ -246,7 +246,7 @@ void IA::jouer()
 {
     if (!etat->partieContinue() && etat->joueurIA() && (!attendre || (attendre && double(clock()-temps)/CLOCKS_PER_SEC > 0.5*(archer+1))))
     {
-        std::cout << "On va jouer à nouveau ! " << std::endl;
+        //std::cout << "On va jouer à nouveau ! " << std::endl;
         switch(niveau)
         {
             case Aleatoire:
@@ -280,9 +280,9 @@ bool IA::appliquerMinMax()
             currentPersonnage = static_cast<Personnage*>(etat->getGrille().get(i));
             if (etat->getSelectionne() == nullptr || etat->getSelectionne() != currentPersonnage)
             {
-                moteur->ajouterAction(new Selection(currentPersonnage->getX(), currentPersonnage->getY()));
+                moteur->ajouterAction(new Selection(currentPersonnage->getX(), currentPersonnage->getY(), true));
                 std::cout << "IA->";
-                moteur->convertirCommande(true);
+                //moteur->convertirCommande(true);
                 return false;
             }
             if (currentPersonnage->getPA() > 0)
@@ -294,9 +294,9 @@ bool IA::appliquerMinMax()
                 //{
                 if (iAtt < va.size())
                 {
-                    moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[iAtt]->getX(), va[iAtt]->getY()));
+                    moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[iAtt]->getX(), va[iAtt]->getY(), false));
                     std::cout << "IA->";
-                    moteur->convertirCommande(false);
+                    //moteur->convertirCommande(false);
                     tmp = minmax(1);
                     if (tmp > amax)
                     { 
@@ -316,9 +316,9 @@ bool IA::appliquerMinMax()
                 if (iDep < vd.size())
                 {
                     std::cout << "DEBUT DU CALCUL POUR LE DEPLACEMENT " << iDep << "/" << vd.size() << "  (" << i << ") " << std::endl;
-                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[iDep]->getX(), vd[iDep]->getY()));
+                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[iDep]->getX(), vd[iDep]->getY(), false));
                     //std::cout << "IA->";
-                    moteur->convertirCommande(false);
+                    //moteur->convertirCommande(false);
                     tmp = minmax(1);
                     if (tmp > amax)
                     {
@@ -334,24 +334,24 @@ bool IA::appliquerMinMax()
                 //}
                 std::cout << "FIN DU CALCUL POUR UN JOUEUR: DECISION" << std::endl;
                 if (nbAtt != -1)
-                    moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[nbAtt]->getX(), va[nbAtt]->getY()));
+                    moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[nbAtt]->getX(), va[nbAtt]->getY(), true));
                 else if (nbDep != -1)
-                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[nbDep]->getX(), vd[nbDep]->getY()));
+                    moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[nbDep]->getX(), vd[nbDep]->getY(), true));
                 std::cout << "IA->";
                 iAtt = 0;
                 iDep = 0;
                 amax = -10000;
                 nbAtt = -1;
                 nbDep = -1;
-                moteur->convertirCommande(true);
+                //moteur->convertirCommande(true);
                 return true;
             }
             else
             {
                 i++;
-                moteur->ajouterAction(new Selection(-1, -1));
+                moteur->ajouterAction(new Selection(-1, -1, true));
                 std::cout << "IA->";
-                moteur->convertirCommande(true);
+                //moteur->convertirCommande(true);
                 return false;
             }
         }
@@ -383,9 +383,9 @@ int IA::minmax(int prof)
                 currentPersonnage = static_cast<Personnage*>(etat->getGrille().get(j));
                 if (etat->getSelectionne() == nullptr || etat->getSelectionne() != currentPersonnage)
                 {
-                    moteur->ajouterAction(new Selection(currentPersonnage->getX(), currentPersonnage->getY()));
+                    moteur->ajouterAction(new Selection(currentPersonnage->getX(), currentPersonnage->getY(), false));
                     //std::cout << "IA->";
-                    moteur->convertirCommande(false);
+                    //moteur->convertirCommande(false);
                 }
                 if (currentPersonnage->getPA() > 0)
                 {
@@ -394,9 +394,9 @@ int IA::minmax(int prof)
                     //std::cout << std::endl << "Bloc simulation attaque sous-fils " << j << " (" << va.size() << ")" << std::endl;
                     for (unsigned int k = 0; k < va.size(); k++)
                     {
-                        moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[k]->getX(), va[k]->getY()));
+                        moteur->ajouterAction(new Attaquer(currentPersonnage->getX(),currentPersonnage->getY(), va[k]->getX(), va[k]->getY(), false));
                         //std::cout << "IA->" << std::endl;
-                        moteur->convertirCommande(false);
+                        //moteur->convertirCommande(false);
                         tmp = minmax(prof-1);
                         if (tmp > max)
                         {
@@ -408,9 +408,9 @@ int IA::minmax(int prof)
                     //std::cout << "Bloc simulation déplacement sous-fils " << j << " (" << vd.size() << ")" << std::endl;
                     for (unsigned int k = 0; k < vd.size(); k++)
                     {
-                        moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[k]->getX(), vd[k]->getY()));
+                        moteur->ajouterAction(new Deplacement(currentPersonnage->getX(),currentPersonnage->getY(), vd[k]->getX(), vd[k]->getY(), false));
                         //std::cout << "IA->";
-                        moteur->convertirCommande(false);
+                        //moteur->convertirCommande(false);
                         //std::cout << "Simulation du déplacement du personnage " << j << " coup " << k << " prof " << prof << std::endl;
                         tmp = minmax(prof-1);
                         if (tmp > max)

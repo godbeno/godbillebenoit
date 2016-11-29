@@ -3,15 +3,16 @@
 #include <iostream>
 using namespace engine;
 
-Deplacement::Deplacement(int Originex, int Originey, int Ciblex, int Cibley)
+Deplacement::Deplacement(int Originex, int Originey, int Ciblex, int Cibley, bool afficher)
 {
    this->origineX = Originex;
    this->origineY = Originey;
    this->cibleX = Ciblex;
    this->cibleY = Cibley;
+   this->afficher = afficher;
 }
 
-void Deplacement::appliquer(state::Etat* etat, bool afficher)
+void Deplacement::appliquer(state::Etat* etat)
 {
     etat->deplacerElement(origineX, origineY, cibleX, cibleY, afficher, false);
 }
@@ -19,7 +20,7 @@ state::CaseTerrain* Deplacement::getCaseArrivee(state::Etat* etat)
 {
     return etat->getGrille().getCelluleDecor(cibleX, cibleY);
 }
-void Deplacement::annuler (state::Etat* etat, bool afficher)
+void Deplacement::annuler (state::Etat* etat)
 {
     /*std::cout << "Deplacement[";
     printOrigine();

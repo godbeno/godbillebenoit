@@ -17,16 +17,18 @@ namespace engine {
   /// class Selection - 
   class Selection : public engine::Action {
     // Attributes
-  public:
+  private:
     state::Personnage* ancienSelect;
+    /// 		
+    bool afficher;
   protected:
     int selectionX;
     int selectionY;
     // Operations
   public:
-    Selection (int Selectionx, int Selectiony);
-    void appliquer (state::Etat* etat, bool afficher);
-    void annuler (state::Etat* etat, bool afficher);
+    Selection (int Selectionx, int Selectiony, bool afficher);
+    void appliquer (state::Etat* etat);
+    void annuler (state::Etat* etat);
   };
 
 };

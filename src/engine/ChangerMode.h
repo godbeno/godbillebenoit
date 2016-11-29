@@ -28,16 +28,17 @@ namespace engine {
     int y;
     int ancienMode;
     state::Personnage* ancienPersonnage;
+    bool afficher;
   protected:
     int idMode;
     // Operations
   public:
-    ChangerMode (int IdMode, int x, int y, Moteur* moteur);
-    void appliquer (state::Etat* etat, bool afficher);
+    ChangerMode (int IdMode, int x, int y, Moteur* moteur, bool afficher);
+    void appliquer (state::Etat* etat);
     state::Personnage* getPersonnage (state::Etat* etat);
     int getX ();
     int getY ();
-    void annuler (state::Etat* etat, bool afficher);
+    void annuler (state::Etat* etat);
   };
 
 };
