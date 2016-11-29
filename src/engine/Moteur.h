@@ -41,6 +41,7 @@ namespace engine {
     /// 	
     Historique* historique;
     bool enregistrer;
+    bool quitter;
     // Operations
   public:
     Moteur (state::Etat* etat);
@@ -64,6 +65,8 @@ namespace engine {
     void arreterEnregistrement ();
     bool enregistrementActive ();
     void enregistrerAction (Action* action);
+    void updateThread ();
+    void quit ();
   };
 
 };

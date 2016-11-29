@@ -17,6 +17,7 @@ using namespace engine;
 
 Moteur::Moteur(state::Etat* etat)
 {
+    quitter = false;
     mode = Mode::demarrer;
     derniereMaj = clock();
     this->etat = etat;
@@ -187,6 +188,10 @@ void Moteur::enregistrerAction(Action* action)
 }
 void Moteur::updateThread()
 {
-    while(!etat->partieContinue())
+    while(!etat->partieContinue() && !quitter)
         update(clock());
+}
+void Moteur::quit()
+{
+    quitter = true;
 }

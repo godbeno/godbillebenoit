@@ -6,6 +6,7 @@
 #include "Panneau.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Audio.hpp>
+#include <mutex>
 
 using namespace render;
 
@@ -98,15 +99,22 @@ void Scene::changementEtat(state::EvenementEtat& e)
     }
     else if (e.getTypeEvenement() == state::Attaque)
     {
+        std::cout << std::endl << "Attaque enclenchée dans affichage" << std::endl;
         int idp1 = couchePersonnage->getTuile(e.getX(), e.getY(), tx)->getID();
-        
         int idp2 = couchePersonnage->getTuile(e.getNewx(), e.getNewy(), tx)->getID();
         int id1 = (((idp1-43)/2)-1) + ((idp1+1)%2)*7;
         int id2 = (((idp2-43)/2)-1) + ((idp2+1)%2)*19 + ((idp2)%2)*12;
+        std::cout << "Fin des ids" << std::endl;
+        std::mutex mtx;
+        mtx.lock();
         couchePersonnage->setTuile(e.getX(), e.getY(), new TuileAnimee((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, id1, tx, couchePersonnage,e.getX(),e.getY(), this));
         couchePersonnage->setTuile(e.getNewx(), e.getNewy(), new TuileAnimee((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, id2, tx,couchePersonnage,e.getNewx(),e.getNewy(), this));
+        mtx.unlock();
+        std::cout << "Fin des setTuiles" << std::endl;        
         couchePersonnage->setDegat((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, (int)e.getZoom());
-        panneau->setSelectionne(etat, etat->getSelectionne());
+        std::cout << "Fin des setDegats" << std::endl;
+        panneau->setSelectionne(etat, etat->getSelectionne());        
+        std::cout << "Fin des setSelectionne" << std::endl;
     }
     else if (e.getTypeEvenement() == state::PersonnageMort)
     {
@@ -128,11 +136,14 @@ void Scene::afficher()
 {
     window->clear();
     //std::cout << "Avnt couche Terrain" << std::endl;
+    std::mutex mtd;
+    mtd.lock();
     coucheTerrain->afficher();
     //std::cout << "Couche Terrain dessinée" << std::endl;
     couchePersonnage->afficher();
     //std::cout << "Les couches ont été dessinées" << std::endl;
     panneau->draw(window);
+    mtd.unlock();
     //message->dessiner(window);
     window->display();
 }

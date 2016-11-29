@@ -104,12 +104,11 @@ int main(int argc,char* argv[])
         }
         scene->afficher();
         ia->jouer();
-        th.join();
     }
-    
+    m->quit();
+    th.join();
     delete scene;
     delete window;
-    
 
     return 0;
 }

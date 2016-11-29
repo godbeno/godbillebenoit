@@ -100,7 +100,7 @@ void Regulateur::appliquer(bool afficher, Moteur* moteur)
                 moteur->enregistrerAction(actions->get(i));
             }
         }
-    for (unsigned int i = 0; i < actions->taille(); i++)
+    for (int i = 0; i < actions->taille(); i++)
     {
         if (afficher)
         {
