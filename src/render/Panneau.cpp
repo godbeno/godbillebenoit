@@ -32,7 +32,7 @@ Panneau::Panneau()
     fond.setPosition(largeur/2 - 195, hauteur-120);
     boutA.setPosition(largeur/2 - 180, hauteur-100);
     boutD.setPosition(largeur/2 - 110, hauteur-100);
-    boutFinTour.setPosition(3*largeur/4-20,hauteur-220);
+    boutFinTour.setPosition(0,0);
     
     fond.setScale(2,2);
     boutFinTour.setScale(3,3);
