@@ -3,19 +3,22 @@
 #define RENDER__BOUTON__H
 
 
-#include "TypeBouton.h"
-
 namespace render {
 
   /// class Bouton - 
   class Bouton {
-    // Associations
     // Attributes
+  public:
+    bool Actif;
   private:
     int ID;
     // Operations
   public:
-    Bouton (int ID);
+    Bouton (int ID, bool Actif);
+    void setActif (bool Actif);
+    bool getActif ();
+    void setID (int ID);
+    int getID ();
   };
 
 };

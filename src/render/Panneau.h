@@ -2,19 +2,20 @@
 #ifndef RENDER__PANNEAU__H
 #define RENDER__PANNEAU__H
 
+#include <vector>
 #include <SFML/Graphics.hpp>
 
+namespace render {
+  class Bouton;
+};
 namespace state {
   class Personnage;
   class Observateur;
-};
-namespace render {
-  class Bouton;
 }
 
+#include "Bouton.h"
 #include "state/Personnage.h"
 #include "state/Observateur.h"
-#include "Bouton.h"
 
 namespace render {
 
@@ -22,29 +23,19 @@ namespace render {
   class Panneau {
     // Associations
     // Attributes
-  public:
-    sf::Text texteFinTour;
   private:
+    std::vector<Bouton> listeBoutons;
     sf::Sprite fond;
-    sf::Sprite boutA;
-    sf::Sprite boutD;
-    sf::Sprite boutFinTour;
-    sf::Texture textFond;
-    sf::Texture textBoutAOff;
-    sf::Texture textBoutDOff;
     bool estSelect;
+    sf::Texture textFond;
     sf::Text nom;
-    sf::RectangleShape paTot;
-    sf::RectangleShape paRest;
     sf::Font font;
     sf::Text txtPa;
+    sf::RectangleShape paTot;
+    sf::RectangleShape paRest;
+    sf::Text txtPv;
     sf::RectangleShape pvTot;
     sf::RectangleShape pvRest;
-    sf::Text txtPv;
-    sf::Texture textBoutAOn;
-    sf::Texture textBoutDOn;
-    sf::Texture textBoutFinTourOn;
-    sf::Texture textBoutFinTourOff;
     // Operations
   public:
     Panneau ();
