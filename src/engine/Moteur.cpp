@@ -83,7 +83,7 @@ void Moteur::convertirCommande(bool afficher)
         CommandeClic* cc = static_cast<CommandeClic*>(listeCommande.get(3));
         if (mode == Mode::deplacement)
             aVerifier->ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
-        else if (mode == Mode::jeu)
+        else if (mode == Mode::jeu && cc->getBouton() == 0)
             aVerifier->ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this));
         else if (mode == Mode::selection && cc->getBouton() == 0)
             aVerifier->ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this));

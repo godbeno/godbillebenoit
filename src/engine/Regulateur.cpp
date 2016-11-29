@@ -66,7 +66,15 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
         if (dynamic_cast<ChangerTour*>(lsAction->get(i)))
             std::cout << "Changement de Tour->";
         if (dynamic_cast<ChangerMode*>(lsAction->get(i)))
+        {
             std::cout << "Changement de Mode->";
+            ChangerMode* cm = static_cast<ChangerMode*>(lsAction->get(i));
+            if (etat->getSelectionne() == nullptr && etat->getGrille().getCellulePersonnage(cm->getX(), cm->getY()) == nullptr)
+            {
+                std::cout << "Annulé" << std::endl;
+                lsAction->supprimer(i);
+            }
+        }
         if (dynamic_cast<Selection*>(lsAction->get(i)))
             std::cout << "Selection->";
         if (dynamic_cast<Zoom*>(lsAction->get(i)))
