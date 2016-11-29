@@ -2,15 +2,17 @@
 #include <iostream>
 
 #include "TuileStatique.h"
+#include "Scene.h"
 
 using namespace render;
 using namespace sf;
 
 
-TuileStatique::TuileStatique(float x, float y, int id, float w,int TrueX,int TrueY) : Tuile(x,y,id,TrueX,TrueY)
+TuileStatique::TuileStatique(float x, float y, int id, float w,int TrueX,int TrueY, Scene* scene) : Tuile(x,y,id,TrueX,TrueY)
 {
     hauteur = x;
     largeur = y;
+    this->scene = scene;
     this->id = id;
     this->w = w;
     switch(id)
@@ -284,9 +286,10 @@ bool TuileStatique::estAnime ()
 }
 TuileStatique* TuileStatique::copy()
 {
-    TuileStatique* t = new TuileStatique(x, y, id, w,trueX,trueY);
+    TuileStatique* t = new TuileStatique(x, y, id, scene->getCoeff(),trueX,trueY, scene);
     t->hauteur = hauteur;
     t->largeur = largeur;
+    t->scene = scene;
     return t;
     
 }

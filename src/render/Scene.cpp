@@ -26,13 +26,9 @@ Scene::Scene(state::Etat* etat, sf::RenderWindow* window)
     for (int i = 0; i < l.size(); i++)
     {
         if (!l.get(i)->estPersonnage() )
-        {
-            coucheTerrain->addTuile(new TuileStatique((l.get(i)->getX()-camerax)*tx, (l.get(i)->getY()-cameray)*tx, l.get(i)->getID(), tx,l.get(i)->getX(),l.get(i)->getY())); 
-        }
+            coucheTerrain->addTuile(new TuileStatique((l.get(i)->getX()-camerax)*tx, (l.get(i)->getY()-cameray)*tx, l.get(i)->getID(), tx,l.get(i)->getX(),l.get(i)->getY(), this));
         if (l.get(i)->estPersonnage())
-        {
-            couchePersonnage->addTuile(new TuileStatique((l.get(i)->getX()-camerax)*tx, (l.get(i)->getY()-cameray)*tx, l.get(i)->getID()+50+10*!(static_cast<state::Personnage*>(l.get(i))->getEquipe()), tx,l.get(i)->getX(),l.get(i)->getY()));
-        }
+            couchePersonnage->addTuile(new TuileStatique((l.get(i)->getX()-camerax)*tx, (l.get(i)->getY()-cameray)*tx, l.get(i)->getID()+50+10*!(static_cast<state::Personnage*>(l.get(i))->getEquipe()), tx,l.get(i)->getX(),l.get(i)->getY(), this));
     }
 }
 Scene::~Scene()
@@ -45,14 +41,14 @@ void Scene::changementEtat(state::EvenementEtat& e)
     std::cout << "Affichage->";
     if (e.getTypeEvenement() == state::NouveauPersonnage)
     {
-        couchePersonnage->addTuile(new TuileStatique((e.getX()-camerax)*tx, (e.getY()-cameray)*tx,e.getPid(), tx,e.getX(),e.getY()));
+        couchePersonnage->addTuile(new TuileStatique((e.getX()-camerax)*tx, (e.getY()-cameray)*tx,e.getPid(), tx,e.getX(),e.getY(), this));
     }
        
     else if (e.getTypeEvenement() == state::PersonnageDeplace)
     {
         if (couchePersonnage->getTuile(e.getX(), e.getY(), zoom*tx) != nullptr)
         {		
-            couchePersonnage->setTuile(e.getX(), e.getY(), new TuileStatique((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, e.getPid(), tx,e.getNewx(),e.getNewy()));   
+            couchePersonnage->setTuile(e.getX(), e.getY(), new TuileStatique((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, e.getPid(), tx,e.getNewx(),e.getNewy(), this));   
             coucheTerrain->setSelectionne((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, tx);
             panneau->setSelectionne(etat, etat->getSelectionne());
         }

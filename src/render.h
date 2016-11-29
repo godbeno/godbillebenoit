@@ -7,6 +7,8 @@
 #include "render/Couche.h"
 #include "render/TuileAnimee.h"
 #include "render/Message.h"
+#include "render/TypeBouton.h"
+#include "render/Bouton.h"
 #include "render/Panneau.h"
 #include "render/Scene.h"
 #endif

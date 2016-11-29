@@ -5,7 +5,7 @@
 
 using namespace render;
 
-TuileAnimee::TuileAnimee(float x, float y, int id, float vitesse, Couche* couche,int TrueX,int TrueY) : Tuile(x,y,id,TrueX,TrueY)
+TuileAnimee::TuileAnimee(float x, float y, int id, float vitesse, Couche* couche,int TrueX,int TrueY, Scene* scene) : Tuile(x,y,id,TrueX,TrueY)
 {
     nbr = 0;
     this->vitesse = vitesse;
@@ -31,41 +31,41 @@ TuileAnimee::TuileAnimee(float x, float y, int id, float vitesse, Couche* couche
          *
          */
         case 0: 
-            tuiles.push_back(new TuileStatique(x, y, 60, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 45, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 60, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 45, tx,TrueX,TrueY));
+            tuiles.push_back(new TuileStatique(x, y, 60, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 45, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 60, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 45, tx,TrueX,TrueY, scene));
             break;
         case 1: 
-            tuiles.push_back(new TuileStatique(x, y, 63, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 64, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 63, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 64, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 47, tx,TrueX,TrueY));
+            tuiles.push_back(new TuileStatique(x, y, 63, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 64, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 63, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 64, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 47, tx,TrueX,TrueY, scene));
             break;
         case 2:
-            tuiles.push_back(new TuileStatique(x, y, 66, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 49, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 66, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 49, tx,TrueX,TrueY));
+            tuiles.push_back(new TuileStatique(x, y, 66, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 49, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 66, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 49, tx,TrueX,TrueY, scene));
             break;
         case 3:
-            tuiles.push_back(new TuileStatique(x, y, 68, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 51, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 68, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 51, tx,TrueX,TrueY));
+            tuiles.push_back(new TuileStatique(x, y, 68, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 51, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 68, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 51, tx,TrueX,TrueY, scene));
             break;
         case 4:
-            tuiles.push_back(new TuileStatique(x, y, 70, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 53, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 70, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 53, tx,TrueX,TrueY));
+            tuiles.push_back(new TuileStatique(x, y, 70, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 53, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 70, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 53, tx,TrueX,TrueY, scene));
             break;
         case 5:
-            tuiles.push_back(new TuileStatique(x, y, 72, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 55, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 72, tx,TrueX,TrueY));
-            tuiles.push_back(new TuileStatique(x, y, 55, tx,TrueX,TrueY));
+            tuiles.push_back(new TuileStatique(x, y, 72, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 55, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 72, tx,TrueX,TrueY, scene));
+            tuiles.push_back(new TuileStatique(x, y, 55, tx,TrueX,TrueY, scene));
             break;
         case 6: 
             tuiles.push_back(new TuileStatique(x, y, 59, tx,TrueX,TrueY));

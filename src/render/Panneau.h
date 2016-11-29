@@ -7,15 +7,20 @@
 namespace state {
   class Personnage;
   class Observateur;
+};
+namespace render {
+  class Bouton;
 }
 
 #include "state/Personnage.h"
 #include "state/Observateur.h"
+#include "Bouton.h"
 
 namespace render {
 
   /// class Panneau - 
   class Panneau {
+    // Associations
     // Attributes
   public:
     sf::Text texteFinTour;

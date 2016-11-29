@@ -123,31 +123,31 @@ void Couche::zoomCamera(float s)
 {
     for (unsigned int i = 0; i < tuiles.size(); i++)
     {   
-        int anciennePosx = tuiles[i]->getX();
-        int anciennePosy = tuiles[i]->getY();
-        tuiles[i]->setX((int)((float)(anciennePosx)*s));
-        tuiles[i]->setY((int)((float)(anciennePosy)*s));
-        static_cast<TuileStatique*>(tuiles[i])->updateSpritePosition(+tuiles[i]->getX()-anciennePosx, tuiles[i]->getY()-anciennePosy);        
-        static_cast<TuileStatique*>(tuiles[i])->updateSpriteScale(s);
+        float anciennePosx = tuiles[i]->getX();
+        float anciennePosy = tuiles[i]->getY();
+        tuiles[i]->setX(((float)(anciennePosx)*s));
+        tuiles[i]->setY(((float)(anciennePosy)*s));
+        tuiles[i]->updateSpritePosition(+tuiles[i]->getX()-anciennePosx, tuiles[i]->getY()-anciennePosy);        
+        tuiles[i]->updateSpriteScale(s);
     }
     if (select)
     {
-        int ancienSelx = select->getPosition().x;
-        int ancienSely = select->getPosition().y;
+        float ancienSelx = select->getPosition().x;
+        float ancienSely = select->getPosition().y;
         select->setPosition(ancienSelx*s, ancienSely*s);
         select->setScale(select->getScale().x*s,select->getScale().y*s);
     }
     for (unsigned int i = 0; i < brillance.size(); i++)
     {
-        int ancienBrix = brillance[i].getPosition().x;
-        int ancienBriy = brillance[i].getPosition().y;
+        float ancienBrix = brillance[i].getPosition().x;
+        float ancienBriy = brillance[i].getPosition().y;
         brillance[i].setPosition(ancienBrix*s, ancienBriy*s);
         brillance[i].setScale(brillance[i].getScale().x*s,brillance[i].getScale().y*s);
     }
     for (unsigned int i = 0; i < rouge.size(); i++)
     {
-        int ancienBrix = rouge[i].getPosition().x;
-        int ancienBriy = rouge[i].getPosition().y;
+        float ancienBrix = rouge[i].getPosition().x;
+        float ancienBriy = rouge[i].getPosition().y;
         rouge[i].setPosition(ancienBrix*s, ancienBriy*s);
         rouge[i].setScale(rouge[i].getScale().x*s,rouge[i].getScale().y*s);
     }
