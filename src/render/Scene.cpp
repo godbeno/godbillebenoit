@@ -144,7 +144,7 @@ void Scene::afficher()
     //std::cout << "Les couches ont été dessinées" << std::endl;
     panneau->draw(window);
     mtd.unlock();
-    //message->dessiner(window);
+    message->dessiner(window);
     window->display();
 }
 

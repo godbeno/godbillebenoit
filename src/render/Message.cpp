@@ -19,9 +19,18 @@ Message::Message()
     active = false;
     tour = true;
     fin = false;
+    
+    Rectangle = new sf::RectangleShape(sf::Vector2f(largeur-4, hauteur-4));
+    //select->setPosition(x+(tx/4), y+(tx/4));
+    Rectangle->setPosition(2,2);
+    
+    Rectangle->setOutlineColor(sf::Color(255,255,0));
+    Rectangle->setOutlineThickness(2);
+    Rectangle->setFillColor(sf::Color(0,0,0,0));
 }
 void Message::dessiner(sf::RenderWindow* window)
-{
+{   
+    window->draw(*Rectangle);
     if (active)
         window->draw(texte);
     if (double(clock()-temps)/CLOCKS_PER_SEC > .5 && !fin)
@@ -30,13 +39,14 @@ void Message::dessiner(sf::RenderWindow* window)
 void Message::changerTour()
 {
     tour = !tour;
+
     if (tour)
-    {
+    {   Rectangle->setOutlineColor(sf::Color::Blue);
         texte.setString("Tour de l'equipe bleue ! ");
         texte.setColor(sf::Color::Blue);
     }
     else
-    {
+    {   Rectangle->setOutlineColor(sf::Color::Red);
         texte.setString("Tour de l'equipe rouge ! ");
         texte.setColor(sf::Color::Red);
     }

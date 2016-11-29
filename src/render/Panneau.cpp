@@ -23,13 +23,10 @@ Panneau::Panneau()
     textFond.loadFromFile("res/Textures/Barre-menu.png");
     
     fond.setTexture(textFond);
-
-    
     fond.setPosition(largeur/2 - 195, hauteur-120);
-    
     fond.setScale(2,2);
-    
     font.loadFromFile("res/Fonts/arial.ttf");
+    
     nom.setFont(font);
     nom.setString("Archer");
     nom.setPosition(largeur/2, hauteur-100);
@@ -38,6 +35,8 @@ Panneau::Panneau()
     
     
     estSelect = false;
+    
+
     
     //rajouter PA et PV etc 
     
