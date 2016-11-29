@@ -4,14 +4,15 @@
 using namespace engine;
 
 
-Attaquer::Attaquer (int Attaquantx, int Attaquanty, int Ciblex, int Cibley)
+Attaquer::Attaquer (int Attaquantx, int Attaquanty, int Ciblex, int Cibley, bool afficher)
 {
    this->attaquantX = Attaquantx;
    this->attaquantY = Attaquanty;
    this->cibleX = Ciblex;
    this->cibleY = Cibley;
+   this->afficher = afficher;
 }
-void Attaquer::appliquer(state::Etat* etat, bool afficher)
+void Attaquer::appliquer(state::Etat* etat)
 {
     degat = etat->getGrille().getCellulePersonnage(cibleX, cibleY)->getPV();
     sauvEquipe = etat->getGrille().getCellulePersonnage(cibleX, cibleY)->getEquipe();
@@ -22,7 +23,7 @@ state::CaseTerrain* Attaquer::getCaseArrivee(state::Etat* etat)
 {
     return etat->getGrille().getCelluleDecor(cibleX, cibleY);
 }
-void Attaquer::annuler(state::Etat* etat, bool afficher)
+void Attaquer::annuler(state::Etat* etat)
 {
     /*std::cout << "Attaque[";
     printOrigine();

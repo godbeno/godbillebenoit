@@ -16,11 +16,14 @@ namespace engine {
 
   /// class ChangerTour - 
   class ChangerTour : public engine::Action {
+    // Attributes
+  private:
+    bool afficher;
     // Operations
   public:
-    ChangerTour ();
-    void appliquer (state::Etat* etat, bool afficher);
-    void annuler (state::Etat* etat, bool afficher);
+    ChangerTour (bool afficher);
+    void appliquer (state::Etat* etat);
+    void annuler (state::Etat* etat);
   };
 
 };

@@ -43,16 +43,16 @@ Mode Moteur::getMode()
 }
 void Moteur::update(clock_t t)
 {
-    if ((t-derniereMaj) > 2)
-    {
+    //if ((t-derniereMaj) > 2)
+    //{
         //std::cout << "update " << listeCommande.taille() << std::endl;
-        if (listeCommande.taille() != 0)
+        if (listeNonVide())
         {
-            convertirCommande(true);
+            convertirCommande();
         }
             //convertirCommande(true);
-        derniereMaj = t;
-    }
+        //derniereMaj = t;
+    //}
 }
 void Moteur::setMode(Mode mode)
 {
@@ -76,7 +76,7 @@ void Moteur::setMode(Mode mode)
             etat->setRouge(true, v[j]);
     }
 }
-void Moteur::convertirCommande(bool afficher)
+void Moteur::convertirCommande()
 {
     if (listeCommande.get(3) != nullptr && !etat->joueurIA()) // Gestion du clic de souris
     {
@@ -86,19 +86,19 @@ void Moteur::convertirCommande(bool afficher)
         else if (mode == Mode::deplacement) std::cout << "Mode deplacement" << std::endl;*/
         CommandeClic* cc = static_cast<CommandeClic*>(listeCommande.get(3));
         if (mode == Mode::deplacement)
-            aVerifier->ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
+            aVerifier->ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY(), true));
         else if (mode == Mode::jeu && cc->getBouton() == 0)
-            aVerifier->ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this));
+            aVerifier->ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this, true));
         else if (mode == Mode::selection && cc->getBouton() == 0)
-            aVerifier->ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this));
+            aVerifier->ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this, true));
         else if (mode == Mode::selection && cc->getBouton() == 1 && etat->getSelectionne()->getEquipe() == etat->getTour())
-            aVerifier->ajouter(new ChangerMode(5, -1, -1, this));
+            aVerifier->ajouter(new ChangerMode(5, -1, -1, this, true));
         else if (mode == Mode::selection && cc->getBouton() == 2 && etat->getSelectionne()->getEquipe() == etat->getTour())
-            aVerifier->ajouter(new ChangerMode(4, -1, -1, this));
+            aVerifier->ajouter(new ChangerMode(4, -1, -1, this, true));
         else if (mode == Mode::selection && cc->getBouton() == 3)
-            aVerifier->ajouter(new ChangerTour());      
+            aVerifier->ajouter(new ChangerTour(true));      
         else if (mode == Mode::attaque)
-            aVerifier->ajouter(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));     
+            aVerifier->ajouter(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY(), true));     
     }
     if (listeCommande.get(1) != nullptr) // Gestion des touches caméra
     {
@@ -119,13 +119,10 @@ void Moteur::convertirCommande(bool afficher)
     }
     if (listeCommande.get(1) != nullptr || listeCommande.get(2) != nullptr || listeCommande.get(3) != nullptr)
         std::cout << "Humain->";
-    std::mutex mtx;
-    mtx.lock();
     Regulateur r(aVerifier, etat, &listeCommande, this);
-    r.appliquer(afficher, this);
+    r.appliquer(this);
     listeCommande.vider();
     aVerifier->vider();
-    mtx.unlock();
 }
 
 void Moteur::setZoom(float z)
@@ -194,4 +191,8 @@ void Moteur::updateThread()
 void Moteur::quit()
 {
     quitter = true;
+}
+bool Moteur::listeNonVide()
+{
+    return (aVerifier->taille() > 0 || listeCommande.get(1) != nullptr || listeCommande.get(2) != nullptr || listeCommande.get(3) != nullptr);
 }

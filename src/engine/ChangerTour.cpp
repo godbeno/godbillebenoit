@@ -3,15 +3,15 @@
 
 using namespace engine; 
 
-ChangerTour::ChangerTour()
+ChangerTour::ChangerTour(bool afficher)
 {
-    
+    this->afficher = afficher;
 }
-void ChangerTour::appliquer(state::Etat* etat, bool afficher)
+void ChangerTour::appliquer(state::Etat* etat)
 {
     etat->changerTour(afficher);
 }
-void ChangerTour::annuler(state::Etat* etat, bool afficher)
+void ChangerTour::annuler(state::Etat* etat)
 {
     //std::cout << "Changement de tour->";
     etat->changerTour(afficher);

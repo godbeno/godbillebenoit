@@ -36,12 +36,12 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
                 std::cout << "Annulé->";
                 lsAction->supprimer(i);
                 std::cout << "Mode Selection->";
-                lsAction->ajouter(new ChangerMode(6, -1, -1, moteur));
+                lsAction->ajouter(new ChangerMode(6, -1, -1, moteur, true));
             }
             else
             {
                 std::cout << "mode déplacement->";
-                lsAction->ajouter(new ChangerMode(4, -1, -1, moteur));
+                lsAction->ajouter(new ChangerMode(4, -1, -1, moteur, true));
             }
         }
         if (dynamic_cast<Attaquer*>(lsAction->get(i)))
@@ -59,7 +59,7 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
                 std::cout << "Annulé->";
                 lsAction->supprimer(i);
                 std::cout << "Mode Selection->";
-                lsAction->ajouter(new ChangerMode(6, -1, -1, moteur));
+                lsAction->ajouter(new ChangerMode(6, -1, -1, moteur, true));
             }
 
         }
@@ -88,7 +88,7 @@ Regulateur::~Regulateur()
 {
 }
 
-void Regulateur::appliquer(bool afficher, Moteur* moteur)
+void Regulateur::appliquer(Moteur* moteur)
 {
     if (moteur->enregistrementActive())
         for (int i = 0; i < actions->taille(); i++)
@@ -102,8 +102,8 @@ void Regulateur::appliquer(bool afficher, Moteur* moteur)
         }
     for (int i = 0; i < actions->taille(); i++)
     {
-        if (afficher)
-        {
+        //if (afficher)
+        //{
             if (dynamic_cast<ChangerTour*>(actions->get(i)))
                 std::cout << "Changement de Tour->";
             if (dynamic_cast<ChangerMode*>(actions->get(i)))
@@ -130,10 +130,10 @@ void Regulateur::appliquer(bool afficher, Moteur* moteur)
                 dep->printArrivee();
                 std::cout << "]->";
             }
-        }
+        //}
     }
     std::cout << "Etat->";
-    actions->appliquer(afficher);
-    if (afficher)
+    actions->appliquer();
+    //if (afficher)
         std::cout << "0k" << std::endl;
 }

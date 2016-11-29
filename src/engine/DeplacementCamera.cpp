@@ -11,13 +11,13 @@ DeplacementCamera::DeplacementCamera(int originex, int originey, int ciblex, int
    this->cibley = cibley;
 }
 
-void DeplacementCamera::appliquer(state::Etat* etat, bool afficher)
+void DeplacementCamera::appliquer(state::Etat* etat)
 {
-    etat->setCamerax(ciblex, afficher);
-    etat->setCameray(cibley, afficher);
+    etat->setCamerax(ciblex);
+    etat->setCameray(cibley);
 }
-void DeplacementCamera::annuler (state::Etat* etat, bool afficher)
+void DeplacementCamera::annuler (state::Etat* etat)
 {
-    etat->setCamerax(originex, afficher);
-    etat->setCameray(originey, afficher);
+    etat->setCamerax(originex);
+    etat->setCameray(originey);
 }

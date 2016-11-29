@@ -5,15 +5,16 @@
 
 using namespace engine;
 
-ChangerMode::ChangerMode(int IdMode, int x, int y, Moteur *moteur)
+ChangerMode::ChangerMode(int IdMode, int x, int y, Moteur *moteur, bool afficher)
 {
    this->idMode = IdMode;
    this->moteur = moteur;
    this->x = x;
    this->y = y;
    ancienPersonnage = nullptr;
+   this->afficher = afficher;
 }
-void ChangerMode::appliquer(state::Etat* etat, bool afficher)
+void ChangerMode::appliquer(state::Etat* etat)
 {
     ancienMode = (int)(moteur->getMode());
     ancienPersonnage = etat->getSelectionne();
@@ -33,7 +34,7 @@ int ChangerMode::getY()
 {
     return y;
 }
-void ChangerMode::annuler(state::Etat* etat, bool afficher)
+void ChangerMode::annuler(state::Etat* etat)
 {
     //std::cout << "Changement de Mode->";
     moteur->setMode(Mode(ancienMode));
