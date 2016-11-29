@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 namespace render {
+  class Scene;
   class TuileStatique;
   class Tuile;
 }
@@ -24,9 +25,11 @@ namespace render {
     int id;
     int w;
     bool estAffiche;
+    /// 				
+    Scene* scene;
     // Operations
   public:
-    TuileStatique (float x, float y, int id, float w, int TrueX, int TrueY);
+    TuileStatique (float x, float y, int id, float w, int TrueX, int TrueY, Scene* scene);
     ~TuileStatique ();
     int const getHauteur ();
     int const getLargeur ();

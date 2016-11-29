@@ -2,6 +2,7 @@
 #ifndef RENDER__BOUTON__H
 #define RENDER__BOUTON__H
 
+#include <SFML/Graphics.hpp>
 
 namespace render {
 
@@ -10,11 +11,16 @@ namespace render {
     // Attributes
   private:
     int ID;
+    sf::Sprite sprite;
+    sf::Texture texture;
+    sf::Text texte;
+    sf::Font font;
     // Operations
   public:
     Bouton (int ID);
     void setID (int ID);
     int getID ();
+    sf::Sprite getSprite ();
   };
 
 };

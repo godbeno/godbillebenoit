@@ -5,6 +5,7 @@
 #include "Panneau.h"
 #include "state/Personnage.h"
 #include "state/Etat.h"
+#include "Bouton.h"
 #include "state/TypePersonnage.h"
 #include <string>
 
@@ -12,7 +13,8 @@ using namespace render;
 
 Panneau::Panneau()
 {
-    
+    listeBoutons.clear();
+    listeBoutons.push_back(Bouton(1));
     int largeur = sf::VideoMode::getDesktopMode().width;
     int hauteur = sf::VideoMode::getDesktopMode().height;
     
@@ -40,8 +42,9 @@ Panneau::Panneau()
 }
 void Panneau::draw(sf::RenderWindow* window)
 {
+    for(unsigned int i=0;i<listeBoutons.size();i++)
+        window->draw(listeBoutons[i].getSprite());
     window->draw(fond);
-
     if (estSelect)
     {
         window->draw(nom);

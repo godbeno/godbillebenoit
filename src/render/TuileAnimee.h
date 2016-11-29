@@ -10,6 +10,7 @@
 namespace render {
   class Tuile;
   class Couche;
+  class Scene;
 }
 
 #include "Tuile.h"
@@ -29,7 +30,7 @@ namespace render {
     int zoom;
     // Operations
   public:
-    TuileAnimee (float x, float y, int id, float vitesse, Couche* couche, int TrueX, int TrueY);
+    TuileAnimee (float x, float y, int id, float vitesse, Couche* couche, int TrueX, int TrueY, Scene* scene);
     ~TuileAnimee ();
     bool estAnime ();
     const float getPourcentage ();
