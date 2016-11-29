@@ -27,7 +27,7 @@ int main(int argc,char* argv[])
     // Test Unitaire - Etat du jeu 
     std::cout << "--------------------INITIALISATION-------------" << std::endl;
     srand(time(NULL));
-    RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Test Affichage");
+    RenderWindow *window = new RenderWindow(VideoMode(1366,768,16), "Medieval Minimal War");
     Etat *etat = new Etat;
     Moteur *m = new Moteur(etat);
     IA *ia = new IA(etat,m, Niveau::Heuristique);
@@ -59,7 +59,7 @@ int main(int argc,char* argv[])
     int hauteur = sf::VideoMode::getDesktopMode().height;
     
     //On spécifie que les deux joueurs sont des IAs
-    etat->configurerJoueur(false,false);
+    etat->configurerJoueur(true,true);
     etat->changerTour(true);
     
     

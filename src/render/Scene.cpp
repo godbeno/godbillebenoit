@@ -103,8 +103,8 @@ void Scene::changementEtat(state::EvenementEtat& e)
         int idp2 = couchePersonnage->getTuile(e.getNewx(), e.getNewy(), tx)->getID();
         int id1 = (((idp1-43)/2)-1) + ((idp1+1)%2)*7;
         int id2 = (((idp2-43)/2)-1) + ((idp2+1)%2)*19 + ((idp2)%2)*12;
-        couchePersonnage->setTuile(e.getX(), e.getY(), new TuileAnimee((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, id1, tx, couchePersonnage,e.getX(),e.getY()));
-        couchePersonnage->setTuile(e.getNewx(), e.getNewy(), new TuileAnimee((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, id2, tx,couchePersonnage,e.getNewx(),e.getNewy()));
+        couchePersonnage->setTuile(e.getX(), e.getY(), new TuileAnimee((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, id1, tx, couchePersonnage,e.getX(),e.getY(), this));
+        couchePersonnage->setTuile(e.getNewx(), e.getNewy(), new TuileAnimee((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, id2, tx,couchePersonnage,e.getNewx(),e.getNewy(), this));
         couchePersonnage->setDegat((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, (int)e.getZoom());
         panneau->setSelectionne(etat, etat->getSelectionne());
     }
