@@ -17,25 +17,13 @@ Panneau::Panneau()
     int hauteur = sf::VideoMode::getDesktopMode().height;
     
     textFond.loadFromFile("res/Textures/Barre-menu.png");
-    textBoutAOff.loadFromFile("res/Textures/Bouton-attaque-Off.png");
-    textBoutDOff.loadFromFile("res/Textures/Bouton-déplacement-Off.png");
-    textBoutAOn.loadFromFile("res/Textures/Bouton-attaque-On.png");
-    textBoutDOn.loadFromFile("res/Textures/Bouton-déplacement-On.png");
-    textBoutFinTourOn.loadFromFile("res/Textures/Bouton-On.png");
-    textBoutFinTourOff.loadFromFile("res/Textures/Bouton-Off.png");
     
     fond.setTexture(textFond);
-    boutA.setTexture(textBoutAOff);
-    boutD.setTexture(textBoutDOff);
-    boutFinTour.setTexture(textBoutFinTourOn);
+
     
     fond.setPosition(largeur/2 - 195, hauteur-120);
-    boutA.setPosition(largeur/2 - 180, hauteur-100);
-    boutD.setPosition(largeur/2 - 110, hauteur-100);
-    boutFinTour.setPosition(0,0);
     
     fond.setScale(2,2);
-    boutFinTour.setScale(3,3);
     
     font.loadFromFile("res/Fonts/arial.ttf");
     nom.setFont(font);
@@ -44,11 +32,6 @@ Panneau::Panneau()
     nom.setColor(sf::Color::White);
     nom.setCharacterSize(30);
     
-    texteFinTour.setFont(font);
-    texteFinTour.setString("Fin de Tour");
-    texteFinTour.setPosition(3*largeur/4+50, hauteur-100);
-    texteFinTour.setColor(sf::Color::White);
-    texteFinTour.setCharacterSize(30);
     
     estSelect = false;
     
@@ -58,10 +41,7 @@ Panneau::Panneau()
 void Panneau::draw(sf::RenderWindow* window)
 {
     window->draw(fond);
-    window->draw(boutA);
-    window->draw(boutD);
-    window->draw(boutFinTour);  
-    window->draw(texteFinTour);
+
     if (estSelect)
     {
         window->draw(nom);
@@ -140,13 +120,9 @@ void Panneau::setSelectionne(state::Etat* etat, state::Personnage* p)
     txtPv.setColor(sf::Color(255,0,0));
     txtPv.setPosition(sf::Vector2f(largeur/2 +110, hauteur - 50));
     
-    boutA.setTexture(textBoutAOn);
-    boutD.setTexture(textBoutDOn);
     
 }
 void Panneau::unsetSelectionne()
 {
     estSelect = false;
-    boutA.setTexture(textBoutAOff);
-    boutD.setTexture(textBoutDOff);
 }
