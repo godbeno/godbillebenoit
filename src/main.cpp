@@ -66,10 +66,10 @@ int main(int argc,char* argv[])
     
     std::cout << std::endl << "--------------------FIN INITIALISATION-------------" << std::endl;
     
+    thread th(&Moteur::updateThread, m); 
     
     while (window->isOpen())
     {
-        thread th(&Moteur::update, m, clock()); 
         Event event;
         while (window->pollEvent(event))
         {

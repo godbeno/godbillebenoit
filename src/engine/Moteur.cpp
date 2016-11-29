@@ -185,3 +185,8 @@ void Moteur::enregistrerAction(Action* action)
 {
     historique->ajouterAction(action);
 }
+void Moteur::updateThread()
+{
+    while(!etat->partieContinue())
+        update(clock());
+}
