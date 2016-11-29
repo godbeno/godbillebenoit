@@ -69,7 +69,7 @@ Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande*
         {
             std::cout << "Changement de Mode->";
             ChangerMode* cm = static_cast<ChangerMode*>(lsAction->get(i));
-            if (etat->getSelectionne() == nullptr && etat->getGrille().getCellulePersonnage(cm->getX(), cm->getY()) == nullptr)
+            if (moteur->getMode() == Mode::jeu && etat->getSelectionne() == nullptr && etat->getGrille().getCellulePersonnage(cm->getX(), cm->getY()) == nullptr)
             {
                 std::cout << "Annulé" << std::endl;
                 lsAction->supprimer(i);
