@@ -47,8 +47,7 @@ void Moteur::update(clock_t t)
         //std::cout << "update " << listeCommande.taille() << std::endl;
         if (listeCommande.taille() != 0)
         {
-            std::thread th(&Moteur::convertirCommande, this, true);
-            th.join();
+            convertirCommande(true);
         }
             //convertirCommande(true);
         derniereMaj = t;
