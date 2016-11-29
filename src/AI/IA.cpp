@@ -101,7 +101,7 @@ bool IA::estFini()
 {
     if(i >= this->etat->getListe().size())
     {
-        moteur->ajouterAction(new Selection(-1, -1));
+        moteur->ajouterAction(new ChangerMode(3,0,0,moteur));
         moteur->ajouterAction(new ChangerTour());
         moteur->convertirCommande(true);
         reset();
@@ -246,7 +246,7 @@ void IA::jouer()
 {
     if (!etat->partieContinue() && etat->joueurIA() && (!attendre || (attendre && double(clock()-temps)/CLOCKS_PER_SEC > 0.5*(archer+1))))
     {
-        //std::cout << "On va jouer à nouveau ! " << std::endl;
+        std::cout << "On va jouer à nouveau ! " << std::endl;
         switch(niveau)
         {
             case Aleatoire:

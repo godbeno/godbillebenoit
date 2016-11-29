@@ -79,6 +79,10 @@ void Moteur::convertirCommande(bool afficher)
 {
     if (listeCommande.get(3) != nullptr && !etat->joueurIA()) // Gestion du clic de souris
     {
+        /*if (mode == Mode::jeu) std::cout << "Mode Jeu" << std::endl;
+        else if (mode == Mode::selection) std::cout << "Mode Sélection" << std::endl;
+        else if (mode == Mode::attaque) std::cout << "Mode attaque" << std::endl;
+        else if (mode == Mode::deplacement) std::cout << "Mode deplacement" << std::endl;*/
         CommandeClic* cc = static_cast<CommandeClic*>(listeCommande.get(3));
         if (mode == Mode::deplacement)
             aVerifier->ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY()));
