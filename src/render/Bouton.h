@@ -8,15 +8,11 @@ namespace render {
   /// class Bouton - 
   class Bouton {
     // Attributes
-  public:
-    bool Actif;
   private:
     int ID;
     // Operations
   public:
-    Bouton (int ID, bool Actif);
-    void setActif (bool Actif);
-    bool getActif ();
+    Bouton (int ID);
     void setID (int ID);
     int getID ();
   };
