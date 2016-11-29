@@ -15,12 +15,15 @@ namespace render {
     sf::Texture texture;
     sf::Text texte;
     sf::Font font;
+    bool aTexte;
     // Operations
   public:
     Bouton (int ID);
     void setID (int ID);
     int getID ();
     sf::Sprite getSprite ();
+    bool getATexte ();
+    sf::Text getTexte ();
   };
 
 };

@@ -14,7 +14,9 @@ using namespace render;
 Panneau::Panneau()
 {
     listeBoutons.clear();
-    listeBoutons.push_back(Bouton(1));
+    listeBoutons.push_back(new Bouton(1));
+    listeBoutons.push_back(new Bouton(2));    
+    listeBoutons.push_back(new Bouton(3));
     int largeur = sf::VideoMode::getDesktopMode().width;
     int hauteur = sf::VideoMode::getDesktopMode().height;
     
@@ -41,10 +43,15 @@ Panneau::Panneau()
     
 }
 void Panneau::draw(sf::RenderWindow* window)
-{
-    for(unsigned int i=0;i<listeBoutons.size();i++)
-        window->draw(listeBoutons[i].getSprite());
+{   
     window->draw(fond);
+    for(unsigned int i=0;i<listeBoutons.size();i++)
+    {
+        window->draw(listeBoutons[i]->getSprite());
+        if(listeBoutons[i]->getATexte())
+            window->draw(listeBoutons[i]->getTexte());
+    }
+    
     if (estSelect)
     {
         window->draw(nom);

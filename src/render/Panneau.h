@@ -13,9 +13,9 @@ namespace state {
   class Observateur;
 }
 
-#include "Bouton.h"
 #include "state/Personnage.h"
 #include "state/Observateur.h"
+#include "Bouton.h"
 
 namespace render {
 
@@ -24,7 +24,7 @@ namespace render {
     // Associations
     // Attributes
   private:
-    std::vector<Bouton> listeBoutons;
+    std::vector<Bouton*> listeBoutons;
     sf::Sprite fond;
     bool estSelect;
     sf::Texture textFond;

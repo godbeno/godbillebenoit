@@ -14,18 +14,35 @@ Bouton::Bouton(int ID)
     this->ID = ID;
     int largeur = sf::VideoMode::getDesktopMode().width;
     int hauteur = sf::VideoMode::getDesktopMode().height;
+    this->aTexte = false;
 
     font.loadFromFile("res/Fonts/arial.ttf");
     
     switch(ID)
     {
         case 1 :
-                texture.loadFromFile("res/Textures/Bouton-déplacement-On.png");
+                texture.loadFromFile("res/Textures/Bouton-attaque-On.png");
                 sprite.setTexture(texture);
-                sprite.setPosition(largeur/2,hauteur/2);
+                sprite.setPosition(largeur/2-185,hauteur-105);
                 break;
         case 2 :
+                texture.loadFromFile("res/Textures/Bouton-déplacement-On.png");
+                sprite.setTexture(texture);
+                sprite.setPosition(largeur/2-115,hauteur-105);
                 break;
+        case 3 :
+                texture.loadFromFile("res/Textures/Bouton-On.png");
+                sprite.setTexture(texture);
+                sprite.setPosition(3*largeur/4,hauteur-125);
+                sprite.setScale(3,3);
+                
+                aTexte = true;
+                texte.setFont(font);
+                texte.setString("Fin de Tour");
+                texte.setPosition(3*largeur/4+50,hauteur-100);
+                texte.setColor(sf::Color::Black);
+                texte.setCharacterSize(30);
+                break; 
             
                 
         
@@ -65,4 +82,12 @@ int Bouton::getID()
 sf::Sprite Bouton::getSprite()
 {
     return sprite;
+}
+bool Bouton::getATexte()
+{
+    return aTexte;
+}
+sf::Text Bouton::getTexte()
+{
+    return texte;
 }

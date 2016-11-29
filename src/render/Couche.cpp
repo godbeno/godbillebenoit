@@ -13,8 +13,8 @@ Couche::Couche(sf::RenderWindow* window)
     select = 0;
     font.loadFromFile("res/Fonts/arial.ttf");
     estDegat = false;
-    
 }
+
 Couche::~Couche()
 {
     for (unsigned int i = 0; i < tuiles.size(); i++)
@@ -39,7 +39,6 @@ void Couche::setTuile (int i, int j, Tuile* tuile)
         }
     if (tuile)
         tuiles.push_back(tuile);
-    
 }
 void Couche::addTuile(Tuile* tuile)
 {
