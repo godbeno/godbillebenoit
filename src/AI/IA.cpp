@@ -99,8 +99,9 @@ IA::~IA()
 }
 bool IA::estFini()
 {
-    if(i >= this->etat->getListe().size())
+    if(i >= this->etat->getGrille().size() && i > 575)
     {
+        std::cout << std::endl << "FIN DU TOUR CRAQUE " << i << std::endl;
         moteur->ajouterAction(new ChangerMode(3,0,0,moteur, true));
         moteur->ajouterAction(new ChangerTour(true));
         //moteur->convertirCommande(true);

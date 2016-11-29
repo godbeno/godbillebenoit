@@ -8,6 +8,8 @@
 #include <SFML/Audio.hpp>
 #include <mutex>
 
+std::mutex mtx;
+
 using namespace render;
 
 Scene::Scene(state::Etat* etat, sf::RenderWindow* window)
@@ -39,7 +41,7 @@ Scene::~Scene()
 }
 void Scene::changementEtat(state::EvenementEtat& e)
 {
-    std::cout << "Affichage->";
+    //std::cout << "Affichage->";
     if (e.getTypeEvenement() == state::NouveauPersonnage)
     {
         couchePersonnage->addTuile(new TuileStatique((e.getX()-camerax)*tx, (e.getY()-cameray)*tx,e.getPid(), tx,e.getX(),e.getY(), this));
@@ -49,9 +51,11 @@ void Scene::changementEtat(state::EvenementEtat& e)
     {
         if (couchePersonnage->getTuile(e.getX(), e.getY(), zoom*tx) != nullptr)
         {		
-            couchePersonnage->setTuile(e.getX(), e.getY(), new TuileStatique((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, e.getPid(), tx,e.getNewx(),e.getNewy(), this));   
+            mtx.lock();
+            couchePersonnage->setTuile(e.getX(), e.getY(), new TuileStatique((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, e.getPid(), tx,e.getNewx(),e.getNewy(), this));
             coucheTerrain->setSelectionne((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, tx);
-            panneau->setSelectionne(etat, etat->getSelectionne());
+            panneau->setSelectionne(etat, etat->getSelectionne());   
+            mtx.unlock();
         }
     }
     else if (e.getTypeEvenement() == state::DeplacementCamera)
@@ -105,15 +109,14 @@ void Scene::changementEtat(state::EvenementEtat& e)
         int id1 = (((idp1-43)/2)-1) + ((idp1+1)%2)*7;
         int id2 = (((idp2-43)/2)-1) + ((idp2+1)%2)*19 + ((idp2)%2)*12;
         std::cout << "Fin des ids" << std::endl;
-        std::mutex mtx;
         mtx.lock();
         couchePersonnage->setTuile(e.getX(), e.getY(), new TuileAnimee((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, id1, tx, couchePersonnage,e.getX(),e.getY(), this));
         couchePersonnage->setTuile(e.getNewx(), e.getNewy(), new TuileAnimee((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, id2, tx,couchePersonnage,e.getNewx(),e.getNewy(), this));
-        mtx.unlock();
         std::cout << "Fin des setTuiles" << std::endl;        
         couchePersonnage->setDegat((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, (int)e.getZoom());
         std::cout << "Fin des setDegats" << std::endl;
-        panneau->setSelectionne(etat, etat->getSelectionne());        
+        panneau->setSelectionne(etat, etat->getSelectionne()); 
+        mtx.unlock();       
         std::cout << "Fin des setSelectionne" << std::endl;
     }
     else if (e.getTypeEvenement() == state::PersonnageMort)
@@ -136,14 +139,13 @@ void Scene::afficher()
 {
     window->clear();
     //std::cout << "Avnt couche Terrain" << std::endl;
-    std::mutex mtd;
-    mtd.lock();
+    mtx.lock();
     coucheTerrain->afficher();
     //std::cout << "Couche Terrain dessinée" << std::endl;
     couchePersonnage->afficher();
     //std::cout << "Les couches ont été dessinées" << std::endl;
     panneau->draw(window);
-    mtd.unlock();
+    mtx.unlock();
     message->dessiner(window);
     window->display();
 }
