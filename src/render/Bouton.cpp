@@ -12,12 +12,17 @@ using namespace render;
 Bouton::Bouton(int ID)
 {
     this->ID = ID;
-    int largeur = sf::VideoMode::getDesktopMode().width;
-    int hauteur = sf::VideoMode::getDesktopMode().height;
+    largeur = sf::VideoMode::getDesktopMode().width;
+    hauteur = sf::VideoMode::getDesktopMode().height;
     this->aTexte = false;
-
     font.loadFromFile("res/Fonts/arial.ttf");
+    initBouton(ID);
     
+}
+
+
+void Bouton::initBouton(int ID)    
+{
     switch(ID)
     {
         case 1 :
@@ -26,11 +31,26 @@ Bouton::Bouton(int ID)
                 sprite.setPosition(largeur/2-185,hauteur-105);
                 break;
         case 2 :
+                texture.loadFromFile("res/Textures/Bouton-attaque-Off.png");
+                sprite.setTexture(texture);
+                sprite.setPosition(largeur/2-185,hauteur-105);
+                break;
+                
+                
+        case 3 :
                 texture.loadFromFile("res/Textures/Bouton-déplacement-On.png");
                 sprite.setTexture(texture);
                 sprite.setPosition(largeur/2-115,hauteur-105);
                 break;
-        case 3 :
+        case 4 :
+                texture.loadFromFile("res/Textures/Bouton-déplacement-Off.png");
+                sprite.setTexture(texture);
+                sprite.setPosition(largeur/2-115,hauteur-105);
+                break;
+                
+                
+                
+        case 5 :
                 texture.loadFromFile("res/Textures/Bouton-On.png");
                 sprite.setTexture(texture);
                 sprite.setPosition(3*largeur/4,hauteur-125);
@@ -43,37 +63,33 @@ Bouton::Bouton(int ID)
                 texte.setColor(sf::Color::Black);
                 texte.setCharacterSize(30);
                 break; 
-            
                 
-        
+        case 6 :
+                texture.loadFromFile("res/Textures/Bouton-Off.png");
+                sprite.setTexture(texture);
+                sprite.setPosition(3*largeur/4,hauteur-125);
+                sprite.setScale(3,3);     
+                aTexte = true;
+                texte.setFont(font);
+                texte.setString("   Attente");
+                texte.setPosition(3*largeur/4+50,hauteur-100);
+                texte.setColor(sf::Color::Black);
+                texte.setCharacterSize(30);
+                break; 
     }
-    
-    
-
-    
-
-
-    
-    //fond.setPosition(largeur/2 - 195, hauteur-120);
-    
-    //fond.setScale(2,2);
-    /*
-    nom.setFont(font);
-    nom.setString("Archer");
-    nom.setPosition(largeur/2, hauteur-100);
-    nom.setColor(sf::Color::White);
-    nom.setCharacterSize(30);
-    */
-    
-    
-    
-    
-    
 }
+    
+    
+
+    
+
+
+  
 
 void Bouton::setID(int ID)
 {
     this->ID = ID;
+    initBouton(ID);
 }
 int Bouton::getID()
 {

@@ -15,8 +15,8 @@ Panneau::Panneau()
 {
     listeBoutons.clear();
     listeBoutons.push_back(new Bouton(1));
-    listeBoutons.push_back(new Bouton(2));    
-    listeBoutons.push_back(new Bouton(3));
+    listeBoutons.push_back(new Bouton(3));    
+    listeBoutons.push_back(new Bouton(5));
     int largeur = sf::VideoMode::getDesktopMode().width;
     int hauteur = sf::VideoMode::getDesktopMode().height;
     
@@ -74,6 +74,11 @@ void Panneau::setSelectionne(state::Etat* etat, state::Personnage* p)
     unitePv = 100./p->getPVMax();
     pvRestant = p->getPV()*unitePv;
     
+        for(unsigned int i=0;i<listeBoutons.size();i++)
+    {
+        if(listeBoutons[i]->getID()==2) listeBoutons[i]->setID(1);
+        else if(listeBoutons[i]->getID()==4) listeBoutons[i]->setID(3);
+    }
     
     switch(p->getType())
     {
@@ -133,5 +138,10 @@ void Panneau::setSelectionne(state::Etat* etat, state::Personnage* p)
 }
 void Panneau::unsetSelectionne()
 {
+    for(unsigned int i=0;i<listeBoutons.size();i++)
+    {
+        if(listeBoutons[i]->getID()==1) listeBoutons[i]->setID(2);
+        else if(listeBoutons[i]->getID()==3) listeBoutons[i]->setID(4);
+    }
     estSelect = false;
 }

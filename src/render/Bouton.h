@@ -16,9 +16,12 @@ namespace render {
     sf::Text texte;
     sf::Font font;
     bool aTexte;
+    int largeur;
+    int hauteur;
     // Operations
   public:
     Bouton (int ID);
+    void initBouton (int ID);
     void setID (int ID);
     int getID ();
     sf::Sprite getSprite ();
