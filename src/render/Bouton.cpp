@@ -76,6 +76,52 @@ void Bouton::initBouton(int ID)
                 texte.setColor(sf::Color::Black);
                 texte.setCharacterSize(30);
                 break; 
+                
+                /* ------------------INITIALISATION ----------------------*/
+        case 10 :
+                texture.loadFromFile("res/Textures/case-grise.png");
+                sprite.setTexture(texture);
+                sprite.setPosition(0,0);
+                sprite.setScale(1.2,1.2);
+                break;
+        case 11 :
+                texture.loadFromFile("res/Textures/case-grise.png");
+                sprite.setTexture(texture);
+                sprite.setPosition(0,120);
+                sprite.setScale(1.2,1.2);
+                break;
+        case 12 :
+                texture.loadFromFile("res/Textures/case-grise.png");
+                sprite.setTexture(texture);
+                sprite.setPosition(0,240);
+                sprite.setScale(1.2,1.2);
+                break; 
+        case 13 :
+                texture.loadFromFile("res/Textures/case-grise.png");
+                sprite.setTexture(texture);
+                sprite.setPosition(0,360);
+                sprite.setScale(1.2,1.2);
+                break;
+        case 14 :
+                texture.loadFromFile("res/Textures/case-grise.png");
+                sprite.setTexture(texture);
+                sprite.setPosition(0,480);
+                sprite.setScale(1.2,1.2);
+                break;
+        case 15 :
+                texture.loadFromFile("res/Textures/case-grise.png");
+                sprite.setTexture(texture);
+                sprite.setPosition(0,600);
+                sprite.setScale(1.2,1.2);
+                break;
+        case 16 :
+                texture.loadFromFile("res/Textures/Barre-menu.png");
+                sprite.setTexture(texture);
+                sprite.setPosition(120,0);
+                sprite.setScale(2,2);
+            
+            
+                break;
     }
 }
     
