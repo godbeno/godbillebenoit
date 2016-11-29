@@ -92,8 +92,10 @@ void Scene::changementEtat(state::EvenementEtat& e)
     {
         if (etat->getGrille().getCellulePersonnage(e.getX(), e.getY()))
         {
+            mtx.lock();
             coucheTerrain->setSelectionne((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx);
             panneau->setSelectionne(etat, etat->getGrille().getCellulePersonnage(e.getX(), e.getY()));
+            mtx.unlock();
         }
         else 
         {
