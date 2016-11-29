@@ -17,6 +17,7 @@ namespace render {
     bool tour;
     clock_t temps;
     bool fin;
+    sf::RectangleShape* Rectangle;
     // Operations
   public:
     Message ();
