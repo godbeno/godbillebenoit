@@ -13,6 +13,7 @@
 #include <SFML/Audio.hpp>
 #include <ctime>
 #include <unistd.h>
+#include <thread>
 
 using namespace std; 
 using namespace state;
@@ -59,7 +60,7 @@ int main(int argc,char* argv[])
     int hauteur = sf::VideoMode::getDesktopMode().height;
     
     //On spécifie que les deux joueurs sont des IAs
-    etat->configurerJoueur(false,false);
+    etat->configurerJoueur(false,true);
     etat->changerTour(true);
     
     
@@ -67,7 +68,8 @@ int main(int argc,char* argv[])
     
     
     while (window->isOpen())
-    { 
+    {
+        thread th(&Moteur::update, m, clock()); 
         Event event;
         while (window->pollEvent(event))
         {
@@ -102,10 +104,8 @@ int main(int argc,char* argv[])
         }
         scene->afficher();
         ia->jouer();
-        m->update(clock());
+        th.join();
     }
-    
-
     
     delete scene;
     delete window;
