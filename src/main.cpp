@@ -59,7 +59,7 @@ int main(int argc,char* argv[])
     int hauteur = sf::VideoMode::getDesktopMode().height;
     
     //On spécifie que les deux joueurs sont des IAs
-    etat->configurerJoueur(true,true);
+    etat->configurerJoueur(false,false);
     etat->changerTour(true);
     
     
