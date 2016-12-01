@@ -14,7 +14,7 @@
 #include <mutex>
 
 std::mutex actionMutex;
-std::mutex mtxUsr;
+//std::mutex mtxUsr;
 using namespace engine;
 
 Moteur::Moteur(state::Etat* etat)
@@ -37,9 +37,9 @@ state::Etat* Moteur::getEtat()
 }
 void Moteur::ajouterCommande (Commande* cmd)
 {
-    mtxUsr.lock();
+    //mtxUsr.lock();
     listeCommande.set(cmd);
-    mtxUsr.unlock();
+    //mtxUsr.unlock();
 }
 Mode Moteur::getMode()
 {
@@ -84,7 +84,7 @@ void Moteur::setMode(Mode mode)
 }
 void Moteur::convertirCommande()
 {
-    mtxUsr.lock();
+    //mtxUsr.lock();
     if (listeCommande.get(3) != nullptr && !etat->joueurIA()) // Gestion du clic de souris
     {
         /*if (mode == Mode::jeu) std::cout << "Mode Jeu" << std::endl;
@@ -127,7 +127,7 @@ void Moteur::convertirCommande()
     if (listeCommande.get(1) != nullptr || listeCommande.get(2) != nullptr || listeCommande.get(3) != nullptr)
         std::cout << "Humain->";
     listeCommande.vider();
-    mtxUsr.unlock();
+    //mtxUsr.unlock();
     if (aVerifier->taille() > 0)
     {
         actionMutex.lock();
