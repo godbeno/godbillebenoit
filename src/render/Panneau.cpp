@@ -14,9 +14,9 @@ using namespace render;
 Panneau::Panneau()
 {
     listeBoutons.clear();
-    listeBoutons.push_back(new Bouton(1));
-    listeBoutons.push_back(new Bouton(3));    
-    listeBoutons.push_back(new Bouton(5));
+    listeBoutons.push_back(new Bouton(100));
+    listeBoutons.push_back(new Bouton(102));    
+    listeBoutons.push_back(new Bouton(104));
     listeBoutons.push_back(new Bouton(10));
     listeBoutons.push_back(new Bouton(11));
     listeBoutons.push_back(new Bouton(12));
@@ -86,8 +86,8 @@ void Panneau::setSelectionne(state::Etat* etat, state::Personnage* p)
     
         for(unsigned int i=0;i<listeBoutons.size();i++)
     {
-        if(listeBoutons[i]->getID()==2) listeBoutons[i]->setID(1);
-        else if(listeBoutons[i]->getID()==4) listeBoutons[i]->setID(3);
+        if(listeBoutons[i]->getID()==101) listeBoutons[i]->setID(100);
+        else if(listeBoutons[i]->getID()==103) listeBoutons[i]->setID(102);
     }
     
     switch(p->getType())
@@ -150,8 +150,8 @@ void Panneau::unsetSelectionne()
 {
     for(unsigned int i=0;i<listeBoutons.size();i++)
     {
-        if(listeBoutons[i]->getID()==1) listeBoutons[i]->setID(2);
-        else if(listeBoutons[i]->getID()==3) listeBoutons[i]->setID(4);
+        if(listeBoutons[i]->getID()==100) listeBoutons[i]->setID(101);
+        else if(listeBoutons[i]->getID()==102) listeBoutons[i]->setID(103);
     }
     estSelect = false;
 }

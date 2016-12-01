@@ -25,24 +25,24 @@ void Bouton::initBouton(int ID)
 {
     switch(ID)
     {
-        case 1 :
+        case 100 :
                 texture.loadFromFile("res/Textures/Bouton-attaque-On.png");
                 sprite.setTexture(texture);
                 sprite.setPosition(largeur/2-185,hauteur-105);
                 break;
-        case 2 :
+        case 101 :
                 texture.loadFromFile("res/Textures/Bouton-attaque-Off.png");
                 sprite.setTexture(texture);
                 sprite.setPosition(largeur/2-185,hauteur-105);
                 break;
                 
                 
-        case 3 :
+        case 102 :
                 texture.loadFromFile("res/Textures/Bouton-déplacement-On.png");
                 sprite.setTexture(texture);
                 sprite.setPosition(largeur/2-115,hauteur-105);
                 break;
-        case 4 :
+        case 103 :
                 texture.loadFromFile("res/Textures/Bouton-déplacement-Off.png");
                 sprite.setTexture(texture);
                 sprite.setPosition(largeur/2-115,hauteur-105);
@@ -50,7 +50,7 @@ void Bouton::initBouton(int ID)
                 
                 
                 
-        case 5 :
+        case 104 :
                 texture.loadFromFile("res/Textures/Bouton-On.png");
                 sprite.setTexture(texture);
                 sprite.setPosition(3*largeur/4,hauteur-125);
@@ -64,7 +64,7 @@ void Bouton::initBouton(int ID)
                 texte.setCharacterSize(30);
                 break; 
                 
-        case 6 :
+        case 105 :
                 texture.loadFromFile("res/Textures/Bouton-Off.png");
                 sprite.setTexture(texture);
                 sprite.setPosition(3*largeur/4,hauteur-125);
