@@ -99,7 +99,7 @@ Personnage* Etat::getSelectionne()
 }
 void Etat::setSelectionne(int i, int j, bool afficher)
 {
-    std::cout << "On traite le changement de selection dans Etat" << std::endl;
+    //std::cout << "On traite le changement de selection dans Etat" << std::endl;
     selectionne = grille->getCellulePersonnage(i, j);
     if (afficher)
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(8), this, i, j, 0, 0));
@@ -123,7 +123,7 @@ void Etat::attaquer(int i1, int j1, int i2, int j2, bool afficher)
             //Le personnage attaqué est mort
             if (afficher)
                 avertirObservateurs(new EvenementEtat(TypeEvenementEtat(2), this, i2, j2, 0, 0));
-            std::cout << "Le personnage attaqué est mort" << std::endl;
+            //std::cout << "Le personnage attaqué est mort" << std::endl;
             grille->supprimerElement(i2,j2);
         }
         liste->copy(*grille);

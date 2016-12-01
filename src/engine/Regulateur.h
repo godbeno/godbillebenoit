@@ -10,7 +10,6 @@ namespace state {
   class Etat;
 };
 namespace engine {
-  class ListeCommande;
   class Moteur;
 }
 
@@ -26,10 +25,9 @@ namespace engine {
     ListeActions* actions;
   protected:
     state::Etat* etatCourant;
-    ListeCommande* commandes;
     // Operations
   public:
-    Regulateur (ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd, Moteur* moteur);
+    Regulateur (ListeActions* lsAction, state::Etat* etat, Moteur* moteur);
     ~Regulateur ();
     void appliquer (Moteur* moteur);
   };

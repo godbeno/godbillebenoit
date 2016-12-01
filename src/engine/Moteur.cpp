@@ -14,6 +14,7 @@
 #include <mutex>
 
 std::mutex actionMutex;
+std::mutex mtxUsr;
 using namespace engine;
 
 Moteur::Moteur(state::Etat* etat)
@@ -36,7 +37,9 @@ state::Etat* Moteur::getEtat()
 }
 void Moteur::ajouterCommande (Commande* cmd)
 {
+    mtxUsr.lock();
     listeCommande.set(cmd);
+    mtxUsr.unlock();
 }
 Mode Moteur::getMode()
 {
@@ -44,12 +47,14 @@ Mode Moteur::getMode()
 }
 void Moteur::update(clock_t t)
 {
-    //if ((t-derniereMaj) > 2)
+    //double(time-debut)/ CLOCKS_PER_SEC > 0.1
+    //if ((double)(t-derniereMaj)/CLOCKS_PER_SEC > 0.1)
     //{
         //std::cout << "update " << listeCommande.taille() << std::endl;
-        if (listeNonVide())
+        if ((listeNonVide() && etat->joueurIA()) || (!etat->joueurIA() && (double)(t-derniereMaj)/CLOCKS_PER_SEC > 0.1))
         {
             convertirCommande();
+            derniereMaj = t;
         }
             //convertirCommande(true);
         //derniereMaj = t;
@@ -79,6 +84,7 @@ void Moteur::setMode(Mode mode)
 }
 void Moteur::convertirCommande()
 {
+    mtxUsr.lock();
     if (listeCommande.get(3) != nullptr && !etat->joueurIA()) // Gestion du clic de souris
     {
         /*if (mode == Mode::jeu) std::cout << "Mode Jeu" << std::endl;
@@ -87,45 +93,49 @@ void Moteur::convertirCommande()
         else if (mode == Mode::deplacement) std::cout << "Mode deplacement" << std::endl;*/
         CommandeClic* cc = static_cast<CommandeClic*>(listeCommande.get(3));
         if (mode == Mode::deplacement)
-            aVerifier->ajouter(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY(), true));
+            ajouterAction(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY(), true));
         else if (mode == Mode::jeu && cc->getBouton() == 0)
-            aVerifier->ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this, true));
+            ajouterAction(new ChangerMode(6, cc->getX(), cc->getY(), this, true));
         else if (mode == Mode::selection && cc->getBouton() == 0)
-            aVerifier->ajouter(new ChangerMode(6, cc->getX(), cc->getY(), this, true));
+            ajouterAction(new ChangerMode(6, cc->getX(), cc->getY(), this, true));
         else if (mode == Mode::selection && cc->getBouton() == 1 && etat->getSelectionne()->getEquipe() == etat->getTour())
-            aVerifier->ajouter(new ChangerMode(5, -1, -1, this, true));
+            ajouterAction(new ChangerMode(5, -1, -1, this, true));
         else if (mode == Mode::selection && cc->getBouton() == 2 && etat->getSelectionne()->getEquipe() == etat->getTour())
-            aVerifier->ajouter(new ChangerMode(4, -1, -1, this, true));
+            ajouterAction(new ChangerMode(4, -1, -1, this, true));
         else if ((mode == Mode::selection || mode == Mode::jeu) && cc->getBouton() == 3)
-            aVerifier->ajouter(new ChangerTour(true));      
+            ajouterAction(new ChangerTour(true));      
         else if (mode == Mode::attaque)
-            aVerifier->ajouter(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY(), true));     
+            ajouterAction(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY(), true));
     }
     if (listeCommande.get(1) != nullptr) // Gestion des touches caméra
     {
        CommandeFleche* cc = static_cast<CommandeFleche*>(listeCommande.get(1));
        if (cc->getDirection() == 1)
-          aVerifier->ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax(), etat->getCameray()-1));
+          ajouterAction(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax(), etat->getCameray()-1));
        else if(cc->getDirection() == 2)
-          aVerifier->ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax(), etat->getCameray()+1));
+          ajouterAction(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax(), etat->getCameray()+1));
        else if(cc->getDirection() == 3)
-          aVerifier->ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax()+1, etat->getCameray()));
+          ajouterAction(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax()+1, etat->getCameray()));
        else if(cc->getDirection() == 4)
-          aVerifier->ajouter(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax()-1, etat->getCameray()));
+          ajouterAction(new DeplacementCamera(etat->getCamerax(), etat->getCameray(), etat->getCamerax()-1, etat->getCameray()));
     }
     if (listeCommande.get(2) != nullptr) // Gestion du zoom caméra
     {
        CommandeZoomCamera* cc = static_cast<CommandeZoomCamera*>(listeCommande.get(2));
-       aVerifier->ajouter(new Zoom(cc->geti()));
+       ajouterAction(new Zoom(cc->geti()));
     }
     if (listeCommande.get(1) != nullptr || listeCommande.get(2) != nullptr || listeCommande.get(3) != nullptr)
         std::cout << "Humain->";
-    actionMutex.lock();
-    Regulateur r(aVerifier, etat, &listeCommande, this);
-    actionMutex.unlock();
-    r.appliquer(this);
     listeCommande.vider();
-    aVerifier->vider();
+    mtxUsr.unlock();
+    if (aVerifier->taille() > 0)
+    {
+        actionMutex.lock();
+        Regulateur r(aVerifier, etat, this);
+        r.appliquer(this);
+        aVerifier->vider();
+        actionMutex.unlock();
+    }
 }
 
 void Moteur::setZoom(float z)
@@ -199,5 +209,10 @@ void Moteur::quit()
 }
 bool Moteur::listeNonVide()
 {
-    return (aVerifier->taille() > 0 || listeCommande.get(1) != nullptr || listeCommande.get(2) != nullptr || listeCommande.get(3) != nullptr);
+    int nbCmd = 0;
+    /*mtxUsr.lock();
+    for (int i = 0; i < 3; i++)
+        nbCmd += (listeCommande.get(i) != nullptr);
+    mtxUsr.unlock();*/
+    return (aVerifier->taille() > 0 || nbCmd >0);
 }

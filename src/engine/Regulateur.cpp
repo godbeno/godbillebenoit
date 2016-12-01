@@ -14,11 +14,10 @@
 
 using namespace engine;
 
-Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd, Moteur *moteur)
+Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, Moteur *moteur)
 {
     actions = lsAction;
     etatCourant = etat;
-    commandes = lsCmd;
     
     //Vérification des actions
     for (int i = 0; i < lsAction->taille(); i++)
