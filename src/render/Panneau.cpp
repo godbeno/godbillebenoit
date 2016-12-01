@@ -17,13 +17,13 @@ Panneau::Panneau()
     listeBoutons.push_back(new Bouton(100));
     listeBoutons.push_back(new Bouton(102));    
     listeBoutons.push_back(new Bouton(104));
-    listeBoutons.push_back(new Bouton(10));
-    listeBoutons.push_back(new Bouton(11));
-    listeBoutons.push_back(new Bouton(12));
-    listeBoutons.push_back(new Bouton(13));
-    listeBoutons.push_back(new Bouton(14));
-    listeBoutons.push_back(new Bouton(15));
-    listeBoutons.push_back(new Bouton(16));
+    //listeBoutons.push_back(new Bouton(10));
+    //listeBoutons.push_back(new Bouton(11));
+    //listeBoutons.push_back(new Bouton(12));
+    //listeBoutons.push_back(new Bouton(13));
+    //listeBoutons.push_back(new Bouton(14));
+    //listeBoutons.push_back(new Bouton(15));
+    //listeBoutons.push_back(new Bouton(16));
     
     
     
