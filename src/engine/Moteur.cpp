@@ -37,9 +37,9 @@ state::Etat* Moteur::getEtat()
 }
 void Moteur::ajouterCommande (Commande* cmd)
 {
-    //mtxUsr.lock();
+    //actionMutex.lock();
     listeCommande.set(cmd);
-    //mtxUsr.unlock();
+    //actionMutex.unlock();
 }
 Mode Moteur::getMode()
 {
@@ -51,7 +51,7 @@ void Moteur::update(clock_t t)
     //if ((double)(t-derniereMaj)/CLOCKS_PER_SEC > 0.1)
     //{
         //std::cout << "update " << listeCommande.taille() << std::endl;
-        if ((listeNonVide() && etat->joueurIA()) || (!etat->joueurIA() && (double)(t-derniereMaj)/CLOCKS_PER_SEC > 0.1))
+        if ((listeNonVide() && etat->joueurIA()) || (!etat->joueurIA() && (double)(t-derniereMaj)/CLOCKS_PER_SEC > 0.5))
         {
             convertirCommande();
             derniereMaj = t;
