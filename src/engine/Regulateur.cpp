@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <SFML/Graphics.hpp>
 #include "Moteur.h"
+
 using namespace engine;
 
 Regulateur::Regulateur(ListeActions* lsAction, state::Etat* etat, ListeCommande* lsCmd, Moteur *moteur)

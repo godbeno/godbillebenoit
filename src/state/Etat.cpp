@@ -99,7 +99,7 @@ Personnage* Etat::getSelectionne()
 }
 void Etat::setSelectionne(int i, int j, bool afficher)
 {
-    //std::cout << "On traite le changement de selection dans Etat" << std::endl;
+    std::cout << "On traite le changement de selection dans Etat" << std::endl;
     selectionne = grille->getCellulePersonnage(i, j);
     if (afficher)
         avertirObservateurs(new EvenementEtat(TypeEvenementEtat(8), this, i, j, 0, 0));

@@ -13,6 +13,7 @@
 #include <thread>
 #include <mutex>
 
+std::mutex actionMutex;
 using namespace engine;
 
 Moteur::Moteur(state::Etat* etat)
@@ -95,7 +96,7 @@ void Moteur::convertirCommande()
             aVerifier->ajouter(new ChangerMode(5, -1, -1, this, true));
         else if (mode == Mode::selection && cc->getBouton() == 2 && etat->getSelectionne()->getEquipe() == etat->getTour())
             aVerifier->ajouter(new ChangerMode(4, -1, -1, this, true));
-        else if (mode == Mode::selection && cc->getBouton() == 3)
+        else if ((mode == Mode::selection || mode == Mode::jeu) && cc->getBouton() == 3)
             aVerifier->ajouter(new ChangerTour(true));      
         else if (mode == Mode::attaque)
             aVerifier->ajouter(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY(), true));     
@@ -119,7 +120,9 @@ void Moteur::convertirCommande()
     }
     if (listeCommande.get(1) != nullptr || listeCommande.get(2) != nullptr || listeCommande.get(3) != nullptr)
         std::cout << "Humain->";
+    actionMutex.lock();
     Regulateur r(aVerifier, etat, &listeCommande, this);
+    actionMutex.unlock();
     r.appliquer(this);
     listeCommande.vider();
     aVerifier->vider();
@@ -156,7 +159,9 @@ int Moteur::getCameray()
 }
 void Moteur::ajouterAction(Action* action)
 {
+    actionMutex.lock();
     aVerifier->ajouter(action);
+    actionMutex.unlock();
 }
 void Moteur::finDuTour()
 {
