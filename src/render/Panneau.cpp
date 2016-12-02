@@ -17,14 +17,47 @@ Panneau::Panneau()
     listeBoutons.push_back(new Bouton(100));
     listeBoutons.push_back(new Bouton(102));    
     listeBoutons.push_back(new Bouton(104));
-    //listeBoutons.push_back(new Bouton(10));
-    //listeBoutons.push_back(new Bouton(11));
-    //listeBoutons.push_back(new Bouton(12));
-    //listeBoutons.push_back(new Bouton(13));
-    //listeBoutons.push_back(new Bouton(14));
-    //listeBoutons.push_back(new Bouton(15));
-    //listeBoutons.push_back(new Bouton(16));
     
+    listeBoutons.push_back(new Bouton(00));
+    listeBoutons.push_back(new Bouton(01)); 
+    listeBoutons.push_back(new Bouton(02));  
+    
+    listeBoutons.push_back(new Bouton(10));
+    listeBoutons.push_back(new Bouton(11));  
+    listeBoutons.push_back(new Bouton(12));
+    listeBoutons.push_back(new Bouton(13));  
+    listeBoutons.push_back(new Bouton(14));
+    
+    listeBoutons.push_back(new Bouton(20));
+    listeBoutons.push_back(new Bouton(21));  
+    listeBoutons.push_back(new Bouton(22));
+    listeBoutons.push_back(new Bouton(23));  
+    listeBoutons.push_back(new Bouton(24));
+    
+    listeBoutons.push_back(new Bouton(30));
+    listeBoutons.push_back(new Bouton(31));  
+    listeBoutons.push_back(new Bouton(32));
+    listeBoutons.push_back(new Bouton(33));  
+    listeBoutons.push_back(new Bouton(34));
+    
+    listeBoutons.push_back(new Bouton(40));
+    listeBoutons.push_back(new Bouton(41));  
+    listeBoutons.push_back(new Bouton(42));
+    listeBoutons.push_back(new Bouton(43));  
+    listeBoutons.push_back(new Bouton(44));
+    
+    listeBoutons.push_back(new Bouton(50));
+    listeBoutons.push_back(new Bouton(51));  
+    listeBoutons.push_back(new Bouton(52));
+    listeBoutons.push_back(new Bouton(53));  
+    listeBoutons.push_back(new Bouton(54));
+    
+    
+    listeBoutons.push_back(new Bouton(60));
+    listeBoutons.push_back(new Bouton(61));  
+    listeBoutons.push_back(new Bouton(62));
+    listeBoutons.push_back(new Bouton(63));  
+    listeBoutons.push_back(new Bouton(64));
     
     
     int largeur = sf::VideoMode::getDesktopMode().width;
