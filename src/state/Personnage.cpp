@@ -31,22 +31,22 @@ Personnage::Personnage(bool equipe, TypePersonnage type, int x, int y)
             attaque = 50;
             break;
         case Canon:
-            pvMax = 200;
+            pvMax = 100;
             paMax = 2;
             porteeMin = 3;
-            porteeMax = 6;
-            attaque = 150;
+            porteeMax = 7;
+            attaque = 200;
             break;
         case Cavalier:
             pvMax = 200;
-            paMax = 7;
+            paMax = 6;
             porteeMin = 1;
             porteeMax = 1;
             attaque = 100;
             break;
         case Roi:
-            pvMax = 500;
-            paMax = 4;
+            pvMax = 400;
+            paMax = 6;
             porteeMin = 1;
             porteeMax = 1;
             attaque = 125;

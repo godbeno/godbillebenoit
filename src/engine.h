@@ -23,4 +23,6 @@
 #include "engine/Moteur.h"
 #include "engine/Historique.h"
 #include "engine/ChangerTour.h"
+#include "engine/PlacementTroupe.h"
+#include "engine/ChangerInit.h"
 #endif

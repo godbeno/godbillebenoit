@@ -32,7 +32,7 @@ int main(int argc,char* argv[])
     Etat *etat = new Etat;
     Moteur *m = new Moteur(etat);
     IA *ia = new IA(etat,m, Niveau::Heuristique);
-    etat->initialiserTerrain(true);
+    etat->initialiserTerrain(false);
     Scene* scene = new Scene(etat, window);
     etat->enregistrerObservateur(scene);
     
@@ -45,13 +45,13 @@ int main(int argc,char* argv[])
     etat->ajouterPersonnage(false, 6, 11, 5, true);
     //etat->ajouterPersonnage(false, 1,10, 15);    
     etat->ajouterPersonnage(true, 2, 16, 5, true);
-    etat->ajouterPersonnage(false, 3, 5, 6, true);
+    etat->ajouterPersonnage(false, 3, 6, 6, true);
     //etat->ajouterPersonnage(false, 4, 5, 16);    
     etat->ajouterPersonnage(true, 5, 15, 7, true);
-    etat->ajouterPersonnage(false, 6, 5, 8, true);
+    etat->ajouterPersonnage(false, 6, 6, 8, true);
     //etat->ajouterPersonnage(false, 1, 5, 12);    
     //etat->ajouterPersonnage(true, 2, 15, 13);
-    etat->ajouterPersonnage(false, 3, 5, 11, true);
+    etat->ajouterPersonnage(false, 3, 6, 11, true);
     //etat->ajouterPersonnage(false, 4, 5, 10, true);
     
     m->setMode(Mode::jeu);
@@ -78,7 +78,7 @@ int main(int argc,char* argv[])
                 window->close();
             if (event.type == sf::Event::MouseButtonPressed)
                 if (event.mouseButton.button == sf::Mouse::Left)
-                {
+                {    
                     if (event.mouseButton.x > largeur/2 -185 && event.mouseButton.x < largeur/2 - 115 && event.mouseButton.y > hauteur-105 && event.mouseButton.y < hauteur-35)
                         m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 1));
                     else if (event.mouseButton.x > largeur/2 -115 && event.mouseButton.x < largeur/2 - 45 && event.mouseButton.y > hauteur-105 && event.mouseButton.y < hauteur-35)

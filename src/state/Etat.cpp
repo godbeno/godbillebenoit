@@ -13,6 +13,8 @@ Etat::Etat ()
     cameray = 0;
     zoom = 1;
     tour = true;
+    donneesInit = {0, 0,0,0,0,0,0, 0,0,0,0,0,0,
+                   0, 0,0,0,0,0,0, 0,0,0,0,0,0};
 }
 
 Etat::~Etat ()
@@ -370,4 +372,12 @@ bool Etat::getTour()
 bool Etat::joueurIA()
 {
     return (tour&&joueur1IA)||((!tour)&&joueur2IA);
+}
+int Etat::getDonneesInit(int indice)
+{
+    return donneesInit[indice];
+}
+void Etat::setDonneesInit(int indice, int donnee)
+{
+    donneesInit[indice] = donnee;
 }

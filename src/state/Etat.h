@@ -33,6 +33,7 @@ namespace state {
     bool tour;
     bool joueur1IA;
     bool joueur2IA;
+    std::vector<int> donneesInit;
     // Operations
   public:
     Etat ();
@@ -69,6 +70,8 @@ namespace state {
     void changerTour (bool afficher);
     bool getTour ();
     bool joueurIA ();
+    int getDonneesInit (int indice);
+    void setDonneesInit (int indice, int donnee);
   };
 
 };

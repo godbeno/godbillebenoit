@@ -342,7 +342,19 @@ void Bouton::initBouton(int ID)
                 texte.setCharacterSize(20);
                 break;     
                 
-                
+        case 70 :
+                texture.loadFromFile("res/Textures/Bouton-On.png");
+                sprite.setTexture(texture);
+                sprite.setPosition(largeur - 250,15);
+                sprite.setScale(2,2);
+            
+                aTexte = true;
+                texte.setFont(font);
+                texte.setString("C'est parti !");
+                texte.setPosition(largeur-210, 30);
+                texte.setColor(sf::Color::White);
+                texte.setCharacterSize(20);
+                break;            
                 
         case 00 :
                 texture.loadFromFile("res/Textures/Barre-menu.png");

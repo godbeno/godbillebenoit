@@ -59,6 +59,8 @@ Panneau::Panneau()
     listeBoutons.push_back(new Bouton(63));  
     listeBoutons.push_back(new Bouton(64));
     
+    listeBoutons.push_back(new Bouton(70));
+    
     
     int largeur = sf::VideoMode::getDesktopMode().width;
     int hauteur = sf::VideoMode::getDesktopMode().height;
