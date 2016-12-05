@@ -245,7 +245,7 @@ state::CaseTerrain* IA::getMeilleureCase(state::Personnage* p)
 }
 void IA::jouer()
 {
-    if (!etat->partieContinue() && etat->joueurIA() && (!attendre || (attendre && double(clock()-temps)/CLOCKS_PER_SEC > 0.5*(archer+1))))
+    if (!etat->partieContinue() && etat->joueurIA() && (!attendre || (attendre && double(clock()-temps)/CLOCKS_PER_SEC > 0.6*(archer+1))))
     {
         //std::cout << "On va jouer à nouveau ! " << std::endl;
         switch(niveau)
