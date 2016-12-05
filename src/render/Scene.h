@@ -3,11 +3,12 @@
 #define RENDER__SCENE__H
 
 #include <SFML/Graphics.hpp>
+#include <mutex>
 
 namespace render {
-  class Message;
   class Couche;
   class Panneau;
+  class Message;
 };
 namespace state {
   class Observateur;
@@ -24,8 +25,6 @@ namespace render {
   class Scene : public state::Observateur {
     // Associations
     // Attributes
-  public:
-    Message* message;
   private:
     Couche* couchePersonnage;
     Couche* coucheTerrain;
@@ -37,6 +36,11 @@ namespace render {
     int camerax;
     int cameray;
     Panneau* panneau;
+    Message* message;
+    std::mutex mutexPerso;
+    std::mutex mutexPanneau;
+    std::mutex mutexMsg;
+    std::mutex mutexTerrain;
     // Operations
   public:
     Scene (state::Etat* etat, sf::RenderWindow* window);

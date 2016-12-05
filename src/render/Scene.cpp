@@ -8,7 +8,7 @@
 #include <SFML/Audio.hpp>
 #include <mutex>
 
-std::mutex mtx;
+//std::mutex mtx;
 
 using namespace render;
 
@@ -51,11 +51,15 @@ void Scene::changementEtat(state::EvenementEtat& e)
     {
         if (couchePersonnage->getTuile(e.getX(), e.getY(), zoom*tx) != nullptr)
         {		
-            mtx.lock();
+            mutexPerso.lock();
             couchePersonnage->setTuile(e.getX(), e.getY(), new TuileStatique((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, e.getPid(), tx,e.getNewx(),e.getNewy(), this));
+            mutexPerso.unlock();
+            mutexTerrain.lock();
             coucheTerrain->setSelectionne((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, tx);
+            mutexTerrain.unlock();
+            mutexPanneau.lock();
             panneau->setSelectionne(etat, etat->getSelectionne());   
-            mtx.unlock();
+            mutexPanneau.unlock();
         }
     }
     else if (e.getTypeEvenement() == state::DeplacementCamera)
@@ -76,37 +80,41 @@ void Scene::changementEtat(state::EvenementEtat& e)
     }
     else if (e.getTypeEvenement() == state::ModeDeplacement)
     {
-        mtx.lock();
+        mutexTerrain.lock();
         if (e.getEquipe())
             coucheTerrain->setSurbrillance((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx);
         else
             coucheTerrain->unsetSurbrillance();
-        mtx.unlock();
+        mutexTerrain.unlock();
     }
     else if (e.getTypeEvenement() == state::ModeAttaque)
     {
-        mtx.lock();
+        mutexTerrain.lock();
         if (e.getEquipe())
             coucheTerrain->setRouge((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx);
         else
             coucheTerrain->unsetRouge();
-        mtx.unlock();
+        mutexTerrain.unlock();
     }
     else if (e.getTypeEvenement() == state::ChangementSelectionne)
     {
         if (etat->getGrille().getCellulePersonnage(e.getX(), e.getY()))
         {
-            mtx.lock();
+            mutexTerrain.lock();
             coucheTerrain->setSelectionne((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, tx);
+            mutexTerrain.unlock();
+            mutexPanneau.lock();
             panneau->setSelectionne(etat, etat->getGrille().getCellulePersonnage(e.getX(), e.getY()));
-            mtx.unlock();
+            mutexPanneau.unlock();
         }
         else 
         {
-            mtx.lock();
+            mutexTerrain.lock();
             coucheTerrain->unsetSelectionne();
+            mutexTerrain.unlock();
+            mutexPanneau.lock();
             panneau->unsetSelectionne();
-            mtx.unlock();
+            mutexPanneau.unlock();
         }
     }
     else if (e.getTypeEvenement() == state::Attaque)
@@ -117,33 +125,35 @@ void Scene::changementEtat(state::EvenementEtat& e)
         int id1 = (((idp1-43)/2)-1) + ((idp1+1)%2)*7;
         int id2 = (((idp2-43)/2)-1) + ((idp2+1)%2)*19 + ((idp2)%2)*12;
         //std::cout << "Fin des ids" << std::endl;
-        mtx.lock();
+        mutexPerso.lock();
         couchePersonnage->setTuile(e.getX(), e.getY(), new TuileAnimee((e.getX()-camerax)*tx, (e.getY()-cameray)*tx, id1, tx, couchePersonnage,e.getX(),e.getY(), this));
         couchePersonnage->setTuile(e.getNewx(), e.getNewy(), new TuileAnimee((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, id2, tx,couchePersonnage,e.getNewx(),e.getNewy(), this));
         //std::cout << "Fin des setTuiles" << std::endl;        
         couchePersonnage->setDegat((e.getNewx()-camerax)*tx, (e.getNewy()-cameray)*tx, (int)e.getZoom());
+        mutexPerso.unlock();
         //std::cout << "Fin des setDegats" << std::endl;
+        mutexPanneau.lock();
         panneau->setSelectionne(etat, etat->getSelectionne()); 
-        mtx.unlock();       
+        mutexPanneau.unlock();       
         //std::cout << "Fin des setSelectionne" << std::endl;
     }
     else if (e.getTypeEvenement() == state::PersonnageMort)
     {
-        mtx.lock();
+        mutexPerso.lock();
         couchePersonnage->setTuile(e.getX(), e.getY(),nullptr);
-        mtx.unlock();
+        mutexPerso.unlock();
     }
     else if (e.getTypeEvenement() == state::ChangementDeTour)
     {
-        mtx.lock();
+        mutexMsg.lock();
         message->changerTour();
-        mtx.unlock();
+        mutexMsg.unlock();
     }
     else if (e.getTypeEvenement() == state::FinDePartie)
     {
-        mtx.lock();
+        mutexMsg.lock();
         message->finDePartie(e.getEquipe());
-        mtx.unlock();
+        mutexMsg.unlock();
     }
     
     
@@ -153,14 +163,20 @@ void Scene::afficher()
 {
     window->clear();
     //std::cout << "Avnt couche Terrain" << std::endl;
-    mtx.lock();
+    mutexTerrain.lock();
     coucheTerrain->afficher();
+    mutexTerrain.unlock();
     //std::cout << "Couche Terrain dessinée" << std::endl;
+    mutexPerso.lock();
     couchePersonnage->afficher();
+    mutexPerso.unlock();
     //std::cout << "Les couches ont été dessinées" << std::endl;
+    mutexPanneau.lock();
     panneau->draw(window);
+    mutexPanneau.unlock();
+    mutexMsg.lock();
     message->dessiner(window);
-    mtx.unlock();
+    mutexMsg.unlock();
     window->display();
 }
 
