@@ -191,7 +191,7 @@ state::CaseTerrain* IA::getMeilleureCase(state::Personnage* p)
     int distMin = 50;
     int paUt = 100;
     state::CaseTerrain* ct = nullptr;
-    if (abs(p->getX()-ennemi->getX()) + abs(p->getY()-ennemi->getY()) > p->getPorteeMax())
+    if (abs(p->getX()-ennemi->getX()) + abs(p->getY()-ennemi->getY()) > p->getPorteeMax()) // On veut s'aprocher
     {
         for (unsigned int i = 0; i < v.size(); i++)
         {

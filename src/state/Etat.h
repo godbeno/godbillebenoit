@@ -34,6 +34,8 @@ namespace state {
     bool joueur1IA;
     bool joueur2IA;
     std::vector<int> donneesInit;
+    /// 		
+    int epoch;
     // Operations
   public:
     Etat ();
@@ -72,6 +74,8 @@ namespace state {
     bool joueurIA ();
     int getDonneesInit (int indice);
     void setDonneesInit (int indice, int donnee);
+    void incrEpoch ();
+    int getEpoch ();
   };
 
 };

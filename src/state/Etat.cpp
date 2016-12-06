@@ -8,6 +8,7 @@ using namespace state;
 Etat::Etat ()
 {
     liste = new ListeElement(this);
+    epoch = 0;
     grille = new GrilleElement(this);
     camerax = 0;
     cameray = 0;
@@ -380,4 +381,12 @@ int Etat::getDonneesInit(int indice)
 void Etat::setDonneesInit(int indice, int donnee)
 {
     donneesInit[indice] = donnee;
+}
+void Etat::incrEpoch()
+{
+    epoch++;
+}
+int Etat::getEpoch()
+{
+    return epoch;
 }
