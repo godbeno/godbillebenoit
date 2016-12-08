@@ -94,6 +94,20 @@ void Moteur::convertirCommande()
         CommandeClic* cc = static_cast<CommandeClic*>(listeCommande.get(3));
         if (mode == Mode::deplacement)
             ajouterAction(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY(), true));
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         else if (mode == Mode::jeu && cc->getBouton() == 0)
             ajouterAction(new ChangerMode(6, cc->getX(), cc->getY(), this, true));
         else if (mode == Mode::selection && cc->getBouton() == 0)
