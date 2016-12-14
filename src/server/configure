@@ -1,0 +1,41 @@
+#!/bin/bash
+
+MAIN_DIR=$PWD
+
+if [ "$1" == "clean" ]; then
+    rm -rf build bin extern/libmicrohttpd extern/libmicrohttpd-0.9.46 extern/jsoncpp-0.10.5
+    exit 2
+fi
+
+# dia
+if [ "$1" == "dia" ]; then
+    cd "$MAIN_DIR"
+    dia2code -t cpp -d src dia/tdrest.dia || exit 2
+    sed -i 's/class ServiceException {/class ServiceException : public std::exception {/g' src/ServiceException.h
+    sed -i 's/what () const/what () const noexcept/g' src/ServiceException.h
+fi
+
+# jsoncpp
+if [ ! -d "$MAIN_DIR/extern/jsoncpp-0.10.5" ]; then
+    cd "$MAIN_DIR/extern" || exit 2
+    tar -xzf jsoncpp-0.10.5.tar.gz || exit 2
+    cd jsoncpp-0.10.5 || exit 2
+    python amalgamate.py || exit 2
+fi
+
+# libmicrohttpd
+if [ ! -d "$MAIN_DIR/extern/libmicrohttpd" ]; then
+   cd "$MAIN_DIR/extern" || exit 2
+   tar -xzf libmicrohttpd-0.9.46.tar.gz || exit 2
+   cd libmicrohttpd-0.9.46 || exit 2
+   ./configure --prefix="$MAIN_DIR/extern/libmicrohttpd" || exit 2
+   make -j5 install || exit 2
+fi
+
+# Cmake
+rm -rf "$MAIN_DIR/build" || exit 2
+mkdir -p "$MAIN_DIR/build" || exit 2
+cd "$MAIN_DIR/build" || exit 2
+cmake .. || exit 2
+
+
