@@ -17,7 +17,8 @@ namespace state {
     ModeAttaque     = 9,
     Attaque     = 10,
     ChangementDeTour     = 11,
-    FinDePartie     = 12
+    FinDePartie     = 12,
+    Initialisation     = 13
   };
 
 };

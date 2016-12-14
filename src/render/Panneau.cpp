@@ -190,3 +190,12 @@ void Panneau::unsetSelectionne()
     }
     estSelect = false;
 }
+
+int Panneau::getDonneesInit(int donnee)
+{
+    return donneesInit[donnee];
+}
+void Panneau::setDonneesInit(int indice,int donnee)
+{
+    donneesInit[donnee] = indice;
+}

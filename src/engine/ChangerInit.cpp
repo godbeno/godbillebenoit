@@ -12,3 +12,6 @@ void ChangerInit::appliquer(state::Etat* etat)
 {
     etat->setDonneesInit(indice,donnee);
 }
+void ChangerInit::annuler (state::Etat* etat)
+{
+}

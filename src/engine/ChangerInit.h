@@ -24,6 +24,7 @@ namespace engine {
   public:
     ChangerInit (int indice, int donnee);
     void appliquer (state::Etat* etat);
+    void annuler (state::Etat* etat);
   };
 
 };

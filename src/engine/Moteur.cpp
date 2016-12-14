@@ -6,6 +6,7 @@
 #include "DeplacementCamera.h"
 #include "ChangerMode.h"
 #include "ChangerTour.h"
+#include "ChangerInit.h"
 #include "Attaquer.h"
 #include "Zoom.h"
 #include "Historique.h"
@@ -87,27 +88,10 @@ void Moteur::convertirCommande()
     //mtxUsr.lock();
     if (listeCommande.get(3) != nullptr && !etat->joueurIA()) // Gestion du clic de souris
     {
-        /*if (mode == Mode::jeu) std::cout << "Mode Jeu" << std::endl;
-        else if (mode == Mode::selection) std::cout << "Mode Sélection" << std::endl;
-        else if (mode == Mode::attaque) std::cout << "Mode attaque" << std::endl;
-        else if (mode == Mode::deplacement) std::cout << "Mode deplacement" << std::endl;*/
         CommandeClic* cc = static_cast<CommandeClic*>(listeCommande.get(3));
         if (mode == Mode::deplacement)
             ajouterAction(new Deplacement(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY(), true));
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         else if (mode == Mode::jeu && cc->getBouton() == 0)
             ajouterAction(new ChangerMode(6, cc->getX(), cc->getY(), this, true));
         else if (mode == Mode::selection && cc->getBouton() == 0)
@@ -119,7 +103,11 @@ void Moteur::convertirCommande()
         else if ((mode == Mode::selection || mode == Mode::jeu) && cc->getBouton() == 3)
             ajouterAction(new ChangerTour(true));      
         else if (mode == Mode::attaque)
-            ajouterAction(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY(), true));
+             ajouterAction(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY(), true));
+        else if (mode == Mode::initialisation && cc->getBouton() > 10 && cc->getBouton() < 23)
+        {    ajouterAction(new ChangerInit((etat->getTour()*12+cc->getBouton()-10), (etat->getDonneesInit(etat->getTour()*12+cc->getBouton()-10)+(etat->getTour()*12+cc->getBouton())%2-1)));
+        std::cout << "ChangerInit ajouté" << std::endl;}
+    
     }
     if (listeCommande.get(1) != nullptr) // Gestion des touches caméra
     {

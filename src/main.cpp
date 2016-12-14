@@ -54,13 +54,13 @@ int main(int argc,char* argv[])
     etat->ajouterPersonnage(false, 3, 6, 11, true);
     //etat->ajouterPersonnage(false, 4, 5, 10, true);
     
-    m->setMode(Mode::jeu);
+    m->setMode(Mode::initialisation);
     
     int largeur = sf::VideoMode::getDesktopMode().width;
     int hauteur = sf::VideoMode::getDesktopMode().height;
     
     //On spécifie que les deux joueurs sont des IAs
-    etat->configurerJoueur(true,true);
+    etat->configurerJoueur(false,false);
     etat->changerTour(true);
     
     
@@ -78,20 +78,30 @@ int main(int argc,char* argv[])
                 window->close();
             if (event.type == sf::Event::MouseButtonPressed)
                 if (event.mouseButton.button == sf::Mouse::Left)
-                {   if (event.mouseButton.x > largeur/2 -185 && event.mouseButton.x < largeur/2 - 115 && event.mouseButton.y > hauteur-105 && event.mouseButton.y < hauteur-35)
-                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 1));
-                     
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    if (event.mouseButton.x > largeur/2 -185 && event.mouseButton.x < largeur/2 - 115 && event.mouseButton.y > hauteur-105 && event.mouseButton.y < hauteur-35)
-                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 1));
+    /*A+*/      {   if (event.mouseButton.x > 80 && event.mouseButton.x < 110 && event.mouseButton.y > 25 && event.mouseButton.y < 55)
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(),11));
+    /*A-*/          else if (event.mouseButton.x > 80 && event.mouseButton.x < 110 && event.mouseButton.y > 65 && event.mouseButton.y < 95)
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(),12));
+    /*B+*/          else if (event.mouseButton.x > 80 && event.mouseButton.x < 110 && event.mouseButton.y > 145 && event.mouseButton.y < 175)
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(),13));
+    /*B-*/          else if (event.mouseButton.x > 80 && event.mouseButton.x < 110 && event.mouseButton.y > 185 && event.mouseButton.y < 215)
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(),14));
+    /*C+*/          else if (event.mouseButton.x > 80 && event.mouseButton.x < 110 && event.mouseButton.y > 265 && event.mouseButton.y < 295)
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(),15));
+    /*C-*/          else if (event.mouseButton.x > 80 && event.mouseButton.x < 110 && event.mouseButton.y > 305 && event.mouseButton.y < 335)
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(),16));
+    /*D+*/          else if (event.mouseButton.x > 80 && event.mouseButton.x < 110 && event.mouseButton.y > 385 && event.mouseButton.y < 415)
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(),17));
+    /*D-*/          else if (event.mouseButton.x > 80 && event.mouseButton.x < 110 && event.mouseButton.y > 425 && event.mouseButton.y < 455)
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(),18));
+    /*E+*/          else if (event.mouseButton.x > 80 && event.mouseButton.x < 110 && event.mouseButton.y > 505 && event.mouseButton.y < 535)
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(),19));
+    /*E-*/          else if (event.mouseButton.x > 80 && event.mouseButton.x < 110 && event.mouseButton.y > 545 && event.mouseButton.y < 575)
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(),20));
+    /*F+*/          else if (event.mouseButton.x > 80 && event.mouseButton.x < 110 && event.mouseButton.y > 625 && event.mouseButton.y < 655)
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(),21));
+    /*F-*/          else if (event.mouseButton.x > 80 && event.mouseButton.x < 110 && event.mouseButton.y > 645 && event.mouseButton.y < 675)
+                        m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(),22));
                     else if (event.mouseButton.x > largeur/2 -115 && event.mouseButton.x < largeur/2 - 45 && event.mouseButton.y > hauteur-105 && event.mouseButton.y < hauteur-35)
                         m->ajouterCommande(new CommandeClic((int)(event.mouseButton.x/scene->getCoeff())+scene->getCamerax(), (int)(event.mouseButton.y/scene->getCoeff())+scene->getCameray(), 2));
                     else if(event.mouseButton.x > 3*largeur/4+50 && event.mouseButton.y > hauteur-100) 

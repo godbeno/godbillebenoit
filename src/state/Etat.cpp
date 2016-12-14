@@ -381,6 +381,7 @@ int Etat::getDonneesInit(int indice)
 void Etat::setDonneesInit(int indice, int donnee)
 {
     donneesInit[indice] = donnee;
+    avertirObservateurs(new EvenementEtat(state::Initialisation, this, indice, donnee, 0, false));
 }
 void Etat::incrEpoch()
 {

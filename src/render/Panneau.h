@@ -23,6 +23,8 @@ namespace render {
   class Panneau {
     // Associations
     // Attributes
+  public:
+    std::vector<int> donneesInit;
   private:
     std::vector<Bouton*> listeBoutons;
     sf::Sprite fond;
@@ -42,6 +44,8 @@ namespace render {
     void draw (sf::RenderWindow* window);
     void setSelectionne (state::Etat* etat, state::Personnage* p);
     void unsetSelectionne ();
+    int getDonneesInit (int indice);
+    void setDonneesInit (int indice, int donnee);
   };
 
 };
