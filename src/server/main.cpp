@@ -8,6 +8,7 @@
 #include <string.h>
 
 using namespace std;
+using namespace server;
 
 class Request {
 public:

@@ -651,7 +651,8 @@ struct stdlib_includes {
    int mutex;
    int sfG;
    int sfA;
-   int temps; 
+   int temps;
+   int json; 
 };
 
 void print_include_stdlib(struct stdlib_includes* si,char* name) {
@@ -746,7 +747,12 @@ void print_include_stdlib(struct stdlib_includes* si,char* name) {
        if (!si->temps && strstr(name, "clock_t"))
 	{
 		print("#include <ctime>\n");
-		si->sfA = 1;
+		si->temps = 1;
+	}
+       if (!si->json && strstr(name, "Json"))
+	{
+		print("#include <json/json.h>\n");
+		si->json = 1;
 	}
     }
 }

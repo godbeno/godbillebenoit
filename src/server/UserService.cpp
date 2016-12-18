@@ -8,6 +8,8 @@
 #include "UserService.hpp"
 #include <iostream>
 
+using namespace server;
+
 UserService::UserService (UserDB& userDB) : AbstractService("/user"),
     userDB(userDB) {
     

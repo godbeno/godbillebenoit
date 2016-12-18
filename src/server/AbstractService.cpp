@@ -7,6 +7,8 @@
 
 #include "AbstractService.hpp"
 
+using namespace server;
+
 AbstractService::AbstractService (const string& pattern) {
     setPattern(pattern);
 }

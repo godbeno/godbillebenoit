@@ -7,6 +7,8 @@
 
 #include "UserDB.hpp"
 
+using namespace server;
+
 UserDB::UserDB() : idseq(1) {
     
 }

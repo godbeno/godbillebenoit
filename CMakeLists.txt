@@ -20,17 +20,23 @@ ENDIF(CMAKE_COMPILER_IS_GNUCC)
 
 # Generate headers
 set(DIA2CODE "${PROJECT_SOURCE_DIR}/dia2code/bin/dia2code")
+exec_program(${DIA2CODE} ARGS -d ../src -t cpp ../src/server.dia)
 exec_program(${DIA2CODE} ARGS -d ../src -t cpp ../src/AI.dia)
 exec_program(${DIA2CODE} ARGS -d ../src -t cpp ../src/engine.dia)
 exec_program(${DIA2CODE} ARGS -d ../src -t cpp ../src/render.dia)
 exec_program(${DIA2CODE} ARGS -d ../src -t cpp ../src/state.dia)
 
 # Sources
-file(GLOB_RECURSE main_sources src/*.cpp)
+file(GLOB_RECURSE game_sources src/render/*.cpp src/AI/*.cpp src/engine/*.cpp src/state/*.cpp)
+file(GLOB_RECURSE server_sources src/server/*.cpp)
 
+# jsoncpp
+include_directories ("${PROJECT_SOURCE_DIR}/extern/jsoncpp-0.10.5/dist")
+file(GLOB jsoncpp_sources "${PROJECT_SOURCE_DIR}/extern/jsoncpp-0.10.5/dist/jsoncpp.cpp")
 
 # Executables
-add_executable(run ${main_sources})
+add_executable(run ${game_sources} src/main.cpp)
+add_executable(serv ${server_sources} ${jsoncpp_sources})
 
 # SFML
 if(WIN32)
@@ -44,4 +50,14 @@ if(SFML_FOUND)
   include_directories(${SFML_INCLUDE_DIR})
   target_link_libraries(run ${SFML_LIBRARIES})
 endif()
+
+# libmicrohttpd
+include_directories ("${PROJECT_SOURCE_DIR}/extern/libmicrohttpd/include")
+target_link_libraries(serv "${PROJECT_SOURCE_DIR}/extern/libmicrohttpd/lib/libmicrohttpd.so")
+
+# Writing sources files
+MESSAGE("Surprise motherfucker !")
+MESSAGE(${game_sources})
+MESSAGE("Surprise motherfucker !")
+MESSAGE(${server_sources})
 

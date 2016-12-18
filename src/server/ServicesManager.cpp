@@ -8,6 +8,7 @@
 #include "ServicesManager.hpp"
 
 using namespace std;
+using namespace server;
 
 void ServicesManager::registerService (unique_ptr<AbstractService> service) {
 	services.push_back(std::move(service));

@@ -1,3 +1,0 @@
-#!/bin/bash
-
-./bin/tdrest 8080

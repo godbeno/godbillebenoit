@@ -7,6 +7,8 @@
 
 #include "VersionService.hpp"
 
+using namespace server;
+
 VersionService::VersionService () : AbstractService("/version") {
     
 }

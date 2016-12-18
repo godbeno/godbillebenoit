@@ -3,7 +3,6 @@
 #define ENGINE__MOTEUR__H
 
 #include <ctime>
-#include <ctime>
 
 namespace state {
   class Etat;
