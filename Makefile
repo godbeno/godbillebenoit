@@ -19,12 +19,14 @@ ${DIA2CODE_DIR}/bin/dia2code:
 
 configure:
 	@mkdir -p build 
+	@./extern/configure
 	@cd build && cmake ..
 
 build:
 	@make -s -j4 -C build
 
 run: build
+	./bin/serv
 	./bin/run
 
 test:

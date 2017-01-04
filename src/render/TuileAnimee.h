@@ -4,7 +4,6 @@
 
 #include <vector>
 #include <ctime>
-#include <ctime>
 #include <SFML/Graphics.hpp>
 
 namespace render {
