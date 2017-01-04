@@ -15,7 +15,7 @@ Etat::Etat ()
     zoom = 1;
     tour = true;
     donneesInit = {0, 0,0,0,0,0,0, 0,0,0,0,0,0,
-                   0, 0,0,0,0,0,0, 0,0,0,0,0,0};
+                      0,0,0,0,0,0, 0,0,0,0,0,0};
 }
 
 Etat::~Etat ()
@@ -381,6 +381,7 @@ int Etat::getDonneesInit(int indice)
 void Etat::setDonneesInit(int indice, int donnee)
 {
     donneesInit[indice] = donnee;
+    std::cout << " On reçoit bien un setDonneesInit dans Etat avec indice :" << indice << ", donnee :" << donnee  << std::endl;
     avertirObservateurs(new EvenementEtat(state::Initialisation, this, indice, donnee, 0, false));
 }
 void Etat::incrEpoch()

@@ -17,7 +17,6 @@ Bouton::Bouton(int ID)
     this->aTexte = false;
     font.loadFromFile("res/Fonts/arial.ttf");
     initBouton(ID);
-    
 }
 
 
@@ -114,7 +113,7 @@ void Bouton::initBouton(int ID)
         case 14 :
                 aTexte = true;
                 texte.setFont(font);
-                texte.setString("A / B");
+                texte.setString("0 / 0");
                 texte.setPosition(25,95);
                 texte.setColor(sf::Color::White);
                 texte.setCharacterSize(20);
@@ -158,7 +157,7 @@ void Bouton::initBouton(int ID)
         case 24 :
                 aTexte = true;
                 texte.setFont(font);
-                texte.setString("A / B");
+                texte.setString("0 / 0");
                 texte.setPosition(25,215);
                 texte.setColor(sf::Color::White);
                 texte.setCharacterSize(20);
@@ -203,7 +202,7 @@ void Bouton::initBouton(int ID)
         case 34 :
                 aTexte = true;
                 texte.setFont(font);
-                texte.setString("A / B");
+                texte.setString("0 / 0");
                 texte.setPosition(25,335);
                 texte.setColor(sf::Color::White);
                 texte.setCharacterSize(20);
@@ -247,7 +246,7 @@ void Bouton::initBouton(int ID)
         case 44 :
                 aTexte = true;
                 texte.setFont(font);
-                texte.setString("A / B");
+                texte.setString("0 / 0");
                 texte.setPosition(25,455);
                 texte.setColor(sf::Color::White);
                 texte.setCharacterSize(20);
@@ -293,7 +292,7 @@ void Bouton::initBouton(int ID)
         case 54 :
                 aTexte = true;
                 texte.setFont(font);
-                texte.setString("A / B");
+                texte.setString("0 / 0");
                 texte.setPosition(25,575);
                 texte.setColor(sf::Color::White);
                 texte.setCharacterSize(20);
@@ -336,7 +335,7 @@ void Bouton::initBouton(int ID)
         case 64 :
                 aTexte = true;
                 texte.setFont(font);
-                texte.setString("1 / 1");
+                texte.setString("0 / 0");
                 texte.setPosition(25,695);
                 texte.setColor(sf::Color::White);
                 texte.setCharacterSize(20);
@@ -413,4 +412,12 @@ bool Bouton::getATexte()
 sf::Text Bouton::getTexte()
 {
     return texte;
+}
+void Bouton::update(int a,int b)
+{
+    texte.setFont(font);
+    //texte.setString(std::string("%d / %d",a,b));
+    texte.setString(std::to_string(a) + " / " + std::to_string(b));
+    texte.setColor(sf::Color::White);
+    texte.setCharacterSize(20);
 }

@@ -147,6 +147,7 @@ void Scene::changementEtat(state::EvenementEtat& e)
     {
         mutexMsg.lock();
         message->changerTour();
+        panneau->changerTour();
         mutexMsg.unlock();
     }
     else if (e.getTypeEvenement() == state::FinDePartie)
@@ -155,8 +156,15 @@ void Scene::changementEtat(state::EvenementEtat& e)
         message->finDePartie(e.getEquipe());
         mutexMsg.unlock();
     }
-    
-    
+    else if (e.getTypeEvenement() == state::Initialisation)
+    {
+        for(int i=0;i<this->panneau->getTaille();i++)
+        {
+            
+            std::cout << "On modifie l'init avec e.getX et e.getY égal à "<< e.getX() << ", "<<e.getY() << std::endl;
+            this->panneau->setDonneesInit(e.getX(),e.getY());
+        }
+    }  
 }
  
 void Scene::afficher()

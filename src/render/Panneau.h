@@ -23,8 +23,6 @@ namespace render {
   class Panneau {
     // Associations
     // Attributes
-  public:
-    std::vector<int> donneesInit;
   private:
     std::vector<Bouton*> listeBoutons;
     sf::Sprite fond;
@@ -38,14 +36,19 @@ namespace render {
     sf::Text txtPv;
     sf::RectangleShape pvTot;
     sf::RectangleShape pvRest;
+    std::vector<int> donneesInit;
+    bool tour;
     // Operations
   public:
     Panneau ();
     void draw (sf::RenderWindow* window);
     void setSelectionne (state::Etat* etat, state::Personnage* p);
     void unsetSelectionne ();
+    Bouton* getBouton (int indice);
+    int getTaille ();
     int getDonneesInit (int indice);
     void setDonneesInit (int indice, int donnee);
+    void changerTour ();
   };
 
 };

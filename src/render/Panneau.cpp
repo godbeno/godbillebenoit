@@ -13,6 +13,11 @@ using namespace render;
 
 Panneau::Panneau()
 {
+    
+    donneesInit = {0, 0,0,0,0,0,0, 0,0,0,0,0,0,
+                      0,0,0,0,0,0, 0,0,0,0,0,0};
+        
+    tour = true;   
     listeBoutons.clear();
     listeBoutons.push_back(new Bouton(100));
     listeBoutons.push_back(new Bouton(102));    
@@ -60,6 +65,8 @@ Panneau::Panneau()
     listeBoutons.push_back(new Bouton(64));
     
     listeBoutons.push_back(new Bouton(70));
+    
+
     
     
     int largeur = sf::VideoMode::getDesktopMode().width;
@@ -191,11 +198,29 @@ void Panneau::unsetSelectionne()
     estSelect = false;
 }
 
-int Panneau::getDonneesInit(int donnee)
+Bouton* Panneau::getBouton(int id)
+{   int i=0;
+    while(listeBoutons[i]->getID()!=id)
+        i++;
+    return listeBoutons[i];
+}
+int Panneau::getTaille()
 {
-    return donneesInit[donnee];
+    return listeBoutons.size();
 }
 void Panneau::setDonneesInit(int indice,int donnee)
+{   
+    donneesInit[indice]=donnee;
+    for(int i=0;i<6;i++)
+    {   getBouton(14+10*i)->update(donneesInit[1+12*tour+i],donneesInit[1+12*tour+i+6]);
+        std::cout << "On met à jour le panneau aux coordonnées " << i << " avec les valeurs " << donneesInit[1+12*tour+i] << " , " << donneesInit[1+12*tour+i+6] <<std::endl;
+    }
+}
+int Panneau::getDonneesInit(int indice)
 {
-    donneesInit[donnee] = indice;
+    return donneesInit[indice];
+}
+void Panneau::changerTour()
+{
+    tour = !tour;
 }

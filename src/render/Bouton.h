@@ -27,6 +27,7 @@ namespace render {
     sf::Sprite getSprite ();
     bool getATexte ();
     sf::Text getTexte ();
+    void update (int a, int b);
   };
 
 };

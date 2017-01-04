@@ -104,9 +104,9 @@ void Moteur::convertirCommande()
             ajouterAction(new ChangerTour(true));      
         else if (mode == Mode::attaque)
              ajouterAction(new Attaquer(etat->getSelectionne()->getX(), etat->getSelectionne()->getY(), cc->getX(), cc->getY(), true));
-        else if (mode == Mode::initialisation && cc->getBouton() > 10 && cc->getBouton() < 23)
-        {    ajouterAction(new ChangerInit((etat->getTour()*12+cc->getBouton()-10), (etat->getDonneesInit(etat->getTour()*12+cc->getBouton()-10)+(etat->getTour()*12+cc->getBouton())%2-1)));
-        std::cout << "ChangerInit ajouté" << std::endl;}
+        else if (mode == Mode::initialisation && abs(cc->getBouton()) > 16 && abs(cc->getBouton()) < 23)
+        {   ajouterAction(new ChangerInit((etat->getTour()*12+abs(cc->getBouton())-10), (etat->getDonneesInit(etat->getTour()*12+abs(cc->getBouton())-10)+(cc->getBouton())/abs(cc->getBouton()))));
+        std::cout << "ChangerInit ajouté, avec comme parametres "<< etat->getTour()*12+abs(cc->getBouton())-10 << ", "<< etat->getDonneesInit(etat->getTour()*12+abs(cc->getBouton())-10)+(cc->getBouton())/abs(cc->getBouton()) << std::endl;}
     
     }
     if (listeCommande.get(1) != nullptr) // Gestion des touches caméra
