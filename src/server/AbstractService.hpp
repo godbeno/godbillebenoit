@@ -10,6 +10,7 @@
 
 #include <json/json.h>
 #include <iostream>
+#include <string>
 
 #include "ServiceException.hpp"
 #include "AbstractService.h"

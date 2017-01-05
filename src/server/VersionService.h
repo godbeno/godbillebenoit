@@ -2,7 +2,6 @@
 #ifndef SERVER__VERSIONSERVICE__H
 #define SERVER__VERSIONSERVICE__H
 
-#include <json/json.h>
 
 namespace server {
   class AbstractService;

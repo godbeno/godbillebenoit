@@ -54,7 +54,7 @@ int main(int argc,char* argv[])
     etat->ajouterPersonnage(false, 3, 6, 11, true);
     //etat->ajouterPersonnage(false, 4, 5, 10, true);
     
-    m->setMode(Mode::initialisation);
+    m->setMode(Mode::jeu);
     
     int largeur = sf::VideoMode::getDesktopMode().width;
     int hauteur = sf::VideoMode::getDesktopMode().height;

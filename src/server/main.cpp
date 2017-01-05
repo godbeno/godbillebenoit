@@ -1,5 +1,5 @@
 #include "ServicesManager.hpp"
-#include "VersionService.hpp"
+#include "CommandeService.h"
 #include "UserService.hpp"
 
 #include <iostream>
@@ -121,7 +121,8 @@ int main(int argc, char *const *argv)
 {
     try {
         ServicesManager servicesManager;
-        servicesManager.registerService(make_unique<VersionService>());
+        CommandeDB cmdDB;
+        servicesManager.registerService(make_unique<CommandeService>(std::ref(cmdDB)));
 
         UserDB userDB;
         userDB.addUser(make_unique<User>("Paul",23));
